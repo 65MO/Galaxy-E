@@ -3,7 +3,7 @@ Following my [GCC2016 lightning talk](https://gcc16.sched.com/event/7Zgd/65-mill
 # Galaxy-E
 This repository will gather ideas and development of Galaxy-E tools 
 
-# Contributors
+# Collaborators
 
 * Björn Grüning ([Freiburg University](http://www.bioinf.uni-freiburg.de/Galaxy/))
 * Thimothée Virgoulay ([MNHN CESCO](http://cesco.mnhn.fr/), [Concarneau marine biology station](http://concarneau.mnhn.fr/) & [Montpellier University](https://sns.edu.umontpellier.fr/master-sciences-numerique-pour-la-sante-montpellier/bcd/))
