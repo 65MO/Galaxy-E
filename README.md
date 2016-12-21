@@ -8,7 +8,7 @@ This repository will gather ideas and development of Galaxy-E tools
 * Work with messy data from db
 	* [OpenRefine](http://openrefine.org/)
 * Tadarida tools suite: A Toolbox for Animal Detection on Acoustic Recordings Integrating Discriminant Analysis
-	* Ubat slicer: Tadarida pre-processing
+	* [Ubat slicer](https://github.com/mont29/ubat/): Tadarida pre-processing
 	* [Tadarida-D](https://github.com/YvesBas/Tadarida-D)
 	* [Tadarida-C](https://github.com/YvesBas/Tadarida-C)
 	* [Tadarida-L](https://github.com/YvesBas/Tadarida-L)
@@ -18,7 +18,7 @@ This repository will gather ideas and development of Galaxy-E tools
 	*Conversion
 	*Buffering
 	*Calculate mean by buffer
-* Visualize GISD data
+* Visualize GIS data
 	*[PostGIS](http://www.postgis.net/)/[Leaflet](http://leafletjs.com/)
 
 
