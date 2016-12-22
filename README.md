@@ -12,6 +12,14 @@ This repository will gather ideas and development of Galaxy-E tools
 	* [Tadarida-D](https://github.com/YvesBas/Tadarida-D)
 	* [Tadarida-C](https://github.com/YvesBas/Tadarida-C)
 	* [Tadarida-L](https://github.com/YvesBas/Tadarida-L)
+* STOC (Temporal monitoring of common birds)
+	* Simple punctual sampling
+		*Regional scale: scriptSTOCeps.R
+	* Capture
+* STERF (Temporal Follow-up of France Rhopalocera)
+	*regionalGAM
+	*rtrim
+	*MSI-tool
 * [Species distribution modeling](https://cran.r-project.org/web/packages/dismo/vignettes/sdm.pdf)
 * GIS data handling
 	*Sites extraction
