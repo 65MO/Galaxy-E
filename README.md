@@ -6,30 +6,30 @@ This repository will gather ideas and development of Galaxy-E tools
 
 # Interesting tools
 * Work with messy data from db
-	* [OpenRefine](http://openrefine.org/) through Interactive Environment ?
+ * [OpenRefine](http://openrefine.org/) through Interactive Environment ?
 * Tadarida tools suite: A Toolbox for Animal Detection on Acoustic Recordings Integrating Discriminant Analysis
-	* [Ubat slicer](https://github.com/mont29/ubat/): Tadarida pre-processing
-	* [Tadarida-D](https://github.com/YvesBas/Tadarida-D)
-	* [Tadarida-C](https://github.com/YvesBas/Tadarida-C)
-	* [Tadarida-L](https://github.com/YvesBas/Tadarida-L)
+ * [Ubat slicer](https://github.com/mont29/ubat/): Tadarida pre-processing
+ * [Tadarida-D](https://github.com/YvesBas/Tadarida-D)
+ * [Tadarida-C](https://github.com/YvesBas/Tadarida-C)
+ * [Tadarida-L](https://github.com/YvesBas/Tadarida-L)
 * STOC (Temporal monitoring of common birds)
-	* Simple punctual sampling
-		*Regional scale: scriptSTOCeps.R
-	* Capture
+ * Simple punctual sampling
+  * Regional scale: scriptSTOCeps.R
+ * Capture
 * STERF (Temporal Follow-up of France Rhopalocera)
-	*regionalGAM
-	*rtrim
-	*MSI-tool
+ * regionalGAM
+ * rtrim
+ * MSI-tool
 * [Species distribution modeling](https://cran.r-project.org/web/packages/dismo/vignettes/sdm.pdf)
 * GIS data handling
-	*Sites extraction
-	*Conversion
-	*Buffering
-	*Calculate mean by buffer
+ * Sites extraction
+ * Conversion
+ * Buffering
+ * Calculate mean by buffer
 * Visualize GIS data
-	*[PostGIS](http://www.postgis.net/)/[Leaflet](http://leafletjs.com/) through Interactive Environment ?
+ * [PostGIS](http://www.postgis.net/)/[Leaflet](http://leafletjs.com/) through Interactive Environment ?
 * Dashboards for a community intensively oriented toward R
-    *[R-Shiny](https://shiny.rstudio.com/) through Interactive Environment ?
+    * [R-Shiny](https://shiny.rstudio.com/) through Interactive Environment ?
 
 
 
