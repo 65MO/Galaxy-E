@@ -20,7 +20,7 @@ This repository will gather ideas and development of Galaxy-E tools
  * [Tadarida-L](https://github.com/YvesBas/Tadarida-L)
 * STOC (Temporal monitoring of common birds)
  * Simple punctual sampling
-  * Regional scale: scriptSTOCeps.R
+    * Regional scale: scriptSTOCeps.R
  * Capture
 * STERF (Temporal Follow-up of France Rhopalocera)
  * regionalGAM
