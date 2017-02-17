@@ -10,6 +10,9 @@ This repository will gather ideas and development of Galaxy-E tools
 # Interesting tools
 * Work with messy data from db
  * [OpenRefine](http://openrefine.org/) through Interactive Environment ?
+ * Other solutions:
+  * [DataCleaner](https://datacleaner.org/) 
+  * [Karma](http://usc-isi-i2.github.io/karma/) A Data Integration Tool
 * Tadarida tools suite: A Toolbox for Animal Detection on Acoustic Recordings Integrating Discriminant Analysis
  * [Ubat slicer](https://github.com/mont29/ubat/): Tadarida pre-processing
  * [Tadarida-D](https://github.com/YvesBas/Tadarida-D)
@@ -32,6 +35,7 @@ This repository will gather ideas and development of Galaxy-E tools
 * Visualize GIS data
  * [PostGIS](http://www.postgis.net/)/[Leaflet](http://leafletjs.com/) through Interactive Environment ?
  * [H2GIS](http://www.h2gis.org/support/) light and standalone GIS database
+ * [Magrit](http://magrit.cnrs.fr/modules) for thematic GIS (in french and english)
 * Dashboards for a community intensively oriented toward R
     * [R-Shiny](https://shiny.rstudio.com/) through Interactive Environment ?
 
