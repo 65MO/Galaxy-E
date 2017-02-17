@@ -45,6 +45,7 @@ This repository will gather ideas and development of Galaxy-E tools
 # Collaborators
 
 * Björn Grüning ([Freiburg University](http://www.bioinf.uni-freiburg.de/Galaxy/))
+* Mathias Rouan ([LETG](http://letg.cnrs.fr/auteur32.html))
 * Nicolas Dubos ([MNHN CESCO](http://cesco.mnhn.fr/user/123))
 * Thimothée Virgoulay ([MNHN CESCO](http://cesco.mnhn.fr/), [Concarneau marine biology station](http://concarneau.mnhn.fr/) & [Montpellier University](https://sns.edu.umontpellier.fr/master-sciences-numerique-pour-la-sante-montpellier/bcd/))
 * Yvan Le Bras ([MNHN CESCO](http://cesco.mnhn.fr/) & [Concarneau marine biology station](http://concarneau.mnhn.fr/))
