@@ -31,6 +31,7 @@ This repository will gather ideas and development of Galaxy-E tools
  * Calculate mean by buffer
 * Visualize GIS data
  * [PostGIS](http://www.postgis.net/)/[Leaflet](http://leafletjs.com/) through Interactive Environment ?
+ * [H2GIS](http://www.h2gis.org/support/) light and standalone GIS database
 * Dashboards for a community intensively oriented toward R
     * [R-Shiny](https://shiny.rstudio.com/) through Interactive Environment ?
 
