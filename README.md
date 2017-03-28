@@ -8,7 +8,7 @@ Following [GCC2016 lightning talk](https://gcc16.sched.com/event/7Zgd/65-million
 This repository will gather ideas and development of Galaxy-E tools 
 
 # A dedicated French version of Galaxy
-Following the @dannon [PR]()https://github.com/galaxyproject/galaxy/pull/3762 @ValentinChCloud will work on this task.
+Following the @dannon [PR](https://github.com/galaxyproject/galaxy/pull/3762) @ValentinChCloud will work on this task.
 
 # Interesting tools
 * Work with messy data from db
