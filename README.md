@@ -39,6 +39,7 @@ Following the @dannon [PR](https://github.com/galaxyproject/galaxy/pull/3762) @V
  * [PostGIS](http://www.postgis.net/)/[Leaflet](http://leafletjs.com/) through Interactive Environment ?
  * [H2GIS](http://www.h2gis.org/support/) light and standalone GIS database
  * [Magrit](http://magrit.cnrs.fr/modules) for thematic GIS (in french and english)
+* Taxa automated recognition through [TensorFlow](https://tensorflow.wq.io/about)
 * Dashboards for a community intensively oriented toward R
     * [R-Shiny](https://shiny.rstudio.com/) through Interactive Environment ?
 
