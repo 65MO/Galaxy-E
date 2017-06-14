@@ -1,0 +1,21 @@
+<tool id="tadarida_classifier_data_manager" name="Tadarida classifier" tool_type="manage_data" version="1.0">
+    <description>Tadarida classifier data manager</description>
+
+    <command detect_errors="exit_code"><![CDATA[
+        echo -e "{\"data_tables\":{\"tadarida\":[{\"value\":\"${value}\",\"name\":\"${name}\",\"path\":\"${Classifier}\"}]}}" > ${out_file}
+    ]]></command>
+    
+    <inputs>
+        <param name="Classifier" type="data" format="data" label="Tadarida classifier" help=" Detected sound classifier come from Tadarida-L tool" />
+
+        <param name="value" type="text" value="" label="Classifier ID (must be unique)" />
+        <param name="name" type="text" value="" label="Classifier Name (Name form : ClassifierAlgoName_DataOrigin e.g RandomTree_MNHN) " />
+    </inputs>
+    <outputs>
+        <data name="out_file" format="data_manager_json"/>
+    </outputs>
+
+    <help>
+        The classifier need to come from Tadarida-L tool, for more information go to : https://github.com/YvesBas/Tadarida-L
+    </help>
+</tool>

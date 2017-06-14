@@ -1,0 +1,42 @@
+<tool id="tadarida-c" name="Tadarida-c" version="0.1">
+    
+    <description>Toolbox for Animal Detection on Acoustic Recordings - Classification part</description>
+    
+    <stdio>
+        <exit_code range="1:" />
+    </stdio>
+    
+    <command>
+        <![CDATA[
+        Rscript /home/loup/Bureau/Dev_Project/Outils/Tadarida-C/Tadarida-C/tadaridaC.r ${fichierTa} ${Classifier.fields.path} ;
+        mv dataset_*.tc output
+        ]]>
+    </command>
+
+    <inputs>		
+		<param name="fichierTa" type="data" format="tabular" label="Detected sound events file(s)" help=" Detected sound events file(s) comme from Tadarida-D tool" />
+
+		<param name="Classifier" type="select" label="Classifier" help="Methode">
+			<options from_file="tadarida.loc">
+                <column name="value" index="0"/>
+                <column name="name" index="1"/>
+                <column name="path" index="2"/>
+			</options>
+        </param>
+
+    </inputs>
+
+    <outputs>
+        <data format="tabular" name="output" label="${fichierTa.element_identifier}" from_work_dir="./output"/>
+	</outputs>
+
+    <help><![CDATA[Salut
+    ]]>
+    </help>
+
+    <citations>
+        <citation type="doi">10.5334/jors.154</citation>
+    </citations>
+
+
+</tool>
