@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<datatypes>
+  <datatype_files>
+      <datatype_file name="audio.py"/>
+  </datatype_files>
+  <registration>
+    <!-- Wave datatype -->
+    <datatype extension="wav" type="galaxy.datatypes.audio:Wav" display_in_upload="True" />
+  </registration>
+</datatypes>

@@ -1,8 +1,7 @@
 <?xml version="1.0"?>
 <data_managers>
-
     <data_manager tool_file="data_manager/tadarida_classifier.xml" id="tadarida_classifier" version="1.0">
-        <data_table name="tadarida">
+        <data_table name="${GALAXY_DATA_MANAGER_DATA_PATH}/tadarida">
             <output>
                 <column name="value"/> 
                 <column name="name"/>
