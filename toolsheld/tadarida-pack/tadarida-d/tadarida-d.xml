@@ -11,6 +11,7 @@
     <command>
         <![CDATA[
         tadaridaD -v ${adv.featureList} -x ${adv.timeExpension} -f ${adv.frequencyBand} ${fichierSon} ;
+        if [ ! -f ./dataset_*.ta ] ; then echo "Corrupted sound file, try to hear it in your local computer and if it work, reload it" ; fi ;
         mv dataset_*.ta output
         ]]>
     </command>
