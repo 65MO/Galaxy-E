@@ -22,7 +22,11 @@
 
         <section name="adv" title="Advanced Options" expanded="False">
             
-            <param name="featureList" type="integer" value="1" label="List of features" help="Sets the list of features to be extracted on each detected sound events. More informations availables at https://github.com/YvesBas/Tadarida-D/blob/master/Manual_Tadarida-D.odt (see appendix)"/> 
+            <param name="featureList" type="select" label="List of features" help="Sets the list of features (1 or 2) to be extracted on each detected sound events. More informations availables at https://github.com/YvesBas/Tadarida-D/blob/master/Manual_Tadarida-D.odt (see appendix)"> 
+                <option value="1" selected="true">1</option>
+                <option value="2">2</option>
+            </param>
+
 
             <param name="timeExpension" type="select" label="Time Expansion Factor" help="10 for 10-times expanded .wav files (most commonly used in bat monitoring) or 1 for direct recordings (only 10 or 1 possible).">
                 <option value="10" selected="true">10</option>
