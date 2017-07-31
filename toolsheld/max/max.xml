@@ -1,0 +1,40 @@
+<tool id="max" name="Max" version="1.0">
+    
+    <description>Toolbox for Animal Detection on Acoustic Recordings - Classification part</description>
+    
+    <requirements>
+         <requirement type="package">r</requirement>
+    </requirements>
+
+    <stdio>
+        <exit_code range="1:" />
+    </stdio>
+    
+    <command>
+        <![CDATA[
+        $__tool_directory__/max.r ${fichierTab} > ${output} ;
+        ]]>
+    </command>
+
+    <inputs>		
+		<param name="fichierTab" type="data" format="csv" label="Tableau tadaridaC" help="Tableau sortie de l'outils tadaridaC" />
+
+    </inputs>
+
+    <outputs>
+        <data format="csv" name="output"/>
+	</outputs>
+
+    <tests>
+        <test>
+            <param name="fichierTab" value="test.csv" ftype="csv"/>
+            <output name="output" file="resultat-test" ftype="csv"/>
+        </test>
+    </tests>
+
+    <help><![CDATA[
+        Outils
+    ]]>
+    </help>
+
+</tool>
