@@ -37,4 +37,5 @@ c(nomColonne, args[4]) -> nomColonne
 
 tab_fin<-data.frame(tab[,1], nomValeurColonne, valeurMax)
 colnames(tab_fin) <- nomColonne
-tab_fin
+
+write.table(tab_fin, "./Resultat", sep="\t", row.names = FALSE) 

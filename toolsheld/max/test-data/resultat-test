@@ -1,9 +1,9 @@
-  evenementSonore nomEspece valeurConfiance
-1 dataset_538.dat    Pippyg           0.428
-2 dataset_538.dat    Leppun           0.234
-3 dataset_539.dat    Pippip           0.786
-4 dataset_539.dat    Plaint           0.640
-5 dataset_539.dat    Eptser           0.410
-6 dataset_542.dat    Tetvir           0.648
-7 dataset_542.dat    Plaint           0.486
-8 dataset_542.dat    Inssp6           0.382
+"evenementSonore"	"nomEspece"	"valeurConfiance"
+"dataset_538.dat"	"Pippyg"	0.428
+"dataset_538.dat"	"Leppun"	0.234
+"dataset_539.dat"	"Pippip"	0.786
+"dataset_539.dat"	"Plaint"	0.64
+"dataset_539.dat"	"Eptser"	0.41
+"dataset_542.dat"	"Tetvir"	0.648
+"dataset_542.dat"	"Plaint"	0.486
+"dataset_542.dat"	"Inssp6"	0.382
