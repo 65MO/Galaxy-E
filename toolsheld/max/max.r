@@ -2,17 +2,20 @@
 
 options(error = function() traceback(2))
 
-#get arguments from the command line
+#get arguments from the command line (by Yves Bas, Mnhn, France)
 args <- commandArgs(trailingOnly = TRUE)
 
-if(length(args)!=1 ){
-  print("usage: ./max.r <file>")
+#Verification que le nombre de paramètre est compatible avec le script
+if(length(args)!=4 ){
+  print("usage: ./max.r <file> <nameCol1> <nameCol2> <nameCol3>")
   q("no",0,"False")
 }
-read.csv(args[1],head=T)->tab
+#Lecture du fichier d'entrée (au format tsv)
+read.table(args[1],head=T,sep="\t")->tab
 
-vector()->nomEspece
-vector()->valeurConfiance
+#Pour chaque ligne on recherche la valeur maximun et le nom de la colonne qui correspond à cette valeur
+vector()->nomValeurColonne
+vector()->valeurMax
 for (i in 1:nrow(tab)){
 	max=0
 	jmax=0
@@ -22,7 +25,16 @@ for (i in 1:nrow(tab)){
 			jmax=j
 		}
 	}
-	c(nomEspece,colnames(tab)[jmax])->nomEspece
-	c(valeurConfiance,max)->valeurConfiance
+	c(nomValeurColonne,colnames(tab)[jmax])->nomValeurColonne
+	c(valeurMax,max)->valeurMax
 }
-data.frame(evenementSonore=tab[,1], nomEspece, valeurConfiance)
+
+#On renomme les entêtes de colonnes
+vector()-> nomColonne
+c(nomColonne, args[2]) -> nomColonne
+c(nomColonne, args[3]) -> nomColonne
+c(nomColonne, args[4]) -> nomColonne
+
+tab_fin<-data.frame(tab[,1], nomValeurColonne, valeurMax)
+colnames(tab_fin) <- nomColonne
+tab_fin
