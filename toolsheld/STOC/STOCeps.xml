@@ -15,8 +15,8 @@
     <command>
         <![CDATA[
         $__tool_directory__/STOCeps.R ${fichierSTOC} $__tool_directory__/Librairie;
-        mv variationsAnnuellesEspece.csv output1 ;
-        mv tendanceGlobalEspece.csv output2 ;
+        mv variationsAnnuellesEspece.tsv output1 ;
+        mv tendanceGlobalEspece.tsv output2 ;
         ]]>
     </command>
 
