@@ -1,6 +1,6 @@
 <tool id="stoc" name="STOCeps" version="1.0">
     
-    <description>Tool for the study of STOC data</description>
+    <description>Création des fichiers des variations annuelles par espèces et de la tendance globale par espèce STOCeps.</description>
     
     <requirements>
         <requirement type="package">r</requirement>
@@ -21,7 +21,7 @@
     </command>
 
     <inputs>		
-		<param name="fichierSTOC" type="data" format="data" label="STOC files" help="Tab with information" />
+		<param name="fichierSTOC" type="data" format="data" label="Données STOC" help="Tableau issus des observations STOCeps" />
     </inputs>
 
     <outputs>
@@ -42,13 +42,17 @@
         </test>
     </tests>
 
-    <help><![CDATA[
-        Aide qui sert à rien
-    ]]>
+    <help>
+**L'outil permet de générer deux jeux de données :**
+
+le fichier des variations annuelles par espèce :
+ * Ce fichier contient les sorties et ses interprétations du modèle statistique (glm variations d'abondances en fonction du carré et de l'année) qui permet de voir les variations inter-annuelles d'abondance des populations d'oiseaux pour chaque espèce. Ces grâce à ses valeurs que les représentations graphiques sont réalisés.
+
+le fichier de la tendance globale par espèce : 
+ * Ce fichier contient les sorties et ses interprétations du modèle statistique qui permet d'avoir la tendance globale de la variation d'abondance sur l'ensemble de la période de temps de l'espèce considérée. Le modèle utilisé est le même que pour les variations inter-annuelles, mais utilise les années comme une variable continue.
     </help>
 
     <citations>
-        <citation type="doi">10.5334/jors.154</citation>
     </citations>
 
 

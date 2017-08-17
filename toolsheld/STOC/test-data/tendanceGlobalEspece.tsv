@@ -1,0 +1,77 @@
+id	code_espece	nom_espece	indicateur	nombre_annees	premiere_annee	derniere_annee	tendance	IC_inferieur	IC_superieur	pourcentage_variation	erreur_standard	p_value	significatif	categorie_tendance_EBCC	mediane_occurrence	valide	raison_incertitude
+20170817-11H35	ACCNIS	Epervier d'Europe	non	13	2001	2014	1.021	0.96	1.067	30.806	0.0317	0.507	FALSE	Incertain	4	Incertain	espece trop rare
+20170817-11H35	ACRSCI	Rousserolle effarvate	non	13	2001	2014	0.983	0.954	1.021	-19.63	0.0187	0.377	FALSE	Stable	1	Incertain	espece trop rare
+20170817-11H35	AEGCAU	Mésange à  longue queue	non	13	2001	2014	1.041	0.995	1.093	69.206	0.024	0.08	FALSE	Incertain	16	bon	
+20170817-11H35	ALAARV	Alouette des champs	milieux agricoles	13	2001	2014	0.976	0.96	0.991	-26.71	0.0081	0.004	TRUE	Declin modere	31	bon	
+20170817-11H35	ANAPLA	Canard colvert	non	13	2001	2014	1.054	1.017	1.093	97.781	0.0196	0.005	TRUE	Augmentation moderee	25.5	bon	
+20170817-11H35	ANTTRI	Pipit des arbres	non	13	2001	2014	0.996	0.973	1.019	-5.54	0.012	0.715	FALSE	Stable	9.5	Incertain	espece trop rare
+20170817-11H35	APUAPU	Martinet noir	milieux batis	13	2001	2014	0.95	0.921	0.984	-48.396	0.0161	0.003	TRUE	Declin modere	29	bon	
+20170817-11H35	ARDCIN	Héron cendré	non	13	2001	2014	0.985	0.95	1.015	-18.168	0.019	0.426	FALSE	Stable	15.5	bon	
+20170817-11H35	BUTBUT	Buse variable	milieux agricoles	13	2001	2014	1.037	1.002	1.073	60.334	0.0186	0.044	TRUE	Augmentation moderee	25.5	bon	
+20170817-11H35	CARCAN	Linotte mélodieuse	milieux agricoles	13	2001	2014	0.837	0.805	0.867	-90.102	0.0188	0	TRUE	Fort declin	15	bon	
+20170817-11H35	CARCAR	Chardonneret élégant	milieux batis	13	2001	2014	0.888	0.855	0.918	-78.696	0.0159	0	TRUE	Fort declin	21.5	bon	
+20170817-11H35	CARCHL	Verdier d'Europe	milieux batis	13	2001	2014	0.904	0.89	0.922	-73.232	0.0082	0	TRUE	Fort declin	42.5	bon	
+20170817-11H35	CERBRA	Grimpereau des jardins	milieux forestiers	13	2001	2014	0.974	0.953	1.002	-28.558	0.0127	0.048	TRUE	Declin modere	26.5	bon	
+20170817-11H35	CETCET	Bouscarle de Cetti	non	13	2001	2014	0.956	0.922	0.99	-44.206	0.0191	0.025	TRUE	Declin modere	5	Incertain	espece trop rare
+20170817-11H35	CIRAER	Busard des roseaux	non	13	2001	2014	0.821	0.776	0.874	-92.311	0.0249	0	TRUE	Fort declin	1	Incertain	espece trop rare
+20170817-11H35	COLLIV	Pigeon biset	non	13	2001	2014	1.014	0.966	1.059	19.849	0.0275	0.607	FALSE	Incertain	7	Incertain	espece trop rare
+20170817-11H35	COLPAL	Pigeon ramier	generaliste	13	2001	2014	1.033	1.025	1.043	53.411	0.0049	0	TRUE	Augmentation moderee	45	bon	
+20170817-11H35	CORCOR	Corneille noire	generaliste	13	2001	2014	0.976	0.964	0.99	-26.777	0.0072	0.001	TRUE	Declin modere	45	bon	
+20170817-11H35	CORMON	Choucas des tours	milieux batis	13	2001	2014	1.053	1.019	1.09	96.23	0.0202	0.007	TRUE	Augmentation moderee	11.5	Incertain	espece trop rare
+20170817-11H35	CUCCAN	Coucou gris	generaliste	13	2001	2014	1.022	1.007	1.042	33.332	0.01	0.024	TRUE	Augmentation moderee	30	bon	
+20170817-11H35	DENMAJ	Pic épeiche	milieux forestiers	13	2001	2014	1.006	0.977	1.032	8.183	0.0144	0.673	FALSE	Stable	29.5	bon	
+20170817-11H35	DENMIN	Pic épeichette	non	13	2001	2014	0.966	0.91	1.033	-35.928	0.0364	0.363	FALSE	Incertain	2	Incertain	espece trop rare
+20170817-11H35	EGRGAR	Aigrette garzette	non	13	2001	2014	0.928	0.9	0.967	-62.02	0.0181	0	TRUE	Declin modere	2	Incertain	espece trop rare
+20170817-11H35	EMBCIR	Bruant zizi	milieux agricoles	13	2001	2014	0.99	0.963	1.023	-12.097	0.0155	0.527	FALSE	Stable	12.5	Incertain	espece trop rare
+20170817-11H35	EMBCIT	Bruant jaune	milieux agricoles	13	2001	2014	0.92	0.901	0.94	-65.975	0.0117	0	TRUE	Fort declin	25.5	bon	
+20170817-11H35	ERIRUB	Rougegorge familier	milieux forestiers	13	2001	2014	0.978	0.969	0.988	-25.561	0.0048	0	TRUE	Declin modere	45	bon	
+20170817-11H35	FALSUB	Faucon hobereau	non	13	2001	2014	1.031	0.949	1.143	49.372	0.0518	0.539	FALSE	Incertain	1	Incertain	espece trop rare
+20170817-11H35	FALTIN	Faucon crécerelle	milieux agricoles	13	2001	2014	0.975	0.941	1.015	-27.917	0.0209	0.241	FALSE	Incertain	15	bon	
+20170817-11H35	FRICOE	Pinson des arbres	generaliste	13	2001	2014	1.001	0.995	1.007	1.096	0.0033	0.802	FALSE	Stable	44.5	bon	
+20170817-11H35	FULATR	Foulque macroule	non	13	2001	2014	1.007	0.97	1.031	8.925	0.0167	0.691	FALSE	Stable	3	Incertain	espece trop rare
+20170817-11H35	GALCHL	Gallinule poule-d'eau	non	13	2001	2014	1.017	0.983	1.059	23.723	0.0201	0.408	FALSE	Incertain	14	bon	
+20170817-11H35	GARGLA	Geai des chênes	generaliste	13	2001	2014	1.041	1.019	1.063	67.812	0.0131	0.002	TRUE	Augmentation moderee	36	bon	
+20170817-11H35	HIPPOL	Hypolaïs polyglotte	generaliste	13	2001	2014	0.993	0.972	1.021	-8.429	0.013	0.606	FALSE	Stable	15	bon	
+20170817-11H35	HIRRUS	Hirondelle rustique	milieux batis	13	2001	2014	0.994	0.974	1.017	-7.895	0.0104	0.547	FALSE	Stable	43	bon	
+20170817-11H35	LARARG	Goéland argenté	non	13	2001	2014	0.971	0.951	0.999	-31.586	0.0148	0.056	FALSE	Stable	20.5	bon	
+20170817-11H35	LARFUS	Goéland brun	non	13	2001	2014	1.05	1.005	1.091	89.307	0.0228	0.024	TRUE	Augmentation moderee	9.5	Incertain	espece trop rare
+20170817-11H35	LARRID	Mouette rieuse	non	13	2001	2014	0.855	0.77	0.94	-87.012	0.0432	0.002	TRUE	Fort declin	1	Incertain	espece trop rare
+20170817-11H35	LULARB	Alouette lulu	milieux agricoles	13	2001	2014	1.084	1.042	1.115	186.565	0.0187	0	TRUE	Augmentation moderee	8.5	Incertain	espece trop rare
+20170817-11H35	MOTALB	Bergeronnette grise	non	13	2001	2014	0.968	0.935	0.998	-34.516	0.0175	0.072	FALSE	Incertain	21	bon	
+20170817-11H35	MOTCIN	Bergeronnette des ruisseaux	non	13	2001	2014	0.944	0.902	0.986	-52.43	0.0184	0.004	TRUE	Declin modere	7	Incertain	espece trop rare
+20170817-11H35	OENOEN	Traquet motteux	milieux agricoles	13	2001	2014	1.162	1.08	1.249	600.64	0.0453	0	TRUE	Forte augmentation	2	Incertain	espece trop rare
+20170817-11H35	ORIORI	Loriot d'Europe	generaliste	13	2001	2014	1.16	1.113	1.222	590.848	0.028	0	TRUE	Forte augmentation	2	Incertain	espece trop rare
+20170817-11H35	PARCAE	Mésange bleue	generaliste	13	2001	2014	1.002	0.991	1.02	2.865	0.0076	0.774	FALSE	Stable	43.5	bon	
+20170817-11H35	PARCRI	Mésange huppée	milieux forestiers	13	2001	2014	0.956	0.91	0.995	-44.258	0.0231	0.063	FALSE	Incertain	4	Incertain	espece trop rare
+20170817-11H35	PARMAJ	Mésange charbonnière	generaliste	13	2001	2014	1	0.988	1.015	0.258	0.0071	0.978	FALSE	Stable	44.5	bon	
+20170817-11H35	PARPAL	Mésange nonnette	milieux forestiers	13	2001	2014	0.964	0.904	1.032	-37.685	0.0304	0.249	FALSE	Incertain	5	Incertain	espece trop rare
+20170817-11H35	PASDOM	Moineau domestique	milieux batis	13	2001	2014	0.956	0.946	0.97	-44.236	0.0075	0	TRUE	Declin modere	40	bon	
+20170817-11H35	PHACAR	Grand Cormoran	non	13	2001	2014	1.223	1.185	1.26	1274.219	0.0194	0	TRUE	Forte augmentation	4.5	Incertain	espece trop rare
+20170817-11H35	PHACOL	Faisan de Colchide	non	13	2001	2014	1.086	1.051	1.118	192.449	0.0194	0	TRUE	Forte augmentation	13	Incertain	espece trop rare
+20170817-11H35	PHOOCH	Rougequeue noir	milieux batis	13	2001	2014	0.899	0.857	0.946	-74.873	0.0233	0	TRUE	Fort declin	4	Incertain	espece trop rare
+20170817-11H35	PHYCOL	Pouillot véloce	milieux forestiers	13	2001	2014	0.968	0.96	0.975	-34.45	0.0045	0	TRUE	Declin modere	45	bon	
+20170817-11H35	PHYTRO	Pouillot fitis	milieux forestiers	13	2001	2014	0.827	0.788	0.874	-91.517	0.0244	0	TRUE	Fort declin	2.5	Incertain	espece trop rare
+20170817-11H35	PICPIC	Pie bavarde	milieux batis	13	2001	2014	0.995	0.978	1.011	-6.171	0.0094	0.605	FALSE	Stable	38	bon	
+20170817-11H35	PICVIR	Pic vert	generaliste	13	2001	2014	1.007	0.988	1.034	9.254	0.0121	0.572	FALSE	Stable	32	bon	
+20170817-11H35	PODCRI	Grèbe huppé	non	13	2001	2014	0.893	0.835	0.963	-77.116	0.0347	0.004	TRUE	Declin modere	1	Incertain	espece trop rare
+20170817-11H35	PRUMOD	Accenteur mouchet	generaliste	13	2001	2014	0.976	0.963	0.987	-26.987	0.0075	0.002	TRUE	Declin modere	41.5	bon	
+20170817-11H35	PYRPYR	Bouvreuil pivoine	milieux forestiers	13	2001	2014	0.894	0.853	0.938	-76.866	0.0212	0	TRUE	Fort declin	6	Incertain	espece trop rare
+20170817-11H35	REGREG	Roitelet huppé	milieux forestiers	13	2001	2014	0.93	0.901	0.958	-60.944	0.0179	0	TRUE	Declin modere	10.5	Incertain	espece trop rare
+20170817-11H35	SAXTOR	Tarier patre	milieux agricoles	13	2001	2014	0.943	0.91	0.975	-53.629	0.0171	0.001	TRUE	Declin modere	15.5	bon	
+20170817-11H35	SERSER	Serin cini	milieux batis	13	2001	2014	0.906	0.877	0.948	-72.451	0.0186	0	TRUE	Fort declin	8.5	Incertain	espece trop rare
+20170817-11H35	SITEUR	Sittelle torchepot	milieux forestiers	13	2001	2014	0.982	0.951	1.015	-21.304	0.015	0.23	FALSE	Stable	21.5	bon	
+20170817-11H35	STRDEC	Tourterelle turque	milieux batis	13	2001	2014	0.976	0.961	0.99	-27.41	0.0086	0.006	TRUE	Declin modere	41.5	bon	
+20170817-11H35	STRTUR	Tourterelle des bois	non	13	2001	2014	0.94	0.924	0.958	-55.386	0.0102	0	TRUE	Declin modere	33	bon	
+20170817-11H35	STUVUL	étourneau sansonnet	non	13	2001	2014	0.965	0.944	0.993	-36.761	0.0142	0.017	TRUE	Declin modere	42.5	bon	
+20170817-11H35	SYLATR	Fauvette à  tête noire	generaliste	13	2001	2014	1.031	1.022	1.04	47.929	0.005	0	TRUE	Augmentation moderee	44	bon	
+20170817-11H35	SYLBOR	Fauvette des jardins	non	13	2001	2014	0.993	0.971	1.014	-9.276	0.0131	0.569	FALSE	Stable	23	bon	
+20170817-11H35	SYLCOM	Fauvette grisette	milieux agricoles	13	2001	2014	0.987	0.969	1.018	-15.398	0.0138	0.359	FALSE	Stable	16	bon	
+20170817-11H35	TACRUF	Grèbe castagneux	non	13	2001	2014	1.072	1.027	1.112	146.012	0.0243	0.002	TRUE	Augmentation moderee	1	Incertain	espece trop rare
+20170817-11H35	TADTAD	Tadorne de Belon	non	13	2001	2014	0.977	0.943	1.008	-26.582	0.0168	0.168	FALSE	Incertain	3	Incertain	espece trop rare
+20170817-11H35	TROTRO	Troglodyte mignon	milieux forestiers	13	2001	2014	0.964	0.956	0.97	-38.213	0.0037	0	TRUE	Declin modere	45	bon	
+20170817-11H35	TURMER	Merle noir	generaliste	13	2001	2014	1	0.992	1.007	0.179	0.0039	0.972	FALSE	Stable	45	bon	
+20170817-11H35	TURPHI	Grive musicienne	milieux forestiers	13	2001	2014	0.986	0.974	0.995	-17.189	0.0063	0.024	TRUE	Declin modere	44	bon	
+20170817-11H35	TURVIS	Grive draine	milieux forestiers	13	2001	2014	0.95	0.929	0.979	-48.507	0.0143	0.001	TRUE	Declin modere	24	bon	
+20170817-11H35	VANVAN	Vanneau huppé	milieux agricoles	13	2001	2014	0.943	0.881	1.027	-53.583	0.0415	0.18	FALSE	Incertain	1	Incertain	espece trop rare
+20170817-11H35	NUMPHA	Courlis corlieu	non	13	2001	2014	0.951	0.903	1.002	-48.248	0.026	0.065	FALSE	Incertain	2.5	Incertain	espece trop rare
+20170817-11H35	STRALU	Chouette hulotte	non	13	2001	2014	1.125	1.061	1.182	360.528	0.03	0	TRUE	Forte augmentation	2	Incertain	espece trop rare
