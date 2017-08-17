@@ -47,13 +47,16 @@
     </tests>
 
     <help>
-**L'outil permet de générer deux jeux de données :**
+**L'outil permet de générer trois jeux de données :**
 
-le fichier des variations annuelles par espèce :
- * Ce fichier contient les sorties et ses interprétations du modèle statistique (glm variations d'abondances en fonction du carré et de l'année) qui permet de voir les variations inter-annuelles d'abondance des populations d'oiseaux pour chaque espèce. Ces grâce à ses valeurs que les représentations graphiques sont réalisés.
+ le fichier des variations annuelles par groupe de spécialistes :
+ * Ce fichier contient les variations inter-annuelles d'abondance par groupe de spécialistes par habitats (spécialistes des milieux agricoles, forestiers, bâtis, ouvert et les généralistes).
 
-le fichier de la tendance globale par espèce : 
- * Ce fichier contient les sorties et ses interprétations du modèle statistique qui permet d'avoir la tendance globale de la variation d'abondance sur l'ensemble de la période de temps de l'espèce considérée. Le modèle utilisé est le même que pour les variations inter-annuelles, mais utilise les années comme une variable continue.
+Le fichier de la tendance globale par groupe de spécialistes :
+ * Ce fichier contient les sorties du modèle statistique qui permet d'avoir la tendance globale de la variation d'abondance sur l'ensemble de la période de temps des groupes de spécialistes. Le modèle utilisé est une régression linéaire des abondances relatives en fonction du temps. 
+
+Le fichier d'informations relatives au calcul de l'indicateur par groupe de spécialiste :
+ * Ce fichier contient le détail des poids attribués à chaque espèce et chaque année dans le calcul de l'indicateur par groupe de spécialistes. L'effectif de certaines espèces étant trop faible pour avoir une bonne estimation de leur abondance relative, un poids leur est attribué. 
     </help>
 
     <citations>
