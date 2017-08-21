@@ -85,22 +85,12 @@ int exitstatus;
 
 	try{
 	System.out.println("Saving a file");
-	System.out.println("Saving a file");
-	System.out.println("Saving a file");
 	System.out.println("Calling python script");
 	//Runtime.getRuntime().exec("python /home/mnhn65mo/OpenRefine/refine-python/openrefine_export.py");
 	Process p = Runtime.getRuntime().exec("python /refine-python/openrefine_export_project.py");
 	p.waitFor();
 	exitstatus = p.exitValue();
 	System.out.println(p.exitValue());
-		if(  exitstatus == 0)
-		{
-		System.out.println("Passer dans 0");
-		}
-		else
-		{
-		System.out.println("Passer dans 1");
-		}
 	}catch (Exception e) {
 	System.out.println(e);
 	}finally{

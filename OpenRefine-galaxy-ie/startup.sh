@@ -8,13 +8,17 @@ cp /proxy.conf /etc/nginx/sites-enabled/default;
 
 
 #load dataset into openrefine
-#/openrefine_import.sh &
-file_import=$(ls /import)
-until [[ -f "$file_import" ]]
+
+files=(/import/*)
+until [[ -f "$files" ]]
 do
 	echo "Importing data from galaxy history "
 	sleep 4
 done
+
+res=$(ls /import/)
+res_cut=$(ls /import/ |cut -d" " -f2)
+cp "/import/$res" "/import/$res_cut"
 ../OpenRefine/refine  &
 count=0
 #Check if openrefine is up to work
@@ -35,7 +39,7 @@ do
 done
 # Createnew project with the dataset
 cd /refine-python
-python openrefine_create_project_API.py /import/* &
+python openrefine_create_project_API.py "/import/$res_cut" &
 
 # Launch traffic monitor which will automatically kill the container if traffic
 # stops

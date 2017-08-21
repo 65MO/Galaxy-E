@@ -3,26 +3,25 @@
 # Sets ID and sets up a lot of other variables
 ie_request.load_deploy_config()
 
-# Define a volume that will be mounted into the container.
-# This is a useful way to provide access to large files in the container,
-# if the user knows ahead of time that they will need it.
-#user_file = ie_request.volume(
-#    hda.file_name, '/import/file.dat', how='ro')
+
+
+# Get ids of selected datasets
+additional_ids = trans.request.params.get('additional_dataset_ids', None)
+if not additional_ids:
+    additional_ids = str(trans.security.encode_id( hda.id ) )
+else:
+    additional_ids += "," + trans.security.encode_id( hda.id )
+
 
 # Launch the IE. This builds and runs the docker command in the background.
-#ie_request.launch(
-#    volumes=[user_file],
-#    env_override={
-#        'custom': '42'
-#    }
-#)
-
-#Launch the IE . This builds and runs the docker command in the backgroud
 ie_request.launch(
-	env_override={
-		'dataset_hid': hda.hid
-	}
+additional_ids=additional_ids if ie_request.use_volumes else None,
+    env_override={
+        'dataset_hid': hda.hid
+    }
 )
+
+
 
 # Only once the container is launched can we template our URLs. The ie_request
 # doesn't have all of the information needed until the container is running.
