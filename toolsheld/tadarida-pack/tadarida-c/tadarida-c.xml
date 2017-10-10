@@ -20,7 +20,7 @@
     <inputs>		
 		<param name="fichierTa" type="data" format="tabular" label="Detected sound events file(s)" help=" Detected sound events file(s) comme from Tadarida-D tool" />
 
-		<param name="Classifier" type="select" label="Classifier" help="Chose one. The name is set followinf this rule : ClassifierAlgoName_DataOrigin. Come from expert user, not possible to create it with Galaxy.">
+		<param name="Classifier" type="select" label="Classifier" help="Chose one. The name is set following this rule : ClassifierAlgoName_DataOrigin. Come from expert user, not possible to create it with Galaxy.">
 			<options from_data_table="tadarida">
                 <column name="value" index="0"/>
                 <column name="name" index="1"/>
