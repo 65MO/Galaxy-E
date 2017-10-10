@@ -46,7 +46,7 @@
 **L'outil permet de générer deux jeux de données :**
 
 le fichier des variations annuelles par espèce :
- * Ce fichier contient les sorties et ses interprétations du modèle statistique (glm variations d'abondances en fonction du carré et de l'année) qui permet de voir les variations inter-annuelles d'abondance des populations d'oiseaux pour chaque espèce. Ces grâce à ses valeurs que les représentations graphiques sont réalisés.
+ * Ce fichier contient les sorties et ses interprétations du modèle statistique (glm variations d'abondances en fonction du carré et de l'année) qui permet de voir les variations inter-annuelles d'abondance des populations d'oiseaux pour chaque espèce. C'est grâce à ces valeurs que les représentations graphiques sont réalisées.
 
 le fichier de la tendance globale par espèce : 
  * Ce fichier contient les sorties et ses interprétations du modèle statistique qui permet d'avoir la tendance globale de la variation d'abondance sur l'ensemble de la période de temps de l'espèce considérée. Le modèle utilisé est le même que pour les variations inter-annuelles, mais utilise les années comme une variable continue.
