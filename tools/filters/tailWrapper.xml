@@ -1,0 +1,42 @@
+<tool id="Show tail1" name="Selectionner les dernières lignes" version="1.0.0">
+  <description>d'un jeu de données</description>
+  <command interpreter="perl">tailWrapper.pl $input $lineNum $out_file1</command>
+  <inputs>
+    <param name="lineNum" size="5" type="integer" value="10" label="Selectionner les dernières" help="lignes"/>
+    <param format="txt" name="input" type="data" label="de"/>
+  </inputs>
+  <outputs>
+    <data format="input" name="out_file1" metadata_source="input"/>
+  </outputs>
+  <tests>
+    <test>
+      <param name="lineNum" value="10"/>
+      <param name="input" value="1.bed"/>
+      <output name="out_file1" file="eq-showtail.dat"/>
+    </test>
+  </tests>
+  <help>
+
+**Ce que fait l'outil**
+
+Cet outil génère un nombre spécifique de lignes depuis la **fin** d'un jeu de données
+
+-----
+
+**Exemple**
+
+- Fichier d'entrée::
+
+    chr7    57134   57154   D17003_CTCF_R7  356     -
+    chr7    57247   57267   D17003_CTCF_R4  207     +
+    chr7    57314   57334   D17003_CTCF_R5  269     +
+    chr7    57341   57361   D17003_CTCF_R7  375     +
+    chr7    57457   57477   D17003_CTCF_R3  188     +
+
+- Sélectionner les deux dernières lignes du jeu de données ci-dessus. Le résultat est alors::
+
+    chr7    57341   57361   D17003_CTCF_R7  375     +
+    chr7    57457   57477   D17003_CTCF_R3  188     +
+
+  </help>
+</tool>

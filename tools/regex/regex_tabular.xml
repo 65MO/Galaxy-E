@@ -1,0 +1,136 @@
+<tool id="regexColumn1" name="Trouver et Remplacer des patterns dans des colonnes" version="1.0.0">
+  <description>en utilisant des expressions régulières (regex)</description>
+  <command interpreter="python">regex.py --input '$input' --output '$out_file1' --column $field --input_display_name '$input.display_name'
+    #for $check in $checks:
+    --pattern='$check.pattern' --replacement='$check.replacement'
+    #end for
+  </command>
+  <inputs>
+    <param format="tabular" name="input" type="data" label="Selectionner les cellules à partir de"/>
+    <param name="field" label="la colonne" type="data_column" data_ref="input" />
+    <repeat name="checks" title="Check">
+      <param name="pattern" size="40" type="text" value="chr([0-9A-Za-z])+" label="Trouver l'expression suivante" help="ici vous pouvez entrer du texte libre ou une expression régulière (pour la syntaxe, voir ci-dessous)">
+        <sanitizer>
+          <valid>
+            <add preset="string.printable"/>
+            <remove value="&#92;" />
+            <remove value="&apos;" />
+          </valid>
+          <mapping initial="none">
+            <add source="&#92;" target="__backslash__" />
+            <add source="&apos;" target="__sq__"/>
+          </mapping>
+        </sanitizer>
+      </param>
+      <param name="replacement" size="40" type="text" value="newchr\1" label="Remplacement">
+        <sanitizer>
+          <valid>
+            <add preset="string.printable"/>
+            <remove value="&#92;" />
+            <remove value="&apos;" />
+          </valid>
+          <mapping initial="none">
+            <add source="&#92;" target="__backslash__" />
+            <add source="&apos;" target="__sq__"/>
+          </mapping>
+        </sanitizer>      
+      </param>
+    </repeat>
+  </inputs>
+  <outputs>
+    <data format="input" name="out_file1" metadata_source="input" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input" value="find_tabular_1.txt" ftype="tabular" />
+      <param name="field" value="2" />
+      <param name="pattern" value="moo"/>
+      <param name="replacement" value="cow" />
+      <output name="out_file1" file="replace_tabular_1.txt"/>
+    </test>
+    <test>
+      <param name="input" value="find_tabular_1.txt" ftype="tabular" />
+      <param name="field" value="1" />
+      <param name="pattern" value="moo"/>
+      <param name="replacement" value="cow" />
+      <output name="out_file1" file="replace_tabular_2.txt"/>
+    </test>
+  </tests>
+  <help>
+
+.. class:: warningmark
+
+**Cet outil réutilise les métadonnées du premier jeu de données d'entrée.** Afin de modifier les assignements de métadonnées, cliquer sur le lien "éditer les attribus" du jeu de données de l'historique généré par cet outil.
+
+.. class:: infomark
+
+**ASTUCE:** Si vos données ne sont pas au format tabulé, utilisez l'outil *Manipulation de texte-&gt;Convertir*
+
+-----
+
+Cet outil travaille ligne après ligne sur la donnée spécifiée en entrée et 
+remplace le texte correspondant aux patterns d'expression régulière rentré
+par la correspondance proposée.
+
+Cet outil utilise les expressions régulières du language de programmation Python. Plus d'information à propos
+de ces expressions régulières peut être trouvé ici :
+http://docs.python.org/library/re.html.
+
+Pour convertir un format de séquence par exemple ::
+
+ ##gff-version 2
+ ##Date: Thu Mar 23 11:21:17 2006
+ ##bed2gff.pl $Rev: 601 $
+ ##Input file: ./database/files/61c6c604e0ef50b280e2fd9f1aa7da61.dat
+ chr1	bed2gff	CCDS1000.1_cds_0_0_chr1_148325916_f	148325916	148325975	.	+	.	score "0";
+ chr21	bed2gff	CCDS13614.1_cds_0_0_chr21_32707033_f	32707033	32707192	.	+	.	score "0";
+ chrX	bed2gff	CCDS14606.1_cds_0_0_chrX_122745048_f	122745048	122745924	.	+	.	score "0";
+
+Utiliser les paramètres ::
+
+ colonne utilisée : c1 
+ Trouver l'expression suivante : chr([0-9]+|X|Y|M[Tt]?) 
+ Remplacer par : \1 
+
+produit::
+
+ ##gff-version 2
+ ##Date: Thu Mar 23 11:21:17 2006
+ ##bed2gff.pl $Rev: 601 $
+ ##Input file: ./database/files/61c6c604e0ef50b280e2fd9f1aa7da61.dat
+ 1    bed2gff CCDS1000.1_cds_0_0_chr1_148325916_f     148325916       148325975       .       +       .       score "0";
+ 21   bed2gff CCDS13614.1_cds_0_0_chr21_32707033_f    32707033        32707192        .       +       .       score "0";
+ X    bed2gff CCDS14606.1_cds_0_0_chrX_122745048_f    122745048       122745924       .       +       .       score "0";
+
+
+L'expression **chr([0-9]+|X|Y|M[Tt])** signifie débute avec le texte **chr** suivi par : un ou plusieurs chiffres, ou la lettre X, ou la lettre Y, ou la lettre M (suivi de manière optionnelle par une lettre seule de type T ou t).  
+Notez que les parenthèses **()** capturent les patterns dans le texte qui peuvent être utilisés en texte de remplacement en utilisant une référence de type antislash-chiffre :  **\\1**
+
+
+Dans le modèle de remplacement, utilisez le terme spécial # {input_name} pour insérer le nom d'affichage du jeu de données d'entrée.
+Le nom peut être modifié par une deuxième vérification de recherche / remplacement. Supposons que vous souhaitez insérer l'identifiant échantillon de votre jeu de données, nommé ** Echantillon ABC123 **, dans l'ensemble de données, qui contient actuellement les lignes ::
+
+ Donnée 1
+ Donnée 2
+ Donnée 3
+
+Vous pouvez utiliser les vérifications suivantes ::
+
+ Trouver l'expression : Donnée
+ Remplacement: #{input_name} Donnée
+
+ Trouver l'expression : Echantillon (\S+)
+ Remplacement: \1
+
+Le résultat sera ::
+
+ ABC123 Donnée 1
+ ABC123 Donnée 2
+ ABC123 Donnée 3
+
+Galaxy échappe agressivement l'entrée fournie aux outils, donc si quelque chose
+Ne fonctionne pas, faites-le nous savoir et nous pouvons examiner si cela en est
+la cause. 
+
+</help>
+</tool>

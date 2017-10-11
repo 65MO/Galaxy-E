@@ -1,0 +1,46 @@
+<tool id="transpose" name="Transposer" version="1.0.0">
+    <description>les données d'un fichier tabulé</description>
+    <command interpreter="python">
+        transpose.py
+	$input
+	$out_file
+    </command>
+    <inputs>
+        <param format="tabular" name="input" type="data" label="Transposer le jeu de données" />
+    </inputs>
+    <outputs>
+        <data format="input" name="out_file" metadata_source="input"/>
+    </outputs>
+    <tests>
+        <test>
+            <param name="input" value="transpose_in1.tabular"/>
+            <output name="out_file1" file="transpose_out1.tabular"/>
+        </test>
+    </tests>
+    <help>
+.. class:: infomark
+
+**ASTUCE:** Si vos données ne sont pas au format tabulé, utiliser *Manipulation de fichiers texte-&gt;Convertir*
+        
+     
+-----
+
+**Exemples**
+
+Transposer le tableau suivant ::
+
+    1	14	8	A
+    7	10	12	C
+    16	12	80	F
+    41	13.5	0	X
+
+résultera en cela ::
+
+    1	7    16	  41	
+    14	10   12	  13.5	
+    8	12   80	  0	
+    A	C    F	  X	
+
+
+    </help>
+</tool>

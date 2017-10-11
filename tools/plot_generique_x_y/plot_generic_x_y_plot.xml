@@ -1,0 +1,125 @@
+<tool id="plot_generic_x_y_plot" name="Représentation graphique générique X-Y" version="0.1.0">
+    <description>avec R</description>
+
+    <requirements>
+        <requirement type="package" version="3.2.1">R</requirement>
+        <requirement type="package" version="1.20.0">r-getopt</requirement>
+    </requirements>
+
+    <stdio>
+        <exit_code range="1:" />
+        <exit_code range=":-1" />
+    </stdio>
+
+    <version_command></version_command>
+
+    <command><![CDATA[
+        Rscript $__tool_directory__/plot_generic_x_y_plot.R
+            --input_file $input_file
+            --header $header
+
+            #if str($output_format)=="pdf"
+                --output_pdf_file $output_pdf_file
+            #else
+                --output_svg_file $output_svg_file
+            #end if
+
+            --x_column_id $x_column_id
+            --y_column_id $y_column_id
+            --xlog $xlog
+            --ylog $ylog
+            --xlab "$xlab"
+            --ylab "$ylab"
+            --col $color
+            --lim $lim
+            --abline $abline
+            --bottom_margin $bottom_margin
+            --left_margin $left_margin
+            --top_margin $top_margin
+            --right_margin $right_margin
+            --pch $pch
+    ]]></command>
+
+    <inputs>
+        <param name="input_file" type="data" format="tabular,tsv,csv" label="Donnée d'entrée" help="Fichier au format tabulé avec des colonnes séparés par des tabulations et potentiellement une première ligne d'en-tête (--input_file)"/>
+
+        <param name="header" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Présence dun en-tête en première ligne ?" help="(--header)"/>
+
+        <param name="output_format" label="Format de l'image de sortie" type="select" help="">
+            <option value="pdf" selected="True">PDF</option>
+            <option value="svg">SVG</option>
+        </param>
+
+        <param name="x_column_id" type="data_column" data_ref="input_file" label="Colonne contenant les données pour l'axe X" multiple="false" numerical="true" help="--x_column_id)"/>
+        <param name="y_column_id" type="data_column" data_ref="input_file" label="Colonne contenant les données pour l'axe Y" multiple="false" numerical="true" help="--y_column_id)"/>
+
+        <param name="xlog" type="boolean" truevalue="TRUE" falsevalue="FALSE" label="Mise à l'échelle en utilisant le log des données pour l'axe X ?" help="(--xlog)"/>
+        <param name="ylog" type="boolean" truevalue="TRUE" falsevalue="FALSE" label="Mise à l'échelle en utilisant le log des données pour l'axe X ?" help="(--ylog)"/>
+
+        <param name="xlab" type="text" value="" label="Titre à donner à l'axe X" help="(--xlab)"/>
+        <param name="ylab" type="text" value="" label="Titre à donner à l'axe Y" help="(--ylab)"/>
+
+        <param name="color" label="Couleur des points" type="text" value= "grey25" help="code couleur utilisé par R (--col)"/>
+        <param name="pch" type="integer" value="21" label="Type de point" help="(--pch)"/>
+
+        <param name="lim" type="boolean" truevalue="TRUE" falsevalue="FALSE" label="Utiliser les mêmes limites pour les 2 axes ?" help="(--lim)"/>
+        <param name="abline" type="boolean" truevalue="TRUE" falsevalue="FALSE" label="Ajouter une ligne pour x = y?" help="(--abline)"/>
+
+        <param name="bottom_margin" type="integer" value="5" label="Marge inférieure" help="(--bottom_margin)"/>
+        <param name="left_margin" type="integer" value="5" label="Marge de gauche" help="(--left_margin)"/>
+        <param name="top_margin" type="integer" value="1" label="Marge supérieure" help="(--top_margin)"/>
+        <param name="right_margin" type="integer" value="1" label="Marge de droite" help="(--right_margin)"/>
+    </inputs>
+
+    <outputs>
+        <data name="output_pdf_file" format="pdf"
+            label="${tool.name} sur ${on_string}: Graphique PDF X-Y">
+            <filter>output_format=="pdf"</filter>
+        </data>
+        <data name="output_png_file" format="png"
+            label="${tool.name} sur ${on_string}: Graphique PNG X-Y">
+            <filter>output_format=="png"</filter>
+        </data>
+        <data name="output_svg_file" format="svg"
+            label="${tool.name} sur ${on_string}: Graphique SVG X-Y">
+            <filter>output_format=="svg"</filter>
+        </data>
+    </outputs>
+
+    <tests>
+        <test>
+            <param name="input_file" value="input_file.txt" />
+            <param name="header" value="FALSE" />
+            <param name="output_format" value="pdf" />    
+            <param name="x_column_id" value="2" />
+            <param name="y_column_id" value="3" />
+            <param name="xlog" value="FALSE" />
+            <param name="ylog" value="FALSE" />
+            <param name="xlab" value="" />
+            <param name="ylab" value="" />
+            <param name="color" value= "grey25" />
+            <param name="pch" value="21" />
+            <param name="lim" value="FALSE" />
+            <param name="abline" value="FALSE" />
+            <param name="bottom_margin" value="5" />
+            <param name="left_margin" value="5" />
+            <param name="top_margin" value="1" />
+            <param name="right_margin" value="1" />
+            <output name="output_pdf_file" file="output_file.pdf" />
+        </test>
+    </tests>
+
+    <help><![CDATA[
+**Ce que fait l'outil**
+
+Cet outil produit une représentation graphique X-Y générique des données :
+
+.. image:: $PATH_TO_IMAGES/output.png
+   :scale: 50 %
+
+Cet outil utilise la fonction "plot" de R. La donnée d'entrée doit être au format tabulé avec au moins 2 colonnes de données. L'image de sortie est personnalisable (marges, couleur des points, ...) et peut être exportée sous différents formats. 
+    ]]></help>
+
+    <citations>
+    </citations>
+</tool>

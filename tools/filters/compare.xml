@@ -1,0 +1,79 @@
+<tool id="comp1" name="Comparer 2 jeux de données" version="1.0.2">
+  <description>pour trouver des lignes communes et distinctes</description>
+  <command interpreter="python">joinWrapper.py $input1 $input2 $field1 $field2 $mode $out_file1</command>
+  <inputs>
+    <param format="tabular" name="input1" type="data" label="Comparer"/>
+    <param name="field1" label="En utilisant la colonne" type="data_column" data_ref="input1">
+        <validator type="no_options" message="Choix de colonne invalide. S'il vous plaît, essayer à nouveau après avoir éditer les métadonnées de votre données d'entrée en cliquant sur l'icône en forme de crayon."/>
+    </param>
+    <param format="tabular" name="input2" type="data" label="contre" />
+    <param name="field2" label="et la colonne" type="data_column" data_ref="input2">
+            <validator type="no_options" message="Choix de colonne invalide. S'il vous plaît, essayer à nouveau après avoir éditer les métadonnées de votre données d'entrée en cliquant sur l'icône en forme de crayon."/>
+    </param>
+    <param name="mode" type="select" label="Pour trouver" help="Voir les exemples ci-dessous pour des explications sur les options">
+      <option value="N">Les lignes correspondantes au premier jeu de données</option>
+      <option value="V">Les lignes non présentes dans le premier jeu de données</option>
+    </param>
+  </inputs>
+  <outputs>
+     <data format="input" name="out_file1" metadata_source="input1" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input1" value="1.bed"/>
+      <param name="input2" value="2.bed"/>
+      <param name="field1" value="2"/>
+      <param name="field2" value="2"/>
+      <param name="mode" value="N"/>
+      <output name="out_file1" file="fs-compare.dat"/>
+    </test>
+    <!--test case with duplicated key values-->
+    <test>
+      <param name="input1" value="1.bed"/>
+      <param name="input2" value="3.bed"/>
+      <param name="field1" value="1"/>
+      <param name="field2" value="1"/>
+      <param name="mode" value="V"/>
+      <output name="out_file1" file="fs-compare-2.dat"/>
+    </test>
+  </tests>
+  <help>
+
+.. class:: infomark
+
+**CONSEIL:** Si vos données ne sont au format tabulé, utiliser *Manipulation de texte-&gt;Convertir*
+
+-----
+
+**Syntaxe**
+
+Cet outil trouve des lignes dans un jeu de données qui a A ou n'A PAS un champ commun avec un autre jeu de données.
+
+-----
+
+**Exemple**
+
+Voici le **Premier jeu de données**::
+
+  chr1 10 20 individuA 
+  chr1 50 80 individuB
+  chr5 10 40 individuL
+
+et le **Second jeu de données**::
+
+  individuA souris
+  individuB chauve
+  individuC rat
+  individuE piaf
+
+Trouver des lignes pour le **Premier jeu de données** dont la 4ième colonne correspond à la première colonne du **Second jeu de données** yields::
+
+  chr1 10 20 individuA 
+  chr1 50 80 individuB
+
+Alternativement, en spécifiant l'option **Les lignes non présentes dans le premier jeu de données** sur les mêmes champs aboutissent à::
+
+  chr5 10 40 individuL
+
+</help>
+</tool>
