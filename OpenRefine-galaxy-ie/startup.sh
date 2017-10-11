@@ -20,7 +20,7 @@ res=$(ls /import/)
 res_cut=$(ls /import/ |cut -d" " -f2)
 cp "/import/$res" "/import/$res_cut"
 ../OpenRefine/refine  &
-count=0
+
 #Check if openrefine is up to work
 STATUS=$(curl --include 'http://127.0.0.1:3333' 2>&1)
 while [[ ${STATUS} =~ "refused" ]]
@@ -28,14 +28,6 @@ do
   echo "Waiting for openrefine: $STATUS \n"
   STATUS=$(curl --include 'http://127.0.0.1:3333' 2>&1)
   sleep 4
- # count=$(($count+5))
-  #if [ $count -eq 20 ] ; then
-   #     echo "Je casse et je reprends"
-   #     ../OpenRefine/refine  &
-   #     kill $(ps -ef | awk '/refine/{print $2}'|head -1)
-   #     count=0
- # fi
-
 done
 # Createnew project with the dataset
 cd /refine-python
