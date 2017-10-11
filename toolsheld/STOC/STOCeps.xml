@@ -21,7 +21,7 @@
     </command>
 
     <inputs>		
-		<param name="fichierSTOC" type="data" format="data" label="Données STOC" help="Tableau issus des observations STOCeps" />
+		<param name="fichierSTOC" type="data" format="data" label="Données STOC" help="Tableau issu des observations STOCeps" />
     </inputs>
 
     <outputs>
