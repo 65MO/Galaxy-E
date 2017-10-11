@@ -1,0 +1,34 @@
+title: "Analyse data from STOCeps protocol"
+type: "tutorial"
+name: "STOCeps"
+zenodo_link: ""
+galaxy_tour: ""
+hands_on: "github"
+slides: "no"
+questions:
+- ""
+- ""
+objectives:
+- ""
+- ""
+- ""
+time_estimation: "1d/3h/6h"
+key_points:
+- ""
+- ""
+- ""
+- "..."
+maintainers:
+-
+    name: "Maintainer"
+    github_username: "yvanlebras"
+    email: "yvan.le-bras@mnhn.fr"
+
+contributors:
+-
+    name: "Contributor"
+    github_username: "eloisetrigodet"
+-
+    name: "Contributor"
+    github_username: "yvanlebras"
+    email: "yvan.le-bras@mnhn.fr"
