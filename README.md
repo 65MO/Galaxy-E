@@ -29,9 +29,9 @@ Following the @dannon [PR](https://github.com/galaxyproject/galaxy/pull/3762) @V
     * TRIM is now also available as R package (rtrim, via install.packages("rtrim") from CRAN). This will make it much more easy for many of you to calculate trends. But remember to have the input file in good order (so with missing values and zeroes). Of course you can also use the result of Reto's regional_gam (https://github.com/RetoSchmucki/regionalGAM/blob/master/README.md) as input.
     * Manuals and helpfiles are available via https://github.com/markvanderloo/rtrim
     * CBS also made their Multi Species Indicator tool available: https://www.cbs.nl/nl-nl/maatschappij/natuur-en-milieu/indexen-en-trends--trim--/msi-tool. With this tool you can build your own indicators from the results of rtrim.
-    * regionalGAM
-    * rtrim
-    * MSI-tool
+     * regionalGAM
+     * rtrim
+     * MSI-tool
 * [Species distribution modeling](https://cran.r-project.org/web/packages/dismo/vignettes/sdm.pdf)
 * GIS data handling
  * Sites extraction
