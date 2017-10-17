@@ -1,0 +1,19 @@
+package:
+  name: rgam
+  version: "1.2"
+
+source:
+  git_url: https://github.com/RetoSchmucki/regionalGAM.git
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - r
+  run:
+    -  r
+
+about:
+  home: https://github.com/RetoSchmucki/regionalGAM
+  license: MIT
