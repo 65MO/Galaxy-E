@@ -34,6 +34,7 @@ Following the @dannon [PR](https://github.com/galaxyproject/galaxy/pull/3762) @V
       * rtrim
       * MSI-tool
 * [Species distribution modeling](https://cran.r-project.org/web/packages/dismo/vignettes/sdm.pdf)
+* [Maxent](https://biodiversityinformatics.amnh.org/open_source/maxent/)
 * GIS data handling
    * [Geospatial Abstracation Data Librairy](http://www.gdal.org/)
    * Impute missing value: https://github.com/RetoSchmucki/CESCO_R-scripts/blob/master/replace%20missing%20values%20in%20raster.r
