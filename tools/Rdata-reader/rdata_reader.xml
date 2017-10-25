@@ -1,0 +1,14 @@
+<tool id="Rdata_reader" name="Rdata binary file reader" version="0.1">
+  <command detect_errors="exit_code"><![CDATA[
+	Rscript $__tool_directory__/rdata_reader.R $input1 $rdata_list_attr ]]>
+  </command>
+  <inputs>
+    <param format="rdata" name="input1" type="data" label="Rdata binary file to explore"/>
+  </inputs>
+  <outputs>
+    <data format="tabular" name="rdata_list_attr" from_work_dir="rdata_list_attr" />
+  </outputs>
+  <help>
+This tool lists elements inside a Rdata binary file.
+  </help>
+</tool>
