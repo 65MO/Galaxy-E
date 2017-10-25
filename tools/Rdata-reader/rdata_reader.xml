@@ -9,6 +9,6 @@
     <data format="tabular" name="rdata_list_attr" from_work_dir="rdata_list_attr" />
   </outputs>
   <help>
-This tool lists elements inside a Rdata binary file.
+This tool lists elements from a Rdata binary file.
   </help>
 </tool>
