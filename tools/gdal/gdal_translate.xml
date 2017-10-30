@@ -3,16 +3,28 @@
         <requirement type="package" version="2.1.0">gdal</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
-		gdal_translate "$input1"
+		gdal_translate "$input1" "$output"
 			#if $settings.advanced=="advanced"
+			
 				$settings.strict
+				
 				#unless $settings.b=="ex : -b 1 -b 2 -b 3"
 					$settings.b
 				#end unless
+				
 				#unless $settings.mask=="ex : -mask 1"
 					$settings.mask
 				#end unless
+				
 				-r $settings.r
+				
+				#unless $settings.outsize_x=="ex : 75"				
+					-outsize xsize $settings.outsize_x
+				#end unless
+
+				#unless $settings.outsize_y=="ex : 75"				
+					-outsize ysize $settings.outsize_y
+				#end unless
 				
 				#if $settings.condi_expand.expand=="expand"
 					-expand $settings.condi_expand.expand_value
@@ -24,7 +36,7 @@
 											
 			#end if 
 			-of $of
-		"$output"
+		
     ]]></command>
 	<inputs>
 		<param type="data" name="input1" format="data" label="Gdal supported input file" help="http://www.gdal.org/formats_list.html"/>    
@@ -49,6 +61,8 @@
 					<option value="average"/>
 					<option value="mode"/>
 				</param>	
+				<param name="outsize_x" type="text" label="-outsize xsize" value="ex : 75"/>
+				<param name="outsize_y" type="text" label="-outsize ysize" value="ex : 75"/>
 				
 				<conditional name="condi_expand">
 					<param name="expand" type="select" label="Expand gray|rgb|rgba" help="To expose a dataset with 1 band with a color table as a dataset with 3 (RGB) or 4 (RGBA) bands. Useful for output drivers such as JPEG, JPEG2000, MrSID, ECW that don't support color indexed datasets. The 'gray' value (from GDAL 1.7.0) enables to expand a dataset with a color table that only contains gray levels to a gray indexed dataset.">
