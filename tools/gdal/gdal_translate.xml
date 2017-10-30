@@ -3,7 +3,10 @@
         <requirement type="package" version="2.1.0">gdal</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
-		gdal_translate "$input1" 
+		gdal_translate "$input1"
+			#if $settings.advanced=="advanced"
+				$settings.strict
+			#end if 
 			-of $of
 		"$output"
     ]]></command>
@@ -18,7 +21,24 @@
             <when value="simple">
             </when>
             <when value="advanced">
+            	<param name="strict" type="boolean" truevalue="-strict" falsevalue="" checked="false" label="-strict" help="Don't be forgiving of mismatches and lost data when translating to the output format."/>
 				<param name="b" type="text" label="-b band" help="Select an input band band for output. Bands are numbered from 1. Multiple -b switches may be used to select a set of input bands to write to the output file, or to reorder bands." value="-b 1 -b 2 -b 3"/>
+				<param name="mask" type="text" label="-mask band" help="Select an input band band to create output dataset mask band. Bands are numbered from 1. band can be set to 'none' to avoid copying the global mask of the input dataset if it exists. Otherwise it is copied by default ('auto'), unless the mask is an alpha channel, or if it is explicitly used to be a regular band of the output dataset ('-b mask'). band can also be set to 'mask,1' (or just 'mask') to mean the mask band of the 1st band of the input dataset." value="-mask 1"/>
+				<conditional name="settings">
+					<param name="expand" type="select" label="Expand gray|rgb|rgba" help="To expose a dataset with 1 band with a color table as a dataset with 3 (RGB) or 4 (RGBA) bands. Useful for output drivers such as JPEG, JPEG2000, MrSID, ECW that don't support color indexed datasets. The 'gray' value (from GDAL 1.7.0) enables to expand a dataset with a color table that only contains gray levels to a gray indexed dataset.">
+						<option value="no_expand" selected="true">Don't use the -expand option</option>
+						<option value="expand">Use the -expand option</option>
+					</param>
+					<when value="no_expand">
+					</when>
+					<when value="expand">
+						<param name="expand_value" type="select" label="Color table" display="radio" multiple="False">
+							<option value="gray" selected="true">GRAY</option>
+							<option value="rgb">RGB</option>
+							<option value="rgba">RGBA</option>							
+						</param>
+					</when>
+				</conditional>
 			</when>
 		</conditional>
 	</inputs>
