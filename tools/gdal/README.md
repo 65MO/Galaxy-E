@@ -7,3 +7,4 @@ Official documentation is available here : http://www.gdal.org/
 Implement utility programs for raster and vectors formats.
 
 Gdalinfo -mdd option
+	* OK? Need to be tested

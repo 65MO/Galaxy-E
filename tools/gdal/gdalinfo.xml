@@ -16,6 +16,7 @@
 				$settings.checksum
 				$settings.listmdd
 				$settings.proj4
+				-mdd $settings.mdd
 			#end if
 			#if $format.value=="json"
 				-json > "$outputJson"
