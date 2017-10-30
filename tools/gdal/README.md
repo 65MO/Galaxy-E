@@ -5,3 +5,5 @@ Official documentation is available here : http://www.gdal.org/
 
 ### TODO
 Implement utility programs for raster and vectors formats.
+
+Gdalinfo -mdd option
