@@ -1,0 +1,43 @@
+<tool id="gdal_translate" name="GDAL Translate" version="0.1.0">
+    <requirements>
+        <requirement type="package" version="2.1.0">gdal</requirement>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+		gdal_translate "$input1" 
+			-of $of
+		"$output"
+    ]]></command>
+	<inputs>
+		<param type="data" name="input1" format="data" label="Gdal supported input file" help="http://www.gdal.org/formats_list.html"/>    
+		<param name="of" type="text" label="Output format" help="Select the output format. The default is GeoTIFF (GTiff). Use the short format name. http://www.gdal.org/formats_list.html"/>
+		<conditional name="settings">
+			<param name="advanced" type="select" label="Specify advanced parameters">
+				<option value="simple" selected="true">No, use program defaults.</option>
+				<option value="advanced">Yes, see full parameter list.</option>
+			</param>        
+            <when value="simple">
+            </when>
+            <when value="advanced">
+				<param name="b" type="text" label="-b band" help="Select an input band band for output. Bands are numbered from 1. Multiple -b switches may be used to select a set of input bands to write to the output file, or to reorder bands." value="-b 1 -b 2 -b 3"/>
+			</when>
+		</conditional>
+	</inputs>
+	<outputs>
+		<data name="output" auto_format="true" label="${input1.name}.${of}"/>
+	</outputs>
+	<tests>
+		<test>
+			<param name="input1" value="dataset/stere.tif"/>
+			<output name="output" file="dataset/stere.JPEG"/>
+		</test>
+	</tests>
+	<help><![CDATA[
+        
+The gdal_translate utility can be used to convert raster data between different formats, potentially performing some operations like subsettings, resampling, and rescaling pixels in the process. 
+
+http://www.gdal.org
+
+http://www.gdal.org/gdal_translate.html
+
+	]]></help>
+</tool>

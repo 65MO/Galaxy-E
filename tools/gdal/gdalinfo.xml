@@ -1,0 +1,79 @@
+<tool id="gdalinfo" name="GDAL Informations" version="0.1.0">
+    <requirements>
+        <requirement type="package" version="2.1.0">gdal</requirement>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+		gdalinfo "$input1"
+			#if $settings.advanced=="advanced"
+				$settings.mm
+				$settings.stats
+				$settings.approx_stats
+				$settings.hist
+				$settings.nogcp
+				$settings.nomd
+				$settings.norat
+				$settings.noct
+				$settings.checksum
+				$settings.listmdd
+				$settings.proj4
+			#end if
+			#if $format.value=="json"
+				-json > "$outputJson"
+			#else
+				> "$outputDefault"
+			#end if
+    ]]></command>
+    <inputs>
+        <param type="data" name="input1" format="data" label="Gdal supported input file" help="http://www.gdal.org/formats_list.html"/>
+		<param name="format" type="select" label="Output format" display="radio" multiple="False">
+			<option value="default" selected="true">Text</option>
+			<option value="json">Json</option>
+		</param>
+		<conditional name="settings">
+			<param name="advanced" type="select" label="Specify advanced parameters">
+				<option value="simple" selected="true">No, use program defaults.</option>
+				<option value="advanced">Yes, see full parameter list.</option>
+			</param>        
+            <when value="simple">
+            </when>
+            <when value="advanced">
+			   	<param name="mm" type="boolean" truevalue="-mm" falsevalue="" checked="false" label="-mm" help="Force computation of the actual min/max values for each band in the dataset."/>
+			   	<param name="stats" type="boolean" truevalue="-stats" falsevalue="" checked="false" label="-stats" help="Read and display image statistics. Force computation if no statistics are stored in an image."/>
+			   	<param name="approx_stats" type="boolean" truevalue="-approx_stats" falsevalue="" checked="false" label="-approx_stats" help="Read and display image statistics. Force computation if no statistics are stored in an image. However, they may be computed based on overviews or a subset of all tiles. Useful if you are in a hurry and don't want precise stats."/>
+			   	<param name="hist" type="boolean" truevalue="-hist" falsevalue="" checked="false" label="-hist" help="Report histogram information for all bands."/>
+			   	<param name="nogcp" type="boolean" truevalue="-nogcp" falsevalue="" checked="false" label="-nogcp" help="Suppress ground control points list printing. It may be useful for datasets with huge amount of GCPs, such as L1B AVHRR or HDF4 MODIS which contain thousands of them."/>
+			   	<param name="nomd" type="boolean" truevalue="-nomd" falsevalue="" checked="false" label="-nomd" help="Suppress metadata printing. Some datasets may contain a lot of metadata strings."/>
+			   	<param name="norat" type="boolean" truevalue="-norat" falsevalue="" checked="false" label="-norat" help="Suppress printing of raster attribute table."/>
+			   	<param name="noct" type="boolean" truevalue="-noct" falsevalue="" checked="false" label="-noct" help="Suppress printing of color table."/>
+			   	<param name="checksum" type="boolean" truevalue="-checksum" falsevalue="" checked="false" label="-checksum" help="Force computation of the checksum for each band in the dataset."/>
+			   	<param name="listmdd" type="boolean" truevalue="-listmdd" falsevalue="" checked="false" label="-listmdd" help="List all metadata domains available for the dataset."/>
+				<param name="proj4" type="boolean" truevalue="-proj4" falsevalue="" checked="false" label="-proj4" help="Report a PROJ.4 string corresponding to the file's coordinate system."/> 
+				<param name="mdd" type="text" label="-mdd DOMAIN" help="Report metadata for the specified domain. Starting with GDAL 1.11, 'all' can be used to report metadata in all domains." value="all"/>
+            </when>
+		</conditional>
+        
+    </inputs>
+    <outputs>
+        <data name="outputDefault" format="txt" label="Default info file">
+        	<filter>format == "default"</filter>
+        </data>
+		<data name="outputJson" format="json" label="Json formated info file">
+			<filter>format == "json"</filter>
+        </data>
+    </outputs>
+    <tests>
+        <test>
+            <param name="input1" value="dataset/stere.tif"/>
+            <output name="outputDefault" file="dataset/stere_info"/>
+        </test>
+    </tests>
+    <help><![CDATA[
+        
+The gdalinfo program lists various information about a GDAL supported raster dataset. 
+
+http://www.gdal.org
+
+http://www.gdal.org/gdalinfo.html
+
+    ]]></help>
+</tool>
