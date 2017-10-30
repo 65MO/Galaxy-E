@@ -1,0 +1,48 @@
+Driver: GTiff/GeoTIFF
+Files: dataset/stere.tif
+Size is 273, 265
+Coordinate System is:
+PROJCS["unnamed",
+    GEOGCS["WGS 84",
+        DATUM["unknown",
+            SPHEROID["WGS84",6378137,298.257223563]],
+        PRIMEM["Greenwich",0],
+        UNIT["degree",0.0174532925199433]],
+    PROJECTION["Stereographic"],
+    PARAMETER["latitude_of_origin",71.4],
+    PARAMETER["central_meridian",28.9],
+    PARAMETER["scale_factor",1],
+    PARAMETER["false_easting",0],
+    PARAMETER["false_northing",0],
+    UNIT["metre",1,
+        AUTHORITY["EPSG","9001"]]]
+Origin = (-64455.359436834092776,72521.133364936860744)
+Pixel Size = (500.000000000000000,-500.000000000000000)
+Metadata:
+  AREA_OR_POINT=Area
+Image Structure Metadata:
+  INTERLEAVE=PIXEL
+Corner Coordinates:
+Upper Left  (  -64455.359,   72521.133) ( 27d 1'39.57"E, 72d 2'27.45"N)
+Lower Left  (  -64455.359,  -59978.867) ( 27d 8'22.71"E, 70d51'14.56"N)
+Upper Right (   72044.641,   72521.133) ( 30d59'33.46"E, 72d 2'19.42"N)
+Lower Right (   72044.641,  -59978.867) ( 30d52' 2.96"E, 70d51' 7.03"N)
+Center      (    3794.641,    6271.133) ( 29d 0'24.70"E, 71d27'22.22"N)
+Band 1 Block=273x10 Type=Byte, ColorInterp=Red
+  Metadata:
+    dataType=1
+    name=L_645
+    ScaleRatio=0.203921568627
+    standard_name=surface_upwelling_spectral_radiance_in_air_emerging_from_sea_water
+Band 2 Block=273x10 Type=Byte, ColorInterp=Green
+  Metadata:
+    dataType=1
+    name=L_555
+    ScaleRatio=0.227450980392
+    standard_name=surface_upwelling_spectral_radiance_in_air_emerging_from_sea_water
+Band 3 Block=273x10 Type=Byte, ColorInterp=Blue
+  Metadata:
+    dataType=1
+    name=L_469
+    ScaleRatio=0.329411764706
+    standard_name=surface_upwelling_spectral_radiance_in_air_emerging_from_sea_water
