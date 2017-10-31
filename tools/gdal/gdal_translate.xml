@@ -33,6 +33,12 @@
 				#if $settings.condi_scale.scale=="scale"
 					-scale $settings.condi_scale.src_min $settings.condi_scale.src_max $settings.condi_scale.dst_min $settings.condi_scale.dst_max
 				#end if
+					
+				#if $settings.condi_srcwin.srcwin=="srcwin"
+					-srcwin $settings.condi_srcwin.xoff $settings.condi_srcwin.yoff $settings.condi_srcwin.xsize $settings.condi_srcwin.ysize
+				#end if	
+				
+				$settings.epo
 											
 			#end if 
 			-of $of
@@ -95,6 +101,23 @@
 					</when>
 				</conditional>
 				
+				<conditional name="condi_srcwin">
+					<param name="srcwin" type="select" label="Selects a subwindow from the source image" help="Selects a subwindow from the source image for copying based on pixel/line location.">
+						<option value="no_srcwin" selected="true">Don't use the -srcwin option</option>
+						<option value="srcwin">Use the -srcwin option</option>
+					</param>
+					<when value="no_srcwin">
+					</when>
+					<when value="srcwin">
+						<param name="xoff" type="text" label="xoff" value="0"/>
+						<param name="yoff" type="text" label="yoff" value="0"/>
+						<param name="xsize" type="text" label="xsize" value="0"/>
+						<param name="ysize" type="text" label="ysize" value="0"/>
+					</when>
+				</conditional>				
+				
+				<param name="epo" type="boolean" label="-epo" truevalue="-epo" falsevalue="" checked="false" help="If this option is set, -srcwin or -projwin values that falls partially outside the source raster extent will be considered as an error. The default behaviour starting with GDAL 1.10 is to accept such requests, when they were considered as an error before."/>
+
 			</when>
 		</conditional>
 	</inputs>
