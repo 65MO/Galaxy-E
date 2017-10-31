@@ -39,6 +39,10 @@
 				#end if	
 				
 				$settings.epoeco
+				$settings.q
+				## $settings.sds
+				$settings.stats
+				$settings.norat
 											
 			#end if 
 			-of $of
@@ -121,7 +125,13 @@
 					<option value="-epo">-epo : Error when partially outside</option>
 					<option value="-eco">-eco : Error when completely outside</option>				
 				</param>
-						
+				<param name="q" type="boolean" truevalue="-q" falsevalue="" checked="false" label="-q" help="Suppress progress monitor and other non-error output."/>
+				<!--
+				<param name="sds" type="boolean" truevalue="-sds" falsevalue="" checked="false" label="-sds" help="Copy all subdatasets of this file to individual output files. Use with formats like HDF or OGDI that have subdatasets. The output file naming scheme has changed in GDAL 1.11 (e.g. ofile_1.tif, ofile_2.tif)."/>
+				Ici il y a surement une gestion de fichiers de sorties multiple à faire
+				-->
+				<param name="stats" type="boolean" truevalue="-stats" falsevalue="" checked="false" label="-stats" help="Force (re)computation of statistics."/>
+				<param name="norat" type="boolean" truevalue="-norat" falsevalue="" checked="false" label="-norat" help="Do not copy source RAT into destination dataset."/>
 			</when>
 		</conditional>
 	</inputs>
