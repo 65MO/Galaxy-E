@@ -38,7 +38,7 @@
 					-srcwin $settings.condi_srcwin.xoff $settings.condi_srcwin.yoff $settings.condi_srcwin.xsize $settings.condi_srcwin.ysize
 				#end if	
 				
-				$settings.epo
+				$settings.epoeco
 											
 			#end if 
 			-of $of
@@ -46,7 +46,7 @@
     ]]></command>
 	<inputs>
 		<param type="data" name="input1" format="data" label="Gdal supported input file" help="http://www.gdal.org/formats_list.html"/>    
-		<param name="of" type="text" label="Output format" help="Select the output format. The default is GeoTIFF (GTiff). Use the short format name. http://www.gdal.org/formats_list.html"/>
+		<param name="of" type="text" label="Output format" value="gtiff" help="Select the output format. The default is GeoTIFF (GTiff). Use the short format name. http://www.gdal.org/formats_list.html"/>
 		<conditional name="settings">
 			<param name="advanced" type="select" label="Specify advanced parameters">
 				<option value="simple" selected="true">No, use program defaults.</option>
@@ -116,8 +116,12 @@
 					</when>
 				</conditional>				
 				
-				<param name="epo" type="boolean" label="-epo" truevalue="-epo" falsevalue="" checked="false" help="If this option is set, -srcwin or -projwin values that falls partially outside the source raster extent will be considered as an error. The default behaviour starting with GDAL 1.10 is to accept such requests, when they were considered as an error before."/>
-
+				<param name="epoeco" type="select" label="Display error when outside the source raster" display="radio" multiple="False">
+					<option value="" selected="true">Default, no error</option>
+					<option value="-epo">-epo : Error when partially outside</option>
+					<option value="-eco">-eco : Error when completely outside</option>				
+				</param>
+						
 			</when>
 		</conditional>
 	</inputs>
