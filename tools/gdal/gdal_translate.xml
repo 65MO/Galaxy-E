@@ -43,7 +43,15 @@
 				## $settings.sds
 				$settings.stats
 				$settings.norat
-											
+				
+				#unless $settings.co=="ex : COMPRESS=JPEG"				
+					-co $settings.co
+				#end unless
+				
+				#unless $settings.mo=="ex : META-TAG=VALUE"				
+					-mo $settings.mo
+				#end unless
+										
 			#end if 
 			-of $of
 		
@@ -132,9 +140,13 @@
 				-->
 				<param name="stats" type="boolean" truevalue="-stats" falsevalue="" checked="false" label="-stats" help="Force (re)computation of statistics."/>
 				<param name="norat" type="boolean" truevalue="-norat" falsevalue="" checked="false" label="-norat" help="Do not copy source RAT into destination dataset."/>
+				<param name="co" type="text" label="-co" value="ex : COMPRESS=JPEG" help="Passes a creation option to the output format driver. Multiple -co options may be listed. See format specific documentation for legal creation options for each format."/>
+				<param name="mo" type="text" label="-mo" value="ex : META-TAG=VALUE" help="Passes a metadata key and value to set on the output dataset if possible."/>
+				
 			</when>
 		</conditional>
 	</inputs>
+	
 	<outputs>
 		<data name="output" auto_format="true" label="${input1.name}.${of}"/>
 	</outputs>
