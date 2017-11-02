@@ -4,37 +4,35 @@
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
 		gdal_translate "$input1" "$output"
-			#if $settings.advanced=="advanced"
+			#if $settings.advanced=='advanced'
 			
 				$settings.strict
 				
-				#unless $settings.b=="ex : -b 1 -b 2 -b 3"
+				#unless $settings.b=='e.g : -b 1 -b 2 -b 3'
 					$settings.b
 				#end unless
 				
-				#unless $settings.mask=="ex : -mask 1"
+				#unless $settings.mask=='e.g : -mask 1'
 					$settings.mask
 				#end unless
 				
 				-r $settings.r
 				
-				#unless $settings.outsize_x=="ex : 75"				
-					-outsize xsize $settings.outsize_x
-				#end unless
-
-				#unless $settings.outsize_y=="ex : 75"				
-					-outsize ysize $settings.outsize_y
-				#end unless
-				
-				#if $settings.condi_expand.expand=="expand"
+				#if $settings.outsize.outsize=='outsize_x'
+					-outsize xsize $settings.outsize.outx$settings.outsize.outsize_percent
+				#else
+					-outsize ysize $settings.outsize.outy$settings.outsize.outsize_percent
+				#end if
+							
+				#if $settings.condi_expand.expand=='expand'
 					-expand $settings.condi_expand.expand_value
 				#end if
 				
-				#if $settings.condi_scale.scale=="scale"
+				#if $settings.condi_scale.scale=='scale'
 					-scale $settings.condi_scale.src_min $settings.condi_scale.src_max $settings.condi_scale.dst_min $settings.condi_scale.dst_max
 				#end if
 					
-				#if $settings.condi_srcwin.srcwin=="srcwin"
+				#if $settings.condi_srcwin.srcwin=='srcwin'
 					-srcwin $settings.condi_srcwin.xoff $settings.condi_srcwin.yoff $settings.condi_srcwin.xsize $settings.condi_srcwin.ysize
 				#end if	
 				
@@ -44,15 +42,15 @@
 				$settings.stats
 				$settings.norat
 				
-				#unless $settings.co=="ex : COMPRESS=JPEG"				
+				#unless $settings.co=='e.g : COMPRESS=JPEG'				
 					-co $settings.co
 				#end unless
 				
-				#unless $settings.mo=="META-TAG=VALUE"				
+				#unless $settings.mo=='META-TAG=VALUE'				
 					-mo $settings.mo
 				#end unless
 				
-				#unless $settings.oo=="NAME=VALUE"				
+				#unless $settings.oo=='NAME=VALUE'				
 					-oo $settings.oo
 				#end unless
 										
@@ -72,8 +70,8 @@
             </when>
             <when value="advanced">
             	<param name="strict" type="boolean" truevalue="-strict" falsevalue="" checked="false" label="-strict" help="Don't be forgiving of mismatches and lost data when translating to the output format."/>
-				<param name="b" type="text" label="-b band" help="Select an input band band for output. Bands are numbered from 1. Multiple -b switches may be used to select a set of input bands to write to the output file, or to reorder bands." value="ex : -b 1 -b 2 -b 3"/>
-				<param name="mask" type="text" label="-mask band" help="Select an input band band to create output dataset mask band. Bands are numbered from 1. band can be set to 'none' to avoid copying the global mask of the input dataset if it exists. Otherwise it is copied by default ('auto'), unless the mask is an alpha channel, or if it is explicitly used to be a regular band of the output dataset ('-b mask'). band can also be set to 'mask,1' (or just 'mask') to mean the mask band of the 1st band of the input dataset." value="ex : -mask 1"/>
+				<param name="b" type="text" label="-b band" help="Select an input band band for output. Bands are numbered from 1. Multiple -b switches may be used to select a set of input bands to write to the output file, or to reorder bands." value="e.g : -b 1 -b 2 -b 3"/>
+				<param name="mask" type="text" label="-mask band" help="Select an input band band to create output dataset mask band. Bands are numbered from 1. band can be set to 'none' to avoid copying the global mask of the input dataset if it exists. Otherwise it is copied by default ('auto'), unless the mask is an alpha channel, or if it is explicitly used to be a regular band of the output dataset ('-b mask'). band can also be set to 'mask,1' (or just 'mask') to mean the mask band of the 1st band of the input dataset." value="e.g : -mask 1"/>
 				<param name="r" type="select" label="-r" help="Select a resampling algorithm.">
 					<option value="nearest" selected="true"/>
 					<option value="bilinear"/>
@@ -82,9 +80,22 @@
 					<option value="lanczos"/>
 					<option value="average"/>
 					<option value="mode"/>
-				</param>	
-				<param name="outsize_x" type="text" label="-outsize xsize" value="ex : 75"/>
-				<param name="outsize_y" type="text" label="-outsize ysize" value="ex : 75"/>
+				</param>
+				
+				<conditional name="outsize">
+					<param name="outsize" type="select" label="-outsize, select the dimension." help="Set the size of the output file. Outsize is in pixels and lines unless '%' is attached in which case it is as a fraction of the input image size. Starting with GDAL 2.0, if one of the 2 values is set to 0, its value will be determined from the other one, while maintaining the aspect ratio of the source dataset.">	
+						<option value="outsize_x" selected="true">xsize</option>
+						<option value="outsize_y">ysize</option>
+					</param>
+					<when value="outsize_x">
+						<param name="outsize_percent" type="boolean" truevalue="%" falsevalue="" checked="true" label="Use percentage"/>
+						<param name="outx" label="xsize" type="integer" value="100"/>
+			        </when>
+			        <when value="outsize_y">
+			        	<param name="outsize_percent" type="boolean" truevalue="%" falsevalue="" checked="true" label="Use percentage"/>
+						<param name="outy" label="ysize" type="integer" value="100"/>
+					</when>
+				</conditional>
 				
 				<conditional name="condi_expand">
 					<param name="expand" type="select" label="Expand gray|rgb|rgba" help="To expose a dataset with 1 band with a color table as a dataset with 3 (RGB) or 4 (RGBA) bands. Useful for output drivers such as JPEG, JPEG2000, MrSID, ECW that don't support color indexed datasets. The 'gray' value (from GDAL 1.7.0) enables to expand a dataset with a color table that only contains gray levels to a gray indexed dataset.">
@@ -110,10 +121,10 @@
 					<when value="no_scale">
 					</when>
 					<when value="scale">
-						<param name="src_min" type="text" label="src_min" value="0"/>
-						<param name="src_max" type="text" label="src_max" value="0"/>
-						<param name="dst_min" type="text" label="dst_min" value="0"/>
-						<param name="dst_max" type="text" label="dst_max" value="0"/>
+						<param name="src_min" type="integer" label="src_min" value="0"/>
+						<param name="src_max" type="integer" label="src_max" value="0"/>
+						<param name="dst_min" type="integer" label="dst_min" value="0"/>
+						<param name="dst_max" type="integer" label="dst_max" value="0"/>
 					</when>
 				</conditional>
 				
@@ -125,10 +136,10 @@
 					<when value="no_srcwin">
 					</when>
 					<when value="srcwin">
-						<param name="xoff" type="text" label="xoff" value="0"/>
-						<param name="yoff" type="text" label="yoff" value="0"/>
-						<param name="xsize" type="text" label="xsize" value="0"/>
-						<param name="ysize" type="text" label="ysize" value="0"/>
+						<param name="xoff" type="integer" label="xoff" value="0"/>
+						<param name="yoff" type="integer" label="yoff" value="0"/>
+						<param name="xsize" type="integer" label="xsize" value="0"/>
+						<param name="ysize" type="integer" label="ysize" value="0"/>
 					</when>
 				</conditional>				
 				
@@ -144,7 +155,7 @@
 				-->
 				<param name="stats" type="boolean" truevalue="-stats" falsevalue="" checked="false" label="-stats" help="Force (re)computation of statistics."/>
 				<param name="norat" type="boolean" truevalue="-norat" falsevalue="" checked="false" label="-norat" help="Do not copy source RAT into destination dataset."/>
-				<param name="co" type="text" label="-co" value="ex : COMPRESS=JPEG" help="Passes a creation option to the output format driver. Multiple -co options may be listed. See format specific documentation for legal creation options for each format."/>
+				<param name="co" type="text" label="-co" value="e.g : COMPRESS=JPEG" help="Passes a creation option to the output format driver. Multiple -co options may be listed. See format specific documentation for legal creation options for each format."/>
 				<param name="mo" type="text" label="-mo" value="META-TAG=VALUE" help="Passes a metadata key and value to set on the output dataset if possible."/>
 				<param name="oo" type="text" label="-oo" value="NAME=VALUE" help="Dataset open option (format specific)."/>
 				
