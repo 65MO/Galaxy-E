@@ -47,6 +47,7 @@ Following the @dannon [PR](https://github.com/galaxyproject/galaxy/pull/3762) @V
    * [H2GIS](http://www.h2gis.org/support/) light and standalone GIS database
    * [GeoCMS](https://github.com/dotgee/geocms) GeoCMS is a complete open source solution for consuming and visualizing geospatial data
    * [Magrit](http://magrit.cnrs.fr/modules) for thematic GIS (in french and english)
+   * [OpenEV](http://openev.sourceforge.net/) a software library and application for viewing and analysing raster and vector geospatial data
 * Taxa automated recognition through [TensorFlow](https://tensorflow.wq.io/about)
 * Dashboards for a community intensively oriented toward R
    * [R-Shiny](https://shiny.rstudio.com/) through Interactive Environment ?
