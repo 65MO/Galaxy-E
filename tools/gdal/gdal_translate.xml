@@ -175,7 +175,7 @@
     </inputs>
     
     <outputs>
-        <data name="output" auto_format="true" label="${input1.name}.${of}"/>
+        <data name="output" auto_format="true" label="${on_string}.${of}"/> <!--label="${input.name}.${of}-->
     </outputs>
     <tests>
         <test>
