@@ -1,0 +1,35 @@
+<tool id="gdaladdo" name="GDAL addo" version="0.1.0">
+    <requirements>
+        <requirement type="package" version="2.1.0">gdal</requirement>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+		gdaladdo '$input1'
+			-ro
+			#unless $levels=="eg : 2 4 8 16"
+				$levels
+			#end unless
+		    --config COMPRESS_OVERVIEW DEFLATE
+		&& cp $input1'.ovr' output_ovr
+	]]></command>
+    
+	<inputs>
+		<param type="data" name="input1" format="data" label="Gdal supported input file" help="http://www.gdal.org/formats_list.html"/>    
+		<param name="levels" type="text" label="levels" help="A list of integral overview levels to build. Ignored with -clean option." value="e.g : 2 4 8 16"/>		
+	</inputs>
+	
+	<outputs>
+		<data format="tiff" name="output" from_work_dir="output_ovr" label="${input1.name}.ovr"/>
+	</outputs>
+	
+	<tests>
+	</tests>
+	<help><![CDATA[
+        
+The gdaladdo utility can be used to build or rebuild overview images for most supported file formats with one of several downsampling algorithms. 
+
+http://www.gdal.org
+
+http://www.gdal.org/gdaladdo.html
+
+	]]></help>
+</tool>
