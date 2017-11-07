@@ -4,7 +4,7 @@
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         gdalwarp '$input1'
-        	-$of
+        	-of $of
 
         	#if $condi_tr.tr=='tr'
         		-tr $condi_tr.xres $condi_tr.yres
@@ -18,29 +18,36 @@
         		-t_srs $t_srs
 			#end unless
 			
-			#unless $settings.to=='NAME=VALUE'
-				-to $settings.to
-			#end unless
+			#if $settings.advanced=="advanced"
 			
-			#unless $settings.order=='no_value'
-				-order $settings.order
-			#end unless
+				#unless $settings.to=='NAME=VALUE'
+					-to $settings.to
+				#end unless
+			
+				#unless $settings.order=='no_value'
+					-order $settings.order
+				#end unless
 
-			#if $settings.condi_et.et=='et'
-				-et $settings.condi_et.et
+				#if $settings.condi_resample.resample=='resampling'
+					-r $settings.condi_resample.r
+				#end if
+				
+				#if $settings.condi_et.et=='et'
+					-et $settings.condi_et.et
+				#end if
+			
+				#if $settings.condi_refine_gcps.refine_gcps=='refine_gcps'
+		    		-tr $settings.condi_refine_gcps.tolerance $settings.condi_refine_gcps.minimum_gcps
+		    	#end if
+			
+				#if $settings.condi_te.te=='te'
+		    		-te $settings.condi_te.xmin $settings.condi_te.ymin $settings.condi_te.xmax $settings.condi_te.ymax
+		    	#end if
+			
+				$settings.tps
+				$settings.rpc
+				$settings.geoloc
 			#end if
-			
-			#if $settings.condi_refine_gcps.refine_gcps=='refine_gcps'
-        		-tr $settings.condi_refine_gcps.tolerance $settings.condi_refine_gcps.minimum_gcps
-        	#end if
-			
-			#if $settings.condi_te.te=='te'
-        		-te $settings.condi_te.xmin $settings.condi_te.ymin $settings.condi_te.xmax $settings.condi_te.ymax
-        	#end if
-			
-			$settings.tps
-			$settings.rpc
-			$settings.geoloc
 						
         '$output'
 
@@ -153,6 +160,14 @@
     </outputs>
     
     <tests>
+    	<test>
+            <param name="input1" value="stere.tif"/>
+            <param name="of" value="Gtiff" />
+            <param name="t_srs" value="EPSG:2154" />
+            <param name="advanced" value="simple"/>
+            <output name="output" file="stere_warp1.tiff"/>
+        </test>    
+    
     </tests>
     <help><![CDATA[
         
