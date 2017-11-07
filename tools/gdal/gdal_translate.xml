@@ -179,7 +179,7 @@
     </outputs>
     
     
-	<tests>
+    <tests>
         <test>
             <param name="input1" value="stere.tif"/>
             <param name="of" value="JPEG" />
