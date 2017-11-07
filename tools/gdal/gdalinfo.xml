@@ -69,6 +69,16 @@
             <param name="advanced" value="simple"/>
             <output name="outputJson" file="stere_info.json" lines_diff="6"/>
         </test>
+        <test>
+            <param name="input1" value="stere.tif"/>
+            <param name="format" value="default" />
+            <param name="advanced" value="advanced"/>
+            <param name="stats" value="-stats"/>
+            <param name="hist" value="-hist"/>
+            <param name="checksum" value="-checksum"/>
+            <param name="mdd" value="all"/>
+            <output name="outputDefault" file="stere_advanced_info.txt" lines_diff="6"/>
+        </test>
     </tests>
     <help><![CDATA[
         
