@@ -64,8 +64,10 @@
     </outputs>
     <tests>
         <test>
-            <param name="input1" value="dataset/stere.tif"/>
-            <output name="outputDefault" file="dataset/stere_info"/>
+            <param name="input1" value="stere.tif"/>
+            <param name="format" value="json" />
+            <param name="advanced" value="simple"/>
+            <output name="outputJson" file="stere_info.json" lines_diff="6"/>
         </test>
     </tests>
     <help><![CDATA[
