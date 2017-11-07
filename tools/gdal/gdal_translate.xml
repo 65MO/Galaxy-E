@@ -177,12 +177,42 @@
     <outputs>
         <data name="output" auto_format="true" label="${on_string}.${of}"/> <!--label="${input.name}.${of}-->
     </outputs>
-    <tests>
+    
+    
+	<tests>
         <test>
-            <param name="input1" value="dataset/stere.tif"/>
-            <output name="output" file="dataset/stere.JPEG"/>
+            <param name="input1" value="stere.tif"/>
+            <param name="of" value="JPEG" />
+            <param name="advanced" value="simple"/>
+            <output name="output" file="stere.jpg"/>
         </test>
+        
+        <test> <!-- gdal_translate "/tmp/tmpt_qdGu/files/000/dataset_1.dat" "/tmp/tmpt_qdGu/files/000/dataset_2.dat"    -b 1    -outsize xsize 75%             -of jpeg -->
+            <param name="input1" value="stere.tif"/>
+            <param name="of" value="JPEG" />
+            <param name="advanced" value="advanced"/>
+            <param name="b" value="-b 1"/>
+            <param name="outsize" value="outsize_x"/>
+            <param name="outx" value="75"/>
+            <param name="outsize_percent" value="%"/>
+            <output name="output" file="stere_advanced1.jpg"/>
+        </test>
+        
+        <test> <!-- gdal_translate "/tmp/tmpt_qdGu/files/000/dataset_1.dat" "/tmp/tmpt_qdGu/files/000/dataset_2.dat"    -b 1 -b 2   -r cubic  -outsize ysize 75             -of png -->
+            <param name="input1" value="stere.tif"/>
+            <param name="of" value="png" />
+            <param name="advanced" value="advanced"/>
+            <param name="b" value="-b 1 -b 2"/>
+            <param name="resample" value="resampling"/>
+            <param name="r" value="cubic"/>
+            <param name="outsize" value="outsize_y"/>
+            <param name="outy" value="75"/>
+            <param name="outsize_percent" value=""/>
+            <output name="output" file="stere_advanced2.png"/>
+        </test>
+        
     </tests>
+    
     <help><![CDATA[
         
 The gdal_translate utility can be used to convert raster data between different formats, potentially performing some operations like subsettings, resampling, and rescaling pixels in the process. 
