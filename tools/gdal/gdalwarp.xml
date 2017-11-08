@@ -11,11 +11,11 @@
             #end if
             
             #unless $s_srs==''
-                -s_srs $s_srs
+                -s_srs '$s_srs'
             #end unless
             
             #unless $t_srs==''
-                -t_srs $t_srs
+                -t_srs '$t_srs'
             #end unless
             
             #if $settings.advanced=="advanced"
@@ -37,7 +37,7 @@
                 #end if
             
                 #if $settings.condi_refine_gcps.refine_gcps=='refine_gcps'
-                    -tr $settings.condi_refine_gcps.tolerance $settings.condi_refine_gcps.minimum_gcps
+                    -refine_gcps $settings.condi_refine_gcps.tolerance $settings.condi_refine_gcps.minimum_gcps
                 #end if
             
                 #if $settings.condi_te.te=='te'
@@ -166,8 +166,16 @@
             <param name="t_srs" value="EPSG:2154" />
             <param name="advanced" value="simple"/>
             <output name="output" file="stere_warp1.tiff"/>
+        </test>
+        
+        <test>
+            <param name="input1" value="geoworld.tif"/>
+            <param name="of" value="Gtiff" />
+            <param name="t_srs" value="+proj=ortho +datum=WGS84" />
+            <param name="advanced" value="simple"/>
+            <output name="output" file="ortho.tif"/>
         </test>    
-    
+    	
     </tests>
     <help><![CDATA[
         
@@ -177,5 +185,6 @@ http://www.gdal.org
 
 http://www.gdal.org/gdalwarp.html
 
+Raster Processing Tutorial : https://trac.osgeo.org/gdal/wiki/UserDocs/RasterProcTutorial
     ]]></help>
 </tool>
