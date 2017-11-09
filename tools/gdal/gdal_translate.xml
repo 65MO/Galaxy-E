@@ -178,7 +178,7 @@
                         <param name="ulx" type="integer" label="ulx" value="0"/>
                         <param name="uly" type="integer" label="uly" value="0"/>
                         <param name="lrx" type="integer" label="lrx" value="0"/>
-                        <param name="lry" type="integer" label="lrx" value="0"/>
+                        <param name="lry" type="integer" label="lry" value="0"/>
                     </when>
                 </conditional>
                 
