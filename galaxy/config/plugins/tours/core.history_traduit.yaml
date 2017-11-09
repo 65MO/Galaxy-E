@@ -1,0 +1,134 @@
+name: Introduction Historique
+description: Une introduction détaillée de la fonctionnalité d'historique de Galaxy
+title_default: "Introduction à la fonctionnalité d'historique de Galaxy"
+steps:
+    - content: "Ce court tuto vous guidera à travers la fonctionnalité d' <b>Historique Galaxy</b> et de gestion des jeux de données liés."
+
+    - title: "Télécharger des données"
+      element: ".upload-button"
+      intro: |
+            Tout d'abord, nous allons téléverser quelques données dans notre historique Galaxy.<br>
+            Utilisez ce bouton pour téléverser vos données.
+      position: "right"
+      postclick:
+        - ".upload-button"
+
+    - title: "Téléchargez vos données"
+      element: "#btn-local"
+      intro: "Vous pouvez télécharger des données à partir de votre ordinateur."
+      position: "top"
+      postclick:
+        - "#btn-new"
+
+    - title: "Téléchargez vos données"
+      element: "#btn-new"
+      intro: "Copiez et collez des données directement dans Galaxy ou rentrer des URL qui conduisent à vos données."
+      position: "top"
+
+    - title: "Insérer des URL"
+      element: ".upload-text-content:first"
+      intro: "Les URL séparées par un retour à la ligne sont automatiquement téléchargées par Galaxy."
+      position: "bottom"
+      textinsert: |
+        https://wiki.galaxyproject.org/Images/GalaxyLogo?action=AttachFile&do=get&target=galaxy_project_logo.jpg
+        https://raw.githubusercontent.com/bgruening/galaxytools/adf077b912ddebd97b07b947b855cdd2862ed8ef/tools/statistics/test-data/anderson.tabular
+
+    - title: "Commencez le chargement"
+      element: "#btn-start"
+      intro: "Uploadez les données dans votre <b>Historique</b> Galaxy."
+      position: "top"
+      postclick:
+        - "#btn-start"
+        - "#btn-close"
+
+    - title: "Histoire"
+      element: "#right"
+      intro: "C'est votre historique  Toutes les étapes d'analyse seront enregistrées et peuvent être redéfinies à tout moment."
+      position: "left"
+
+    - title: "Informations de Dataset"
+      element: "div.title-bar.clear:eq(0)"
+      intro: "C'est l'un de vos jeux de données téléchargés.  Vous pouvez obtenir plus d'informations et d'options comme différentes visualisations en cliquant dessus."
+      position: "left"
+      postclick:
+        - "div.title-bar.clear:eq(0)"
+
+    - title: "Métadonnées null"
+      element: "#current-history-panel > ul.list-items > div:nth-child(1) > div.details > div.summary > div.datatype > label"
+      intro: "Galaxy a attribué un type de données à votre ensemble de données pendant le téléchargement, que vous pouvez voir ici."
+      position: "left"
+
+    - element: "#current-history-panel > ul.list-items > div:nth-child(1) > div.details > div.actions.clear > div.left > a.download-btn.icon-btn"
+      title: "Téléchargez votre jeu de données"
+      intro: "Vous pouvez télécharger tous les jeux de données en utilisant le symbole de disquette.bascu"
+      position: "left"
+
+    - element: "#current-history-panel > ul.list-items > div:nth-child(1) > div.details > div.actions.clear > div.left > a.icon-btn.params-btn"
+      title: "Encore plus d'informations"
+      intro: "Obtenez un aperçu de toutes les métadonnées associées à votre jeu de données en utilisant le symbole Information."
+      position: "left"
+      preclick:
+        - "#current-history-panel > ul.list-items > div:nth-child(1) > div.details > div.actions.clear > div.left > a.icon-btn.params-btn"
+
+    - element: "#current-history-panel > ul.list-items > div:nth-child(1) > div.primary-actions > a.icon-btn.display-btn"
+      title: "Inspectez vos données"
+      intro: "Le symbole de l'oeil peut être utilisé pour regarder vos données."
+      position: "left"
+      preclick:
+        - "#current-history-panel > ul.list-items > div:nth-child(1) > div.primary-actions > a.icon-btn.display-btn"
+
+    - element: "#current-history-panel > ul.list-items > div:nth-child(1) > div.primary-actions > a.icon-btn.edit-btn"
+      title: "Modifier les métadonnées"
+      intro: "Avec le bouton crayon, vous pouvez éditer les attributs de métadonnées de votre ensemble de données, comme le type de fichier associé ou le nom du jeu de données."
+      position: "left"
+      preclick:
+        - "#current-history-panel > ul.list-items > div:nth-child(1) > div.primary-actions > a.icon-btn.edit-btn"
+
+    - element: "#current-history-panel > ul.list-items > div:nth-child(1) > div.primary-actions > a.icon-btn.delete-btn"
+      title: "Supprimer les jeux de données"
+      intro: "Vous pouvez supprimer un ensemble de données de l'historique avec le symbole de croix."
+      position: "left"
+      postclick:
+        - "#current-history-panel > ul.list-items > div:nth-child(1) > div.primary-actions > a.icon-btn.delete-btn"
+
+    - element: "#current-history-panel > .controls > .subtitle .toggle-deleted-link"
+      title: "Inclure tous les ensembles de données supprimés"
+      intro: "Par défaut, votre historique va cacher tous les ensembles de données supprimés de votre part.  Vous pouvez les visualiser en cliquant ici."
+      position: "bottom"
+      postclick:
+        - "#current-history-panel > .controls > .subtitle .toggle-deleted-link"
+
+    - element: "#current-history-panel > ul.list-items > div:nth-child(1) > div.warnings > div > a.undelete-link"
+      title: "Suppression d'un ensemble de données"
+      intro: |
+            Les jeux de données Galaxy sont seulement marqués comme effacés et peuvent être récupérés en cliquant sur ce lien.
+            Veuillez noter que les jeux de données marqués comme supprimés peuvent être purgés par votre administrateur à tout moment.
+      position: "bottom"
+      postclick:
+        - "#current-history-panel > ul.list-items > div:nth-child(1) > div.warnings > div > a.undelete-link"
+
+    - element: "#current-history-panel > div.controls > div.title > div"
+      title: "Changer le nom de votre historique"
+      intro: "Vous pouvez modifier le nom de l'historique en cliquant sur le titre."
+      position: "bottom"
+      preclick:
+        - "#current-history-panel > div.controls > div.title > div"
+
+    - element: "#current-history-panel > div.controls > div.search > div > input"
+      title: "Recherchez dans votre historique"
+      intro: "Vous pouvez filtrer votre historique en tapant votre terme de recherche ici.  Galaxy prend en charge des filtres plus avancés que ce qui est présenté ici."
+      position: "left"
+      textinsert: "Habitat"
+      preclick:
+        - "#current-history-panel > div.controls > div.search > div > input"
+
+    - element: "#history-options-button"
+      title: "Options de l'histoire"
+      intro: "Dans le menu Historique, vous trouverez des options d'historique encore plus utiles."
+      position: "left"
+      postclick:
+        - "#history-options-button"
+
+    - title: "Profitez de vos Histoires Galaxy"
+      intro: "Merci d'avoir pris cette tournée!  Bonne recherche avec Galaxy!"
+

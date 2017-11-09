@@ -1,0 +1,209 @@
+id: galaxy_ui
+name: Galaxy UI
+description: Une gentille introduction à l'interface utilisateur Galaxy
+title_default: "Welcome to Galaxy"
+
+# A tour is made of several steps, each of them beginning with a dash '-'
+steps:
+    # 'title's will be displayed in the header of each step-container
+    # If you don't specify any title, a default title is used, defined above.
+    - title: "Bienvenue sur Galaxy"
+      # 'content' is the actual text that is shown to the user
+      content: "Cette courte visite vous guidera dans l'interface utilisateur de Galaxy.<br>
+                Vous pouvez naviguer avec vos touches de navigation et quitter le tuto à tout moment avec la touche 'Echap' ou en cliquant sur le bouton 'End Tour'.."
+      # backdrop is just one of many properties you can attach to one step-container,
+      # a full reference can be found at http://bootstraptour.com/api/
+      backdrop: true
+
+    # 'element' is the JQuery Selector (http://api.jquery.com/category/selectors/) of the element you want to describe
+    # In this case we want to highlight the Upload button with the `.upload-button` selector
+    - title: "Téléverser des données"
+      element: ".upload-button"
+      intro: "Galaxy supporte différentes manières d'obtenir des données.<br>
+              Utiliser ce bouton pour uploader des données en local."
+      # position of the text box relative to the selected element
+      position: "right"
+      # You can trigger click() events on arbitrary elements before (preclick) or after (postclick) the element is shown
+      postclick:
+        - ".upload-button"
+
+    - title: "Téléverser vos données"
+      element: "#btn-local"
+      intro: "Vous pouvez télécharger des données à partir de votre ordinateur."
+      position: "top"
+      postclick:
+        - "#btn-new"
+
+    - title: "Téléversez vos données"
+      element: "#btn-new"
+      intro: "Copiez et collez des données directement dans Galaxy ou incluent des URL qui mènent à vos données"
+      position: "top"
+
+    - title: "Insérer des URLs"
+      element: ".upload-text-content:first"
+      intro: "Les URL séparées par une rupture de ligne sont automatiquement téléchargées par Galaxy."
+      position: "top"
+      textinsert: |
+        https://raw.githubusercontent.com/bgruening/galaxytools/adf077b912ddebd97b07b947b855cdd2862ed8ef/tools/augustus/test-data/human_augustus.fa
+        https://raw.githubusercontent.com/bgruening/galaxytools/adf077b912ddebd97b07b947b855cdd2862ed8ef/tools/sailfish/test-data/reads_2.fastq
+        https://raw.githubusercontent.com/bgruening/galaxytools/adf077b912ddebd97b07b947b855cdd2862ed8ef/tools/statistics/test-data/anderson.tabular
+        http://openstack-192-168-100-44.genouest.org/dataset/display?dataset_id=c2693bd5f93a3150&to_ext=tabular
+
+    - title: "Commencez le chargement"
+      element: "#btn-start"
+      intro: "Téléchargez les données dans votre historique Galaxy."
+      position: "top"
+      postclick:
+        - "#btn-start"
+
+    - title: "Fermer le gestionnaire de téléversement/téléchargement"
+      element: "#btn-close"
+      intro: "Fermez le gestionnaire de téléchargement avec ce bouton ou avec un clic en dehors de la fenêtre du gestionnaire."
+      position: "top"
+      postclick:
+        - "#btn-close"
+
+    - title: "Outils"
+      element: "#left"
+      intro: "C'est votre Boîte à outils. Vous retrouverez ici  tous les outils disponibles dans votre instance Galaxy."
+      position: "right"
+
+    - title: "Barre de recherche d'outils"
+      element: '#tool-search-query'
+      intro: "Vous pouvez rechercher des outils par mots-clés."
+      position: "right"
+      textinsert: 'filtrer'
+
+    - title: "Catégories d'outils"
+      element: '#title_filter > a'
+      intro: "Les outils sont regroupés en catégories pour les rendre plus faciles à trouver."
+      position: "right"
+
+    - title: "Sélectionnez un outil"
+      element: 'a[href$="tool_runner?tool_id=openstack-192-168-100-161.genouest.org%2Ftoolshed%2Frepos%2Fylebras%2Ffilterer%2FFilter1%2F1.1.0"]'
+      intro: "Sélectionnez et chargez un outil pour votre analyse en cliquant sur le lien souligné."
+      position: "right"
+      postclick:
+        - 'a[href$="tool_runner?tool_id=openstack-192-168-100-161.genouest.org%2Ftoolshed%2Frepos%2Fylebras%2Ffilterer%2FFilter1%2F1.1.0"]'
+
+    - title: "Outil de filtrage"
+      element: '#center-panel'
+      intro: "Votre outil est chargé dans la page Galaxy principale et prêt à l'emploi."
+      position: "right"
+      #backdropContainer: 'background'
+      #backdrop: true
+
+    - title: "Paramètres de l'outil"
+      element: '#center-panel .ui-portlet-limited'
+      intro: "Ici, vous pouvez choisir les paramètres de votre outil. Sélectionnez votre ensemble de données d'entrée de votre historique et spécifiez les paramètres de votre analyse. Par exemple, en spécifiant la condition 'c5==29' et un nombre de lignes d'en-têtes à passer de '1', vous filtrerez le dernier jeu de données téléversé pour ne conserver que les observations d'oiseaux faites dans le Finistère"
+      position: "right"
+
+    - title: "Aide de l'outil"
+      element: 'div.ui-form-help'
+      intro: "Chaque outil Galaxy a une section d'aide avec des informations détaillées sur l'outil et ses paramètres.
+              Jetez un oeil et étudiez votre outil en profondeur en le lisant."
+      position: "top"
+
+    - title: "Exécutez votre outil"
+      element: '#execute'
+      intro: "Cliquer sur 'Exécute' pour exécuter votre outil et l'envoyer au cluster de calcul.
+              N'ayez pas peur de tester différents paramètres en parallèle. Galaxy peut gérer plusieurs exécutions du même outil."
+      position: "right"
+      postclick:
+        - '#execute'
+
+    - title: "Historique"
+      element: "#right"
+      intro: "Voici votre historique de Galaxy! Toutes les étapes d'analyse avec les résultats des outils et leurs paramètres seront enregistrées ici et peuvent être refaites à tout moment.<br>
+              Un outil de course est affiché en jaune et si votre calcul est terminé, il devient vert. Si votre ensemble de données est
+              gris, cela signifie que vous êtes mis en file d'attente et devez attendre que votre outil puisse être démarré. Si votre jeu de données devient rouge, une erreur s'est produite. Veuillez signaler le bug à l'équipe Galaxy avec le bouton du rapport de bogue."
+      position: "left"
+
+    - title: "Renommer l'historique"
+      element: "#current-history-panel > div.controls > div.title > div"
+      intro: "Nommez votre historique ici et appuyez sur Entrée."
+      position: "left"
+      preclick:
+        - "#current-history-panel > div.controls > div.title > div"
+
+    - title: "Afficher l'ensemble de données"
+      element: "#current-history-panel .fa-eye:eq(0)"
+      intro: "Affichez votre jeu de données en cliquant sur le bouton de l'oeil."
+      position: "left"
+      #preclick:
+      #  - "#current-history-panel .fa-eye:eq(0)"
+
+    - title: "Renommer l'ensemble de données"
+      element: "#current-history-panel .fa-pencil:eq(0)"
+      intro: "Renommez votre jeu de données en cliquant sur le bouton de crayon."
+      position: "left"
+      #preclick:
+      #  - "#current-history-panel .fa-pencil:eq(0)"
+
+    - title: "Supprimer l'ensemble de données"
+      element: "#current-history-panel .fa-times:eq(0)"
+      intro: "Supprimez votre jeu de données en cliquant sur le bouton x."
+      position: "left"
+
+    - title: "Informations de Dataset"
+      element: "div.title-bar.clear:eq(0)"
+      intro: "En cliquant sur votre jeu de données, vous avez plus d'informations concernant votre jeu de données (par exemple, type de fichier ou taille)."
+      position: "left"
+      preclick:
+        - "div.title-bar.clear:eq(0)"
+
+    - title: "Ré-exécution de l'outil"
+      element: "#current-history-panel .fa-refresh:first"
+      intro: "En cliquant sur le bouton recharger, vous pouvez ré-exécuter votre outil à nouveau (par exemple avec différents paramètres ou sur un autre ensemble de données)."
+      position: "left"
+
+
+    - title: "Échappement du panneau"
+      element: "#left > div.unified-panel-footer > div.panel-collapse.left"
+      intro: "Pour étendre la vue de votre page Galaxy principale au milieu, vous pouvez replier le panneau d'outils sur le côté gauche.  En cliquant sur la flèche du panneau sur le côté droit, cela replie l'historique."
+      position: "top"
+      postclick:
+        - "#left > div.unified-panel-footer > div.panel-collapse.left"
+
+    - title: "Panneau supérieur"
+      element: "#masthead"
+      intro: "Le panneau supérieur vous donnera accès à beaucoup de choses utiles."
+      position: "bottom"
+
+    - title: "Analyse des données"
+      element: "#analysis"
+      intro: "C'est la vue d'accueil. Débutez votre <b>analyse</b> à partir d'ici."
+      position: "bottom"
+
+    - title: "Workflow"
+      element: "#workflow"
+      intro: "Créer, gérer, importer, exporter et partager vos <b>Workflows</b>."
+      position: "bottom"
+
+    - title: "Données partagées"
+      element: "#shared"
+      intro: "Accéder aux <b>Workflows</b>, <b>Historiques</b>, <b>Pages</b>, <b>Visualisations</b> et aux <b>Bibliothèques de données</b> partagées avec vous."
+      position: "bottom"
+
+    - title: "Visualisation"
+      element: "#visualization"
+      intro: "Voulez-vous commencer à visualiser vos données dans un environneemnt intéractif?  Commencez ici! Galaxy offre beaucoup plus de visualisations!"
+      position: "bottom"
+
+    - title: "Aide"
+      element: "#help"
+      intro: "Ici vous pouvez disposer d'aide supplémentaire de la <b>Communauté</b> Galaxy avec des Vidéos, des Questions/Réponses et autres tutos."
+      position: "bottom"
+
+    - title: "Préférences utilisateur"
+      element: "#user"
+      intro: "Connectez-vous et commencez votre analyse!"
+      position: "bottom"
+
+    - title: 'Scratchbook'
+      element: "#enable-scratchbook"
+      intro: "La fonctionnalité de Scratchbook vous offre plusieurs visualisations les unes à côté des autres. Consultez notre tour Scratchbook pour en savoir plus à ce sujet."
+      position: "bottom"
+
+    - title: "Enjoy Galaxy"
+      intro: "Merci d'avoir suivi ce tuto!  Bonne recherche avec Galaxy-E!"
