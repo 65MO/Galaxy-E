@@ -43,7 +43,9 @@ Following the @dannon [PR](https://github.com/galaxyproject/galaxy/pull/3762) @V
    * Buffering
    * Calculate mean by buffer
 * Visualize GIS data
-   * [PostGIS](http://www.postgis.net/) usable through the [Galaxy pg datatype and relatde tools implementation](https://github.com/bgruening/galaxytools/pull/642) /[Leaflet](http://leafletjs.com/) through Interactive Environment ?
+   * [QGIS server](https://github.com/jancelin/docker-qgis-server) ou [QGIS desktop](https://github.com/jancelin/docker-qgis-desktop)
+   * [LizMap](https://github.com/jancelin/docker-lizmap)
+   * [PostGIS](http://www.postgis.net/) with a [Docker version](https://github.com/jancelin/docker-postgis-rpi) usable through the [Galaxy pg datatype and relatde tools implementation](https://github.com/bgruening/galaxytools/pull/642) /[Leaflet](http://leafletjs.com/) through Interactive Environment ?
    * [H2GIS](http://www.h2gis.org/support/) light and standalone GIS database
    * [GeoCMS](https://github.com/dotgee/geocms) GeoCMS is a complete open source solution for consuming and visualizing geospatial data
    * [Magrit](http://magrit.cnrs.fr/modules) for thematic GIS (in french and english)
