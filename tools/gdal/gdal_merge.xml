@@ -1,0 +1,97 @@
+<tool id="gdal_merge" name="GDAL Merge" version="0.1.0">
+    <requirements>
+        <requirement type="package" version="2.1.0">gdal</requirement>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+    	gdal_merge.py
+			#for $i, $s in enumerate( $series )
+				'${s.input}'
+			#end for
+			
+			
+			-o '$output'
+        ]]></command>
+        
+    <inputs>
+    	
+    	<repeat name="series" title="Input file">
+			<param type="data" name="input" format="data" label="Gdal supported input file" help="http://www.gdal.org/formats_list.html"/>
+		</repeat>
+    	
+    	<param name="of" type="text" label="Output format" value="gtiff" help="Select the output format. The default is GeoTIFF (GTiff). Use the short format name. http://www.gdal.org/formats_list.html"/>
+    	
+    	<conditional name="settings">
+            <param name="advanced" type="select" label="Specify advanced parameters">
+                <option value="simple" selected="true">No, use program defaults.</option>
+                <option value="advanced">Yes, see full parameter list.</option>
+            </param>        
+            <when value="simple">
+            </when>
+            <when value="advanced">
+				<param name="co" type="text" label="-co Creation Option" value="NAME=VALUE" help="Creation option for output file. Multiple options can be specified. See format specific documentation for legal creation options for each format."/>
+			
+				<param name="ot" type="text" label="-ot Output type" value="Datatype" help="Force the output image bands to have a specific type. Use type names (i.e. Byte, Int16,...)."/>
+			
+				<conditional name="condi_ps">
+					<param name="pixelsize" type="boolean" truevalue="use_ps" falsevalue="no_ps" checked="false" help="Pixel size to be used for the output file. If not specified the resolution of the first input file will be used."/>
+				    <when value="use_ps">
+				    	<param name="pixelsize_x" type="integer" value="0"/>
+				    	<param name="pixelsize_y" type="integer" value="0"/>
+				    </when>
+				    <when value="no_ps">
+				    </when>
+				</conditional>    	
+			
+				<param name="tap" type="boolean" truevalue="-tap" falsevalue="" checked="false" help="(target aligned pixels) align the coordinates of the extent of the output file to the values of the -tr, such that the aligned extent includes the minimum extent."/>
+			
+				<conditional name="condi_ul_lr">
+					<param name="ul_lr" type="select" label="-ul_lr Output file extents" help="The extents of the output file. If not specified the aggregate extents of all input files will be used.">
+						<option value="no_ul_lr" selected="true">Don't use the -ul_lr option</option>
+				        <option value="ul_lr">Use the -ul_lr option</option>
+				    </param>
+				    <when value="no_ul_lr">
+				    </when>
+				    <when value="ul_lr">
+				    	<param name="ulx" type="integer" label="ulx" value="0"/>
+				        <param name="uly" type="integer" label="uly" value="0"/>
+				        <param name="lrx" type="integer" label="lrx" value="0"/>
+				        <param name="lry" type="integer" label="lry" value="0"/>
+				    </when>
+				</conditional>    	
+			
+				<param name="v" type="boolean" truevalue="-v" falsevalue="" checked="false" label="Verbose" help="Generate verbose output of mosaicing operations as they are done."/>
+			
+				<param name="separate" type="boolean" truevalue="-separate" falsevalue="" checked="false" label="Separate band" help="Place each input file into a separate band."/>
+			
+				<param name="pct" type="boolean" truevalue="-pct" falsevalue="" checked="false" label="-pcr Pseudo-color table" help="Grab a pseudo-color table from the first input image, and use it for the output. Merging pseudo-colored images this way assumes that all input files use the same color table."/>
+			
+				<param name="n" type="text" label="-n Ignore pixels" value="nodata_value" help="Ignore pixels from files being merged in with this pixel value."/>
+			
+				<param name="a_nodata" type="text" label="-a_nodata" value="output_nodata_value" help="Assign a specified nodata value to output bands."/>
+			
+				<param name="init" type="text" label="-init" value="value(s)" help="Pre-initialize the output image bands with these values. However, it is not marked as the nodata value in the output file. If only one value is given, the same value is used in all the bands."/>
+				
+				
+    		</when>
+    	</conditional>
+    	
+    </inputs>
+    	
+    <outputs>
+        <data name="output" auto_format="true"/> <!--label="${input.name}.${of}-->
+    </outputs>
+    
+    <tests>
+    </tests>
+    
+    <help><![CDATA[
+        
+Mosaics a set of images.
+
+http://www.gdal.org
+
+http://www.gdal.org/gdal_merge.html
+
+Raster Processing Tutorial : https://trac.osgeo.org/gdal/wiki/UserDocs/RasterProcTutorial
+    ]]></help>
+</tool>
