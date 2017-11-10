@@ -1,14 +1,14 @@
-<tool id="gdalwarp" name="GDAL warp" version="0.1.0">
+<tool id="gdalwarp" name="GDAL Warp" version="0.1.0">
     <requirements>
         <requirement type="package" version="2.1.0">gdal</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         gdalwarp 
-        	
-        	#for $i, $s in enumerate( $series )
-				'${s.input}'
-			#end for
-			
+            
+            #for $i, $s in enumerate( $series )
+                '${s.input}'
+            #end for
+            
             #unless $of==''
                 -of '$of'
             #end unless
@@ -72,9 +72,9 @@
     
     <inputs>
         <repeat name="series" title="Input file">
-			<param type="data" name="input" format="data" label="Gdal supported input file" help="http://www.gdal.org/formats_list.html"/>
-		</repeat>
-		    
+            <param type="data" name="input" format="data" label="Gdal supported input file" help="http://www.gdal.org/formats_list.html"/>
+        </repeat>
+            
         <param name="of" type="text" label="Output format" value="" help="Select the output format. The default is GeoTIFF (GTiff). Use the short format name. http://www.gdal.org/formats_list.html"/>
         <param name="s_srs" type="text" label="Source spatial reference set" value="" help="The coordinate systems that can be passed are anything supported by the OGRSpatialReference.SetFromUserInput() call, which includes EPSG PCS and GCSes (i.e. EPSG:4296), PROJ.4 declarations (as above), or the name of a .prj file containing well known text."/>
         <param name="t_srs" type="text" label="Target spatial reference set" value="" help="Same as 'Source spatial ref set'."/>
@@ -222,7 +222,7 @@
             <param name="advanced" value="simple"/>
             <output name="output" file="warpmerged.tif"/>
         </test>     
-    	
+        
     </tests>
     <help><![CDATA[
         
