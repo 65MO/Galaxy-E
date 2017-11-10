@@ -3,7 +3,7 @@
         <requirement type="package" version="2.1.0">gdal</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
-        gdal_translate "$input1" "$output"
+        gdal_translate '$input1' '$output'
             #if $settings.advanced=='advanced'
             
                 $settings.strict
