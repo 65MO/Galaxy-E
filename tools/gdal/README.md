@@ -7,12 +7,6 @@ Official documentation is available here : http://www.gdal.org/
 *GDALinfo
 *GDALtranslate
 *GDALaddo
-
-### TODO
-Implement utility programs for raster and vectors formats.
-
-Gdalinfo -mdd option
-    * OK? Need to be tested
-	
-Gdal_translate
-    * Test the options
+*GDALmerge
+*GDALbuildvrt
+*GDALwarp
