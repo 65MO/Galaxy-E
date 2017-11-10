@@ -1,27 +1,38 @@
-<tool id="gdalwarp" name="GDAL warp" version="0.1.0">
+<tool id="gdalwarp" name="GDAL Warp" version="0.1.0">
     <requirements>
         <requirement type="package" version="2.1.0">gdal</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
-        gdalwarp '$input1'
-            -of $of
+        gdalwarp 
+            
+            #for $i, $s in enumerate( $series )
+                '${s.input}'
+            #end for
+            
+            #unless $of==''
+                -of '$of'
+            #end unless
 
             #if $condi_tr.tr=='tr'
                 -tr $condi_tr.xres $condi_tr.yres
             #end if
             
             #unless $s_srs==''
-                -s_srs $s_srs
+                -s_srs '$s_srs'
             #end unless
             
             #unless $t_srs==''
-                -t_srs $t_srs
+                -t_srs '$t_srs'
             #end unless
             
             #if $settings.advanced=="advanced"
             
                 #unless $settings.to=='NAME=VALUE'
                     -to $settings.to
+                #end unless
+                
+                #unless $settings.wo=='NAME=VALUE'
+                    -wo $settings.wo
                 #end unless
             
                 #unless $settings.order=='no_value'
@@ -37,7 +48,7 @@
                 #end if
             
                 #if $settings.condi_refine_gcps.refine_gcps=='refine_gcps'
-                    -tr $settings.condi_refine_gcps.tolerance $settings.condi_refine_gcps.minimum_gcps
+                    -refine_gcps $settings.condi_refine_gcps.tolerance $settings.condi_refine_gcps.minimum_gcps
                 #end if
             
                 #if $settings.condi_te.te=='te'
@@ -47,6 +58,12 @@
                 $settings.tps
                 $settings.rpc
                 $settings.geoloc
+                
+                #unless $settings.srcnodata==''
+                    -srcnodata '$settings.srcnodata'
+                #end unless
+                
+                $settings.dstalpha
             #end if
                         
         '$output'
@@ -54,8 +71,11 @@
     ]]></command>
     
     <inputs>
-        <param type="data" name="input1" format="data" label="Gdal supported input file" help="http://www.gdal.org/formats_list.html"/>    
-        <param name="of" type="text" label="Output format" value="gtiff" help="Select the output format. The default is GeoTIFF (GTiff). Use the short format name. http://www.gdal.org/formats_list.html"/>
+        <repeat name="series" title="Input file">
+            <param type="data" name="input" format="data" label="Gdal supported input file" help="http://www.gdal.org/formats_list.html"/>
+        </repeat>
+            
+        <param name="of" type="text" label="Output format" value="" help="Select the output format. The default is GeoTIFF (GTiff). Use the short format name. http://www.gdal.org/formats_list.html"/>
         <param name="s_srs" type="text" label="Source spatial reference set" value="" help="The coordinate systems that can be passed are anything supported by the OGRSpatialReference.SetFromUserInput() call, which includes EPSG PCS and GCSes (i.e. EPSG:4296), PROJ.4 declarations (as above), or the name of a .prj file containing well known text."/>
         <param name="t_srs" type="text" label="Target spatial reference set" value="" help="Same as 'Source spatial ref set'."/>
         
@@ -81,6 +101,7 @@
             </when>
             <when value="advanced">
                 <param name="to" type="text" label="-to Transformer option" value="NAME=VALUE" help="Set a transformer option suitable to pass to GDALCreateGenImgProjTransformer2()."/>
+                <param name="wo" type="text" label="-wo Warp Option" value="NAME=VALUE" help="Set a warp option. The GDALWarpOptions::papszWarpOptions docs show all options. Multiple -wo options may be listed."/>
                 <param name="order" type="select" label="-order n" help="Order of polynomial used for warping (1 to 3). The default is to select a polynomial order based on the number of GCPs.">
                     <option value="no_value" selected="true">Select an order.</option>
                     <option value="1">1</option>
@@ -90,6 +111,8 @@
                 <param name="tps" type="boolean" label="-tps" truevalue="-tps" falsevalue="" checked="false" help="Force use of thin plate spline transformer based on available GCPs."/>
                 <param name="rpc" type="boolean" label="-rpc" truevalue="-rpc" falsevalue="" checked="false" help="Force use of RPCs."/>
                 <param name="geoloc" type="boolean" label="-geoloc" truevalue="-geoloc" falsevalue="" checked="false" help="Force use of Geolocation Arrays."/>
+                <param name="srcnodata" type="text" label="-srcnodata value" value="" help="Set nodata masking values for input bands (different values can be supplied for each band). If more than one value is supplied all values should be quoted to keep them together as a single operating system argument. Masked values will not be used in interpolation. Use a value of None to ignore intrinsic nodata settings on the source dataset."/>
+                <param name="dstalpha" type="boolean" label="-dstalpha" truevalue="-dstalpha" falsevalue="" checked="false" help="Create an output alpha band to identify nodata (unset/transparent) pixels."/>
                 
                 <conditional name="condi_et">
                     <param name="et" type="boolean" truevalue="et" falsevalue="no_et" checked="false" help="Use an error threshold"/>
@@ -161,13 +184,45 @@
     
     <tests>
         <test>
-            <param name="input1" value="stere.tif"/>
+            <param name="input" value="stere.tif"/>
             <param name="of" value="Gtiff" />
             <param name="t_srs" value="EPSG:2154" />
             <param name="advanced" value="simple"/>
             <output name="output" file="stere_warp1.tiff"/>
-        </test>    
-    
+        </test>
+        
+        <test>
+            <param name="input" value="geoworld.tif"/>
+            <param name="t_srs" value="+proj=ortho +datum=WGS84" />
+            <param name="advanced" value="simple"/>
+            <output name="output" file="ortho1.tif"/>
+        </test>
+        
+        <test>
+            <param name="input" value="geoworld.tif"/>
+            <param name="t_srs" value="+proj=ortho +datum=WGS84" />
+            <param name="advanced" value="advanced"/>
+            <param name="wo" value="SOURCE_EXTRA=125"/>
+            <output name="output" file="ortho2.tif"/>
+        </test>
+        
+        <test>
+            <param name="input" value="geoworld.tif"/>
+            <param name="t_srs" value="+proj=ortho +datum=WGS84" />
+            <param name="advanced" value="advanced"/>
+            <param name="wo" value="SOURCE_EXTRA=125"/>
+            <param name="dstalpha" value="-dstalpha"/>
+            <param name="srcnodata" value="11 10 50"/>
+            <output name="output" file="ortho3.tif"/>
+        </test>
+        
+        <test>
+            <param name="input" value="west.dem"/>
+            <param name="input" value="east.dem"/>
+            <param name="advanced" value="simple"/>
+            <output name="output" file="warpmerged.tif"/>
+        </test>     
+        
     </tests>
     <help><![CDATA[
         
@@ -177,5 +232,6 @@ http://www.gdal.org
 
 http://www.gdal.org/gdalwarp.html
 
+Raster Processing Tutorial : https://trac.osgeo.org/gdal/wiki/UserDocs/RasterProcTutorial
     ]]></help>
 </tool>

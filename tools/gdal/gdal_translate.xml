@@ -3,7 +3,7 @@
         <requirement type="package" version="2.1.0">gdal</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
-        gdal_translate "$input1" "$output"
+        gdal_translate '$input1' '$output'
             #if $settings.advanced=='advanced'
             
                 $settings.strict
@@ -38,6 +38,10 @@
                     -srcwin $settings.condi_srcwin.xoff $settings.condi_srcwin.yoff $settings.condi_srcwin.xsize $settings.condi_srcwin.ysize
                 #end if
                 
+                #if $settings.condi_a_ullr.a_ullr=='a_ullr'
+                    -a_ullr $settings.condi_a_ullr.ulx $settings.condi_a_ullr.uly $settings.condi_a_ullr.lrx $settings.condi_a_ullr.lry
+                #end if
+                
                 $settings.epoeco
                 $settings.q
                 ## $settings.sds
@@ -54,6 +58,10 @@
                 
                 #unless $settings.oo=='NAME=VALUE'
                     -oo $settings.oo
+                #end unless
+                
+                #unless $settings.a_srs==''
+                    -a_srs '$settings.a_srs'
                 #end unless
                                         
             #end if 
@@ -159,12 +167,29 @@
                     </when>
                 </conditional>
                 
+                <conditional name="condi_a_ullr">
+                    <param name="a_ullr" type="select" label="Assign/override the georeferenced bounds" help="Assign/override the georeferenced bounds of the output file. This assigns georeferenced bounds to the output file, ignoring what would have been derived from the source file. So this does not cause reprojection to the specified SRS.">
+                        <option value="no_a_ullr" selected="true">Don't use the -a_ullr option</option>
+                        <option value="a_ullr">Use the -a_ullr option</option>
+                    </param>
+                    <when value="no_a_ullr">
+                    </when>
+                    <when value="a_ullr">
+                        <param name="ulx" type="integer" label="ulx" value="0"/>
+                        <param name="uly" type="integer" label="uly" value="0"/>
+                        <param name="lrx" type="integer" label="lrx" value="0"/>
+                        <param name="lry" type="integer" label="lry" value="0"/>
+                    </when>
+                </conditional>
+                
                 <param name="epoeco" type="select" label="Display error when outside the source raster" display="radio" multiple="False">
                     <option value="" selected="true">Default, no error</option>
                     <option value="-epo">-epo : Error when partially outside</option>
                     <option value="-eco">-eco : Error when completely outside</option>
                 </param>
                 <param name="q" type="boolean" truevalue="-q" falsevalue="" checked="false" label="-q" help="Suppress progress monitor and other non-error output."/>
+                <param name="a_srs" type="text" label="Override the projection" value="" help="Override the projection for the output file. The srs_def may be any of the usual GDAL/OGR forms, complete WKT, PROJ.4, EPSG:n or a file containing the WKT."/>
+                
                 <!--
                 <param name="sds" type="boolean" truevalue="-sds" falsevalue="" checked="false" label="-sds" help="Copy all subdatasets of this file to individual output files. Use with formats like HDF or OGDI that have subdatasets. The output file naming scheme has changed in GDAL 1.11 (e.g. ofile_1.tif, ofile_2.tif)."/>
                 Ici il y a surement une gestion de fichiers de sorties multiple à faire
@@ -211,6 +236,19 @@
             <output name="output" file="stere_advanced2.png"/>
         </test>
         
+        <test> <!-- gdal_translate "/tmp/tmpki1Dk8/files/000/dataset_1.dat" "/tmp/tmpki1Dk8/files/000/dataset_4.dat"       -outsize xsize 100%     -a_ullr -180 90 180 -90          -a_srs 'WGS84'  -of gtiff -->
+            <param name="input1" value="world.png"/>
+            <param name="of" value="gtiff" />
+            <param name="advanced" value="advanced"/>
+            <param name="a_ullr" value="a_ullr"/>
+            <param name="ulx" value="-180"/>
+            <param name="uly" value="90"/>
+            <param name="lrx" value="180"/>
+            <param name="lry" value="-90"/>
+            <param name="a_srs" value="WGS84"/>
+            <output name="output" file="geoworld.tif"/>
+        </test>
+        
     </tests>
     
     <help><![CDATA[
@@ -221,5 +259,6 @@ http://www.gdal.org
 
 http://www.gdal.org/gdal_translate.html
 
+Raster Processing Tutorial : https://trac.osgeo.org/gdal/wiki/UserDocs/RasterProcTutorial
     ]]></help>
 </tool>
