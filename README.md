@@ -43,15 +43,15 @@ Following the @dannon [PR](https://github.com/galaxyproject/galaxy/pull/3762) @V
    * Buffering
    * Calculate mean by buffer
 * Visualize GIS data
-   *Through "classical" GIS solution:
-    * [QGIS server](https://github.com/jancelin/docker-qgis-server) ou [QGIS desktop](https://github.com/jancelin/docker-qgis-desktop). A particular interesting QGIS based tool : [LizMap](https://www.3liz.com/lizmap.html) et [LizMap Docker](https://github.com/jancelin/docker-lizmap)
-    * [GeoCMS](https://github.com/dotgee/geocms) GeoCMS is a complete open source solution for consuming and visualizing geospatial data
-    * ~~[OpenEV](http://openev.sourceforge.net/) a software library and application for viewing and analysing raster and vector geospatial data (last release 2007!)~~
+   * Through "classical" GIS specialists oriented solutions:
+      * [QGIS server](https://github.com/jancelin/docker-qgis-server) ou [QGIS desktop](https://github.com/jancelin/docker-qgis-desktop). A particular interesting QGIS based tool : [LizMap](https://www.3liz.com/lizmap.html) et [LizMap Docker](https://github.com/jancelin/docker-lizmap)
+      * [GeoCMS](https://github.com/dotgee/geocms) GeoCMS is a complete open source solution for consuming and visualizing geospatial data
+      * ~~[OpenEV](http://openev.sourceforge.net/) a software library and application for viewing and analysing raster and vector geospatial data (last release 2007!)~~
    * To manage data:
-    *[PostGIS](http://www.postgis.net/) with a [Docker version](https://github.com/jancelin/docker-postgis-rpi) usable through the [Galaxy pg datatype and relatde tools implementation](https://github.com/bgruening/galaxytools/pull/642) /[Leaflet](http://leafletjs.com/) through Interactive Environment ? 
-    * [H2GIS](http://www.h2gis.org/support/) light and standalone GIS database
-   *Through simplified solutions:
-    * [Magrit](http://magrit.cnrs.fr/modules) for thematic GIS (in french and english)
+      * [PostGIS](http://www.postgis.net/) with a [Docker version](https://github.com/jancelin/docker-postgis-rpi) usable through the [Galaxy pg datatype and relatde tools implementation](https://github.com/bgruening/galaxytools/pull/642) /[Leaflet](http://leafletjs.com/) through Interactive Environment ? 
+      * [H2GIS](http://www.h2gis.org/support/) light and standalone GIS database
+   * Through GIS non-specialists oriented solutions:
+      * [Magrit](http://magrit.cnrs.fr/modules) for thematic GIS (in french and english)
 * Taxa automated recognition through [TensorFlow](https://tensorflow.wq.io/about)
 * Dashboards for a community intensively oriented toward R
    * [R-Shiny](https://shiny.rstudio.com/) through Interactive Environment ?
