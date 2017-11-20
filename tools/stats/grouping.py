@@ -11,6 +11,7 @@ import subprocess
 import sys
 import tempfile
 from itertools import groupby
+from itertools import combinations
 
 import numpy
 
@@ -126,16 +127,20 @@ def main():
         for i, op in enumerate( ops ):
             data = op_vals[i]
             rval = ""
+            outlink = ""
             if op == "mode":
                 rval = mode( data )
             elif op == "length":
                 rval = len( data )
             elif op == "random":
                 rval = random.choice(data)
-            elif op in ['cat', 'cat_uniq']:
+            elif op in ['cat', 'cat_links', 'cat_uniq']:
                 if op == 'cat_uniq':
                     data = numpy.unique(data)
                 rval = ','.join(data)
+                if op == 'cat_links':
+                    for x,y in combinations(data, 2):
+                        outlink+=out_str+'\t'+x+'\t'+y+'\n'
             elif op == "unique":
                 rval = len( numpy.unique(data) )
             else:
@@ -152,7 +157,10 @@ def main():
                     rval = '%g' % rval
             out_str += "\t%s" % rval
 
-        fout.write(out_str + "\n")
+        if outlink=="":
+            fout.write(out_str + "\n")
+        else:
+            fout.write(outlink)
 
     # Generate a useful info message.
     msg = "--Group by c%d: " % (group_col + 1)
@@ -177,3 +185,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

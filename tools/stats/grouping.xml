@@ -48,6 +48,7 @@
         <option value="length">Comptage</option>
         <option value="unique">Comptage unique</option>
         <option value="cat">Concaténation</option>
+        <option value="cat_links">Concaténation avec liens</option>
         <option value="cat_uniq">Concaténation unique</option>
         <option value="random">Tirage aléatoire</option>
         <option value="std">Déviation standard</option>
@@ -140,3 +141,4 @@ Comptage et Comptage unique sont équivalent à Concaténation et Concaténation
    TTT    2
   </help>
 </tool>
+
