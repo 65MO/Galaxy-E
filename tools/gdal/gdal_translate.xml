@@ -3,9 +3,17 @@
         <requirement type="package" version="2.1.0">gdal</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
-        gdal_translate '$input1' '$output'
+        gdal_translate 
+
             #if $settings.advanced=='advanced'
-            
+                #if $settings.condi_subd.subd=='subd'
+                     $settings.condi_subd.subdataset
+                #end if
+                '$output'
+            #else
+                '$input1' '$output'
+                #if $settings.advanced=='advanced'
+                
                 $settings.strict
                 
                 #unless $settings.b=='e.g : -b 1 -b 2 -b 3'
@@ -19,13 +27,17 @@
                 #if $settings.condi_resample.resample=='resampling'
                     -r $settings.condi_resample.r
                 #end if
+
+                #if $settings.condi_subd.subd=='subd'
+                     $settings.condi_subd.subdataset
+                #end if
                 
                 #if $settings.outsize.outsize=='outsize_x'
                     -outsize xsize $settings.outsize.outx$settings.outsize.outsize_percent
                 #else
                     -outsize ysize $settings.outsize.outy$settings.outsize.outsize_percent
                 #end if
-                            
+                        
                 #if $settings.condi_expand.expand=='expand'
                     -expand $settings.condi_expand.expand_value
                 #end if
@@ -63,8 +75,9 @@
                 #unless $settings.a_srs==''
                     -a_srs '$settings.a_srs'
                 #end unless
-                                        
-            #end if 
+                            
+                #end if 
+            #end if
             -of $of
         
     ]]></command>
@@ -79,6 +92,22 @@
             <when value="simple">
             </when>
             <when value="advanced">
+
+                <conditional name="condi_subd">
+                    <param name="subd" type="boolean" truevalue="subd" falsevalue="no_subd" checked="false" help="Use a subdataset"/>
+                    <when value="subd">
+                        <param name="subdataset" type="text" label="Input subdataset" help="Subdataset valide tel que décrit par gdal information" >
+                            <sanitizer>
+                                <valid initial="string.printable">
+                                    <add value="&quot;"/>
+                                </valid>
+                            </sanitizer>
+                        </param>
+                    </when>
+                    <when value="no_subd">
+                    </when>
+                </conditional>
+
                 <param name="strict" type="boolean" truevalue="-strict" falsevalue="" checked="false" label="-strict" help="Don't be forgiving of mismatches and lost data when translating to the output format."/>
                 <param name="b" type="text" label="-b band" help="Select an input band band for output. Bands are numbered from 1. Multiple -b switches may be used to select a set of input bands to write to the output file, or to reorder bands." value="e.g : -b 1 -b 2 -b 3"/>
                 <param name="mask" type="text" label="-mask band" help="Select an input band band to create output dataset mask band. Bands are numbered from 1. band can be set to 'none' to avoid copying the global mask of the input dataset if it exists. Otherwise it is copied by default ('auto'), unless the mask is an alpha channel, or if it is explicitly used to be a regular band of the output dataset ('-b mask'). band can also be set to 'mask,1' (or just 'mask') to mean the mask band of the 1st band of the input dataset." value="e.g : -mask 1"/>
