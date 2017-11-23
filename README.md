@@ -10,6 +10,19 @@ This repository will gather ideas and development of Galaxy-E tools
 # A dedicated French version of Galaxy
 Following the @dannon [PR](https://github.com/galaxyproject/galaxy/pull/3762) @ValentinChCloud will work on this task.
 
+# Interesting Data sources
+* WorldClim - Global Climate Data http://www.worldclim.org/
+* Copernicus Climate Change Service Providing climate data http://climate.copernicus.eu/
+* Copernicus Marine Environment Monitoring Service Providing products & services for all marine applications http://marine.copernicus.eu/
+* Copernicus Atmosphere air quality & atmospheric composition https://atmosphere.copernicus.eu/catalogue#/
+* Copernicus Global Land Service Providing bio-geophysical products of global land surface http://land.copernicus.eu/global/products/NDVI (included [Corine Land Cover products](http://land.copernicus.eu/pan-european/corine-land-cover))
+* CESBIO Carte d'occupation des sols. http://www.cesbio.ups-tlse.fr/multitemp/?p=10104
+* GEONETCast global network of satellite-based data dissemination systems providing environmental data http://www.eumetsat.int/website/home/Data/DataDelivery/EUMETCast/GEONETCast/index.html
+* Hub’eau Water related data (fishes,…) http://www.hubeau.fr/
+* CRBPO data https://crbpodata.mnhn.fr/
+* Movebank data https://www.movebank.org/
+* API-Agro import agrifood related data http://www.api-agro.fr/
+
 # Interesting tools
 * Work with messy data from db
  * [OpenRefine](http://openrefine.org/) through Interactive Environment ?
