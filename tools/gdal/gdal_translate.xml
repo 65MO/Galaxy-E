@@ -5,14 +5,8 @@
     <command detect_errors="exit_code"><![CDATA[
         gdal_translate 
 
+            $typeinput.input1 '$output'
             #if $settings.advanced=='advanced'
-                #if $settings.condi_subd.subd=='subd'
-                     $settings.condi_subd.subdataset
-                #end if
-                '$output'
-            #else
-                '$input1' '$output'
-                #if $settings.advanced=='advanced'
                 
                 $settings.strict
                 
@@ -28,10 +22,6 @@
                     -r $settings.condi_resample.r
                 #end if
 
-                #if $settings.condi_subd.subd=='subd'
-                     $settings.condi_subd.subdataset
-                #end if
-                
                 #if $settings.outsize.outsize=='outsize_x'
                     -outsize xsize $settings.outsize.outx$settings.outsize.outsize_percent
                 #else
@@ -76,13 +66,33 @@
                     -a_srs '$settings.a_srs'
                 #end unless
                             
-                #end if 
-            #end if
+            #end if 
             -of $of
         
     ]]></command>
     <inputs>
-        <param type="data" name="input1" format="data" label="Gdal supported input file" help="http://www.gdal.org/formats_list.html"/>    
+        <conditional name="typeinput">
+            <param type="select" name="input" display="radio" label="Gdal supported input file" help="http://www.gdal.org/formats_list.html">
+                <option value="dataset">Data file</option>
+                <option value="subdataset">Subdataset</option>
+            </param>
+            <when value="dataset">
+                <param type="data" label="Input data" name="input1"/>
+            </when>    
+            <when value="subdataset">
+                <param type="data" label="Tabular of subdatasets" name="subdata_tab"/>
+                <param name="input1" type="select" label="Chose your subdata">
+                   <options from_dataset="subdata_tab">
+                       <column name="value" index="0"/>
+                   </options>
+                   <sanitizer>
+                        <valid initial="string.printable">
+                            <add value="&quot;"/>
+                        </valid>
+                    </sanitizer>
+                </param>
+            </when>
+        </conditional>
         <param name="of" type="text" label="Output format" value="gtiff" help="Select the output format. The default is GeoTIFF (GTiff). Use the short format name. http://www.gdal.org/formats_list.html"/>
         <conditional name="settings">
             <param name="advanced" type="select" label="Specify advanced parameters">
@@ -92,21 +102,6 @@
             <when value="simple">
             </when>
             <when value="advanced">
-
-                <conditional name="condi_subd">
-                    <param name="subd" type="boolean" truevalue="subd" falsevalue="no_subd" checked="false" help="Use a subdataset"/>
-                    <when value="subd">
-                        <param name="subdataset" type="text" label="Input subdataset" help="Subdataset valide tel que décrit par gdal information" >
-                            <sanitizer>
-                                <valid initial="string.printable">
-                                    <add value="&quot;"/>
-                                </valid>
-                            </sanitizer>
-                        </param>
-                    </when>
-                    <when value="no_subd">
-                    </when>
-                </conditional>
 
                 <param name="strict" type="boolean" truevalue="-strict" falsevalue="" checked="false" label="-strict" help="Don't be forgiving of mismatches and lost data when translating to the output format."/>
                 <param name="b" type="text" label="-b band" help="Select an input band band for output. Bands are numbered from 1. Multiple -b switches may be used to select a set of input bands to write to the output file, or to reorder bands." value="e.g : -b 1 -b 2 -b 3"/>

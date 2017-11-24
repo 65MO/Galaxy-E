@@ -3,8 +3,8 @@
         <requirement type="package" version="2.1.0">gdal</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
-        gdalinfo "$input1"
-            #if $settings.advanced=="advanced"
+        gdalinfo '$input1'
+            #if $settings.advanced=='advanced'
                 $settings.mm
                 $settings.stats
                 $settings.approx_stats
@@ -18,10 +18,12 @@
                 $settings.proj4
                 -mdd $settings.mdd
             #end if
-            #if $format.value=="json"
-                -json > "$outputJson"
+            #if $format.value=='json'
+                -json > '$outputJson'
+                && cat $outputJson | grep "\"SUBDATASET_._NAME\":\".*\"," | cut -d "\"" -f4- | sed 's/..$//' > ${input1.name}_Subdatasets #cat TXT | grep -A 1 "SUBDATASET_._NAME=.*:.*$" | cut -d "=" -f 2 | sed -e 'N; s/\n/@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@/'
             #else
-                > "$outputDefault"
+                > '$outputDefault'
+                && cat $outputDefault | grep "SUBDATASET_._NAME=.*:.*$" | cut -d "=" -f 2 > ${input1.name}_Subdatasets
             #end if
     ]]></command>
     <inputs>
@@ -61,6 +63,7 @@
         <data name="outputJson" format="json" label="Json formated info file">
             <filter>format == "json"</filter>
         </data>
+        <data name="Subdatasets" format="tabular" from_work_dir="*_Subdatasets" label="Subdatasets from ${input1.name}"/>
     </outputs>
     <tests>
         <test>
