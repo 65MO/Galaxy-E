@@ -65,7 +65,9 @@ Following the @dannon [PR](https://github.com/galaxyproject/galaxy/pull/3762) @V
       * [H2GIS](http://www.h2gis.org/support/) light and standalone GIS database
    * Through GIS non-specialists oriented solutions:
       * [Magrit](http://magrit.cnrs.fr/modules) for thematic GIS (in french and english)
-* Taxa automated recognition through [TensorFlow](https://tensorflow.wq.io/about)
+* GIS data analysis
+   * [WhiteboxTools advanced geospatial data analysis engine](https://github.com/jblindsay/whitebox-geospatial-analysis-tools/tree/master/whitebox_tools#available-tools)
+   * Taxa automated recognition through [TensorFlow](https://tensorflow.wq.io/about)
 * Dashboards for a community intensively oriented toward R
    * [R-Shiny](https://shiny.rstudio.com/) through Interactive Environment ?
 
