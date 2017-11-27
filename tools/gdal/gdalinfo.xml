@@ -20,10 +20,10 @@
             #end if
             #if $format.value=='json'
                 -json > '$outputJson'
-                && cat $outputJson | grep "\"SUBDATASET_._NAME\":\".*\"," | cut -d "\"" -f4- | sed 's/..$//' > ${input1.name}_Subdatasets #cat TXT | grep -A 1 "SUBDATASET_._NAME=.*:.*$" | cut -d "=" -f 2 | sed -e 'N; s/\n/@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@/'
+                && cat $outputJson | grep -A 1 "\"SUBDATASET_._NAME\":\".*\"," | cut -d "\"" -f4- | sed 's/..$//' | sed 's/\t//' | sed -e 'N; s/\n/\t/' > ${input1.name}_Subdatasets
             #else
                 > '$outputDefault'
-                && cat $outputDefault | grep "SUBDATASET_._NAME=.*:.*$" | cut -d "=" -f 2 > ${input1.name}_Subdatasets
+               && cat $outputDefault | grep -A 1 "SUBDATASET_._NAME=.*:.*$" | cut -d "=" -f 2 | sed 's/\t//' | sed -e 'N; s/\n/\t/' > ${input1.name}_Subdatasets
             #end if
     ]]></command>
     <inputs>
