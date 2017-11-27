@@ -5,7 +5,7 @@
     <command detect_errors="exit_code"><![CDATA[
         gdaladdo '$input1'
             -ro
-            #unless $levels=="eg : 2 4 8 16"
+            #unless $levels=='e.g : 2 4 8 16'
                 $levels
             #end unless
             --config COMPRESS_OVERVIEW DEFLATE
