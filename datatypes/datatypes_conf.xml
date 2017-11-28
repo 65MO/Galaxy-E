@@ -1,0 +1,11 @@
+<datatypes>
+    <datatype_files>
+        <datatype_file name="gis.py"/>
+    </datatype_files>
+    <registration>
+        <datatype extension="shp" type="galaxy.datatypes.gis:Shapefile" display_in_upload="true"/>
+    </registration>
+    <sniffers>
+        <sniffer type="galaxy.datatypes.gis:Shapefile"/>
+    </sniffers>
+</datatypes>
