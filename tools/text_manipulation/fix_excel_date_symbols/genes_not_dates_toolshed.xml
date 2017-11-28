@@ -1,0 +1,58 @@
+<tool id="fromToolshed_Fix_Excel_Mishaps" name="Retrouver des symboles" version="0.0.1">
+  <description>à partir de date (e.g. après une conversion Excel)</description>
+  <command interpreter="perl">
+	   genes_not_dates_toolshed.pl --expfile $inFile --cols $marches.date_cols --species $species --resultsfile $outputFile --log $log
+	#if $marches.secondary=="yes2":
+		--lookup $marches.lookup_col
+	#end if
+  </command> 
+  <inputs>
+	<param name="inFile" type="data" checked="yes" format="tabular" label="File with bad gene symbols" />
+	<conditional name="marches">
+		<param name="secondary" type="select" label="Data to fix includes 1-Mar/MAR or 2-Mar/MAR?" help="Run a Join against these entered as a free-text file to find out quickly.">
+			<option value="no2" selected="true">No</option>
+			<option value="yes2">Yes</option>
+		</param>
+		<when value="no2">	
+			<param name="date_cols" label="Columns with bad gene symbols to convert" type="data_column" multiple="true" data_ref="inFile" />
+		</when>
+		<when value="yes2">
+			<param name="date_cols" label="Column with bad gene symbols to convert" type="data_column" multiple="false" data_ref="inFile" />
+			<param name="lookup_col" label="Column with 2nd gene identifier" type="data_column" multiple="false" data_ref="inFile" help="REQUIRED if 1-Mar or 2-Mar need to be fixed"/>
+		</when>
+	</conditional>
+       	<param name="species" type="select" label="Select species" help="This is necessary for capitalization">
+                <option value="human" selected="true">Human</option>
+                <option value="mouse">Mouse</option>
+        </param>
+  </inputs>
+  <outputs>
+    	<data format="tabular" name="outputFile" label="data_recovered_genesymbols"/>
+	<data format="txt" name="log" label="match_info"/>
+  </outputs>
+  <tests>
+    <test>
+	<param name="inFile" value="Fix_Excel_Mishaps_in1.tab" ftype="tabular"/>
+	<param name="secondary" value="yes2"/>
+	<param name="date_cols" value="1"/>
+	<param name="lookup_col" value="2"/>
+	<output name="outputFile" file="Fix_Excel_Mishaps_data_recovered_genesymbols1.tab"/>
+	<output name="log" file="Fix_Excel_Mishaps_match_info1.txt"/>
+    </test>
+  </tests>
+  
+  <help>
+
+**What this tool does:**
+When Excel sees a gene symbol like SEPT9, it thinks to itself 'that must be a date' and automatically converts it to the date 9-Sep, and one can't ever get the gene symbol back. As an 'after-the-fact' remedy, this tool converts dates like 9-Sept, 3-March, etc, in the chosen column(s) back to the gene symbols SEPT9 and MARCH3, etc. (respectively).
+
+
+**Note that Excel converts both Marc1/March1 and Marc2/March2 and the human homologs to 1-Mar and 2-Mar, respectively.**
+Therefore, without a second identifier, there is no way to tell whether the corresponding gene symbol should be Marc1/2 or March1/2. Appropriate identifiers are NCBI or Ensembl IDs.
+
+
+</help>
+
+
+</tool>
+

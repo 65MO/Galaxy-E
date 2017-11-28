@@ -1,0 +1,38 @@
+<tool id="tp_sort_rows" name="Trier une ligne" version="@BASE_VERSION@.0">
+    <description>en fonction des colonnes</description>
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+    <command>
+<![CDATA[
+    python -c 'for line in ( "\t".join(sorted(line.strip().split("\t"))) for line in open("$infile") ): print line' > $outfile
+]]>
+    </command>
+    <inputs>
+        <param format="tabular" name="infile" type="data" label="Tabular file that should be sorted"/>
+    </inputs>
+    <outputs>
+        <data name="outfile" format_source="infile" metadata_source="infile"/>
+    </outputs>
+    <options sanitize="False"/>
+    <tests>
+        <test>
+            <param name="infile" value="sort_rows1.tabular" ftype="tabular" />
+            <output name="outfile" file="sort_rows_results1.bed"/>
+        </test>
+    </tests>
+    <help>
+<![CDATA[
+.. class:: infomark
+
+**TIP:** If your data is not TAB delimited, use *Text Manipulation->Convert*
+
+**What it does**
+
+That tool sorts each row in a TAB separated file, according to their columns. In other words: It is a sorted reordering of all columns.
+
+@REFERENCES@
+]]>
+    </help>
+    <expand macro="citations" />
+</tool>

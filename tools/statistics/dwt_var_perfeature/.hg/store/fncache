@@ -1,0 +1,5 @@
+data/execute_dwt_var_perFeature.pl.i
+data/execute_dwt_var_perFeature.xml.i
+data/test-data/dwt_var_out2.pdf.i
+data/test-data/dwt_var_in.interval.i
+data/test-data/dwt_var_out1.tabular.i

@@ -1,0 +1,84 @@
+<tool id="Multi_Join_serial" name="Jointure multiple" version="0.0.1" force_history_refresh="True">
+  <description>de fichiers tabulés en série</description>
+  <!-- cms commenting out to troubleshoot -->
+  <command interpreter="perl">
+	#for $j, $s in enumerate( $Files )
+		#silent	$j	
+	#end for
+
+	#for $i, $s in enumerate( $Files )
+	   run-multi_join_serial.pl --join_file $s.joinMe --join_col $s.joinCol --iteration $i --totalfiles $j --with_header $headerYes --resultsfile $Joined_all
+	  ##print "loop iteration $i.\n";
+          ;
+        #end for
+  </command> 
+  <inputs>
+	<repeat name="Files" title="Join file">
+		<param name="joinMe" type="data" checked="yes" format="tabular" label="Join" />
+		<param name="joinCol" label="using column" type="data_column" data_ref="joinMe" />
+	</repeat>
+        <param name="headerYes" type="select" label="Treat first line as header?" help="If header starts with #, it will NOT be read, so this field should be set to no. Otherwise it can be set to yes if first line is header for ALL FILES.">
+                <option value="yes" selected="true">Yes</option>
+                <option value="no">No</option>
+        </param>
+  </inputs>
+  <outputs>
+    	<data format="tabular" name="Joined_all" label="Multi-Join result"/>
+  </outputs>
+  <tests>
+     <test>
+	<param name="Files_0|joinMe" value="multi_join_serial_in1.tab" ftype="tabular"/>
+	<param name="Files_0|joinCol" value="1"/>
+	<param name="Files_1|joinMe" value="multi_join_serial_in2.tab" ftype="tabular"/>
+	<param name="Files_1|joinCol" value="1"/>
+	<param name="Files_2|joinMe" value="multi_join_serial_in3.tab" ftype="tabular"/>
+	<param name="Files_2joinCol" value="2"/>
+	<param name="headerYes" value="yes"/>
+	<output name="Joined_all" file="multi_join_serial_out.tab" ftype="tabular"/>
+     </test>
+  </tests>
+  <help>
+
+This tool performs a left-outer join on multiple (at least two) files using an external perl script (included in tool repository) called addColumnsFromFile2ToFile1.pl. The resulting joined file will have the same number of rows as the first file chosen and subsequent files' matches will be shown if present. Rows in the first file without matches in the other files will have empty cells. If none of the input files have a header present, a simple column number header will be added to the output file to denote the start of each set of matches (from each file, start denoted by "C1").
+
+
+.. class:: warningmark
+
+This tool may fail due to the system running out of memory depending on the number and size of input files and number of matching lines. The higher all of these are, the more likely the tool is to fail. A red output dataset saying "Job killed" typically means the system ran into an out of memory error and as a result the job was killed.
+
+
+**Steps:**
+	1. Click Add new File for each tab-delimited file you'd like to add and the column you want to join on.
+	2. After adding all files to join, select whether the headers should all be preserved (this should be Yes if all input datasets have headers).
+	3. Click Execute.
+
+-----
+
+**Example**
+
+Dataset1::
+
+  chr1 10 20 geneA 
+  chr1 50 80 geneB
+  chr5 10 40 geneL
+
+Dataset2::
+
+  geneA tumor-supressor
+  geneB Foxp2
+  geneC Gnas1
+  geneE INK4a
+
+Joining the 4th column of Dataset1 with the 1st column of Dataset2, no header, will yield::
+
+  C1   C2 C3 C4    C1    C2
+  chr1 10 20 geneA geneA tumor-suppressor
+  chr1 50 80 geneB geneB Foxp2
+  chr5 10 40 geneL
+
+
+</help>
+
+
+</tool>
+

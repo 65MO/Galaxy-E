@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<tool id="mda_heatmap_gen" name="Générateur de heat-map clusterisé" version="2.0.2">
+  <description>Créer des heat-map clusterisés</description>
+<command interpreter="bash" detect_errors="aggressive">$__tool_directory__/heatmap.sh  '$hmname' '$hmdesc' '$inputmatrix' ${d_rows.rowOrderMethod} ${d_rows.rowDistanceMeasure} ${d_rows.rowAgglomerationMethod} ${d_cols.columnOrderMethod} ${d_cols.columnDistanceMeasure} ${d_cols.columnAgglomerationMethod} $summarymethod '$__tool_directory__' ${d_rows.rowDendroCut} ${d_cols.colDendroCut} $rowDataType $colDataType
+    #for $op in $operations
+       ${op.class_name}
+       ${op.repeatinput.file_name}
+       ${op.cat}
+      #end for
+ 	'$output' 
+ </command>
+	<stdio>
+      <exit_code range="1:" level="fatal" />
+	</stdio>
+  <inputs>
+    <param name="inputmatrix" type="data" format="text" label="Input Matrix" />
+    <param name="hmname" size="20" type="text" value="Heat_Map_name" label="User Defined Heat Map Name"/>
+    <param name="hmdesc" size="100" optional="true" type="text" value="Heat_Map_description" label="User Defined Heat Map Description"/>
+    <param name="summarymethod" 	type="select"  label="Data Summarization Method">
+		<option value="average">average</option>
+		<option value="sample">sample</option>
+		<option value="mode">mode</option>
+    </param>
+      <conditional name="d_rows">
+	<param name="rowOrderMethod" type="select" label="Row ordering method" help="Choices -- Hierarchical Clustering, Original Order, Random">
+		<option value="Hierarchical">Hierarchical Clustering</option>
+		<option value="Original">Original Order</option>	    
+		<option value="Random">Random</option>	    
+	</param>
+        <when value="Hierarchical">
+	<param name="rowDistanceMeasure" type="select"  label="Row Distance Metric" help="euclidean, binary, manhattan, maximum, canberra, minkowski, or correlation">
+		<option value="euclidean">Euclidean</option>
+		<option value="binary">Binary</option>
+		<option value="manhattan">Manhattan</option>
+		<option value="maximum">Maximum</option>
+		<option value="canberra">Canberra</option>	    
+		<option value="minkowski">Minkowski</option>	    
+		<option value="correlation">Correlation</option>	    
+	</param>
+	<param name="rowAgglomerationMethod" type="select"  label="Row Clustering Method" help="Choices: 'average' for Average Linkage, 'complete' for Complete Linkage, 'single' for Single Linkage, 'ward', 'mcquitty', 'median', or 'centroid'.">
+		<option value="average">Average Linkage</option>
+		<option value="complete">Complete Linkage</option>
+		<option value="single">Single Linkage</option>
+		<option value="ward" selected="true">Ward</option>
+		<option value="mcquitty">Mcquitty</option>	    
+		<option value="median">Median</option>	    
+		<option value="centroid">Centroid</option>	    
+	</param>
+            <param name="rowDendroCut" type="select" label="Create row categorical covariate bar based on number of top-level dendrogram clusters" >
+        		<option value="0" selected="true" >None</option>
+        		<option value="2" >2</option>
+        		<option value="3" >3</option>
+        		<option value="4" >4</option>
+        		<option value="5" >5</option>
+        		<option value="6" >6</option>
+        		<option value="7" >7</option>
+        		<option value="8" >8</option>
+        		<option value="9" >9</option>
+        		<option value="10" >10</option>
+            </param>
+        </when>
+        <when value="Original">
+		    <param name="rowDistanceMeasure" type="text" size="0"     value="n/a"/>
+		    <param name="rowAgglomerationMethod" type="text" size="0"     value="n/a"/>
+		    <param name="rowDendroCut" size="0"   type="text" value="0"/>
+        </when>
+        <when value="Random">
+		    <param name="rowDistanceMeasure" type="text" size="0"     value="n/a"/>
+		    <param name="rowAgglomerationMethod" type="text" size="0"     value="n/a"/>
+		    <param name="rowDendroCut" type="text" size="0"    value="0"/>
+        </when>
+    </conditional>
+    <param name="rowDataType" type="select" label="Linkouts to row data type info" >
+        <option value="labels" selected="true" >None</option>
+        <option value="bio.probe.affymetrix" >Affymetrix Probe Id</option>
+        <option value="bio.feature.agilent" >Agilent Id</option>
+        <option value="bio.sample.cbioportal" >cBioPortal sample Id</option>
+        <option value="bio.transcript.ensemble" >Ensemble transcript Id</option>
+        <option value="bio.gene.entrez" >Gene Entrez Id</option>
+        <option value="bio.gene.hugo" >Gene HUGO symbol</option>
+        <option value="bio.go" >Gene Ontology (GO) Id</option>
+        <option value="bio.geo.acc" >GEO Accession Id</option>
+        <option value="bio.probe.illumina" >Illumina Probe Id</option>
+        <option value="bio.probe.infinium" >Infinium Probe Id</option>
+        <option value="bio.pathway.mdanderson" >MD Anderson pathway Id</option>
+        <option value="bio.mirna" >miRNA Id</option>
+        <option value="bio.mirna.mimat" >miRNA MIMAT Id</option>
+        <option value="bio.pubmed" >Pubmed Id</option>
+        <option value="bio.pubmed.search" >Pubmed Search Term</option>
+        <option value="scholar" >Scholarly term</option>
+        <option value="bio.gene.unigene" >Unigene CID</option>
+        <option value="bio.protein.uniprot" >UniProt Id</option>
+    </param>    
+	<conditional name="d_cols">
+	<param name="columnOrderMethod" type="select" label="Column ordering method" help="Choices -- Hierarchical Clustering, Original Order, Random">
+		<option value="Hierarchical">Hierarchical Clustering</option>
+		<option value="Original">Original Order</option>	    
+		<option value="Random">Random</option>	    
+	</param>
+        <when value="Hierarchical">
+	<param name="columnDistanceMeasure" type="select"  label="Column Distance Metric" help="euclidean, binary, manhattan, maximum, canberra, minkowski, or correlation">
+		<option value="euclidean">Euclidean</option>
+		<option value="binary">Binary</option>
+		<option value="manhattan">Manhattan</option>
+		<option value="maximum">Maximum</option>
+		<option value="canberra">Canberra</option>	    
+		<option value="minkowski">Minkowski</option>	    
+		<option value="correlation">Correlation</option>	    
+	</param>
+	<param name="columnAgglomerationMethod" type="select"  label="Column Clustering Method" help="Choices: 'average' for Average Linkage, 'complete' for Complete Linkage, 'single' for Single Linkage, 'ward', 'mcquitty', 'median', or 'centroid'.">
+		<option value="average">Average Linkage</option>
+		<option value="complete">Complete Linkage</option>
+		<option value="single">Single Linkage</option>
+		<option value="ward" selected="true">Ward</option>
+		<option value="mcquitty">Mcquitty</option>	    
+		<option value="median">Median</option>	    
+		<option value="centroid">Centroid</option>	    
+	</param>
+            <param name="colDendroCut" type="select" label="Create column categorical covariate bar based on number of top-level dendrogram clusters" >
+        		<option value="0" selected="true" >None</option>
+        		<option value="2" >2</option>
+        		<option value="3" >3</option>
+        		<option value="4" >4</option>
+        		<option value="5" >5</option>
+        		<option value="6" >6</option>
+        		<option value="7" >7</option>
+        		<option value="8" >8</option>
+        		<option value="9" >9</option>
+        		<option value="10" >10</option>
+            </param>
+        </when>
+        <when value="Original">
+		    <param name="columnDistanceMeasure" type="text" size="0"     value="n/a"/>
+		    <param name="columnAgglomerationMethod" type="text" size="0"     value="n/a"/>
+		    <param name="colDendroCut" type="text" size="0"     value="0"/>
+        </when>
+        <when value="Random">
+		    <param name="columnDistanceMeasure" type="text" size="0"     value="n/a"/>
+		    <param name="columnAgglomerationMethod" type="text" size="0"     value="n/a"/>
+		    <param name="colDendroCut" type="text" size="0"     value="0"/>
+        </when>
+    </conditional>
+    <param name="colDataType" type="select" label="Linkouts to column data type info" >
+        <option value="labels" selected="true" >None</option>
+        <option value="bio.probe.affymetrix" >Affymetrix Probe Id</option>
+        <option value="bio.feature.agilent" >Agilent Id</option>
+        <option value="bio.sample.cbioportal" >cBioPortal sample Id</option>
+        <option value="bio.transcript.ensemble" >Ensemble transcript Id</option>
+        <option value="bio.gene.entrez" >Gene Entrez Id</option>
+        <option value="bio.gene.hugo" >Gene HUGO symbol</option>
+        <option value="bio.go" >Gene Ontology (GO) Id</option>
+        <option value="bio.geo.acc" >GEO Accession Id</option>
+        <option value="bio.probe.illumina" >Illumina Probe Id</option>
+        <option value="bio.probe.infinium" >Infinium Probe Id</option>
+        <option value="bio.pathway.mdanderson" >MD Anderson pathway Id</option>
+        <option value="bio.mirna" >miRNA Id</option>
+        <option value="bio.mirna.mimat" >miRNA MIMAT Id</option>
+        <option value="bio.pubmed" >Pubmed Id</option>
+        <option value="bio.pubmed.search" >Pubmed Search Term</option>
+        <option value="scholar" >Scholarly term</option>
+        <option value="bio.gene.unigene" >Unigene CId</option>
+        <option value="bio.protein.uniprot" >UniProt Id</option>
+    </param>    
+    <repeat name="operations" title="Covariate Bars">
+        <param name="class_name" size="20" type="text" value="" label="Axis Covariate Name">
+           <sanitizer invalid_char="_">
+              <valid initial="none">
+                <add preset="string.letters"/>
+                <add preset="string.digits"/>
+              </valid>
+              <mapping initial="none">
+              </mapping>
+           </sanitizer>
+        </param>
+        <param name="repeatinput" type="data" format="text" label="Axis Covariate File"/>
+	<param name="cat" type="select" label="Axis Covariate Type">
+	  <option value="row_categorical" >row categorical</option>
+	  <option value="row_continuous" >row continuous</option>
+	  <option value="column_categorical" >column categorical</option>
+	  <option value="column_continuous" >column continuous</option>
+	</param>
+    </repeat>       
+  </inputs>
+  <outputs>
+    <data name="output" label='${hmname}' format="ngchm"/>
+  </outputs>
+ <tests>
+    <test>
+      <param name="inputmatrix" value="400x400.txt" />
+      <param name="hmname" value="testRun" />
+      <param name="$hmdesc" value="validateTool" />
+      <param name="summarymethod" value="average" />
+      <param name="rowOrderMethod" value="Hierarchical" />
+      <param name="rowDistanceMeasure" value="manhattan" />
+      <param name="rowAgglomerationMethod" value="ward" />
+      <param name="columnOrderMethod" value="Hierarchical" />
+      <param name="columnDistanceMeasure" value="manhattan" />
+      <param name="columnAgglomerationMethod" value="ward" />
+      <output name="output" file="Galaxy400x400-noCovariates.ngchm" lines_diff="10" />     
+
+    </test>
+<!--   galaxy/test-data/    dir where the input and output file that should match tool output will be copied -->
+  </tests>
+ </tool>

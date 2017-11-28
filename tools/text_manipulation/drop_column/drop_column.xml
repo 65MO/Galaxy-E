@@ -1,0 +1,17 @@
+<tool id="drop_column" name="supprimer une colonne" version="0.1">
+    <description>enlver les colonnes non voulues</description>
+    <command>
+        cat $input1 | cut -f-$number1,$number2- >> $out_file1    </command>
+    <inputs>
+        <param name="input1" type="data" label="input file"/>
+        <param name="number1" type="integer" label="column to the left" value="4"/>
+        <param name="number2" type="integer" label="column to the right" value="6"/>
+    </inputs>
+    <outputs>
+        <data name="out_file1" format="input" metadata_source="input1"/>
+    </outputs>
+    <tests>
+    </tests>
+    <help>
+    </help>
+</tool>

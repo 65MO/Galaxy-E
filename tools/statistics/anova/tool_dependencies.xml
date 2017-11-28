@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<tool_dependency>
+    <package name="R" version="3.1.2">
+        <repository changeset_revision="c987143177d4" name="package_r_3_1_2" owner="iuc" toolshed="https://toolshed.g2.bx.psu.edu" />
+    </package>
+    <package name="r-batch" version="1.1_4">
+	<repository changeset_revision="e8a964ca8656" name="package_r_batch_1_1_4" owner="lecorguille" toolshed="https://toolshed.g2.bx.psu.edu" />
+    </package>
+</tool_dependency>

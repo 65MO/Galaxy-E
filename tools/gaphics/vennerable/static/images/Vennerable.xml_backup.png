@@ -1,0 +1,112 @@
+<tool id="Vennerable" name="Vennerable" version="0.9" >
+	<description>: Plot data in Venn or Venn-like diagrams</description>
+	<command>
+	#if $opt.userSpecified == "Yes" 
+		R --slave --vanilla --file=$GALAXY_ROOT_DIR/tools/WURtools/R_tools/Vennerable.R 
+			--args $inputFile
+			default
+			$weighting
+			$outputFile
+			$plottype
+			$resolution
+			2&gt;$Vennerable_log
+			1&gt;&gt;$Vennerable_log
+	#else
+		R --slave --vanilla --file=$GALAXY_ROOT_DIR/tools/WURtools/R_tools/Vennerable.R
+			--args $inputFile
+			"$opt.xNames" 
+			$weighting
+			$outputFile
+			$plottype
+			$resolution
+			2&gt;$Vennerable_log
+			1&gt;&gt;$Vennerable_log
+	#end if
+	</command>	
+	<inputs>
+		<param name="inputFile" format="tabular" type="data" label="Data set" />
+		<conditional name="opt">
+			<param name="userSpecified" type="select" label="Use column headers as dataset names?">
+				<option value="Yes">Yes</option>
+				<option value="No">No</option>
+			</param>
+			<when value="Yes">
+			</when>
+			<when value="No">
+				<param name="xNames" type="text" label="Alternative data names" value="A,B,C,D" help="(comma-separated)"/>
+			</when>
+		</conditional>
+		<param name="plottype" type="select" label="Plot type to use" help="some other options might get disabled for certain plottypes" >
+			<option value="AWFE" selected="True">AWFE: Edwards-Venn (Non-weighted)</option>
+			<option value="ChowRuskey">Chow-Ruskey (always weigthed)</option>
+			<option value="ellipses">Ellipses (4 datasets only and always non-weighted)</option>
+			<option value="circles">Circles (max 3 datasets)</option>
+			<option value="squares">Squares (max 4 datasets non-weighted)</option>
+		</param>
+		<param name="weighting" type="select" label="Use weighting for data in plot" >
+			<option value="FALSE" selected="True">Non-weighted</option>
+			<option value="TRUE">Weighted</option>
+		</param>
+		<param name="resolution" type="integer" label="Resolution to use (dpi)" value="150" help="Plot features can be sized with this setting. Lower (50) is larger text." />
+	</inputs>
+	<outputs>
+		<data name="outputFile" format="png" label="Venn diagram of ${inputFile.name}"/>
+		<data name="Vennerable_log" format="tabular" label="Vennerable output and error log file" />
+	</outputs>
+	<tests>
+		<test>
+		</test>
+	</tests>
+	<requirements>
+		<requirement type="binary">R</requirement>
+	</requirements>
+	<help>
+| 
+
+
+**What it does**
+
+Vennerable V2.0 (09-10-2009)
+
+This tool will use the Vennerable R package to plot data as weighted or un-weighted diagrams such as Venn, Edwards-Venn and Chow-Rusky. 
+
+The tool can take 2 to 7 collumns of data but more are adviced not to be used (for speed and clarity).
+
+-----
+
+**Input**
+
+It takes a tabular file containing identifiers. Matches will be calculated automatically.
+
+Be sure to specify headers if you haven't any in your dataset! Otherwise the top row of data will be excluded.
+
+::
+ 
+ DataA	DataB	DataC	DataD
+ HUM1	AGK2	AGK2	RTT3
+ AGK2	ZZE3	ERT3	ZPD3
+ ZPD3	AAW3	RTT3	WER2
+ WER2	HUM1	RRW4	DUM1
+
+-----
+
+**Example**
+
+.. image:: ../static/images/WURtools/VennerablePlot.png 
+
+-----
+
+**References**
+
+- alex.bossers@wur.nl
+- Vennerable R package: http://r-forge.r-project.org/projects/vennerable/ 
+
+-----
+
+.. class:: infomark
+
+**TIP:** If your data is not TAB delimited, use *Text Manipulation-&gt;Convert*
+
+
+  </help>
+</tool>

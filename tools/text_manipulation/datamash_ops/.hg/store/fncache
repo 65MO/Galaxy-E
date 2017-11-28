@@ -1,0 +1,9 @@
+data/macros.xml.i
+data/test-data/group_compute_output.txt.i
+data/datamash-ops.xml.i
+data/test-data/group_compute_input.txt.i
+data/test-data/datamash_transpose_input.txt.i
+data/test-data/datamash_reverse_output.txt.i
+data/tool_dependencies.xml.i
+data/test-data/datamash_transpose_output.txt.i
+data/test-data/datamash_reverse_input.txt.i

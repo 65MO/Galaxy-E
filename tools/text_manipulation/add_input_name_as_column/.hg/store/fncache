@@ -1,0 +1,9 @@
+data/add_input_name_as_column.xml.i
+data/add_input_name_as_column.py.i
+data/test-data/signature_with_header.tab.i
+data/test-data/signature_without_header.tab.i
+data/tool.d
+data/Galaxy148-[transform_counts_with_normalization_factor.toolshed.gz].toolshed (1).d
+data/tool.i
+data/Galaxy148-[transform_counts_with_normalization_factor.toolshed.gz].toolshed (1).i
+data/test-data/signature.tab.i

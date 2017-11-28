@@ -1,0 +1,71 @@
+<tool id="split_tabular_columns" name="Découper les colonnes d'un fichier tabulé" version="0.0.1">
+    <description>en lignes multiples pour créer une table normalisée</description>
+    <requirements>
+    </requirements>
+    <stdio>
+        <exit_code range="1:" />
+    </stdio>
+    <command interpreter="python"><![CDATA[
+        #set $delim = str($split_on).replace("'","\'")
+        split_tabular_columns.py 
+          --input="$input"
+          --split_on='${delim}'
+          #for $col in str($columns).split(","):
+          --column=$col
+          #end for
+          --output="$output"
+    ]]></command>
+    <inputs>
+        <param name="input" type="data" format="tabular" label="Tabular Dataset to normalize"/>
+        <param name="columns" type="data_column" data_ref="input" multiple="True" label="Columns to split"
+               help=""/>
+        <param name="split_on" type="text" value="," label="List delimiter in column">
+            <sanitizer sanitize="False"/>
+            <validator type="regex" message="Anything but TAB or Newline">^[^\t\n\r\f\v]+$</validator>
+        </param>
+    </inputs>
+    <outputs>
+        <data format="tabular" name="output" label="${input.name} normalized"/>
+    </outputs>
+    <tests>
+
+        <test>
+            <param name="input" ftype="tabular" value="input.tabular"/>
+            <param name="columns" value="7,8"/>
+            <param name="split_on" value="; "/>
+            <output name="output" file="output.tabular"/>
+        </test>
+    </tests>
+    <help><![CDATA[
+=====================
+Split Tabular Columns
+=====================
+
+**Inputs**
+
+  Tabular dataset containing one or more columns with a list.  
+
+**Outputs**
+
+  Normalized Tabular dataset containing one or more columns with a list.  
+
+
+**Example**
+
+  With List delimiter '; ' and split on columns c3 and c4
+
+  the input line:
+
+  ::
+
+    	1	1.3	id1; id2	desc1; desc2	AMDLID
+
+  will be output as 2 lines:
+
+  ::
+
+    	1	1.3	id1	desc1	AMDLID
+    	1	1.3	id2	desc2	AMDLID
+
+    ]]></help>
+</tool>

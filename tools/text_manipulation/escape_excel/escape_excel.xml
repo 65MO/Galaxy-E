@@ -1,0 +1,33 @@
+<tool id="escape_excel" name="Echapper Excel" version="0.1.0">
+  <description>Protéger les fichiers d'auto-conversion dans Excel</description>
+  <command interpreter="python">
+	escape_excel_wrapper.py $paranoid $escape_dates $escape_scinot $escape_leadzero $input $output
+  </command>
+  <inputs>
+    <param name="input" format="txt" type="data" label="Source file"/>
+    <param name="paranoid" type="boolean" truevalue="TRUE" falsevalue="FALSE" label="Enable Paranoid Mode" />
+    <param name="escape_dates" type="boolean" truevalue="TRUE" falsevalue="FALSE" label="Disable escaping of dates" />
+    <param name="escape_scinot" type="boolean" truevalue="TRUE" falsevalue="FALSE" label="Disable escaping of scientific notation" />
+    <param name="escape_leadzero" type="boolean" truevalue="TRUE" falsevalue="FALSE" label="Disable escaping of leading zeros" />
+  </inputs>
+  <outputs>
+    <data format="tabular" name="output" />
+  </outputs>
+  <help>
+
+**Enable Paranoid Mode**: Escape all non-numeric text. This option is not recommended as Excel can take a long time to import text files where most fields are escaped.
+
+**Disable escaping of dates**: Do not escape text that looks like dates.
+
+**Disable escaping of scientific notation**: Do not escape integers represented by scientific notation with >=2 integer digits before the exponent.  Do not escape numbers with >11 integer digits.
+
+**Disable escaping of leading zeroes**: Do not escape leading zeroes (ie. 012345).
+
+Please note the input file must be tab-delimited. Fields will be stripped of existing ="" escapes, enclosing "", leading ", and leading/trailing spaces, as they may all cause problems.
+
+Defaults to escaping most Excel mis-imported fields. Escapes a few extra date-like formats that Excel does not consider dates. Please send unhandled mis-imported field examples (other than gene symbols with 1-digit scientific notation, such as 2e4) to Eric.Welsh@moffitt.org.
+
+Copy / Paste Values in Excel, after importing, to de-escape back into text.
+  </help>
+
+</tool>

@@ -1,0 +1,56 @@
+#!/usr/bin/R
+
+# R script to call Vennerable package from galaxy
+# info: alex.bossers@wur.nl
+
+# R --slave --vanilla --file=PlotBar.R --args inputFile x_data weighting outputFile plottype resolution
+# 1     2       3             4           5       6        7       8         9        10        11
+
+#get cmd line args
+args <- commandArgs()
+	in.file	<- args[6]
+	xData		<- args[7]   # data labels xData of format "a, b, c" and can include spaces
+	weighting	<- args[8] 
+	out.file	<- args[9]
+	plottype	<- args[10]
+	resolution	<- args[11]	#in dpi
+	
+#open lib
+library(Vennerable)
+
+# for labels of bars or bar groups presume column names from data
+if (xData != "default") {
+	# read without header input file (must be tabular)
+	annot_data <- read.table(in.file, header=F, sep="\t")
+	colnames (annot_data) <- strsplit(xData,",")[[1]]
+	Vannot <- Venn(annot_data)
+} else {
+	# read without header input file (must be tabular)
+	annot_data <- read.table(in.file, header=T, sep="\t")
+	Vannot <- Venn(annot_data)
+}
+
+#png(out.file,width = 1600, height = 1600, res = resolution)
+png(out.file, res = resolution)
+
+# plot it
+if (plottype == "ChowRuskey") {
+	plot(Vannot, type = plottype)
+
+} else if (plottype == "AWFE") {
+	plot(Vannot, doWeights = weighting, type = plottype)
+
+} else if (plottype == "circles") {
+	plot(Vannot)
+
+} else if (plottype == "ellipses"){
+	plot(Vannot, type = "ellipses")
+
+} else if (plottype == "squares"){
+	plot(Vannot, type = "squares")
+
+}
+
+cat ("version 1.0, info: alex.bossers@wur.nl\n")
+dev.off()
+

@@ -1,0 +1,171 @@
+<tool id="abims_ACP" name="ACP" version="1.2">
+
+    <description>Analyse en Composante Principale utilisant FactoMineR</description>
+
+    <command interpreter="Rscript">
+        abims_acp.r file "$input" graph TRUE scale.unit "$scale_unit" sep "$sep" dec "$dec"
+    </command> 
+
+    <inputs>
+        <param name="input" type="data" label="Data Matrix file" format="tabular" help="Matrix of numeric data with headers." />
+        <!--<param name="graph" type="select" label="graph" help="if FALSE no graph generated">
+            <option value="T" selected="true">TRUE</option>
+            <option value="F" >FALSE</option>
+        </param>-->
+        <param name="scale_unit" type="select" label="scale.unit" help="if FALSE no reduction of variables">
+            <option value="T" selected="true">TRUE</option>
+            <option value="F" >FALSE</option>
+        </param>
+        
+        <param name="sep" type="select" format="text" optional="true">
+		<label>Separator of columns</label>
+		<option value="tabulation">tabulation</option>
+		<option value="semicolon">;</option>
+		<option value="comma">,</option>
+	</param>
+        <param name="dec" type="text" label="Decimal separator" value="." help="" />
+         
+        <!--<param name="nr_col_names" type="integer" label="names" value="2" help="number of the column with names of metabolits" />
+        <param name="from" type="integer" label="from" value="15" help="number of the column starting peak values data (to exlude all metadata)" />
+        <param name="to" type="integer" label="to" value="30" help="number of the column finishing peak values data (to exlude all metadata)" />
+        <param name="gr_number" type="integer" label="gr_number" value="2" help="number of groups (conditions)" />
+        <param name="nb_col_gr" type="text" label="nb_col_gr" value="8,8" help="number of column of each group; separate with coma as indicated; first position coresponding to the first group etc." />
+        <param name="threshold" type="float" label="threshold" value="0.01" help="max adjusted p.value accepted" />-->
+        
+    </inputs>
+
+    <outputs>
+        <data name="acp_zip" format="zip" from_work_dir="acp.zip" label="${input.name[:-4]}.pca.zip"/>
+    </outputs>
+
+    <stdio>
+        <exit_code range="1:" level="fatal" />
+    </stdio>
+
+    <help>
+
+	
+.. class:: infomark
+
+**Authors** Gildas Le Corguille  ABiMS - UPMC/CNRS - Station Biologique de Roscoff - gildas.lecorguille|at|sb-roscoff.fr 
+
+---------------------------------------------------
+
+===
+PCA
+===
+
+-----------
+Description
+-----------
+
+
+Performs **Principal Component Analysis (PCA)** with supplementary individuals, supplementary quantitative variables and supplementary categorical variables.
+Missing values are replaced by the column mean. This scripts uses the FactoMineR package.
+
+
+-----------
+Input files
+-----------
+
++---------------------------+------------+
+| Parameter : num + label   |   Format   |
++===========================+============+
+| 1 : Data Matrix file      | Tabular    |
++---------------------------+------------+
+
+
+
+----------
+Parameters
+----------
+
+**Data Matrix file**
+
+Matrix of numeric data with headers (tabular format) issued from diffreport or annotateDiffreport to make post xcms analyse  . 
+
+**scale.unit**
+
+If FALSE: no reduction of the variables
+
+**Separator of columns:**
+
+Type of separator for the columns
+
+**Decimal separator:**
+
+Type of decimal separator of the numbers in your tabular files.
+
+
+
+------------
+Output files
+------------
+
+
+
+**input_name.pca.zip**
+
+	| A zip file containing fours files (eigenvalue.png, percentage_of_variance.png, Rplots.pdf and Rplots1.pdf).
+	
+
+---------------------------------------------------
+
+
+
+---------------
+Working example
+---------------
+
+
+Input files
+-----------
+
+**>A part of an example of Data Matrix file input :**
+	
+
++--------+------------------+----------------+
+| Name   | AN7              | AN8            |	                                       
++========+==================+================+
+|M102T645| 10880.0637170802 |17207.2222120537|
++--------+------------------+----------------+
+|M105T604| 41911.160863452  |38105.7953589089|  
++--------+------------------+----------------+       
+
+
+
+Parameters
+----------
+
+| scale.unit -> **TRUE*
+| Separator of columns: -> **tabulation**
+| Decimal separator -> **.**
+	
+	
+
+Output files
+------------
+
+
+**eigenvalue.png:**
+
+.. image:: pca_abims_eigenvalue.png
+
+**percentage_of_variance.png:**
+
+.. image:: pca_abims_percentage_of_variance.png
+
+**Rplots.pdf:**
+
+.. image:: pca_abims_Rplots.png
+
+**Rplots1.pdf:**
+
+.. image:: pca_abims_Rplots1.png
+
+
+	
+
+    </help>
+
+</tool>

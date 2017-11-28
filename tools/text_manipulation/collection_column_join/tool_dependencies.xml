@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<tool_dependency>
+    <package name="gnu_coreutils" version="8.22">
+        <repository changeset_revision="ac64dfe4b1fb" name="package_gnu_coreutils_8_22" owner="iuc" toolshed="https://toolshed.g2.bx.psu.edu" />
+    </package>
+</tool_dependency>

@@ -1,0 +1,72 @@
+<tool id="tp_split_on_column" name="Split file" version="0.2">
+    <description>according to the values of a column</description>
+    <requirements>
+        <requirement type="package" version="4.1.0">gnu_awk</requirement>
+    </requirements>
+    <command>
+<![CDATA[
+        mkdir tmp_out &&
+        awk -F'\t' '{print > "tmp_out/"\$$column".$infile.ext" }' $infile
+]]>
+    </command>
+    <inputs>
+        <param format="tabular" name="infile" type="data" label="File to select" />
+        <param name="column" label="on column" type="data_column" data_ref="infile" accept_default="true" />
+    </inputs>
+    <outputs>
+        <collection name="split_output" type="list" label="Table split on first column">
+            <discover_datasets pattern="__name_and_ext__" directory="tmp_out" />
+        </collection>
+    </outputs>
+    <tests>
+        <test>
+            <param name="infile" value="5cols.tabular" ftype="tabular"/>
+            <param name="column" value="5" />
+            <output_collection name="split_output" type="list">
+                <element name="1">
+                    <assert_contents>
+                        <has_text_matching expression="chr7\t56632\t56652\tcluster\t1" />
+                    </assert_contents>
+                </element>
+                <element name="2">
+                    <assert_contents>
+                        <has_text_matching expression="chr7\t56761\t56781\tcluster\t2" />
+                    </assert_contents>
+                </element>
+            </output_collection>
+        </test>
+    </tests>
+    <help>
+<![CDATA[
+
+**What it does**
+
+This tool splits a file into different smaller files using a specific column.
+It will work like the group tool, but every group is saved to its own file.
+
+-----
+
+**Example**
+
+Splitting on column 5 from this::
+
+    chr7  56632  56652  cluster 1
+    chr7  56736  56756  cluster 1
+    chr7  56761  56781  cluster 2
+    chr7  56772  56792  cluster 2
+    chr7  56775  56795  cluster 2
+
+will produce 2 files with different clusters::
+
+    chr7  56632  56652  cluster 1
+    chr7  56736  56756  cluster 1
+
+
+    chr7  56761  56781  cluster 2
+    chr7  56772  56792  cluster 2
+    chr7  56775  56795  cluster 2
+
+
+]]>
+    </help>
+</tool>

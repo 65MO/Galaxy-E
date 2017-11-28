@@ -1,0 +1,11 @@
+
+Start of the 'Univariate' Galaxy module call: Sun 30 Oct 2016 07:06:06 PM
+
+Performing 'kruskal'
+
+The following 3 variables (50%) were found significant at the 0.05 level:
+v4
+v5
+v6
+
+End of 'Univariate' Galaxy module call: 2016-10-30 19:06:07

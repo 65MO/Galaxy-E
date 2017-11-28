@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<tool_dependency>
+    <package name="R" version="3.1.2">
+        <repository changeset_revision="4d2fd1413b56" name="package_r_3_1_2" owner="iuc" prior_installation_required="True" toolshed="https://toolshed.g2.bx.psu.edu" />
+    </package>
+    <package name="biocbasics" version="2.14">
+        <repository changeset_revision="f0ef1a7b157e" name="package_biocbasics_2_14" owner="mvdbeek" toolshed="https://toolshed.g2.bx.psu.edu" />
+    </package>
+</tool_dependency>

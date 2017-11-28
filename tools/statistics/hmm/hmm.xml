@@ -1,0 +1,152 @@
+<tool id="hmm_1" name="Faire converger une HMM " version="1.0.0">
+  <description>à des données numériques</description>
+   <requirements>
+      <requirement type="set_environment">R_SCRIPT_PATH</requirement>
+      <requirement type="package" version="2.15.0">R</requirement>
+      <requirement type="package" version="1.5.0">RHmm</requirement>
+  </requirements>
+  <command interpreter="bash">r_wrapper.sh $script_file</command>
+  <inputs>
+    <param name="input" type="data" format="tabular" label="Dataset"/>
+    <param name="var_cols" label="Select columns containing observations " type="data_column" data_ref="input" numerical="True" multiple="true" >
+        <validator type="no_options" message="Please select at least one column."/>
+    </param>
+    <param name="samp_col" label="Select column containing sample numbers " type="data_column" data_ref="input" numerical="True" multiple="false" >
+        <validator type="no_options" message="Please select a column."/>
+    </param>
+    <param name="header" type="select" label="Treat first line as header? ">
+        <option value="yes" selected="true">Yes</option>
+        <option value="no">No</option>
+    </param>
+    <param name="nStates" size="10" type="integer" value="2" label="Number of hidden states " />
+    <conditional name="disChoice">
+    	<param name="dis" type="select" label="Distribution">
+            <option value="NORMAL" selected="true">Normal</option>
+            <option value="DISCRETE">Discrete</option>
+            <option value="MIXTURE">Mixture</option>
+        </param>
+    	<when value="NORMAL" />
+        <when value="DISCRETE" />
+        <when value="MIXTURE">
+            <param name="nMixt" size="10" type="integer" value="2" label="Number of mixtures of normal distributions " />
+        </when>
+    </conditional>
+    <!--
+    <conditional name="asymptChoice">
+	    <param name="asymptCov" type="select" label="Compute asymptotic covariance matrix? ">
+	        <option value="FALSE" selected="true">No</option>
+	        <option value="TRUE">Yes</option>
+	    </param>
+	    <when value="FALSE" />
+	    <when value="TRUE">
+            <param name="asymptMethod" type="select" label="Method for computing asymptotic covariance matrix ">
+	        <option value="nlme" selected="true">nlme</option>
+	        <option value="optim">optim</option>
+	    </param>
+        </when>
+    </conditional> 
+    -->
+  </inputs>
+
+  <configfiles>
+    <configfile name="script_file">
+      ## Setup R error handling to go to stderr
+      options( show.error.messages=F, 
+               error = function () { cat( geterrmessage(), file=stderr() ); q( "no", 1, F ) },
+               warn = -1 )
+      suppressPackageStartupMessages(library('RHmm'))
+      
+      #if str($header) == "yes"
+      	inp = read.table( "${input.file_name}", header=T )
+      #else
+      	inp = read.table( "${input.file_name}", header=F )
+      #end if
+
+      samp_numbers = unique(inp[, ${samp_col}])
+      
+      if (length(samp_numbers) == 1){
+      samp_list = inp[,c(${var_cols})]
+      } else { 
+      samp_list=list()
+      for (i in 1:length(samp_numbers)) {
+      	samp_list[[i]] = inp[(inp[,${samp_col}] == samp_numbers[i]),c(${var_cols})]
+      }
+      }
+      
+      nStates = ${nStates}
+      dis = "$disChoice['dis']"
+      nMixt = 0
+      
+      #if $disChoice['dis'] == "MIXTURE"
+      nMixt = ${disChoice.nMixt}
+	  #end if
+	  
+      ##asymptCov = $asymptChoice['asymptCov']
+      asymptCov = "FALSE"
+      asymptMethod = "nlme"
+      
+      ##if (asymptCov == "TRUE") {
+      ##	asymptMethod = "${asymptChoice.asymptMethod}"
+      ##}
+      
+      #if $disChoice['dis'] == "MIXTURE"
+      	if (asymptCov == "TRUE") {
+      		myfit = HMMFit(samp_list, nStates=nStates, dis=dis, nMixt=nMixt, asymptCov=asymptCov, asymptMethod=asymptMethod)
+      	} else {
+      		myfit = HMMFit(samp_list, nStates=nStates, dis=dis, nMixt=nMixt) 
+      	}
+      #else
+      	if (asymptCov == "TRUE") {
+      		myfit = HMMFit(samp_list, nStates=nStates, dis=dis, asymptCov=asymptCov, asymptMethod=asymptMethod)
+      	} else {
+      		myfit = HMMFit(samp_list, nStates=nStates, dis=dis)
+      	}
+      #end if
+      
+      myfittxt=capture.output(myfit)
+      cat(myfittxt,file="${out_file1}",sep="\n")
+      
+    
+      samp_list_stateSol = list()
+      if (length(samp_numbers) == 1){
+      	samp_list_stateSol[[1]]=unlist(viterbi(myfit, samp_list)["states"])
+      } else { 
+      	for (i in 1:length(samp_numbers)) {
+      	samp_list_stateSol[[i]]=unlist(viterbi(myfit, samp_list[[i]])["states"])
+      	}
+      }
+      inp_stateSol=cbind(inp,unlist(samp_list_stateSol))
+	  write.table(inp_stateSol,file="${out_file2}",sep="\t",row.names=F,col.names=F,quote=F)
+	  
+    </configfile>
+  </configfiles>
+
+  <outputs>
+    <data format="txt" name="out_file1" />
+    <data format="input" name="out_file2" />
+  </outputs>
+
+  
+<help>
+
+.. class:: infomark
+
+**What it does**
+
+This tool uses the 'HMMFit' and 'viterbi' functions from 'RHmm' library from R statistical package to fit an Hidden Markov Model using Baum-Welch algorithm, and calculate the optimal hidden states sequence using Viterbi's algorithm. 
+
+It returns two outputs - one containing summary statistics for HMMFit, and the other containing state numbers appended as a new column to the input data.
+
+*Ollivier TARAMASCO and Sebastian Bauer (2010). RHmm: Hidden Markov Models simulations and estimations. R package version 1.4.4. http://CRAN.R-project.org/package=RHmm.*
+
+-----
+
+.. class:: warningmark
+
+**Note**
+
+The tool fails if any of the observation columns contain non-numeric data.
+
+
+</help>
+</tool>

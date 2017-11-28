@@ -1,0 +1,154 @@
+<tool id="venn_list" name="Diagramme de Venn" version="0.0.11">
+    <description>à partir de listes</description>
+    <requirements>
+        <requirement type="package" version="1.0.1">galaxy_sequence_utils</requirement>
+        <requirement type="package" version="1.0.3">rpy</requirement>
+        <requirement type="package" version="3.25.3">limma</requirement>
+        <requirement type="package" version="1.67">biopython</requirement>
+    </requirements>
+    <version_command>
+python $__tool_directory__/venn_list.py --version
+    </version_command>
+    <command detect_errors="aggressive">
+python $__tool_directory__/venn_list.py
+#if $universe.type_select=="implicit":
+  - -
+#else:
+  '$main' $main.ext
+#end if
+'$main_lab'
+#for $s in $sets:
+  '$s.set' $s.set.ext '$s.lab'
+#end for
+$PDF
+    </command>
+    <inputs>
+        <param name="main_lab" size="30" type="text" value="Venn Diagram" label="Plot title"/>
+        <conditional name="universe">
+            <param name="type_select" type="select" label="Implicit or explicit full ID list?">
+                <option value="explicit">Explicit</option>
+                <option value="implicit">Implicit (use union of sets below)</option>
+            </param>
+            <when value="explicit">
+                 <param name="main" type="data" format="tabular,fasta,fastq,sff" label="Full dataset (with all identifiers)" help="Tabular file (uses column one), FASTA, FASTQ or SFF file."/>
+            </when>
+            <when value="implicit"/>
+        </conditional>
+        <repeat name="sets" min="1" max="3" title="Sets">
+            <param name="set" type="data" format="tabular,fasta,fastq,sff" label="Members of set" help="Tabular file (uses column one), FASTA, FASTQ or SFF file."/>
+            <param name="lab" size="30" type="text" value="Group" label="Caption for set"/>
+        </repeat>
+    </inputs>
+    <outputs>
+        <data format="pdf" name="PDF" />
+    </outputs>
+    <tests>
+         <!-- Doesn't seem to work properly, manages to get two sets, both
+              with same FASTA file, but second with default "Group" label. -->
+        <test>
+            <param name="type_select" value="explicit"/>
+            <param name="main" value="venn_list.tabular" ftype="tabular"/>
+            <param name="main_lab" value="Some Proteins"/>
+            <param name="set" value="rhodopsin_proteins.fasta"/>
+            <param name="lab" value="Rhodopsins"/>
+            <output name="PDF" file="magic.pdf" ftype="pdf" compare="contains" />
+            <assert_stdout>
+                <has_line line="Doing 1-way Venn Diagram" />
+                <has_line line="Total of 10 IDs" />
+                <has_line line="6 in Rhodopsins" />
+            </assert_stdout>
+        </test>
+        <test>
+            <param name="type_select" value="implicit"/>
+            <param name="sets_0|set" value="rhodopsin_proteins.fasta"/>
+            <param name="sets_0|lab" value="Rhodopsins"/>
+            <param name="sets_1|set" value="four_human_proteins.fasta"/>
+            <param name="sets_1|lab" value="Human"/>
+            <param name="sets_2|set" value="blastp_four_human_vs_rhodopsin.tabular"/>
+            <param name="sets_2|lab" value="Human vs Rhodopsin BLAST"/>
+            <output name="PDF" file="magic.pdf" ftype="pdf" compare="contains" />
+            <assert_stdout>
+                <has_line line="Doing 3-way Venn Diagram" />
+                <has_line line="Inferred total of 10 IDs" />
+                <has_line line="6 in Rhodopsins" />
+                <has_line line="4 in Human" />
+                <has_line line="1 in Human vs Rhodopsin BLAST" />
+            </assert_stdout>
+        </test>
+        <test expect_failure="true" expect_exit_code="1">
+            <param name="type_select" value="explicit"/>
+            <param name="main" value="venn_list.tabular" ftype="tabular"/>
+            <param name="main_lab" value="Some Proteins"/>
+            <param name="sets_0|set" value="rhodopsin_proteins.fasta"/>
+            <param name="sets_0|lab" value="Rhodopsins"/>
+            <param name="sets_1|set" value="four_human_proteins.fasta"/>
+            <param name="sets_1|lab" value="Human"/>
+            <param name="sets_2|set" value="blastp_four_human_vs_rhodopsin.tabular"/>
+            <param name="sets_2|lab" value="Human vs Rhodopsin BLAST"/>
+            <assert_stdout>
+                <has_line line="Doing 3-way Venn Diagram" />
+                <has_line line="Total of 10 IDs" />
+            </assert_stdout>
+            <assert_stderr>
+                <has_text_matching expression="Unexpected ID sp|Q9BS26|ERP44_HUMAN in fasta file *" />
+            </assert_stderr>
+        </test>
+    </tests>
+    <help>
+
+.. class:: infomark
+
+**TIP:** If your data is in tabular files, the identifier is assumed to be in column one.
+
+**What it does**
+
+Draws Venn Diagram for one, two or three sets (as a PDF file).
+
+You must supply one, two or three sets of identifiers -- corresponding
+to one, two or three circles on the Venn Diagram.
+
+In general you should also give the full list of all the identifiers
+explicitly. This is used to calculate the number of identifers outside
+the circles (and check the identifiers in the other files match up).
+The full list can be omitted by implicitly taking the union of the
+category sets. In this case, the count outside the categories (circles)
+will always be zero.
+
+The identifiers can be taken from the first column of a tabular file
+(e.g. query names in BLAST tabular output, or signal peptide predictions
+after filtering, etc), or from a sequence file (FASTA, FASTQ, SFF).
+
+For example, you may have a set of NGS reads (as a FASTA, FASTQ or SFF
+file), and the results of several different read mappings (e.g. to
+different references) as tabular files (filtered to have just the mapped
+reads). You could then show the different mappings (and their overlaps)
+as a Venn Diagram, and the outside count would be the unmapped reads.
+
+**Citations**
+
+The Venn Diagrams are drawn using Gordon Smyth's limma package from
+R/Bioconductor, http://www.bioconductor.org/
+
+The R library is called from Python via rpy, http://rpy.sourceforge.net/
+
+If you use this Galaxy tool in work leading to a scientific publication please
+cite:
+
+Peter J.A. Cock, Björn A. Grüning, Konrad Paszkiewicz and Leighton Pritchard (2013).
+Galaxy tools and workflows for sequence analysis with applications
+in molecular plant pathology. PeerJ 1:e167
+http://dx.doi.org/10.7717/peerj.167
+
+This tool uses Biopython to read and write SFF files, so you may also wish to
+cite the Biopython application note (and Galaxy too of course):
+
+Cock et al 2009. Biopython: freely available Python tools for computational
+molecular biology and bioinformatics. Bioinformatics 25(11) 1422-3.
+http://dx.doi.org/10.1093/bioinformatics/btp163 pmid:19304878.
+
+    </help>
+    <citations>
+        <citation type="doi">10.7717/peerj.167</citation>
+        <citation type="doi">10.1093/bioinformatics/15.5.356</citation>
+    </citations>
+</tool>

@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<tool_dependency>
+	<set_environment>
+            <environment_variable name="VENNERABLE_SCRIPT_PATH" action="set_to">$REPOSITORY_INSTALL_DIR</environment_variable>
+    </set_environment>
+	<package name="R" version="3.0.3">
+		<repository changeset_revision="f386d7431fe0" name="package_r_3_0_3" owner="iuc" toolshed="https://toolshed.g2.bx.psu.edu" prior_installation_required="True"/>
+	</package>
+	<package name="vennerable_r_packages" version="1.0">
+		<install version="1.0">
+			<actions>
+				<action type="setup_r_environment">
+					<repository changeset_revision="f386d7431fe0" name="package_r_3_0_3" owner="iuc" toolshed="https://toolshed.g2.bx.psu.edu">
+						<package name="R" version="3.0.3" />
+					</repository>
+					<package>http://www.bioconductor.org/packages/2.13/bioc/src/contrib/BiocGenerics_0.8.0.tar.gz</package>
+					<package>http://www.bioconductor.org/packages/2.13/bioc/src/contrib/graph_1.40.1.tar.gz</package>
+					<package>http://www.bioconductor.org/packages/2.13/bioc/src/contrib/RBGL_1.38.0.tar.gz</package>
+					<package>http://cran.r-project.org/src/contrib/Archive/RColorBrewer/RColorBrewer_1.0-4.tar.gz</package>
+					<package>http://cran.r-project.org/src/contrib/Archive/Rcpp/Rcpp_0.11.2.tar.gz</package>
+					<package>http://cran.r-project.org/src/contrib/Archive/plyr/plyr_1.8.tar.gz</package>
+					<package>http://cran.r-project.org/src/contrib/Archive/reshape/reshape_0.8.4.tar.gz</package>
+					<package>http://cran.r-project.org/src/contrib/Archive/gtools/gtools_3.4.0.tar.gz</package>
+					<package>http://cran.r-project.org/src/contrib/Archive/xtable/xtable_1.7-3.tar.gz</package>
+					<package>http://download.r-forge.r-project.org/src/contrib/Vennerable_3.0.tar.gz</package>
+				</action>
+			</actions>
+		</install>
+		<readme></readme>
+	</package>
+</tool_dependency>
+

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<tool_dependency>
+    <package name="numpy" version="1.9">
+        <repository changeset_revision="f24fc0b630fc" name="package_python_2_7_numpy_1_9" owner="iuc" toolshed="https://toolshed.g2.bx.psu.edu" />
+    </package>
+    <package name="R" version="3.2.1">
+        <repository changeset_revision="d9f7d84125b7" name="package_r_3_2_1" owner="iuc" toolshed="https://toolshed.g2.bx.psu.edu" />
+    </package>
+    <package name="rpy2" version="2.7.8">
+        <repository changeset_revision="304bc0447631" name="package_rpy2_2_7_8" owner="iuc" toolshed="https://toolshed.g2.bx.psu.edu" />
+    </package>
+</tool_dependency>

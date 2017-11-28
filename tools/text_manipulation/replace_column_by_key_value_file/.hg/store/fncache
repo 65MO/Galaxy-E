@@ -1,0 +1,6 @@
+data/test-data/empty_mapping.i
+data/test-data/result_file_empty_mapping.i
+data/test-data/GRCh38_ensembl2UCSC.txt.i
+data/test-data/result_file.i
+data/replaceColumn.xml.i
+data/test-data/original_file.i

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<tool_dependency>
+    <package name="datamash" version="1.0.6">
+        <repository changeset_revision="414953c0168d" name="package_datamash_1_0_6" owner="iuc" toolshed="https://toolshed.g2.bx.psu.edu" />
+    </package>
+</tool_dependency>

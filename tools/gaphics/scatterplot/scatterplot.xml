@@ -1,0 +1,69 @@
+<tool id="scatterplot_rpy" name="Nuages de points" version="1.0.2">
+  <description>de deux colonnes numériques</description>
+  <requirements>
+    <requirement type="package" version="1.9">numpy</requirement>
+    <!-- explicit R requirement is necessary for toolshed package, conda rpy2 comes with R -->
+    <requirement type="package" version="3.2.1">R</requirement>
+    <requirement type="package" version="2.7.8">rpy2</requirement>
+  </requirements>
+  <command interpreter="python">scatterplot.py $input $out_file1 $col1 $col2 "$title" "$xlab" "$ylab"</command>
+  <inputs>
+    <param name="input" type="data" format="tabular" label="Dataset" help="Dataset missing? See TIP below"/>
+    <param name="col1" type="data_column" data_ref="input" numerical="True" label="Numerical column for x axis" />
+    <param name="col2" type="data_column" data_ref="input" numerical="True" label="Numerical column for y axis" />
+    <param name="title" type="text" value="Scatterplot" label="Plot title"/>
+    <param name="xlab" type="text" value="V1" label="Label for x axis"/>
+    <param name="ylab" type="text" value="V2" label="Label for y axis"/>
+  </inputs>
+  <outputs>
+    <data format="pdf" name="out_file1" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input" value="scatterplot_in1.tabular" ftype="tabular"/>
+      <param name="col1" value="2"/>
+      <param name="col2" value="3"/>
+      <param name="title" value="Scatterplot"/>
+      <param name="xlab" value="V1"/>
+      <param name="ylab" value="V2"/>
+      <output name="out_file1" file="scatterplot_out1.pdf" compare="sim_size" />
+    </test>
+  </tests>
+  <help>
+.. class:: infomark
+
+**TIP:** If your data is not TAB delimited, use *Text Manipulation-&gt;Convert*
+
+-----
+
+**Syntax**
+
+This tool creates a simple scatter plot between two variables containing numeric values of a selected dataset. 
+
+- All invalid, blank and comment lines in the dataset are skipped.  The number of skipped lines is displayed in the resulting history item.
+
+- **Plot title** The scatterplot title
+- **Label for x axis** and **Label for y axis** The labels for x and y axis of the scatterplot.
+
+-----
+
+**Example**
+
+- Input file::
+
+    1   68  4.1
+    2   71  4.6
+    3   62  3.8
+    4   75  4.4
+    5   58  3.2
+    6   60  3.1
+    7   67  3.8
+    8   68  4.1
+    9   71  4.3
+    10  69  3.7 
+
+- Create a simple scatterplot between the variables in column 2 and column 3 of the above dataset.
+
+.. image:: scatterplot.png
+</help>
+</tool>

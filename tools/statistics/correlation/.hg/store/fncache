@@ -1,0 +1,8 @@
+data/cor.xml.i
+data/test-data/cor_out.txt.i
+data/tool_dependencies.xml.i
+data/test-data/cor.tabular.i
+data/kendall.png.i
+data/spearman.png.i
+data/cor.py.i
+data/pearson.png.i
