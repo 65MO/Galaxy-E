@@ -1,0 +1,77 @@
+<tool id="ChangeCase" name="Changer la casse" version="1.0.0">
+  <description> sur une sélection de colonnes</description>
+  <stdio>
+    <exit_code range="1:" err_level="fatal" />
+  </stdio>
+  <command interpreter="perl">changeCase.pl $input "$cols" $delimiter $casing $out_file1</command>
+  <inputs>
+    <param name="input" format="txt" type="data" label="Jeu de données d'origine"/>
+    <param name="cols" size="10" type="text" value="c1,c2" label="Changer la casse des colonnes"/>
+    <param name="delimiter" type="select" label="Délimitées par">
+      <option value="TAB">Tab</option>
+      <option value="SPACE">Whitespace</option>
+      <option value="DOT">Dot</option>
+      <option value="COMMA">Comma</option>
+      <option value="DASH">Dash</option>
+      <option value="UNDERSCORE">Underscore</option>
+      <option value="PIPE">Pipe</option>
+    </param>
+    <param name="casing" type="select" label="En">
+      <option value="up">Majuscule</option>
+      <option value="lo">Minuscule</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data format="tabular" name="out_file1" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input" value="1.txt" ftype="txt"/>
+      <param name="cols" value="c1"/>
+      <param name="delimiter" value="SPACE"/>
+      <param name="casing" value="up"/>
+      <output name="out_file1" file="changeCase_out1.tabular"/>
+    </test>
+    <test>
+      <param name="input" value="1.bed" ftype="bed"/>
+      <param name="cols" value="c1"/>
+      <param name="delimiter" value="TAB"/>
+      <param name="casing" value="up"/>
+      <output name="out_file1" file="changeCase_out2.tabular"/>
+    </test>
+  </tests>
+  <help>
+
+.. class:: warningmark
+
+**Cet outil casse les assignements de colonne.** Pour rétablir l'assignement de colonne, il faut exécuter l'outil et clicker sur l'icône crayon du jeu de données résultant dans l'historique.
+
+.. class:: warningmark
+
+Le format du jeu de données résultant est toujours tabulé.
+
+-----
+
+**Ce que fait l'outil**
+
+Cet outil séléctionne des colonnes spécifiques d'un jeu de données et converti les valeurs de ces colonnes en majuscule ou minuscule.
+
+- Les colonnes sont spécifiées en tant que **c1**, **c2**, et ainsi de suite.
+- Les colonnes peuvent être spécifiées dans un ordre différent (i.e., **c2,c1,c6**)
+
+-----
+
+**Exemple**
+
+Changer les colonnes 1 et 3 ( delimitées par une virgule ) en majuscule dans::
+
+  biodiv,est,bien
+  unifier,est,mal
+
+résulte en::
+
+  BIODIV est BIEN
+  UNIFIER est MAL
+
+  </help>
+</tool>

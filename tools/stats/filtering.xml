@@ -1,0 +1,90 @@
+<tool id="Filter1" name="Filtrer" version="1.1.0">
+  <description>des données sur une colonne en utilisant des epressions simples</description>
+  <edam_operations>
+    <edam_operation>operation_0335</edam_operation>
+  </edam_operations>
+  <command interpreter="python">
+    filtering.py $input $out_file1 "$cond" ${input.metadata.columns} "${input.metadata.column_types}" $header_lines
+  </command>
+  <inputs>
+    <param format="tabular" name="input" type="data" label="Filter" help="Données non affichées ? Voir ASTUCE plus bas."/>
+    <param name="cond" size="40" type="text" value="c1=='habitat2'" label="En utilisant la condition suivante" help="Un signe égale double, ==, doit être utilisé comme montré plus bas. Pour filtrer pour une chaîne arbitraire, utiliser l'outil Sélection.">
+      <validator type="empty_field" message="Entrer une condition de filtre valide, voir la syntaxe et les exemples plus bas."/>
+    </param>
+    <param name="header_lines" type="integer" value="0" label="Nombre de lignes d'en-têtes à passer"/>
+  </inputs>
+  <outputs>
+    <data format="input" name="out_file1" metadata_source="input"/>
+  </outputs>
+  <tests>
+    <test>
+      <param name="input" value="1.bed"/>
+      <param name="cond" value="c1=='chr22'"/>
+      <param name="header_lines" value="0"/>
+      <output name="out_file1" file="filter1_test1.bed"/>
+    </test>
+    <test>
+      <param name="input" value="7.bed"/>
+      <param name="cond" value="c1=='chr1' and c3-c2>=2000 and c6=='+'"/>
+      <param name="header_lines" value="0"/>
+      <output name="out_file1" file="filter1_test2.bed"/>
+    </test>
+    <!-- Test filtering of file with a variable number of columns. -->
+    <test>
+      <param name="input" value="filter1_in3.sam"/>
+      <param name="cond" value="c3=='chr1' and c5>5"/>
+      <param name="header_lines" value="0"/>
+      <output name="out_file1" file="filter1_test3.sam"/>
+    </test>
+    <test>
+      <param name="input" value="filter1_inbad.bed"/>
+      <param name="cond" value="c1=='chr22'"/>
+      <param name="header_lines" value="0"/>
+      <output name="out_file1" file="filter1_test4.bed"/>
+    </test>
+    <test>
+      <param name="input" value="filter1_in5.tab"/>
+      <param name="cond" value="c8>500"/>
+      <param name="header_lines" value="1"/>
+      <output name="out_file1" file="filter1_test5.tab"/>
+    </test>
+  </tests>
+  <help>
+
+.. class:: warningmark
+
+Le signe égale doublé, ==, doit être utilisé en tant que *"strictement égal à"* (i.e., **c1 == 'concarneau'**)
+
+.. class:: infomark
+
+**ASTUCE:** En voulant appliquer un filtre conditionnel, vous pourriez tomber sur des exceptions si le type de données (i.e., caractère, entier) si toutes les lignes des colonnes filtrées ne sont pas appropriés pour la condition posée (i.e., attendre cerains calculs numériques sur des caratères).  En cas d'exeption à appliquer sur une ligne, cette ligne ne sera pas considérée par le filtre car jugée invalide. Le nombre de lignes invalides non considérées est documenté dans le jeu de données résultant de l'historique comme une "erreur de condition/donnée".
+
+.. class:: infomark
+
+**ASTUCE :** Si vos données ne sont pas au format tabulé, utilisez l'outil *Manipulation de texte-&gt;Convertir*
+
+-----
+
+**Syntaxe**
+
+L'outil filtre vous permet de réduire un jeu de données en utilisant des expressions conditionnelles simples.
+
+- Les colonnes sont référencées par **c** et un **nombre**. Par exemple, **c1** fait référence à la première colonne dun fichier tabulé
+- Soyez sûr que les opérateurs multi-caractères ne contiennet pas d'espaces ( i.e., **&lt;=** est valide alors que **&lt; =** ne l'est pas )
+- Quand vous utilisez l'opérateur 'égal à' **un signe égale double '==' doit être utilisé** ( i.e., **c1=='habitat'** )
+- Les valeurs non-numériques doivent être incluses entre simple ou double guillemets ( i.e., **c6=='+'** )
+- Une conditionnelle peut contenir des opérateurs logique, mais **soyez sûre que les opérateurs soient bien notés en minuscule** ( i.e., **(c1!='concarneau' and c1!='paris') or not c6=='+'** )
+
+-----
+
+**Exemple**
+
+- **c1=='concarneau'** sélectionne les lignes pour lesquelles le contenu de la première colonne est concarneau
+- **c3-c2&lt;100*c4** selectionne les lignes pour lesquelles la soustraction de la colonne 3 par la 2 est inférieure à la valeur de la colonne 4 multipliée par 100
+- **len(c2.split(',')) &lt; 4** sélectionnera les lignes pour lesquelles la seconde colonne a moins de 4 éléments séparés par des virgules
+- **c2>=1** sélectionnera les lignes pour lesquelles la valeur de la colonne 2 est supérieure ou égale à 1
+- Les nombres ne doivent pas contenir de virgules - **c2&lt;=44,554,350** ne fonctionnera pas, mais **c2&lt;=44554350** oui
+- Certains mots peuvent être utilisés, mais ils doivent être placés entre simple ou double guillemets ( i.e., **c3=='cesco'** )
+
+</help>
+</tool>

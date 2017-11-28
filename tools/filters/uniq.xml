@@ -1,0 +1,105 @@
+<tool id="Count1" name="Compter" version="1.0.2">
+  <description>le nombre d'occurrences de chaque enregistrement</description>
+  <command interpreter="python">uniq.py -i $input -o $out_file1 -c "$column" -d $delim -s $sorting</command>
+  <inputs>
+    <param name="input" type="data" format="tabular" label="Sur le jeu de données" help="Données non présentes? Voir ASTUCE i-dessous"/>
+    <param name="column" type="data_column" data_ref="input" multiple="True" numerical="False" label="Compter les occurrences des valeurs présentes dans la(les) colonne(s)" help="Liste de sélection multiple - Vous pouvez maintenir le bouton CTRL en cliquant pour sélectionner des multiples colonnes" />
+    <param name="delim" type="select" label="Délimité par">
+      <option value="T">Tabulation</option>
+      <option value="Sp">Espace</option>
+      <option value="Dt">Point</option>
+      <option value="C">Virgule</option>
+      <option value="D">Tiret</option>
+      <option value="U">Underscore</option>
+      <option value="P">Double point</option>
+    </param>
+    <param name="sorting" type="select" label="Comment les résultats doivent t'ils être triés ?">
+      <option value="value">Par les valeurs comptées</option>
+      <option value="largest">Avec la valeur la plus présente en premier</option>
+      <option value="smallest">Avec la valeur la plus rare en premier</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data format="tabular" name="out_file1" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="input" value="1.bed"/>
+      <output name="out_file1" file="uniq_out.dat"/>
+      <param name="column" value="1"/>
+      <param name="delim" value="T"/>
+    </test>
+    <test>
+      <param name="input" value="species_assignment.tabular" ftype="tabular"/>
+      <output name="out_file1" file="species_assignment_c2.tabular"/>
+      <param name="column" value="2"/>
+      <param name="delim" value="T"/>
+    </test>
+    <test>
+      <param name="input" value="species_assignment.tabular" ftype="tabular"/>
+      <output name="out_file1" file="species_assignment_c2_c3.tabular"/>
+      <param name="column" value="2,3"/>
+      <param name="delim" value="T"/>
+    </test>
+    <test>
+      <param name="input" value="species_assignment.tabular" ftype="tabular"/>
+      <output name="out_file1" file="species_assignment_c2_c3_largest.tabular"/>
+      <param name="column" value="2,3"/>
+      <param name="delim" value="T"/>
+      <param name="sorting" value="largest"/>
+    </test>
+    <test>
+      <param name="input" value="species_assignment.tabular" ftype="tabular"/>
+      <output name="out_file1" file="species_assignment_c2_c3_smallest.tabular"/>
+      <param name="column" value="2,3"/>
+      <param name="delim" value="T"/>
+      <param name="sorting" value="smallest"/>
+    </test>
+  </tests>
+  <help>
+.. class:: infomark
+
+**ASTUCE:** Si vos données ne sont pas au format tabulé, utiliser *Manipulation de fichiers texte-&gt;Convertir*
+
+-----
+
+**Syntaxe**
+
+Cet outil compte les occurrences de valeurs uniques dans la(les) colonne(s) sélectionnée(s).
+
+- Si de multiples colonnes sont sélectionnées, le comptage est effectué sur chaque group unique de toute les valeurs des colonnes sélectionnées.
+- La première colonne du jeu de données résultant correspondera au comptage des valeurs uniques de la (des) colonne(s) sélectionnée(s) et sera suivi par chaque valeur unique.
+
+-----
+
+**Exemple**
+
+- Données d'entrée::
+     
+       chr1   10  100  gene1
+       chr1  105  200  gene2
+       chr1  205  300  gene3
+       chr2   10  100  gene4
+       chr2 1000 1900  gene5
+       chr3   15 1656  gene6
+       chr4   10 1765  gene7
+       chr4   10 1765  gene8
+
+- Compter les valeurs uniques dans la colonne c1 générera le résultat suivant ::
+
+       3 chr1
+       2 chr2
+       1 chr3
+       2 chr4   
+
+- Compter les valeurs uniques dans le groupement des colonnes c2 et c3 générera le résultat suivant ::
+
+       2    10    100
+       2    10    1765
+       1    1000  1900
+       1    105   200
+       1    15    1656
+       1    205   300
+
+</help>
+</tool>

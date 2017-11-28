@@ -1,0 +1,49 @@
+<tool id="secure_hash_message_digest" name="Vérification de l'intégrité d'un jeu de données" version="0.0.1">
+    <description>via md5, sha1 ou autres méthodes</description>
+    <command interpreter="python">secure_hash_message_digest.py --input "${input1}" --output "${out_file1}"
+        #if $algorithms.value:
+            #for $algorithm in str( $algorithms ).split( "," ):
+                --algorithm "${algorithm}"
+            #end for
+        #end if
+    </command>
+    <inputs>
+        <param format="data" name="input1" type="data" label="Fichier texte"/>
+        <param name="algorithms" type="select" multiple="True" display="checkboxes" label="Choisir l'algoritme">
+          <option value="md5"/>
+          <option value="sha1"/>
+          <option value="sha224"/>
+          <option value="sha256"/>
+          <option value="sha384"/>
+          <option value="sha512"/>
+          <validator type="no_options" message="Vous devez sélectionner au moins un algoritme." />
+        </param>
+    </inputs>
+    <outputs>
+        <data format="tabular" name="out_file1"/>
+    </outputs>
+    <tests>
+        <test>
+          <param name="input1" value="1.bed"/>
+          <param name="algorithms" value="md5,sha1,sha224,sha384,sha512"/>
+          <output name="out_file1" file="secure_hash_message_digest_out1.tabular" />
+        </test>
+    </tests>
+    <help>
+
+**Ce que fait l'outil**
+
+Cet outil génére des messages de sécurité correspondant à un jeu de données en utilisant l'algoritme choisi.
+
+------
+
+**Citation**
+
+Si vous utilisez cet outil dans Galaxy, merci de citer `Blankenberg D, Gordon A, Von Kuster G, Coraor N, Taylor J, Nekrutenko A; Galaxy Team. Manipulation of FASTQ data with Galaxy. Bioinformatics. 2010 Jul 15;26(14):1783-5. &lt;http://www.ncbi.nlm.nih.gov/pubmed/20562416&gt;`_
+
+
+  </help>
+  <citations>
+    <citation type="doi">10.1093/bioinformatics/btq281</citation>
+  </citations>
+</tool>

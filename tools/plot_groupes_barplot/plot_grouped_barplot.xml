@@ -1,0 +1,145 @@
+<tool id="plot_grouped_barplot" name="Représentation en histogrammes groupés" version="0.1.0">
+    <description>avec R</description>
+
+    <requirements>
+        <requirement type="package" version="3.2.1">R</requirement>
+        <requirement type="package" version="1.20.0">r-getopt</requirement>
+    </requirements>
+
+    <stdio>
+        <exit_code range="1:" />
+        <exit_code range=":-1" />
+    </stdio>
+
+    <version_command></version_command>
+
+    <command><![CDATA[
+        Rscript $__tool_directory__/plot_grouped_barplot.R
+            --input_file $input_file
+            --header $header
+
+            #if str($output_format)=="pdf"
+                --output_pdf_file $output_pdf_file
+            #else
+                --output_svg_file $output_svg_file
+            #end if
+
+            #set $column_with_data=""
+            #set $colors=""
+            #set $names=""
+            #set $sep=""
+            #for sample in $samples:
+                #set $column_with_data = $column_with_data + $sep + str($sample.column_id)
+                #set $colors = $colors + $sep + str($sample.color)
+                #set $names = $names + $sep +str($sample.name)
+                #set $sep=","
+            #end for
+            #set $column_with_data = $column_with_data
+            #set $colors = $colors
+            #set $names = $names
+
+            --data_column $column_with_data
+            --col "$colors"
+            --names "$names"
+            --replace_null $replace_null
+            --order $order
+            --names_column $names_column
+            --xlab "$xlab"
+            --log $log
+            --bottom_margin $bottom_margin
+            --left_margin $left_margin
+            --top_margin $top_margin
+            --right_margin $right_margin
+            --legend_pos $legend_pos
+    ]]></command>
+
+    <inputs>
+        <param name="input_file" type="data" format="tabular,tsv,csv" label="Donnée d'entrée" help="Fichier au format tabulé avec des colonnes séparés par des tabulations et une première ligne d'en-tête (--input_file)"/>
+
+        <param name="header" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Présence d'un en-tête en première ligne?" help="(--header)"/>
+
+        <param name="output_format" label="Format de l'image a générer" type="select" help="">
+            <option value="pdf" selected="True">PDF</option>
+            <option value="svg">SVG</option>
+        </param>
+
+        <repeat name="samples" title="Ajouter des informations relatifs aux échantillons (id colonne, nom, couleur)" >
+            <param name="name" type="text" label="Nom de la donnée" help="(--sample_name)"/>
+            <param name="column_id" type="data_column" data_ref="input_file" label="Colonne dontenant les données correspondantes" multiple="false" numerical="true" help="(après normalisation, --charact_input_file)"/>
+            <param name="color" label="couleur des barres" type="text" value= "blue" help="code couleur R (--col)"/>
+        </repeat>
+        <param name="replace_null" type="boolean" truevalue="TRUE" falsevalue="FALSE" label="Remplacer les valeurs nulles par NA?" help="(--replace_null)"/>
+        <param name="order" type="boolean" truevalue="TRUE" falsevalue="FALSE" label="Ordre donné à la première donnée choisie ?" help="(--order)"/>
+
+        <param name="names_column" type="data_column" data_ref="input_file" multiple="false" numerical="false" label="Colonne contenant les noms des jeux de données?" help="(--names_column)" />
+
+        <param name="xlab" type="text" value="" label="Titre pour l'axe X" help="(--xlab)"/>
+
+        <param name="log" type="boolean" truevalue="TRUE" falsevalue="FALSE" label="Mise à l'échelle en utilisant le log?" help="(--log)"/>
+
+        <param name="bottom_margin" type="integer" value="5" label="Marge inférieure" help="(--bottom_margin)"/>
+        <param name="left_margin" type="integer" value="19" label="Marge de gauche" help="(--left_margin)"/>
+        <param name="top_margin" type="integer" value="1" label="Marge supérieure" help="(--top_margin)"/>
+        <param name="right_margin" type="integer" value="1" label="Marge de droite" help="(--right_margin)"/>
+        <param name="legend_pos" label="Position de la légende" type="select" help="">
+            <option value="topright" selected="True">En haut à droite</option>
+            <option value="topleft">En haut à gauche</option>
+            <option value="bottomright">En bas à droite</option>
+            <option value="bottomleft">En bas à gauche</option>
+        </param>
+    </inputs>
+
+    <outputs>
+        <data name="output_pdf_file" format="pdf"
+            label="${tool.name} on ${on_string}: PDF barplot">
+            <filter>output_format=="pdf"</filter>
+        </data>
+        <data name="output_png_file" format="png"
+            label="${tool.name} on ${on_string}: PNG barplot">
+            <filter>output_format=="png"</filter>
+        </data>
+        <data name="output_svg_file" format="svg"
+            label="${tool.name} on ${on_string}: SVG barplot">
+            <filter>output_format=="svg"</filter>
+        </data>
+    </outputs>
+
+    <tests>
+        <test>
+            <param name="input_file" value="input_file.txt"/>
+            <param name='header' value="FALSE"/>
+            <param name="output_format" value="pdf"/>
+            <param name="samples_0|name" value="A"/>
+            <param name="samples_0|column_id" value="2"/>
+            <param name="samples_0|color" value="blue"/>
+            <param name="samples_1|name" value="B"/>
+            <param name="samples_1|column_id" value="3"/>
+            <param name="samples_1|color" value="red"/>
+            <param name="replace_null" value="FALSE"/>
+            <param name="order" value="FALSE"/>
+            <param name="names_column" value="1"/>
+            <param name='xlab' value=""/>
+            <param name='log' value="FALSE"/>
+            <param name='bottom_margin' value="5"/>
+            <param name="left_margin" value="19"/>
+            <param name='top_margin' value="1"/>
+            <param name='right_margin' value="1"/>
+            <param name="legend_pos" value="topright"/>
+            <output name="output_pdf_file" file="output_file.pdf"/>
+        </test>
+    </tests>
+
+    <help><![CDATA[
+**Ce que fait l'outil**
+
+Cet outil produite une représentation graphique de type diagramme en bâton sur des données multiples :
+
+.. image:: $PATH_TO_IMAGES/output.png
+   :scale: 50 %
+
+Cet outil utilise la fonction barplot de R. La donnée d'entrée doit être au format tabulé avec plusieurs colonnes : une colonne contenant les noms de lignes (pour nommer les bâtons) et au moins une colonne contenant de la donnée. L'image de sortie est personnalisable (marges, positions de la légende, ...) et peut être exportée sous différents formats. 
+    ]]></help>
+
+    <citations>
+    </citations>
+</tool>

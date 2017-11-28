@@ -1,0 +1,48 @@
+<tool id="Condense characters1" name="Condenser" version="1.0.0">
+  <description>des caractères consécutifs</description>
+  <command interpreter="perl">condense_characters.pl $input $character $out_file1</command>
+  <inputs>
+<!--    <display>condense all consecutive $character from $input</display> -->
+    <param name="character" type="select" label="Condenser tous les caractères consécutifs du type">
+      <option value="T">Tabulations</option>
+      <option value="Sp">Espaces</option>
+      <option value="Dt">Points</option>
+      <option value="C">Virgules</option>
+      <option value="D">Tirets</option>
+      <option value="U">Underscores</option>
+      <option value="P">Pipes</option>
+    </param>
+    <param format="txt" name="input" type="data" label="dans ce jeu de données"/>
+  </inputs>
+  <outputs>
+    <data format="input" name="out_file1" metadata_source="input" />
+  </outputs>
+  <tests>
+    <test>
+      <param name="character" value="T"/>
+      <param name="input" value="1.bed"/>
+      <output name="out_file1" file="eq-condense.dat"/>
+    </test>
+  </tests>
+  <help>
+
+**Ce que fait l'outil**
+
+Cet outil condense tous caractères consécutifs d'un type spécifique.
+
+-----
+
+**Exemple**
+
+- Donnée d'entré::
+
+    individuX,,,10,,,,,20
+    individuY,,5,,,,,12,15,9,
+
+- Condenser toutes les virgules consécutives. Le fichier ci-dessus sera converti en::
+
+    individuX,10,20
+    individuY,5,12,15,9
+
+</help>
+</tool>
