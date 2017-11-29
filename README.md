@@ -8,7 +8,8 @@ Following [GCC2016 lightning talk](https://gcc16.sched.com/event/7Zgd/65-million
 This repository will gather ideas and development of Galaxy-E tools 
 
 # A dedicated French version of Galaxy
-Following the @dannon [PR](https://github.com/galaxyproject/galaxy/pull/3762) @ValentinChCloud will work on this task.
+ ~~Following the @dannon [PR](https://github.com/galaxyproject/galaxy/pull/3762) @ValentinChCloud will work on this task. ~~
+New version of the galaxy client incomming, a new PR has been open [PR](https://github.com/galaxyproject/galaxy/pull/5089)
 
 # Interesting Data sources
 * WorldClim - Global Climate Data http://www.worldclim.org/
@@ -25,7 +26,7 @@ Following the @dannon [PR](https://github.com/galaxyproject/galaxy/pull/3762) @V
 
 # Interesting tools
 * Work with messy data from db
- * [OpenRefine](http://openrefine.org/) through Interactive Environment ?
+ * [OpenRefine](http://openrefine.org/) Implemented as GIE [docker repo](DockerHub repo : https://hub.docker.com/r/valentinchdock/openrefine-galaxy-ie/)
  * Other solutions:
     * [DataCleaner](https://datacleaner.org/) 
     * [Karma](http://usc-isi-i2.github.io/karma/) A Data Integration Tool
