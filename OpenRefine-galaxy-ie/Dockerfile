@@ -69,7 +69,8 @@ RUN /OpenRefine/refine build
 RUN wget -O - --no-check-certificate https://github.com/ValentinChCloud/refine-python/archive/master.tar.gz | tar -xz
 RUN mv refine-python-master refine-python
 
-
+#Import data
+ADD ./get_notebook.py /get_notebook.py
 
 
 # Our very important scripts. Make sure you've run `chmod +x startup.sh
@@ -103,7 +104,6 @@ COPY ./proxy.conf /proxy.conf
 
 VOLUME ["/import"]
 WORKDIR /import/
-
 
 
 

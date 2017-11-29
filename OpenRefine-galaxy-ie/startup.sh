@@ -8,7 +8,7 @@ cp /proxy.conf /etc/nginx/sites-enabled/default;
 
 
 #load dataset into openrefine
-
+python /get_notebook.py
 files=(/import/*)
 until [[ -f "$files" ]]
 do
@@ -16,10 +16,7 @@ do
 	sleep 4
 done
 
-res=$(ls /import/)
-res_cut=$(ls /import/ |cut -d" " -f2)
-cp "/import/$res" "/import/$res_cut"
-../OpenRefine/refine  &
+exec /OpenRefine/refine -m $REFINE_MEMORY &
 
 #Check if openrefine is up to work
 STATUS=$(curl --include 'http://127.0.0.1:3333' 2>&1)
@@ -31,10 +28,10 @@ do
 done
 # Createnew project with the dataset
 cd /refine-python
-python openrefine_create_project_API.py "/import/$res_cut" &
+python openrefine_create_project_API.py "/import/$DATASET_NAME" &
 
 # Launch traffic monitor which will automatically kill the container if traffic
 # stops
-/monitor_traffic.sh &
+exec /monitor_traffic.sh &
 #And nginx in foreground mode.
 nginx -g 'daemon off;'

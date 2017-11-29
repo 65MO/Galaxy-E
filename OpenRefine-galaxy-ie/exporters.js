@@ -125,7 +125,7 @@ ExporterManager.handlers.exportRows = function(format, ext) {
 var xhttp = new XMLHttpRequest();
   xhttp.open("POST", "command/core/export-rows", true);
   xhttp.send();
-  var names = window.alert(theProject.metadata.name+$.i18n._('core-index')["export-galaxy"]);	
+  window.alert(theProject.metadata.name+$.i18n._('core-index')["export-galaxy"]);	
 
 };
 
