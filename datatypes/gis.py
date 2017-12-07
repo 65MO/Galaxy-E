@@ -2,14 +2,10 @@
 GIS classes
 """
 
-import data, logging
+import data
 from galaxy.datatypes.metadata import MetadataElement
 from galaxy.datatypes import metadata
 from galaxy.datatypes.sniff import *
-from galaxy import eggs
-from xml import GenericXml
-import urllib2
-import subprocess
 
 # The base class for all GIS data
 class GIS( data.Data ):
