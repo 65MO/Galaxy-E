@@ -58,6 +58,7 @@ New version of the galaxy client incomming, a new PR has been open [PR](https://
    * Calculate mean by buffer
 * Visualize GIS data
    * Through "classical" GIS specialists oriented solutions:
+      * [Geoserver](http://geoserver.org/)
       * [QGIS server](https://github.com/jancelin/docker-qgis-server) ou [QGIS desktop](https://github.com/jancelin/docker-qgis-desktop). A particular interesting QGIS based tool : [LizMap](https://www.3liz.com/lizmap.html) et [LizMap Docker](https://github.com/jancelin/docker-lizmap)
       * [GeoCMS](https://github.com/dotgee/geocms) GeoCMS is a complete open source solution for consuming and visualizing geospatial data
       * ~~[OpenEV](http://openev.sourceforge.net/) a software library and application for viewing and analysing raster and vector geospatial data (last release 2007!)~~
