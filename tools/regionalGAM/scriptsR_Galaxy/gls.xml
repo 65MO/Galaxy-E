@@ -1,18 +1,26 @@
 <tool id="gls" name="Linear regression" version="0.1">
-  <command detect_errors="exit_code"><![CDATA[
-	Rscript $__tool_directory__/gls.R $input1 $input2 $output $output2 ]]>
-  </command>
-  <inputs>
-    <param format="data" name="input1" type="data" label="Fichier produit par l'outil glmmpql/Expected temporal trend"/>
-    <param format="data" name="input2" type="data" label="Fichier produit par l'outil ab_index"/>
-  </inputs>
-  <outputs>
-    <data format="txt" name="output" from_work_dir="mod-summary.txt" />
-    <data format="rdata" name="output2" from_work_dir="mod.rda" />
-  </outputs>
-  <help>
+    <command detect_errors="exit_code"><![CDATA[
+        Rscript $__tool_directory__/gls.R $input1 $input2 $output $output2 ]]>
+    </command>
+    <inputs>
+        <param format="data" name="input1" type="data" label="Fichier produit par l'outil glmmpql/Expected temporal trend"/>
+        <param format="data" name="input2" type="data" label="Fichier produit par l'outil ab_index"/>
+    </inputs>
+    <outputs>
+        <data format="txt" name="output" from_work_dir="mod-summary.txt" />
+        <data format="rdata" name="output2" from_work_dir="mod.rda" />
+    </outputs>
+    <tests>
+    <test>
+        <param name="input1" value="glmmpql.tabular"/>
+        <param name="input2" value="data_index.tabular"/>
+        <param name="output" value="gls_sum.txt"/>
+        <param name="output2" value="gls_rda.rda"/>
+    </test>
+    </tests>
+    <help>
 Simple régression linéraire pour modaliser les tendance temporelles.
 
 See https://github.com/RetoSchmucki/regionalGAM .
-  </help>
+    </help>
 </tool>
