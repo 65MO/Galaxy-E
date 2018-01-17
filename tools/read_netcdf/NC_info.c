@@ -1,8 +1,6 @@
-//gcc lect_data1.c -lnetcdf
+//Compil like
+//gcc NC_info.c -lnetcdf -o my_exe
 
-//traitement fichier a faire
-//while read -r l; do a=$(echo $l | cut -d' ' -f1);echo $l>var/dimensions_$a; done < model_var.tab
-//for f in *; do cat $f | sed 's/ /\t\n/g' | sed '$s/$/ /' >$f.tab; done
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
