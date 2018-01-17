@@ -1,25 +1,28 @@
 <tool id="Rdata_exctract" name="Rdata extractor" version="0.1">
-  <command detect_errors="exit_code"><![CDATA[
+    <requirements>
+       <!-- <requirement type="package" version="3.2.1">R</requirement>-->
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
 	Rscript $__tool_directory__/rdata_extractor.R $rdata $selectedattributes $summary
 ]]>
-  </command>
-  <inputs>
-	<param name="rdata" type="data" label="Rdata file to explore" format="rdata"/>
-	<param name="rdata_attributes" type="data" label="File which contains attributes details from the .Rdata" format="tabular"/>
+    </command>
+    <inputs>
+        <param name="rdata" type="data" label="Rdata file to explore" format="rdata"/>
+        <param name="rdata_attributes" type="data" label="File which contains attributes details from the .Rdata" format="tabular"/>
 
-	<param name="selectedattributes" label="Select which attribute(s) you want to extract" type="select" display="checkboxes" multiple="true">
-          <options from_dataset="rdata_attributes">
-            <column name="value" index="0"/>
-          </options>
+        <param name="selectedattributes" label="Select which attribute(s) you want to extract" type="select" display="checkboxes" multiple="true">
+            <options from_dataset="rdata_attributes">
+                <column name="value" index="0"/>
+            </options>
         </param>
 
-  </inputs>
-  <outputs>
-    <data  name="summary">
-		<discover_datasets pattern="__designation_and_ext__" visible="true"/>
-	</data>
-  </outputs>
-  <help>
+    </inputs>
+    <outputs>
+        <data  name="summary">
+            <discover_datasets pattern="__designation_and_ext__" visible="true"/>
+        </data>
+    </outputs>
+    <help>
 This tool can extract elements from a Rdata file. It needs the Rdata binary file plus the list of its composition.
-  </help>
+    </help>
 </tool>

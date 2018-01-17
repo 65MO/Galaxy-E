@@ -1,15 +1,22 @@
 <tool id="plot_trend" name="Trend" version="0.1">
-  <command detect_errors="exit_code"><![CDATA[
-	Rscript $__tool_directory__/plot_trend.R $input1 $input2 $output ]]>
-  </command>
-  <inputs>
-    <param format="data" name="input1" type="data" label="Fichier produit par l'outil ab_index"/>
-    <param format="rdata" name="input2" type="data" label="Modèle gls"/>
-  </inputs>
-  <outputs>
-    <data format="png" name="output" from_work_dir="output-plot-trend.png" />
-  </outputs>
-  <help>
+    <command detect_errors="exit_code"><![CDATA[
+        Rscript $__tool_directory__/plot_trend.R $input1 $input2 $output ]]>
+    </command>
+    <inputs>
+        <param format="data" name="input1" type="data" label="Fichier produit par l'outil ab_index"/>
+        <param format="rdata" name="input2" type="data" label="Modèle gls" help="Fichier Rdata"/>
+    </inputs>
+    <outputs>
+        <data format="png" name="output" from_work_dir="output-plot-trend.png" />
+    </outputs>
+    <tests>
+        <test>
+            <param name="input1" value="data_index.tabular"/>
+            <param name="input2" value="gls-adju_rda.rda"/>
+            <param name="output" value="trend.png"/>
+        </test>
+    </tests>
+    <help>
 See https://github.com/RetoSchmucki/regionalGAM .
-  </help>
+    </help>
 </tool>

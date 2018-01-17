@@ -1,14 +1,22 @@
 <tool id="autocor-acf" name="Autocorrection residus" version="0.1">
-  <command detect_errors="exit_code"><![CDATA[
-	Rscript $__tool_directory__/autocorr-res_acf.R $input1 $output ]]>
-  </command>
-  <inputs>
-    <param format="rdata" name="input1" type="data" label="Modèle gls"/>
-  </inputs>
-  <outputs>
-    <data format="png" name="output" from_work_dir="output-acf.png" />
-  </outputs>
-  <help>
+    <command detect_errors="exit_code"><![CDATA[
+        Rscript $__tool_directory__/autocorr-res_acf.R $input1 $output ]]>
+    </command>
+    <inputs>
+        <param format="rdata" name="input1" type="data" label="Modèle gls" help="Fichier Rdata"/>
+    </inputs>
+    <outputs>
+        <data format="png" name="output" from_work_dir="output-acf.png" />
+    </outputs>
+    <tests>
+        <test>
+            <param name="input1" value="mod1"/>
+            <param name="output" value="res.png"/>
+        </test>
+    </tests>
+
+
+    <help>
 See https://github.com/RetoSchmucki/regionalGAM .
-  </help>
+    </help>
 </tool>
