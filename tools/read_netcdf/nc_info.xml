@@ -2,11 +2,11 @@
     <requirements>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
-        $__tool_directory__/NC_info.exe $input
+        '$__tool_directory__/NC_info.exe' '$input'
         &&
-        bash $__tool_directory__/div_vartab.sh $var_tabs
+        bash '$__tool_directory__/div_vartab.sh' '$var_tabs'
         &&
-        ncdump -h $input
+        ncdump -h '$input'
     ]]></command>
     <inputs>
         <param type="data" name="input" label="Netcdf file" format="netcdf" help="Netcdf file you need information about."/>
