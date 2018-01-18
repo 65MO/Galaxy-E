@@ -23,6 +23,8 @@ New version of the galaxy client incomming, a new PR has been open [PR](https://
 * CRBPO data https://crbpodata.mnhn.fr/
 * Movebank data https://www.movebank.org/
 * API-Agro import agrifood related data http://www.api-agro.fr/
+* Free GIS geographic datasets: http://freegisdata.rtwilson.com/
+* Global Environmental Layers: http://worldgrids.org/doku.php
 
 # Interesting tools
 * Work with messy data from db
