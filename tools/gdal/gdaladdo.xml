@@ -6,12 +6,12 @@
         gdaladdo '$input1'
             -ro
             #if $levels!='e.g : 2 4 8 16'
-                #if $levels==''
+                #if '$levels'==''
                     -clean 
                 #else
-                    $levels
+                    '$levels'
                     --config COMPRESS_OVERVIEW DEFLATE
-                    && cp $input1'.ovr' output_ovr
+                    && cp '$input1''.ovr' 'output_ovr'
                 #end if
             #else
                 -clean

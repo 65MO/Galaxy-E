@@ -3,11 +3,11 @@
         <requirement type="package" version="2.1.0">gdal</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
-        ogrinfo -ro $input1.extra_files_path/'Shapefile.shp' -al 
+        ogrinfo -ro '$input1.extra_files_path/Shapefile.shp' -al 
             #if $settings.advanced=='advanced'
 
                 #unless $settings.sql=='eg : SELECT * FROM Shapefile WHERE X>10':
-                    -sql "$settings.sql"
+                    -sql '$settings.sql'
                 #end unless
                 
                 $settings.so

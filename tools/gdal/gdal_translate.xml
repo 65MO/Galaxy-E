@@ -5,7 +5,7 @@
     <command detect_errors="exit_code"><![CDATA[
         gdal_translate 
 
-            $typeinput.input1 '$output'
+            '$typeinput.input1' '$output'
             #if $settings.advanced=='advanced'
                 
                 $settings.strict
@@ -15,7 +15,7 @@
                 #end unless
                 
                 #unless $settings.mask=='e.g : -mask 1'
-                    $settings.mask
+                    '$settings.mask'
                 #end unless
                 
                 #if $settings.condi_resample.resample=='resampling'
@@ -51,15 +51,15 @@
                 $settings.norat
                 
                 #unless $settings.co=='e.g : COMPRESS=JPEG'
-                    -co $settings.co
+                    -co '$settings.co'
                 #end unless
                 
                 #unless $settings.mo=='META-TAG=VALUE'
-                    -mo $settings.mo
+                    -mo '$settings.mo'
                 #end unless
                 
                 #unless $settings.oo=='NAME=VALUE'
-                    -oo $settings.oo
+                    -oo '$settings.oo'
                 #end unless
                 
                 #unless $settings.a_srs==''
@@ -67,7 +67,7 @@
                 #end unless
                             
             #end if 
-            -of $of
+            -of '$of'
         
     ]]></command>
     <inputs>

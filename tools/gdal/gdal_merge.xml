@@ -16,11 +16,11 @@
             #if $settings.advanced=='advanced'
                 
                 #unless $settings.co=='NAME=VALUE'
-                    -co $settings.co
+                    -co '$settings.co'
                 #end unless
                 
                 #unless $settings.ot=='Datatype'
-                    -co $settings.ot
+                    -ot '$settings.ot'
                 #end unless
                 
                 #if $settings.condi_ps.pixelsize=='use_ps'
@@ -40,11 +40,11 @@
                 $settings.pct
                 
                 #unless $settings.n=='nodata_value'
-                    -n $settings.n
+                    -n '$settings.n'
                 #end unless
                 
                 #unless $settings.a_nodata=='output_nodata_value'
-                    -a_nodata $settings.a_nodata
+                    -a_nodata '$settings.a_nodata'
                 #end unless
                 
                 #unless $settings.init=='value(s)'
