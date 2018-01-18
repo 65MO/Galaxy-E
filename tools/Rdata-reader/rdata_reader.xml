@@ -3,7 +3,7 @@
 <!--        <requirement type="package" version="3.2.1">R</requirement> -->
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
-	Rscript $__tool_directory__/rdata_reader.R $input1 $rdata_list_attr ]]>
+        Rscript '$__tool_directory__/rdata_reader.R' '$input1' '$rdata_list_attr' ]]>
     </command>
     <inputs>
         <param format="rdata" name="input1" type="data" label="Rdata binary file to explore"/>

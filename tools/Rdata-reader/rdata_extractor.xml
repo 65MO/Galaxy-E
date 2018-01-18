@@ -3,7 +3,7 @@
        <!-- <requirement type="package" version="3.2.1">R</requirement>-->
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
-	Rscript $__tool_directory__/rdata_extractor.R $rdata $selectedattributes $summary
+	Rscript '$__tool_directory__/rdata_extractor.R' '$rdata' $selectedattributes '$summary'
 ]]>
     </command>
     <inputs>
