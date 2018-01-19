@@ -1,15 +1,22 @@
 <tool id="glmmpql" name="Expected temporal trend" version="0.1">
-  <command detect_errors="exit_code"><![CDATA[
-	Rscript $__tool_directory__/glmmpql.R $input1 $output $output2 ]]>
-  </command>
-  <inputs>
-    <param format="data" name="input1" type="data" label="Fichier produit par l'outil ab_index"/>
-  </inputs>
-  <outputs>
-    <data format="png" name="output" from_work_dir="output-plot.png" />
-    <data format="tabular" name="output2" from_work_dir="output-glmmpql" />
-  </outputs>
-  <help>
+    <command detect_errors="exit_code"><![CDATA[
+        Rscript $__tool_directory__/glmmpql.R $input1 $output $output2 ]]>
+    </command>
+    <inputs>
+        <param format="data" name="input1" type="data" label="Fichier tabulé, produit par l'outil ab_index"/>
+    </inputs>
+    <outputs>
+        <data format="png" name="output" from_work_dir="output-plot.png" />
+        <data format="tabular" name="output2" from_work_dir="output-glmmpql" />
+    </outputs>
+    <tests>
+        <test>
+            <param name="input1" value="data_index.tabular"/>
+            <param name="output" value="glmmpql-plot.png"/>
+            <param name="output2" value="glmmpql.tabular"/>
+        </test>
+    </tests>
+    <help>
 See https://github.com/RetoSchmucki/regionalGAM .
-  </help>
+    </help>
 </tool>

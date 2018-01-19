@@ -1,15 +1,22 @@
 <tool id="ab_index" name="Abundance index" version="0.1">
-  <command detect_errors="exit_code"><![CDATA[
-	Rscript $__tool_directory__/ab_index.R $input1 $input2 $output ]]>
-  </command>
-  <inputs>
-    <param format="data" name="input1" type="data" label="Fichier source, doit contenir les colonnes SPECIES,SITE,YEAR,MONTH,DAY et COUNT"/>
-    <param format="data" name="input2" type="data" label="Source file"/>
-  </inputs>
-  <outputs>
-    <data format="tabular" name="output" from_work_dir="data.index" />
-  </outputs>
-  <help>
+    <command detect_errors="exit_code"><![CDATA[
+        Rscript $__tool_directory__/ab_index.R $input1 $input2 $output ]]>
+    </command>
+    <inputs>
+        <param format="data" name="input1" type="data" label="Fichier de comptage" help="Le fichier doit contenir les colonnes SPECIES,SITE,YEAR,MONTH,DAY et COUNT. Fichier CSV separteur ',' ou tabulation."/>
+        <param format="data" name="input2" type="data" label="Flight curve output"/>
+    </inputs>
+    <outputs>
+        <data format="tabular" name="output" from_work_dir="data.index" />
+    </outputs>
+    <tests>
+        <test>
+            <param name="input1" value="gatekeeper_CM"/>
+            <param name="input2" value="flight_curve_result.tabular"/>
+            <param name="output" value="data_index.tabular"/>
+        </test>
+    </tests>
+    <help>
 This tool is an implementation of the abundance_index function from RegionalGAM package.
-  </help>
+    </help>
 </tool>

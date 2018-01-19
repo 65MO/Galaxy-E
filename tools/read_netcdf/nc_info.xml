@@ -1,0 +1,32 @@
+<tool id="extract_nc_info" name="Netcdf Info" version="0.1.0">
+    <requirements>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+        $__tool_directory__/NC_info.exe $input
+        &&
+        bash $__tool_directory__/div_vartab.sh $var_tabs
+        &&
+        ncdump -h $input
+    ]]></command>
+    <inputs>
+        <param type="data" name="input" label="Netcdf file" format="netcdf" help="Netcdf file you need information about."/>
+    </inputs>
+    <outputs>
+        <data name="var_tabs">
+            <discover_datasets pattern="__designation_and_ext__" visible="true"/>
+        </data>
+    </outputs>
+
+    <help><![CDATA[
+The Netcdf Info tool use the netcdf functions : https://www.unidata.ucar.edu/software/netcdf/docs/index.html
+
+First the tool will give general information about the input file in the stdout. (command $ncdump -h inputfile)
+
+A general tabular 'variables' summarize dimensions details inside each available variable.
+
+A tabular file is created for every variable, it details dimensions inside it. (dimensions_varX.tabular).
+
+Run this tool before considering using Netcdf Read.
+    ]]></help>
+
+</tool>
