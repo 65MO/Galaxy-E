@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<tool_sheds>
+    <tool_shed name="Galaxy Main Tool Shed" url="https://toolshed.g2.bx.psu.edu/"/>
+    <tool_shed name="App store Galaxy-E 65MO old" url="https://openstack-192-168-100-161.genouest.org/toolshed/"/>
+    <tool_shed name="App store Galaxy-E 65MO dev" url="https://openstack-192-168-100-25.genouest.org/toolshed/"/>
+    <tool_shed name="App store Galaxy TIM" url="https://openstack-192-168-101-42.genouest.org/toolshed/"/>
+<!-- Test Tool Shed should be used only for testing purposes.
+    <tool_shed name="Galaxy Test Tool Shed" url="https://testtoolshed.g2.bx.psu.edu/"/> 
+-->
+</tool_sheds>
