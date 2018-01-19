@@ -1,5 +1,6 @@
 <tool id="extract_nc_info" name="Netcdf Info" version="0.1.0">
     <requirements>
+        <requirement type="package" version="4.5.0">libnetcdf</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         '$__tool_directory__/NC_info.exe' '$input'
