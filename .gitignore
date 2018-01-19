@@ -19,4 +19,5 @@ tools/gdal/workshop_gdal.pdf
 tools/regionalGAM/fichiers_exec_tuto/flight_curve_result.tabular
 tools/regionalGAM/scriptsR_Galaxy/tool_test_output.html
 tools/regionalGAM/scriptsR_Galaxy/tool_test_output.json
-
+tool_test_output.html
+tool_test_output.json
