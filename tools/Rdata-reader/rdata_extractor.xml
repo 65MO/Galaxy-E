@@ -1,6 +1,6 @@
 <tool id="Rdata_exctract" name="Rdata extractor" version="0.1">
     <requirements>
-       <!-- <requirement type="package" version="3.2.1">R</requirement>-->
+        <requirement type="package" version="1.20.0">r-getopt</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
 	Rscript '$__tool_directory__/rdata_extractor.R' '$rdata' $selectedattributes '$summary'
