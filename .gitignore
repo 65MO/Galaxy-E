@@ -21,3 +21,12 @@ tools/regionalGAM/scriptsR_Galaxy/tool_test_output.html
 tools/regionalGAM/scriptsR_Galaxy/tool_test_output.json
 tool_test_output.html
 tool_test_output.json
+
+tools/Vigie-Chiro/b8e377f6c1000c9a65c1-obsDataCorrC2.csv_Alan
+tools/Vigie-Chiro/test-data/57985e424bbec1000d773c4bDataCorrC2.csv
+tools/Vigie-Chiro/test-data/57985e424bbec1000d773c4bDataCorrC2.tabular
+tools/Vigie-Chiro/test-data/57b5b8e377f6c1000c9a65c1DataCorrC2.csv
+tools/Vigie-Chiro/test-data/582ae419783121000fce8b4eDataCorrC2.csv
+tools/Vigie-Chiro/test-data/participation-57985e424bbec1000d773c4b-observations.csv
+tools/Vigie-Chiro/test-data/participation-57b5b8e377f6c1000c9a65c1-observations.tabular
+tools/Vigie-Chiro/test-data/participation-582ae419783121000fce8b4e-observations.csv
