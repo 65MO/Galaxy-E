@@ -28,15 +28,15 @@
             #if $settings.advanced=="advanced"
             
                 #unless $settings.to=='NAME=VALUE'
-                    -to $settings.to
+                    -to '$settings.to'
                 #end unless
                 
                 #unless $settings.wo=='NAME=VALUE'
-                    -wo $settings.wo
+                    -wo '$settings.wo'
                 #end unless
             
                 #unless $settings.order=='no_value'
-                    -order $settings.order
+                    -order '$settings.order'
                 #end unless
 
                 #if $settings.condi_resample.resample=='resampling'

@@ -44,17 +44,17 @@
                 $settings.q
                 
                 #unless $settings.oo=='NAME=VALUE'
-                    -oo $settings.oo
+                    -oo '$settings.oo'
                 #end unless
                 
                 $settings.allow_projection_difference
                 
                 #unless $settings.tileindex=='field_name'
-                    -tileindex $settings.tileindex
+                    -tileindex '$settings.tileindex'
                 #end unless
                 
                 #unless $settings.sb=='subdataset'
-                    -sb $settings.sb
+                    -sb '$settings.sb'
                 #end unless
                                         
             #end if 

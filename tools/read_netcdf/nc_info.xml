@@ -1,12 +1,27 @@
 <tool id="extract_nc_info" name="Netcdf Info" version="0.1.0">
     <requirements>
+        <requirement type="package" version="4.5.0">libnetcdf</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
-        $__tool_directory__/NC_info.exe $input
+        '$__tool_directory__/NC_info.exe' '$input'
         &&
-        bash $__tool_directory__/div_vartab.sh $var_tabs
+        while read -r l;do
+            a=\$(echo \$l | cut -d' ' -f1);echo \$l>dimensions_\$a
+            ;done <variables.tabular 
+            &&
+            for f in dimensions_*; 
+                do cat \$f | sed 's/ /\t\n/g' | sed '\$s/$/ /' >\$f.tabular
+                ; done
+            &&
+            for f in dimensions_*.tabular;do
+                cat \$f | awk 'NR % 2 != 0' \$f > \$f.2
+            &&
+            sed 1d \$f.2 > \$f 
+            &&
+            rm \$f.2
+        ;done
         &&
-        ncdump -h $input
+        ncdump -h '$input'
     ]]></command>
     <inputs>
         <param type="data" name="input" label="Netcdf file" format="netcdf" help="Netcdf file you need information about."/>

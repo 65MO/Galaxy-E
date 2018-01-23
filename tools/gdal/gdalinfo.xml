@@ -16,14 +16,14 @@
                 $settings.checksum
                 $settings.listmdd
                 $settings.proj4
-                -mdd $settings.mdd
+                -mdd '$settings.mdd'
             #end if
             #if $format.value=='json'
                 -json > '$outputJson'
-                && cat $outputJson | grep -A 1 "\"SUBDATASET_._NAME\":\".*\"," | cut -d "\"" -f4- | sed 's/..$//' | sed 's/\t//' | sed -e 'N; s/\n/\t/' > ${input1.name}_Subdatasets
+                && cat '$outputJson' | grep -A 1 "\"SUBDATASET_._NAME\":\".*\"," | cut -d "\"" -f4- | sed 's/..$//' | sed 's/\t//' | sed -e 'N; s/\n/\t/' > '${input1.name}_Subdatasets'
             #else
                 > '$outputDefault'
-               && cat $outputDefault | grep -A 1 "SUBDATASET_._NAME=.*:.*$" | cut -d "=" -f 2 | sed 's/\t//' | sed -e 'N; s/\n/\t/' > ${input1.name}_Subdatasets
+               && cat '$outputDefault' | grep -A 1 "SUBDATASET_._NAME=.*:.*$" | cut -d "=" -f 2 | sed 's/\t//' | sed -e 'N; s/\n/\t/' > '${input1.name}_Subdatasets'
             #end if
     ]]></command>
     <inputs>

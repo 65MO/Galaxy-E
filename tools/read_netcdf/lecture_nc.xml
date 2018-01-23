@@ -3,10 +3,11 @@
         <requirement type="package" version="2.1.0">matplotlib</requirement>
         <requirement type="package" version="1.3.1">netCDF4</requirement>
         <requirement type="package" version="1.0.0">scipy</requirement>
+        <requirement type="package" version="1.1.0">datamash</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
-        python $__tool_directory__/lec_general_ncdf.py $input
-        $var_tab $var
+        python '$__tool_directory__/lec_general_ncdf.py' '$input'
+        '$var_tab' $var
         #for $i,$uc in enumerate($user_choice)
             ${uc.dim} ${uc.comparator} ${uc.value}
         #end for 
@@ -14,16 +15,16 @@
             $condi_coord.lat_dim $condi_coord.lat_val $condi_coord.lon_dim $condi_coord.lon_val
         #end if
         &&
-        cat header | sed 's/array(\[//g' | sed 's/], dtype=float32)//g'| sed 's/,\s/_/g' | sed 's/(//g' | sed 's/)//g' > header_cleaned
+        cat 'header' | sed 's/array(\[//g' | sed 's/], dtype=float32)//g'| sed 's/,\s/_/g' | sed 's/(//g' | sed 's/)//g' > 'header_cleaned'
         &&
-        cat header_cleaned sortie.tabular > supersortie.tabular
+        cat 'header_cleaned' 'sortie.tabular' > 'supersortie.tabular'
         &&
-        bash $__tool_directory__/transpose.sh
+        datamash transpose < 'supersortie.tabular' > 'supersortie_transposed.tabular'
+        ##bash '$__tool_directory__/transpose.sh'
         &&
-        sed 's/_/\t/g' supersortie_transposed.tabular > 1 && mv 1 supersortie_transposed.tabular
+        sed -i 's/_/\t/g' 'supersortie_transposed.tabular'
         &&
-        cat header_names supersortie_transposed.tabular >temp.tabular
-        && sed 's/\s/\t/g' temp.tabular > final.tabular
+        cat 'header_names' 'supersortie_transposed.tabular' | sed 's/\s/\t/g' > 'final.tabular'
 
 
 
