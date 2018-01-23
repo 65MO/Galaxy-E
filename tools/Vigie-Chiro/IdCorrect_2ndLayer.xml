@@ -1,0 +1,65 @@
+<tool id="IdCorrect_2ndLayer" name="IdCorrect_2ndLayer.R" version="0.1">
+    <requirements>
+        <requirement type="package" version="1.20.0">r-getopt</requirement>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+        Rscript 
+         '$__tool_directory__/IdCorrect_2ndLayer.R' '$participation_file' 
+
+         #if $learner.condi_learner == "custom_learner":
+             '$learner.user_learner'
+         #else: 
+             '$__tool_directory__/ClassifEspC2b_171206.learner'
+         #end if
+
+         '${participation_file.name}' 
+         
+         '$output'
+]]>
+    </command>
+    <inputs>
+        <param name="participation_file" type="data" format="csv" label="Participation file"/>
+        <param name="learner" type="data" label="Choose your leaner" format="rdata"/>
+
+        <conditional name="learner">
+            <param name="condi_learner" type="boolean" checked="false" truevalue="custom_learner" falsevalue="default_learner" label="Use a cutsom learner" help="Default is ClassifEspC2b_171206"/>
+            <when value="default_learner">
+            </when>
+            <when value="custom_learner">        
+                <param name="user_learner" type="data" label="Choose your leaner" format="rdata"/>
+            </when>
+        </conditional>
+
+    </inputs>
+    <outputs>
+        <data name="output" from_work_dir="output.tabular" format="tabular"/>
+    </outputs>
+    <tests>
+        <test> 
+            <param name="participation_file" value="participation-57b5b8e377f6c1000c9a65c1-observations.csv"/>
+            <param name="condi_learner" value="default_learner"/>
+        </test>
+        <test>             
+            <param name="participation_file" value="participation-57b5b8e377f6c1000c9a65c1-observations.csv"/>
+            <param name="condi_learner" value="custom_learner"/>
+            <param name="user_learner" value="ClassifEspC2b_171206.learner"/>
+        </test> 
+
+
+
+    </tests>
+    <help><![CDATA[
+**What it does**
+
+This tool intend to correct ids from 1st layer of Tadarida software, and improve data output according to context (= the whole output of a sampling session).
+
+
+
+**Arguments**
+
+It should be called with 2 consecutive arguments :
+
+- a summary table of TadaridaC output from vigiechiro.herokuapp.com web portal. 
+- the 2nd layer classifier built on validated id in Vigie-Chiro database (eg : "ClassifEspC2b_171206.learner")
+  ]]></help>
+</tool>
