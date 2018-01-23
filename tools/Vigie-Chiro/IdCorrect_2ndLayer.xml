@@ -38,11 +38,13 @@
         <test> 
             <param name="participation_file" value="participation-57b5b8e377f6c1000c9a65c1-observations.csv"/>
             <param name="condi_learner" value="default_learner"/>
+            <param name="output" value="test_output.tabular"/>
         </test>
         <test>             
             <param name="participation_file" value="participation-57b5b8e377f6c1000c9a65c1-observations.csv"/>
             <param name="condi_learner" value="custom_learner"/>
             <param name="user_learner" value="ClassifEspC2b_171206.learner"/>
+            <param name="output" value="test_output.tabular"/>
         </test> 
 
 
