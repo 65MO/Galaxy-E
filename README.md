@@ -25,6 +25,8 @@ New version of the galaxy client incomming, a new PR has been open [PR](https://
 * API-Agro import agrifood related data http://www.api-agro.fr/
 * Free GIS geographic datasets: http://freegisdata.rtwilson.com/
 * Global Environmental Layers: http://worldgrids.org/doku.php
+* World Conservation Monitoring Centre: https://www.unep-wcmc.org/
+ * World Database on Protected Areas (WDPA) is the most comprehensive global database on terrestrial and marine protected areas.: https://protectedplanet.net/
 
 # Interesting tools
 * Work with messy data from db
