@@ -27,6 +27,8 @@ New version of the galaxy client incomming, a new PR has been open [PR](https://
 * Global Environmental Layers: http://worldgrids.org/doku.php
 * World Conservation Monitoring Centre: https://www.unep-wcmc.org/
  * World Database on Protected Areas (WDPA) is the most comprehensive global database on terrestrial and marine protected areas.: https://protectedplanet.net/
+* Chelsea Climate (Climatologies at high resolution for the earth’s land surface areas ): http://chelsa-climate.org/
+* E-OBS gridded dataset : http://www.ecad.eu/download/ensembles/download.php
 
 # Interesting tools
 * Work with messy data from db
