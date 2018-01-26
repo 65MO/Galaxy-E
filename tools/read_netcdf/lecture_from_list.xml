@@ -13,9 +13,7 @@
         lat=\$(echo \$line | cut -d' ' -f1) 
         lon=\$(echo \$line | cut -d' ' -f2)
         && 
-        if ! [[ \$lat =~ \$re ]] ; then echo \$lat && continue ;fi
-        &&
-        if ! [[ \$lon =~ \$re ]] ; then continue ;fi
+        if ! [[ \$lat =~ \$re ]] || ! [[ \$lon =~ \$re ]] ; then continue ;fi
         &&
         i=\$((\$i+1)) &&
         python '$__tool_directory__/lec_general_ncdf.py' '$input' '$var_tab' $var
