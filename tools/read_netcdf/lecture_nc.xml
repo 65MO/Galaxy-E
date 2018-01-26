@@ -89,12 +89,12 @@
              <param name="var_tab" value="var_tab_dataset-ibi"/>
              <param name="var" value="phy"/>
              <param name="dim_tab" value="tab_dim_phy_dataset-ibi"/>
-             <param name="coord" value="yes_cut_coord"/>
+             <param name="coord" value="yes_cust_coord"/>
              <param name="lat_dim" value="latitude"/>
              <param name="lat_val" value="44.0"/>
              <param name="lon_dim" value="longitude"/>
              <param name="lon_val" value="-2.0"/>
-             <param name="output" value="Test1.tabular"/>
+             <output name="output" file="Test1.tabular"/>
         </test>
         <test>
              <param name="input" value="dataset-ibi-reanalysis-bio-005-003-monthly-regulargrid_1510914389133.nc"/>
@@ -108,7 +108,7 @@
              <param name="dim" value="latitude"/>
              <param name="comparator" value="ge"/>
              <param name="value" value="45.0"/>
-             <param name="output" value="Test2.tabular"/>
+             <output name="output" file="Test2.tabular"/>
         </test>
 
 
