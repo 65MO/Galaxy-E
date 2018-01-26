@@ -8,7 +8,7 @@ Tabular files are displayed by the bash code div_vartab.sh.
 Stdout is the result of the "ncdump -h inputfile" command.
 
 ## Netcdf read
-The second tool "netcdf read" use the Python module Netcdf4 (1.3.1) which is an interface to the C library.
+The second tool "netcdf read" use the Python module Netcdf4 (1.3.1) which is an interface of the C library.
 
 The xml lecture_nc allows to choose a variable to extract and to add filter on dimensions.
 The option "Search values for custom coordinates" use the scipy spatial function to get the closest coordinates with non-NA values.
