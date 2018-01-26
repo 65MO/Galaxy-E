@@ -52,41 +52,50 @@
         </param>
         <param type="data" label="Tabular of dimensions" name="dim_tab" format="tabular" help="Netcdf Info on data X (dimensions_myVariable)"/>
 
-        <param type="data" label="Tabular of coord" name="coord_tabular" format="tabular" help="GNEH"/>
-        <param name="lat_dim" type="select" label="Select latitude" >
-            <options from_dataset="dim_tab">
-                <column name="value" index="0"/>
-            </options>
-        </param>
-        <param name="lon_dim" type="select" label="Select longitude" >
-            <options from_dataset="dim_tab">
-                <column name="value" index="0"/>
-            </options>
-        </param>
+        <conditional name="condi_source_coord">
+            <param name="coord_source" type="select" label="Source of coordinates">
+                <option value="coord_from_file">Use coordinates from input file</option>
+                <option value="coord_from_stdin">Manually enter coordinate</option>
+            </param>
 
-
-
-
-        
-<!--        <conditional name="condi_coord">
-            <param name="coord" type="boolean" label="Search values for custom coordinates" truevalue="yes_cust_coord" checked="true" falsevalue="nope" help="Use this option to get valid values at your custom coordinates. If only NA values are availables the tool will search for the next closest coordinate until valid values."/>
-            <when value="yes_cust_coord">
+            <when value="coord_from_file">
+                <param type="data" label="Tabular of coord" name="coord_tabular" format="tabular" help="Format : Latitude	Longitude"/>
                 <param name="lat_dim" type="select" label="Select latitude" >
                     <options from_dataset="dim_tab">
                         <column name="value" index="0"/>
                     </options>
                 </param>
-                <param name="lat_val" type="float" value="0" label="Latitude"/>
                 <param name="lon_dim" type="select" label="Select longitude" >
                     <options from_dataset="dim_tab">
                         <column name="value" index="0"/>
                     </options>
                 </param>
-                <param name="lon_val" type="float" value="0" label="Longitude"/>
             </when>
-            <when value="nope"></when>
+
+            <when value="coord_from_stdin">
+                <conditional name="condi_coord">
+                    <param name="coord" type="boolean" label="Search values for custom coordinates" truevalue="yes_cust_coord" checked="true" falsevalue="nope" help="Use this option to get valid values at your custom coordinates. If only NA values are availables the tool will search for the next closest coordinate until valid values."/>
+                    <when value="yes_cust_coord">
+                        <param name="lat_dim" type="select" label="Select latitude" >
+                            <options from_dataset="dim_tab">
+                                <column name="value" index="0"/>
+                            </options>
+                        </param>
+                        <param name="lat_val" type="float" value="0" label="Latitude"/>
+                        <param name="lon_dim" type="select" label="Select longitude" >
+                            <options from_dataset="dim_tab">
+                                <column name="value" index="0"/>
+                            </options>
+                        </param>
+                        <param name="lon_val" type="float" value="0" label="Longitude"/>
+                    </when>
+
+                    <when value="nope"></when>
+                </conditional>
+            </when>
+
         </conditional>
--->
+
         <repeat name="user_choice" title="Filter">
             <param name="dim" type="select" label="Dimensions">
                 <options from_dataset="dim_tab">
@@ -99,14 +108,12 @@
                 <option value="ge">Greater or equal</option>
                 <option value="l">Less</option>
                 <option value="le">Less or equal</option>
-                <!-- <option value="a">All</option> -->
             </param>
             <param name="value" type="float" value="0" label="Value"/>
         </repeat>
 
-
-
     </inputs>        
+
     <outputs>
         <data name="output">
             <discover_datasets pattern="__designation_and_ext__" visible="true" format="tabular" directory="output_dir"/>
