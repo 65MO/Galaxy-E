@@ -1,6 +1,7 @@
 <tool id="ogrinfo" name="OGR Informations" version="0.1.0">
     <requirements>
         <requirement type="package" version="2.1.0">gdal</requirement>
+        <requirement type="package" version="3.5.0">geos</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         ogrinfo -ro '$input1.extra_files_path/Shapefile.shp' -al 
