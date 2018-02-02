@@ -10,7 +10,8 @@
             ;done <variables.tabular 
             &&
             for f in dimensions_*; 
-                do cat \$f | sed 's/ /\t\n/g' | sed '\$s/$/ /' >\$f.tabular
+                do cat \$f | sed 's/ /\t\n/g' | sed '\$s/$/ /' >\$f.tabular &&
+                rm \$f
                 ; done
             &&
             for f in dimensions_*.tabular;do
@@ -21,15 +22,20 @@
             rm \$f.2
         ;done
         &&
-        ncdump -h '$input'
+        ncdump -h '$input' > '$info'
     ]]></command>
     <inputs>
         <param type="data" name="input" label="Netcdf file" format="netcdf" help="Netcdf file you need information about."/>
     </inputs>
     <outputs>
-        <data name="var_tabs">
-            <discover_datasets pattern="__designation_and_ext__" visible="true"/>
+        <assert_contents>
+            <has_line line="1" />
+        </assert_contents>
+        <data name="var_tabs" format="tabular">
+            <discover_datasets pattern="__designation__" format="tabular" visible="true"/>
+            <discover_datasets pattern="conda_activate.log" visible="false"/>
         </data>
+        <data name="info" label="info file" format="txt"/>
     </outputs>
 
     <help><![CDATA[
