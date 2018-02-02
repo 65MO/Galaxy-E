@@ -10,15 +10,30 @@ ie_request.attr.docker_port = 80
 
 CNVdata = ie_request.volume(hda.file_name, '/srv/shiny-server/data/inputdata.txt', how='ro')
 
-ie_request.launch(volumes=[CNVdata],env_override={
-    'PUB_HOSTNAME': ie_request.attr.HOST,
+
+
+image=trans.request.params.get('image_tag', None),
+
+ie_request.launch(
+    volumes=[CNVdata],
+    image=trans.request.params.get('image_tag', None),
+    env_override={
+        'PUB_HOSTNAME': ie_request.attr.HOST,
 })
 
 ## General IE specific
 # Access URLs for the notebook from within galaxy.
 # TODO: Make this work without pointing directly to IE. Currently does not work
 # through proxy.
-notebook_access_url = ie_request.url_template('${PROXY_URL}/sample-apps/SIG/?')
+
+if image=="shiny-gie-test:latest":
+   notebook_access_url = ie_request.url_template('${PROXY_URL}/sample-apps/SIG/?')
+else:
+   notebook_access_url = ie_request.url_template('${PROXY_URL}?')
+endif
+# notebook_access_url = ie_request.url_template('${PROXY_URL}/sample-apps/SIG/?')
+
+
 
 root = h.url_for( '/' )
 

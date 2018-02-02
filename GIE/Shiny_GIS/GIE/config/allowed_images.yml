@@ -6,10 +6,10 @@
 # appropriate `apt-get/pip install` statements.
 ---
 -
-    image: shiny-gie-test:latest
-    description: |
-      Valou
--
     image: rocker/shiny:latest
     description : |
-      Pas bordel
+    	Default shiny
+-
+    image: shiny-gie-test:latest
+    description: |
+      Leaflets shiny app
