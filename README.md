@@ -1,5 +1,9 @@
 [![Join the chat at https://gitter.im/Galaxy-E/Lobby](https://badges.gitter.im/Galaxy-E/Lobby.svg)](https://gitter.im/Galaxy-E/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+
+
+
+![Alt Text](https://github.com/65MO/Galaxy-E/blob/master/galaxy/static/Galaxy-E-concarneau-team-fin.gif)
 # Context
 
 Following [GCC2016 lightning talk](https://gcc16.sched.com/event/7Zgd/65-millions-of-observers "65 millions of observers"), and in the context of the french National Museum of Natural History MNHN project "65 Millions d'observateurs" dedicated to enhance and expand participation to citizen sciences projects studying biodiversity, a proof of concept of analysis web platform in macroecology will be made. We propose for this to use the [Galaxy web platform](https://github.com/galaxyproject/galaxy). Here is the origin of a Galaxy-E, for Ecology ?
@@ -25,6 +29,10 @@ New version of the galaxy client incomming, a new PR has been open [PR](https://
 * API-Agro import agrifood related data http://www.api-agro.fr/
 * Free GIS geographic datasets: http://freegisdata.rtwilson.com/
 * Global Environmental Layers: http://worldgrids.org/doku.php
+* World Conservation Monitoring Centre: https://www.unep-wcmc.org/
+ * World Database on Protected Areas (WDPA) is the most comprehensive global database on terrestrial and marine protected areas.: https://protectedplanet.net/
+* Chelsea Climate (Climatologies at high resolution for the earth’s land surface areas ): http://chelsa-climate.org/
+* E-OBS gridded dataset : http://www.ecad.eu/download/ensembles/download.php
 
 # Interesting tools
 * Work with messy data from db
