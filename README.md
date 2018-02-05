@@ -25,6 +25,12 @@ New version of the galaxy client incomming, a new PR has been open [PR](https://
 * GEONETCast global network of satellite-based data dissemination systems providing environmental data http://www.eumetsat.int/website/home/Data/DataDelivery/EUMETCast/GEONETCast/index.html
 * Bio-ORACLE Marine data layers for ecological modelling: http://www.bio-oracle.org/ (R invocation through ```sdmpredictors::list_layers("Bio-ORACLE", version=2)``` )
 * MARSPEC monthly layers for temperature and salinity (R invocation through ```paleo: sdmpredictors::list_layers("MARSPEC")```) and paleo layers for these (R invocation through ```paleo: sdmpredictors::list_layers_paleo("MARSPEC")```): http://onlinelibrary.wiley.com/doi/10.1890/12-1358.1/abstract
+* Use of sdmpredictor R package: 
+```library(sdmpredictors)
+
+# exploring the terrestrial (you can also choose marine) datasets 
+datasets <- list_datasets(terrestrial = FALSE, marine = TRUE)
+```
 * Hub’eau Water related data (fishes,…) http://www.hubeau.fr/
 * CRBPO data https://crbpodata.mnhn.fr/
 * Movebank data https://www.movebank.org/
