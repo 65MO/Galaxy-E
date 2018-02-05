@@ -28,7 +28,7 @@ New version of the galaxy client incomming, a new PR has been open [PR](https://
 * Use of sdmpredictor R package: 
 ```library(sdmpredictors)
 
-# exploring the terrestrial (you can also choose marine) datasets 
+# exploring the marine (you can also choose terrestrial) datasets 
 datasets <- list_datasets(terrestrial = FALSE, marine = TRUE)
 ```
 * Hub’eau Water related data (fishes,…) http://www.hubeau.fr/
