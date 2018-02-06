@@ -17,7 +17,7 @@ f2p <- function(x) #get date-time data from recording file names
 
 #Unique input file
 args <- commandArgs(trailingOnly = TRUE)
-print(args)
+#print(args)
 
 
 #for test
@@ -44,8 +44,9 @@ IdCorrect$ConfV=mapply(ValidHier,IdCorrect$observateur_probabilite
 
 
 #Step 2: Get numerictime data
-IdCorrect$Session=NULL
-IdCorrect$TimeNum=NULL
+#Little trick to supress warning
+invisible(tryCatch({IdCorrect$Session=NULL}, warning=function(w){}))
+invisible(tryCatch({IdCorrect$TimeNum=NULL}, warning=function(w){}))
 
 if (substr(IdCorrect$`nom du fichier`[1],2,2)=="i") #for car/walk transects
 {
