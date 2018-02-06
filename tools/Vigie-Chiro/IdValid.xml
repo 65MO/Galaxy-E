@@ -1,0 +1,46 @@
+<tool id="IdValid" name="IdValid.R" version="0.1">
+    <requirements>
+        <requirement type="package" version="1.20.0">r-getopt</requirement>
+        <requirement type="package" version="1.10.4">r-data.table</requirement>
+        <requirement type="package" version="7.0">readline</requirement>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+        Rscript 
+         '$__tool_directory__/IdValid.R' '$inputfile' '$output'
+]]>
+    </command>
+    <inputs>
+        <param name="inputfile" type="data" format="tabular" label="IdCorrect 2nd layer output"/>
+    </inputs>
+    <outputs>
+        <data name="output" format="tabular" from_work_dir="output.tabular" label="${tool.name} on ${on_string}"/>
+    </outputs>
+
+<!--
+    <tests>
+        <test> 
+            <param name="participation_file" value="participation-57b5b8e377f6c1000c9a65c1-observations.csv"/>
+            <param name="condi_learner" value="default_learner"/>
+            <param name="output" value="test_output.tabular"/>
+        </test>
+        <test>             
+            <param name="participation_file" value="participation-57b5b8e377f6c1000c9a65c1-observations.csv"/>
+            <param name="condi_learner" value="custom_learner"/>
+            <param name="user_learner" value="ClassifEspC2b_171206.learner"/>
+            <param name="output" value="test_output.tabular"/>
+        </test> 
+    </tests>
+-->
+
+    <help><![CDATA[
+**What it does**
+
+This tool allows to integrate identifications made by observers and validators and will provide an input for synthesis of participations. 
+
+
+**Arguments**
+
+Input is a csv file, output from the tool IdCorrect_2ndLayer.
+
+  ]]></help>
+</tool>
