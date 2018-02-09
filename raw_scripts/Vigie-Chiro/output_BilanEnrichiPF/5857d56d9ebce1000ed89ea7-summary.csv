@@ -1,8 +1,8 @@
 "Code";"Groupe";"Nom français";"Nom scientifique";"Risque d'erreur (%)";"Nb Validations";"Effort de validation";"Nb de Contacts par Nuit";"Niveau d'Activite";"IndexG"
 "Pippip";"Chauve-souris";"Pipistrelle commune";"Pipistrellus pipistrellus";"49";"0";"-";"217";"MODEREE";3
-"Myomys";"Chauve-souris";"Murin a moustaches";"Myotis mystacinus";"67";"0";"-";"14";"FORTE";3
+"Myomys";"Chauve-souris";"Murin a moustaches";"Myotis mystacinus";"67";"0";"-";"15";"FORTE";3
 "Tadten";"Chauve-souris";"Molosse";"Tadarida teniotis";"61";"0";"-";"9";"FORTE";3
-"Myodau";"Chauve-souris";"Murin de Daubenton";"Myotis daubentonii";"61";"0";"-";"7";"FORTE";3
+"Myodau";"Chauve-souris";"Murin de Daubenton";"Myotis daubentonii";"61";"0";"-";"6";"FORTE";3
 "Barbar";"Chauve-souris";"Barbastelle d'Europe";"Barbastella barbastellus";"22";"0";"-";"3";"MODEREE";3
 "Nyclei";"Chauve-souris";"Noctule de Leisler";"Nyctalus leisleri";"36";"0";"-";"3";"MODEREE";3
 "Myonat";"Chauve-souris";"Murin groupe Natterer";"Myotis cf. nattereri";"58";"0";"-";"1";"FAIBLE";3
