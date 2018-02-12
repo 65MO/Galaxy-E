@@ -23,10 +23,10 @@ print(args)
 
 
 #for test
-inputest=list.files("C:/Users/Yves Bas/Documents/GitHub/65MO_Galaxy-E/raw_scripts/Vigie-Chiro/output_IdCorrect_2ndLayer_input_IdValid/",full.names=T)
-for (i in 1:length(inputest))
-{
-args=c(inputest[i])
+#inputest=list.files("C:/Users/Yves Bas/Documents/GitHub/65MO_Galaxy-E/raw_scripts/Vigie-Chiro/output_IdCorrect_2ndLayer_input_IdValid/",full.names=T)
+#for (i in 1:length(inputest))
+#{
+#args=c(inputest[i])
 
 
 
@@ -160,6 +160,9 @@ if((test1==F)|(test2==F))
 
 IdC2$IdExtrap=IdExtrap
 IdC2$TypeE=TypeE
+
+IdC2=IdC2[order(IdC2$tadarida_probabilite,decreasing=T),]
+IdC2=IdC2[order(IdC2$`nom du fichier`),]
 
 write.table(IdC2,paste0(substr(args[1],1,nchar(args[1])-15),"-IdC2.csv"),row.names=F,sep="\t")
 

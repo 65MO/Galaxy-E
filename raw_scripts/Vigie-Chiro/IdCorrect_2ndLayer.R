@@ -8,6 +8,8 @@ print(args)
 #{
 #  args=c(inputest[i],"ClassifEspC2b_171206.learner")
 
+set.seed(1)
+
 if (exists("ClassifEspC2b")==F){load(args[2])}
 
 DataPar=fread(args[1]) #id to be corrected
@@ -161,5 +163,9 @@ colnum=match("participation",colnames(VoteC4))
 DataCorrC2=cbind(VoteC4[,1:colnum],ProbEsp_C2b,ProbEsp_C2bs)
 DataCorrC2=DataCorrC2[order(DataCorrC2$tadarida_probabilite,decreasing=T),]
 DataCorrC2=DataCorrC2[order(DataCorrC2$'nom du fichier'),]
+
+test=match(DataCorrC2$`nom du fichier`,"Cir440730-2016-Pass2-Tron8-Chiro_1_00369_859")
+test2=subset(DataCorrC2,is.na(test)==F)
+
 
 write.table(DataCorrC2,paste0(substr(args[1],nchar(args[1])-40,nchar(args[1])-17),"-DataCorrC2.csv"),row.names=F,sep="\t")
