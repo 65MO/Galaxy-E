@@ -16,6 +16,7 @@ This repository will gather ideas and development of Galaxy-E tools
 New version of the galaxy client incomming, a new PR has been open [PR](https://github.com/galaxyproject/galaxy/pull/5089)
 
 # Interesting Data sources
+* IPSL https://cse.ipsl.fr/donnees/114-prodiguer
 * WorldClim - Global Climate Data http://www.worldclim.org/
 * Copernicus Climate Change Service Providing climate data http://climate.copernicus.eu/
 * Copernicus Marine Environment Monitoring Service Providing products & services for all marine applications http://marine.copernicus.eu/
