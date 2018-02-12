@@ -12,7 +12,7 @@ Following [GCC2016 lightning talk](https://gcc16.sched.com/event/7Zgd/65-million
 This repository will gather ideas and development of Galaxy-E tools 
 
 # A dedicated French version of Galaxy
- ~~Following the @dannon [PR](https://github.com/galaxyproject/galaxy/pull/3762) @ValentinChCloud will work on this task. ~~
+ ~~Following the @dannon [PR](https://github.com/galaxyproject/galaxy/pull/3762) @ValentinChCloud will work on this task.~~
 New version of the galaxy client incomming, a new PR has been open [PR](https://github.com/galaxyproject/galaxy/pull/5089)
 
 # Interesting Data sources
@@ -23,6 +23,14 @@ New version of the galaxy client incomming, a new PR has been open [PR](https://
 * Copernicus Global Land Service Providing bio-geophysical products of global land surface http://land.copernicus.eu/global/products/NDVI (included [Corine Land Cover products](http://land.copernicus.eu/pan-european/corine-land-cover))
 * CESBIO Carte d'occupation des sols. http://www.cesbio.ups-tlse.fr/multitemp/?p=10104
 * GEONETCast global network of satellite-based data dissemination systems providing environmental data http://www.eumetsat.int/website/home/Data/DataDelivery/EUMETCast/GEONETCast/index.html
+* Bio-ORACLE Marine data layers for ecological modelling: http://www.bio-oracle.org/ (R invocation through ```sdmpredictors::list_layers("Bio-ORACLE", version=2)``` )
+* MARSPEC monthly layers for temperature and salinity (R invocation through ```paleo: sdmpredictors::list_layers("MARSPEC")```) and paleo layers for these (R invocation through ```paleo: sdmpredictors::list_layers_paleo("MARSPEC")```): http://onlinelibrary.wiley.com/doi/10.1890/12-1358.1/abstract
+* Use of sdmpredictor R package: 
+```library(sdmpredictors)
+
+# exploring the marine (you can also choose terrestrial) datasets 
+datasets <- list_datasets(terrestrial = FALSE, marine = TRUE)
+```
 * Hub’eau Water related data (fishes,…) http://www.hubeau.fr/
 * CRBPO data https://crbpodata.mnhn.fr/
 * Movebank data https://www.movebank.org/
