@@ -6,10 +6,20 @@
 # appropriate `apt-get/pip install` statements.
 ---
 -
-    image: rocker/shiny:latest
-    description : |
-    	Default shiny
--
-    image: shiny-gie-test:latest
+    image: shiny-gie-gis-region:latest
+    mako: mako.mako
     description: |
-      Leaflets shiny app
+      Map observations on Regions
+-
+    image: shiny-gie-gis-plot:latest
+    mako: pas.mako
+    description : |
+      Map observations and plot data
+-
+    image: shiny-wallace:dev
+    description : |
+      Reproducible modeling of species niches and distributions
+-
+    image: shiny-ww-eqs:latest
+    description : |
+      earthQuake

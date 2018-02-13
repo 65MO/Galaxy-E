@@ -16,7 +16,7 @@ password_auth = True
 # command and will likely cause errors if it is extensively modified, past the
 # usual group/sudo changes.
 #command = docker { docker_args}
-#command_inject = --user shiny
+command_inject = --user shiny
 # The docker image name that should be started.
 #image = shiny-gie:latest
 docker_connect_port = 3838

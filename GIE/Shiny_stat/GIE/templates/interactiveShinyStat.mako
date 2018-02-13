@@ -1,3 +1,4 @@
+
 <%namespace file="ie.mako" name="ie"/>
 <%
 import os
@@ -23,7 +24,7 @@ ie_request.launch(
 #else:
 #   notebook_access_url = ie_request.url_template('${PROXY_URL}?')	
 #endif
-notebook_access_url = ie_request.url_template('${PROXY_URL}/sample-apps/SIG/?')
+notebook_access_url = ie_request.url_template('${PROXY_URL}/sample-apps/STAT/inst/app/?')
 
 root = h.url_for( '/' )
 
