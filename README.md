@@ -16,6 +16,7 @@ This repository will gather ideas and development of Galaxy-E tools
 New version of the galaxy client incomming, a new PR has been open [PR](https://github.com/galaxyproject/galaxy/pull/5089)
 
 # Interesting Data sources
+* IPSL https://cse.ipsl.fr/donnees/114-prodiguer
 * WorldClim - Global Climate Data http://www.worldclim.org/
 * Copernicus Climate Change Service Providing climate data http://climate.copernicus.eu/
 * Copernicus Marine Environment Monitoring Service Providing products & services for all marine applications http://marine.copernicus.eu/
@@ -92,7 +93,25 @@ datasets <- list_datasets(terrestrial = FALSE, marine = TRUE)
    * [NCAR Command Language](https://www.ncl.ucar.edu/index.shtml)
 * Taxa automated recognition through [TensorFlow](https://tensorflow.wq.io/about)
 * Dashboards for a community intensively oriented toward R
-   * [R-Shiny](https://shiny.rstudio.com/) through Interactive Environment ?
+   * [R-Shiny](https://shiny.rstudio.com/) Interactive Environment
+      * GIS shiny GIE through leaflet based shiny apps to display data by french regions and related plots
+      * Statistics shiny GIE through [radiant](http://vnijs.github.io/radiant/)
+      * Dashboard / restitution shiny GIE through [flexdashboard+shiny](https://rmarkdown.rstudio.com/flexdashboard/shiny.html) or [shiny dashboard](https://rstudio.github.io/shinydashboard/structure.html)
+      * Macroecology through [Wallace](http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12945/full)
+   * Shiny and reproducibility through `interactive document` concept
+      * rmarkdown, a new way to build Shiny apps through [interactive documents](http://shiny.rstudio.com/articles/interactive-docs.html)
+      ```
+      Interactive documents will not replace standard Shiny apps since they cannot provide the design options that come with a ui.R or index.html file. However, interactive documents do create some easy wins:
+
+    The R Markdown workflow makes it easy to build light-weight apps. You do not need to worry about laying out your app or building an HTML user interface for the app.
+
+    You can use R Markdown to create interactive slideshows, something that is difficult to do with Shiny alone. To create a slideshow, change output: html_document to output: ioslides_presentation in the YAML front matter of your .Rmd file. R Markdown will divide your document into slides when you click “Run Document.” A new slide will begin whenever a header or horizontal rule (***) appears.
+
+    Interactive documents enhance the existing R Markdown workflow. R Markdown makes it easy to write literate programs and reproducible reports. You can make these reports even more effective by adding Shiny to the mix.
+
+To learn more about R Markdown and interactive documents, please visit rmarkdown.rstudio.com.
+      ```
+       
 
 
 
