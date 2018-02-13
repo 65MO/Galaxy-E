@@ -125,9 +125,6 @@ SummPart0=cbind(Nesp=levels(as.factor(IdC2$IdExtrap))
 
 InfoSp=c('GroupFR','NomFR','Scientific name','Nesp')
 GroupShort=GroupList[,InfoSp,with=FALSE]
-#print(GroupList)
-print(GroupShort)
-#print(SummPart0)
 SummPart=merge(GroupShort,SummPart0,by="Nesp")
 IndexGroupe=c("Autre","Sauterelle","Chauve-souris")
 SummPart$IndexSumm=match(SummPart$GroupFR,IndexGroupe)
@@ -147,8 +144,8 @@ SummHTML=datatable(SummPart, rownames = FALSE) %>%
   formatStyle(columns = "Niveau d'Activite", 
               background = styleEqual(c("FAIBLE","MODEREE","FORTE","TRES FORTE"), c("palegoldenrod", "greenyellow", "limegreen", "darkgreen")))
 
-saveWidget(SummHTML,paste0(substr(args[1],1,nchar(args[1])-9),"-summary.html"))
-write.csv2(SummPart,paste0(substr(args[1],1,nchar(args[1])-9),"-summary.csv"),row.names=F)
+saveWidget(SummHTML,"output.html")
+write.csv2(SummPart,"output.csv",row.names=F)
 
 }
 
