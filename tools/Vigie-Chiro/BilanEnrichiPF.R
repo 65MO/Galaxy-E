@@ -11,7 +11,7 @@ f2p <- function(x) #get date-time data from recording file names
 }
 
 args <- commandArgs(trailingOnly = TRUE)
-print(args)
+#print(args) #for debug
 EchelleErreur=c(99,50,10,1)
 
 #for test
@@ -145,7 +145,7 @@ SummHTML=datatable(SummPart, rownames = FALSE) %>%
               background = styleEqual(c("FAIBLE","MODEREE","FORTE","TRES FORTE"), c("palegoldenrod", "greenyellow", "limegreen", "darkgreen")))
 
 saveWidget(SummHTML,"output.html")
-write.csv2(SummPart,"output.csv",row.names=F)
+write.table(SummPart,"output.tabular",sep="\t",row.names=F)
 
 }
 

@@ -7,7 +7,7 @@
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         Rscript 
-         '$__tool_directory__/BilanEnrichiPF.R' '$IdC2' '$__tool_directory__/refPF.csv' '$__tool_directory__/GroupList_HF.csv' '$output_tab' 'output_html'
+         '$__tool_directory__/BilanEnrichiPF.R' '$IdC2' '$__tool_directory__/refPF.csv' '$__tool_directory__/GroupList_HF.csv' '$output_tab' '$output_html'
 ]]>
     </command>
     <inputs>
@@ -41,7 +41,7 @@
 
 **Arguments**
 
-Input is a csv file, output from the tool IdValid.R
+Input is a tabular file, output from the tool IdValid.R
 
   ]]></help>
 </tool>
