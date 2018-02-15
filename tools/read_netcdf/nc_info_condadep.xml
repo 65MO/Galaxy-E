@@ -1,33 +1,35 @@
 <tool id="extract_nc_infogcc" name="Netcdf Info gcc" version="0.1.0">
     <requirements>
-<!--        <requirement type="package" version="4.5.0">libnetcdf</requirement>
-        <requirement type="package" version="0.0.1">netcdf_info</requirement> -->
+        <requirement type="package" version="1.1.6">netcdf-metadata-info</requirement> 
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
-        echo \$(ncdump -h '$input') > '$info' && 
-##        gcc '$__tool_directory__/NC_info.c' -lnetcdf -o myexe ##&&
-        nc_info '$input'
+        netcdf-metadata-info '$input'
         &&
         while read -r l;do
             a=\$(echo \$l | cut -d' ' -f1);echo \$l>dimensions_\$a
-        ;done <variables.tabular 
+        ;done <variables.tabular
+        &&
+        rm dimensions_VariableName 
         &&
         for f in dimensions_*; do cat \$f | sed 's/ /\t\n/g' | sed '\$s/$/ /' >\$f.tabular ; done
         &&
         for f in dimensions_*.tabular;do
-            cat \$f | awk 'NR % 2 != 0' \$f > \$f.2
+            awk 'NR % 2 != 0' \$f > \$f.2
             &&
             sed 1d \$f.2 > \$f 
             &&
             rm \$f.2
         ;done
+        &&
+        ncdump -h '$input' > '$info'
     ]]></command>
     <inputs>
         <param type="data" name="input" label="Netcdf file" format="netcdf" help="Netcdf file you need information about."/>
     </inputs>
     <outputs>
-        <data name="var_tabs">
+        <data name="var_tabs" format="tabular">
             <discover_datasets pattern="__designation_and_ext__" visible="true"/>
+            <discover_datasets pattern="conda_activate.log" visible="false"/>
         </data>
         <data name="info" label="info file" format="txt"/>
     </outputs>
