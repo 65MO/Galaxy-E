@@ -16,7 +16,7 @@ coordinates(meuse) = ~x+y
 proj4string(meuse) <- CRS("+init=epsg:28992")
 meuse <- spTransform(meuse, CRSobj = CRS("+proj=longlat +datum=WGS84 +no_defs"))
 
-galaxy <- read.csv("/srv/shiny-server/data/inputdata.txt", header=TRUE))
+galaxy <- read.csv("/srv/shiny-server/data/inputdata.txt", header=TRUE)
 names(galaxy)[1:2] <- c('y','x')
 coordinates(galaxy) <- ~x+y
 
