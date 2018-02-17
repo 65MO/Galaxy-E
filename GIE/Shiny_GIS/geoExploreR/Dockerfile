@@ -10,7 +10,7 @@ RUN Rscript -e "install.packages('leaflet')"
 RUN mkdir /srv/shiny-server/sample-apps/SIG
 COPY global.R /srv/shiny-server/sample-apps/SIG/global.R
 COPY server.R /srv/shiny-server/sample-apps/SIG/server.R
-COPY ui.r /srv/shiny-server/sample-apps/SIG/ui.r
+COPY ui.R /srv/shiny-server/sample-apps/SIG/ui.R
 ADD ./monitor_traffic.sh /monitor_traffic.sh
 COPY global.R /srv/shiny-server/sample-apps/SIG/global.R
 COPY geoExploreR.Rproj /srv/shiny-server/sample-apps/SIG/geoExploreR.Rproj
