@@ -4,3 +4,4 @@
 [submodule "GIE/Wallace-galaxy-ie"]
 	path = GIE/Wallace-galaxy-ie
 	url = https://github.com/ValentinChCloud/Wallace-galaxy-ie
+        branch = master
