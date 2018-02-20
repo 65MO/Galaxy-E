@@ -160,6 +160,10 @@ if((test1==F)|(test2==F))
 IdC2$IdExtrap=IdExtrap
 IdC2$TypeE=TypeE
 
+#Ordering for comparison
+IdC2=IdC2[order(IdC2$tadarida_probabilite,decreasing=T),]
+IdC2=IdC2[order(IdC2$`nom du fichier`),]
+
 fout_name="output.tabular"
 write.table(IdC2,fout_name,row.names=F,sep="\t")
 #}#If for files in repo (test)
