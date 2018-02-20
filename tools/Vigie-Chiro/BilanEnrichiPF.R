@@ -35,7 +35,14 @@ if(substr(IdC2$`nom du fichier`[1],2,2)!="a")
 #compute error risk by species (minimum error among files)
 #to be replaced by glm outputs if I'll have time
 RisqueErreurT=aggregate(IdC2$IdProb,by=list(IdC2$IdExtrap),FUN=function(x) ceiling((1-max(x))*100))
-barplot(RisqueErreurT$x,names.arg=RisqueErreurT$Group.1,las=2)
+
+
+#TODO maybe
+#png('Rplot.png')
+#barplot(RisqueErreurT$x,names.arg=RisqueErreurT$Group.1,las=2)
+#dev.off()
+
+
 #compute error risk accoring to observer/validator (a little dirty because it relies on alphabetical order of confidence classes: POSSIBLE < PROBABLE < SUR)
 RisqueErreurOV=aggregate(IdC2$ConfV,by=list(IdC2$IdExtrap)
                          ,FUN=function(x) max(as.numeric(as.factor(x)))) 

@@ -1,13 +1,16 @@
 <tool id="BilanEnrichiPF" name="BilanEnrichiPF.R" version="0.1">
     <requirements>
-        <requirement type="package" version="1.20.0">r-getopt</requirement>
+      <!--  <requirement type="package" version="1.20.0">r-getopt</requirement> -->
         <requirement type="package" version="1.10.0">r-data.table</requirement>
         <requirement type="package" version="0.1">r-dt</requirement>
-        <requirement type="package" version="0.5">r-htmlwidgets</requirement>
+        <requirement type="package" version="0.6">r-htmlwidgets</requirement>
+        <requirement type="package" version="2.1.1">pandoc</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         Rscript 
-         '$__tool_directory__/BilanEnrichiPF.R' '$IdC2' '$__tool_directory__/refPF.csv' '$__tool_directory__/GroupList_HF.csv' '$output_tab' '$output_html'
+            '$__tool_directory__/BilanEnrichiPF.R' '$IdC2' '$__tool_directory__/refPF.csv' '$__tool_directory__/GroupList_HF.csv' 
+            '$output_tab' '$output_html' 
+            ##'$barplot'
 ]]>
     </command>
     <inputs>
@@ -16,23 +19,20 @@
     <outputs>
         <data name="output_tab" format="tabular" from_work_dir="output.tabular" label="${tool.name} on ${on_string}"/>
         <data name="output_html" format="html" from_work_dir="output.html" label="${tool.name} on ${on_string}"/>
+       <!-- TODO see if usefull to implement
+       <data name="barplot" format="png" from_work_dir="Rplots.png" label="${tool.name} on ${on_string}"/>
+       -->
     </outputs>
 
-<!--
     <tests>
-        <test> 
-            <param name="participation_file" value="participation-57b5b8e377f6c1000c9a65c1-observations.csv"/>
-            <param name="condi_learner" value="default_learner"/>
-            <param name="output" value="test_output.tabular"/>
+        <test>
+            <param name="IdC2" value="BilanEnrichiPF_Test1.tabular"/>
+            <output name="output_tab" file="BilanEnrichiPF_Test1_out_tab.tabular" ftype="tabular"/>
+            <!--
+            <output name="output_html" file="BilanEnrichiPF_Test1_out_html.html" ftype="html"/>
+            -->
         </test>
-        <test>             
-            <param name="participation_file" value="participation-57b5b8e377f6c1000c9a65c1-observations.csv"/>
-            <param name="condi_learner" value="custom_learner"/>
-            <param name="user_learner" value="ClassifEspC2b_171206.learner"/>
-            <param name="output" value="test_output.tabular"/>
-        </test> 
     </tests>
--->
 
     <help><![CDATA[
 **What it does**
