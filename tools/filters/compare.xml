@@ -1,18 +1,18 @@
-<tool id="comp1" name="Comparer 2 jeux de données" version="1.0.2">
-  <description>pour trouver des lignes communes et distinctes</description>
+<tool id="comp1" name="Compare two Datasets" version="1.0.2">
+  <description>to find common or distinct rows</description>
   <command interpreter="python">joinWrapper.py $input1 $input2 $field1 $field2 $mode $out_file1</command>
   <inputs>
-    <param format="tabular" name="input1" type="data" label="Comparer"/>
-    <param name="field1" label="En utilisant la colonne" type="data_column" data_ref="input1">
-        <validator type="no_options" message="Choix de colonne invalide. S'il vous plaît, essayer à nouveau après avoir éditer les métadonnées de votre données d'entrée en cliquant sur l'icône en forme de crayon."/>
+    <param format="tabular" name="input1" type="data" label="Compare"/>
+    <param name="field1" label="Using column" type="data_column" data_ref="input1">
+        <validator type="no_options" message="Invalid column choice. Please try again after editing metadata of your input dataset by clicking on the pencil icon next to it."/>
     </param>
-    <param format="tabular" name="input2" type="data" label="contre" />
-    <param name="field2" label="et la colonne" type="data_column" data_ref="input2">
-            <validator type="no_options" message="Choix de colonne invalide. S'il vous plaît, essayer à nouveau après avoir éditer les métadonnées de votre données d'entrée en cliquant sur l'icône en forme de crayon."/>
+    <param format="tabular" name="input2" type="data" label="against" />
+    <param name="field2" label="and column" type="data_column" data_ref="input2">
+            <validator type="no_options" message="Invalid column choice. Please try again after editing metadata of your input dataset by clicking on the pencil icon next to it."/>
     </param>
-    <param name="mode" type="select" label="Pour trouver" help="Voir les exemples ci-dessous pour des explications sur les options">
-      <option value="N">Les lignes correspondantes au premier jeu de données</option>
-      <option value="V">Les lignes non présentes dans le premier jeu de données</option>
+    <param name="mode" type="select" label="To find" help="See examples below for explanation of these options">
+      <option value="N">Matching rows of 1st dataset</option>
+      <option value="V">Non Matching rows of 1st dataset</option>
     </param>
   </inputs>
   <outputs>
@@ -41,39 +41,39 @@
 
 .. class:: infomark
 
-**CONSEIL:** Si vos données ne sont au format tabulé, utiliser *Manipulation de texte-&gt;Convertir*
+**TIP:** If your data is not TAB delimited, use *Text Manipulation-&gt;Convert*
 
 -----
 
-**Syntaxe**
+**Syntax**
 
-Cet outil trouve des lignes dans un jeu de données qui a A ou n'A PAS un champ commun avec un autre jeu de données.
+This tool finds lines in one dataset that HAVE or DO NOT HAVE a common field with another dataset.
 
 -----
 
-**Exemple**
+**Example**
 
-Voici le **Premier jeu de données**::
+If this is **First dataset**::
 
-  chr1 10 20 individuA 
-  chr1 50 80 individuB
-  chr5 10 40 individuL
+  chr1 10 20 geneA 
+  chr1 50 80 geneB
+  chr5 10 40 geneL
 
-et le **Second jeu de données**::
+and this is **Second dataset**::
 
-  individuA souris
-  individuB chauve
-  individuC rat
-  individuE piaf
+  geneA tumor-suppressor
+  geneB Foxp2
+  geneC Gnas1
+  geneE INK4a
 
-Trouver des lignes pour le **Premier jeu de données** dont la 4ième colonne correspond à la première colonne du **Second jeu de données** yields::
+Finding lines of the **First dataset** whose 4th column matches the 1st column of the **Second dataset** yields::
 
-  chr1 10 20 individuA 
-  chr1 50 80 individuB
+  chr1 10 20 geneA 
+  chr1 50 80 geneB
 
-Alternativement, en spécifiant l'option **Les lignes non présentes dans le premier jeu de données** sur les mêmes champs aboutissent à::
+Conversely, using option **Non Matching rows of First dataset** on the same fields will yield::
 
-  chr5 10 40 individuL
+  chr5 10 40 geneL
 
 </help>
 </tool>

@@ -1,12 +1,12 @@
-<tool id="addValue" name="Ajouter une colonne" version="1.0.0">
-  <description>à un jeu de données existant</description>
+<tool id="addValue" name="Add column" version="1.0.0">
+  <description>to an existing dataset</description>
   <command interpreter="perl">fixedValueColumn.pl $input $out_file1 "$exp" $iterate</command>
   <inputs>
-     <param name="exp" size="20" type="text" value="1" label="Ajouter cette valeur"/>
-    <param format="tabular" name="input" type="data" label="au jeu de données" help="Vous ne voyez pas votre jeu de données? voir Astuce ci-dessous" />
-    <param name="iterate" type="select" label="Itérer?">
-      <option value="no">NON</option>
-      <option value="yes">OUI</option>
+     <param name="exp" size="20" type="text" value="1" label="Add this value"/>
+    <param format="tabular" name="input" type="data" label="to Dataset" help="Dataset missing? See TIP below" />
+    <param name="iterate" type="select" label="Iterate?">
+      <option value="no">NO</option>
+      <option value="yes">YES</option>
     </param>    
   </inputs>
   <outputs>
@@ -24,36 +24,36 @@
 
 .. class:: infomark
 
-**Astuce:** Si vos données ne sont pas au format tabulé, utiliser *Manipulation de fichiers texte-&gt;Convertir*
+**TIP:** If your data is not TAB delimited, use *Text Manipulation-&gt;Convert*
 
 -----
 
-**Ce que fait l'outil**
+**What it does**
 
-Vous pouvez entrer n'importe qu'elle valeur et l'outil ajoutera cette dernière en tant que nouvelle colonne de votre jeu de données
+You can enter any value and it will be added as a new column to your dataset
 
 -----
 
-**Exemple**
+**Example**
 
-Si vos données d'origine sont comme cela ::
+If you original data looks like this::
 
-    ind1 10  100 habitatA
-    ind2 200 300 habitatB
-    ind2 400 500 habitatC
+    chr1 10  100 geneA
+    chr2 200 300 geneB
+    chr2 400 500 geneC
 
-En tapant **+** au niveau du champ de saisie textuelle tetuelle, cela générera ::
+Typing **+** in the text box will generate::
 
-    ind1 10  100 habitatA +
-    ind2 200 300 habitatB +
-    ind2 400 500 habitatC +
+    chr1 10  100 geneA +
+    chr2 200 300 geneB +
+    chr2 400 500 geneC +
      
 
-Vous pouvez également ajouter une numérotation de ligne en sélectionnant l'option **Itérer: OUI**. Dans ce cas, si vous entrez **1** au niveau du champ de saisie tetuelle, vous obtiendrez ::
+You can also add line numbers by selecting **Iterate: YES**. In this case if you enter **1** in the text box you will get::
 
-    ind1 10  100 habitatA 1
-    ind2 200 300 habitatB 2
-    ind2 400 500 habitatC 3
+    chr1 10  100 geneA 1
+    chr2 200 300 geneB 2
+    chr2 400 500 geneC 3
 
 
 

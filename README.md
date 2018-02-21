@@ -1,5 +1,9 @@
 [![Join the chat at https://gitter.im/Galaxy-E/Lobby](https://badges.gitter.im/Galaxy-E/Lobby.svg)](https://gitter.im/Galaxy-E/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+
+
+
+![Alt Text](https://github.com/65MO/Galaxy-E/blob/master/galaxy/static/Galaxy-E-concarneau-team-fin.gif)
 # Context
 
 Following [GCC2016 lightning talk](https://gcc16.sched.com/event/7Zgd/65-millions-of-observers "65 millions of observers"), and in the context of the french National Museum of Natural History MNHN project "65 Millions d'observateurs" dedicated to enhance and expand participation to citizen sciences projects studying biodiversity, a proof of concept of analysis web platform in macroecology will be made. We propose for this to use the [Galaxy web platform](https://github.com/galaxyproject/galaxy). Here is the origin of a Galaxy-E, for Ecology ?
@@ -8,11 +12,40 @@ Following [GCC2016 lightning talk](https://gcc16.sched.com/event/7Zgd/65-million
 This repository will gather ideas and development of Galaxy-E tools 
 
 # A dedicated French version of Galaxy
-Following the @dannon [PR](https://github.com/galaxyproject/galaxy/pull/3762) @ValentinChCloud will work on this task.
+ ~~Following the @dannon [PR](https://github.com/galaxyproject/galaxy/pull/3762) @ValentinChCloud will work on this task.~~
+New version of the galaxy client incomming, a new PR has been open [PR](https://github.com/galaxyproject/galaxy/pull/5089)
+
+# Interesting Data sources
+* IPSL https://cse.ipsl.fr/donnees/114-prodiguer
+* WorldClim - Global Climate Data http://www.worldclim.org/
+* Copernicus Climate Change Service Providing climate data http://climate.copernicus.eu/
+* Copernicus Marine Environment Monitoring Service Providing products & services for all marine applications http://marine.copernicus.eu/
+* Copernicus Atmosphere air quality & atmospheric composition https://atmosphere.copernicus.eu/catalogue#/
+* Copernicus Global Land Service Providing bio-geophysical products of global land surface http://land.copernicus.eu/global/products/NDVI (included [Corine Land Cover products](http://land.copernicus.eu/pan-european/corine-land-cover))
+* CESBIO Carte d'occupation des sols. http://www.cesbio.ups-tlse.fr/multitemp/?p=10104
+* GEONETCast global network of satellite-based data dissemination systems providing environmental data http://www.eumetsat.int/website/home/Data/DataDelivery/EUMETCast/GEONETCast/index.html
+* Bio-ORACLE Marine data layers for ecological modelling: http://www.bio-oracle.org/ (R invocation through ```sdmpredictors::list_layers("Bio-ORACLE", version=2)``` )
+* MARSPEC monthly layers for temperature and salinity (R invocation through ```paleo: sdmpredictors::list_layers("MARSPEC")```) and paleo layers for these (R invocation through ```paleo: sdmpredictors::list_layers_paleo("MARSPEC")```): http://onlinelibrary.wiley.com/doi/10.1890/12-1358.1/abstract
+* Use of sdmpredictor R package: 
+```library(sdmpredictors)
+
+# exploring the marine (you can also choose terrestrial) datasets 
+datasets <- list_datasets(terrestrial = FALSE, marine = TRUE)
+```
+* Hub’eau Water related data (fishes,…) http://www.hubeau.fr/
+* CRBPO data https://crbpodata.mnhn.fr/
+* Movebank data https://www.movebank.org/
+* API-Agro import agrifood related data http://www.api-agro.fr/
+* Free GIS geographic datasets: http://freegisdata.rtwilson.com/
+* Global Environmental Layers: http://worldgrids.org/doku.php
+* World Conservation Monitoring Centre: https://www.unep-wcmc.org/
+ * World Database on Protected Areas (WDPA) is the most comprehensive global database on terrestrial and marine protected areas.: https://protectedplanet.net/
+* Chelsea Climate (Climatologies at high resolution for the earth’s land surface areas ): http://chelsa-climate.org/
+* E-OBS gridded dataset : http://www.ecad.eu/download/ensembles/download.php
 
 # Interesting tools
 * Work with messy data from db
- * [OpenRefine](http://openrefine.org/) through Interactive Environment ?
+ * [OpenRefine](http://openrefine.org/) Implemented as GIE [docker repo](DockerHub repo : https://hub.docker.com/r/valentinchdock/openrefine-galaxy-ie/)
  * Other solutions:
     * [DataCleaner](https://datacleaner.org/) 
     * [Karma](http://usc-isi-i2.github.io/karma/) A Data Integration Tool
@@ -43,13 +76,42 @@ Following the @dannon [PR](https://github.com/galaxyproject/galaxy/pull/3762) @V
    * Buffering
    * Calculate mean by buffer
 * Visualize GIS data
-   * [PostGIS](http://www.postgis.net/) usable through the [Galaxy pg datatype and relatde tools implementation](https://github.com/bgruening/galaxytools/pull/642) /[Leaflet](http://leafletjs.com/) through Interactive Environment ?
-   * [H2GIS](http://www.h2gis.org/support/) light and standalone GIS database
-   * [GeoCMS](https://github.com/dotgee/geocms) GeoCMS is a complete open source solution for consuming and visualizing geospatial data
-   * [Magrit](http://magrit.cnrs.fr/modules) for thematic GIS (in french and english)
+   * Through "classical" GIS specialists oriented solutions:
+      * [Geoserver](http://geoserver.org/)
+      * [QGIS server](https://github.com/jancelin/docker-qgis-server) ou [QGIS desktop](https://github.com/jancelin/docker-qgis-desktop). A particular interesting QGIS based tool : [LizMap](https://www.3liz.com/lizmap.html) et [LizMap Docker](https://github.com/jancelin/docker-lizmap)
+      * [GeoCMS](https://github.com/dotgee/geocms) GeoCMS is a complete open source solution for consuming and visualizing geospatial data
+      * ~~[OpenEV](http://openev.sourceforge.net/) a software library and application for viewing and analysing raster and vector geospatial data (last release 2007!)~~
+   * To manage data:
+      * [PostGIS](http://www.postgis.net/) with a [Docker version](https://github.com/jancelin/docker-postgis-rpi) usable through the [Galaxy pg datatype and relatde tools implementation](https://github.com/bgruening/galaxytools/pull/642) /[Leaflet](http://leafletjs.com/) through Interactive Environment ? 
+      * [H2GIS](http://www.h2gis.org/support/) light and standalone GIS database
+   * Through GIS non-specialists oriented solutions:
+      * [Magrit](http://magrit.cnrs.fr/modules) for thematic GIS (in french and english)
+* GIS data analysis
+   * [WhiteboxTools advanced geospatial data analysis engine](https://github.com/jblindsay/whitebox-geospatial-analysis-tools/tree/master/whitebox_tools#available-tools)
+   * [GeoTools The Open Source Java GIS Toolkit](http://www.geotools.org/)
+   * [Grass Geographic Resources Analysis Support System](https://grass.osgeo.org/)
+   * [NCAR Command Language](https://www.ncl.ucar.edu/index.shtml)
 * Taxa automated recognition through [TensorFlow](https://tensorflow.wq.io/about)
 * Dashboards for a community intensively oriented toward R
-   * [R-Shiny](https://shiny.rstudio.com/) through Interactive Environment ?
+   * [R-Shiny](https://shiny.rstudio.com/) Interactive Environment
+      * GIS shiny GIE through leaflet based shiny apps to display data by french regions and related plots
+      * Statistics shiny GIE through [radiant](http://vnijs.github.io/radiant/)
+      * Dashboard / restitution shiny GIE through [flexdashboard+shiny](https://rmarkdown.rstudio.com/flexdashboard/shiny.html) or [shiny dashboard](https://rstudio.github.io/shinydashboard/structure.html)
+      * Macroecology through [Wallace](http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12945/full)
+   * Shiny and reproducibility through `interactive document` concept
+      * rmarkdown, a new way to build Shiny apps through [interactive documents](http://shiny.rstudio.com/articles/interactive-docs.html)
+      ```
+      Interactive documents will not replace standard Shiny apps since they cannot provide the design options that come with a ui.R or index.html file. However, interactive documents do create some easy wins:
+
+    The R Markdown workflow makes it easy to build light-weight apps. You do not need to worry about laying out your app or building an HTML user interface for the app.
+
+    You can use R Markdown to create interactive slideshows, something that is difficult to do with Shiny alone. To create a slideshow, change output: html_document to output: ioslides_presentation in the YAML front matter of your .Rmd file. R Markdown will divide your document into slides when you click “Run Document.” A new slide will begin whenever a header or horizontal rule (***) appears.
+
+    Interactive documents enhance the existing R Markdown workflow. R Markdown makes it easy to write literate programs and reproducible reports. You can make these reports even more effective by adding Shiny to the mix.
+
+To learn more about R Markdown and interactive documents, please visit rmarkdown.rstudio.com.
+      ```
+       
 
 
 

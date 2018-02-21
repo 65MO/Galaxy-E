@@ -1,0 +1,77 @@
+name: Scratchbook - Introduction
+title_default: "Scratchbook Introduction"
+description: "An introduction on how to display multiple datasets and visualizations next to each other."
+steps:
+    - content: "This short tour will walk you through <b>Galaxy's Scratchbook</b> feature"
+
+    - element: "#tool-panel-upload-button"
+      intro: "Avant d'utiliser le Scratchbook, nous allons télécharger des données tabulaires."
+      position: "right"
+      postclick:
+        - "#tool-panel-upload-button"
+
+    - element: "#btn-new"
+      intro: "Nous allons utiliser la fonction de collage pour créer un nouvel ensemble de données."
+      position: "top"
+      postclick:
+        - "#btn-new"
+
+    - element: ".upload-text-content:first"
+      intro: "... et collez le contenu dans le champ de zone de texte."
+      position: "top"
+      textinsert: |
+        1 0.039 0.000
+        2 0.455 0.000
+        3 0.472 0.000
+        4 0.030 0.000
+        5 0.000 0.000
+        6 0.000 0.000
+        7 0.000 0.000
+        8 0.000 0.000
+
+    - element: ".upload-settings:first"
+      intro: "Maintenant, nous pouvons encore configurer le contenu du téléchargement."
+      position: "right"
+      postclick:
+        - ".upload-settings:first"
+
+    - element: ".upload-space_to_tab:first"
+      intro: "... en spécifiant que tous les espaces de notre table doivent être convertis en onglets."
+      position: "left"
+      postclick:
+        - ".upload-space_to_tab:first"
+
+    - element: "#btn-start"
+      intro: "Téléchargez les données dans votre historique Galaxy."
+      position: "top"
+      postclick:
+        - "#btn-start"
+
+    - element: "#btn-close"
+      intro: "Appuyez sur le bouton Fermer pour fermer la boîte de dialogue de téléchargement."
+      position: "top"
+      postclick:
+        - "#btn-close"
+
+    - element: "#enable-scratchbook > .dropdown > .dropdown-toggle"
+      intro: "Cliquez sur ce bouton pour activer le mode Scratchbook de Galaxy."
+      position: "right"
+      postclick:
+        - "#enable-scratchbook > .dropdown > .dropdown-toggle"
+
+    - element: "#right"
+      intro: "C'est votre histoire.  Il contient tous les ensembles de données auxquels vous travaillez actuellement, y compris notre table téléchargée."
+      position: "left"
+
+    - element: "#current-history-panel .fa-eye:first"
+      intro: "En cliquant sur l'icône de l'oeil, vous affichez généralement un ensemble de données dans le panneau central."
+      position: "left"
+      postclick:
+        - "#current-history-panel .fa-eye:first"
+
+    - element: "#frame-0"
+      intro: "Cependant, en mode Scratchbook, l'ensemble de données sera affiché comme une fenêtre redimensionnable."
+      position: "right"
+
+    - title: "Done."
+      intro: "Vous avez créé une vue Scratchbook.  Cliquez sur l'arrière-plan et sélectionnez plus de jeux de données."

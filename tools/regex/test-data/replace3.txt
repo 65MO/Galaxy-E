@@ -1,3 +1,0 @@
-This is a file named find1.txt.
-
-There is nothing to see find1.

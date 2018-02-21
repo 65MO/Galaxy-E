@@ -1,9 +1,9 @@
-<tool id="Show beginning1" name="Selectionner les premières" version="1.0.0">
-  <description>lignes d'un jeu de données</description>
+<tool id="Show beginning1" name="Select first" version="1.0.0">
+  <description>lines from a dataset</description>
   <command interpreter="perl">headWrapper.pl $input $lineNum $out_file1</command>
   <inputs>
-    <param name="lineNum" size="5" type="integer" value="10" label="Sélectionner les premières" help="lignes"/>
-    <param format="txt" name="input" type="data" label="de"/>
+    <param name="lineNum" size="5" type="integer" value="10" label="Select first" help="lines"/>
+    <param format="txt" name="input" type="data" label="from"/>
   </inputs>
   <outputs>
     <data format="input" name="out_file1" metadata_source="input"/>
@@ -17,15 +17,15 @@
   </tests>
   <help>
 
-**Ce que fait l'outil**
+**What it does**
 
-Cet outil permet de générer un jeu de données contenant le nombre de lignes spécifiés à partir du **début** d'un jeu de données
+This tool outputs specified number of lines from the **beginning** of a dataset
 
 -----
 
-**Exemple**
+**Example**
 
-Selectionner 2 lignes depuis::
+Selecting 2 lines from this::
 
     chr7  56632  56652  D17003_CTCF_R6  310  +
     chr7  56736  56756  D17003_CTCF_R7  354  +
@@ -33,7 +33,7 @@ Selectionner 2 lignes depuis::
     chr7  56772  56792  D17003_CTCF_R7  372  +
     chr7  56775  56795  D17003_CTCF_R4  207  +
 
-produira::
+will produce::
 
     chr7  56632  56652  D17003_CTCF_R6  310  +
     chr7  56736  56756  D17003_CTCF_R7  354  +

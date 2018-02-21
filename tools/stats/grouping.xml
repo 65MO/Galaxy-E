@@ -1,5 +1,5 @@
-<tool id="Grouping1" name="Grouper" version="2.1.1">
-  <description>des données par une colonne et pratiquer des opérations d'aggrégation sur d'autres colonnes.</description>
+<tool id="Grouping1" name="Group" version="2.1.1">
+  <description>data by a column and perform aggregate operation on other columns.</description>
   <command interpreter="python">
     grouping.py 
       "${out_file1}"
@@ -14,12 +14,12 @@
       #end for
   </command>
   <inputs>
-    <param format="tabular" name="input1" type="data" label="Selectionner les données" help="Jeu de données non présent ? Voir ASTUCE plus bas"/>
-    <param name="groupcol" label="Grouper par la colonne" type="data_column" data_ref="input1" />
+    <param format="tabular" name="input1" type="data" label="Select data" help="Dataset missing? See TIP below."/>
+    <param name="groupcol" label="Group by column" type="data_column" data_ref="input1" />
     <param name="ignorecase" type="boolean" truevalue="1" falsevalue="0">
-      <label>Ignorer la casse en groupant ?</label>
+      <label>Ignore case while grouping?</label>
     </param>
-    <param name="ignorelines" type="select" display="checkboxes" multiple="True" label="Ignorer les lignes commençant par ces caractères" help="les lignes débutant par ces caractères ne seront pas considérés">
+    <param name="ignorelines" type="select" display="checkboxes" multiple="True" label="Ignore lines beginning with these characters" help="lines beginning with these are not grouped">
             <option value="62">&gt;</option>
             <option value="64">@</option>
             <option value="43">+</option>
@@ -37,26 +37,25 @@
             <option value="94">^</option>
             <option value="35">&#35;</option>
     </param>
-    <repeat name="operations" title="Opération">
+    <repeat name="operations" title="Operation">
       <param name="optype" type="select" label="Type">
-        <option value="mean">Moyennes</option>
-        <option value="median">Médiane</option>
+        <option value="mean">Mean</option>
+        <option value="median">Median</option>
         <option value="mode">Mode</option>
         <option value="max">Maximum</option>
         <option value="min">Minimum</option>
-        <option value="sum">Somme</option>
-        <option value="length">Comptage</option>
-        <option value="unique">Comptage unique</option>
-        <option value="cat">Concaténation</option>
-        <option value="cat_links">Concaténation avec liens</option>
-        <option value="cat_uniq">Concaténation unique</option>
-        <option value="random">Tirage aléatoire</option>
-        <option value="std">Déviation standard</option>
+        <option value="sum">Sum</option>
+        <option value="length">Count</option>
+        <option value="unique">Count Distinct</option>
+        <option value="cat">Concatenate</option>
+        <option value="cat_uniq">Concatenate Distinct</option>
+        <option value="random">Randomly pick</option>
+        <option value="std">Standard deviation</option>
       </param>
-      <param name="opcol" label="Sur la colonne" type="data_column" data_ref="input1" />
-      <param name="opround" type="select" label="Arrondir les résultats à l'entier le plus proche ?">
-         <option value="no">NON</option>
-         <option value="yes">OUI</option>
+      <param name="opcol" label="On column" type="data_column" data_ref="input1" />
+      <param name="opround" type="select" label="Round result to nearest integer?">
+         <option value="no">NO</option>
+         <option value="yes">YES</option>
        </param>
     </repeat>
   </inputs>
@@ -102,38 +101,38 @@
 
 .. class:: infomark
 
-**ASTUCE:** Si vos données ne sont pas au format tabulé, utilisez l'outil *Manipulation de texte-&gt;Convertir*
+**TIP:** If your data is not TAB delimited, use *Text Manipulation-&gt;Convert*
 
 -----
 
-**Syntaxe**
+**Syntax**
 
-Cet outil permet de grouper les jeux de données d'entrée par une colonne particulière et d'appliquer des fonctions d'aggrégation : Moyenne, Médiane, Mode, Somme, Max, Min, Comptage, Concaténation, et Tirage aléatoire sur n'importe quelle(s) colonne(s).
+This tool allows you to group the input dataset by a particular column and perform aggregate functions: Mean, Median, Mode, Sum, Max, Min, Count, Concatenate, and Randomly pick on any column(s).
 
-La fonction de concaténation prendra, pour chaque groupe, chaque item de la colonne spcifiée et construira une liste séparé par des virgules. Concaténation unique effectuera la même opération mais construira une liste de valeurs uniques sans répétition.
+The Concatenate function will take, for each group, each item in the specified column and build a comma delimited list. Concatenate Unique will do the same but will build a list of unique items with no repetition.
 
-Comptage et Comptage unique sont équivalent à Concaténation et Concaténation unique, sauf qu'ils compteront le nombre d'items et retourneront un entier.
+Count and Count Unique are equivalent to Concatenate and Concatenate Unique, but will only count the number of items and will return an integer.
 
-- Si des odes multiples sont présents, tous sont reportés.
+- If multiple modes are present, all are reported.
 
 -----
 
-**Exemple**
+**Example**
 
-- Si l'on considère les données d'entrée suivantes ::
+- For the following input::
 
-   habitat22  1000  1003  TTT
-   habitat22  2000  2003  aaa
-   habitat10  2200  2203  TTT
-   habitat10  1200  1203  ttt
-   habitat22  1600  1603  AAA
+   chr22  1000  1003  TTT
+   chr22  2000  2003  aaa
+   chr10  2200  2203  TTT
+   chr10  1200  1203  ttt
+   chr22  1600  1603  AAA
 
-- **Grouper par la colonne 4** en ignorant la casse, et en appliquant l'opération **Comptage sur la colone 1** retournera ::
+- **Grouping on column 4** while ignoring case, and performing operation **Count on column 1** will return::
 
    AAA    2
    TTT    3
    
-- **Grouper par la colonne 4** sans ignorer la casse, et en appliquant l'opération **Comptage sur la colone 1** retournera ::
+- **Grouping on column 4** while not ignoring case, and performing operation **Count on column 1** will return::
 
    aaa    1
    AAA    1
@@ -141,4 +140,3 @@ Comptage et Comptage unique sont équivalent à Concaténation et Concaténation
    TTT    2
   </help>
 </tool>
-

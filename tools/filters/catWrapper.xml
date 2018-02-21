@@ -1,5 +1,5 @@
-<tool id="cat1" name="Concaténer des jeux de données" version="1.0.0">
-    <description>les uns sous les autres</description>
+<tool id="cat1" name="Concatenate datasets" version="1.0.0">
+    <description>tail-to-head</description>
     <command interpreter="python">
         catWrapper.py
         $out_file1
@@ -9,9 +9,9 @@
         #end for
     </command>
     <inputs>
-        <param name="input1" type="data" label="Concaténer des jeux de données"/>
-        <repeat name="queries" title="Jeu de données">
-            <param name="input2" type="data" label="Selection" />
+        <param name="input1" type="data" label="Concatenate Dataset"/>
+        <repeat name="queries" title="Dataset">
+            <param name="input2" type="data" label="Select" />
         </repeat>
     </inputs>
     <outputs>
@@ -37,43 +37,43 @@
 
 .. class:: warningmark
 
-**ATTENTION:** Attention de ne pas concaténer des jeux de données structurés différemment (par exemple en nombre de colonnes et en contenu de chacune des colonnes). Cet outil ne vérifie pas si les jeux de données à concaténer sont de même format et/ou de contenu équivalent!
+**WARNING:** Be careful not to concatenate datasets of different kinds (e.g., sequences with intervals). This tool does not check if the datasets being concatenated are in the same format.
 
 -----
 
-**Ce que fait l'outil**
+**What it does**
 
-Concaténation de jeux de données
+Concatenates datasets
 
 -----
 
-**Exemple**
+**Example**
 
-La concatenation de ce jeu de données::
+Concatenating Dataset::
 
-    habitatX  151087187  151087355  A  0  -
-    habitatX  151572400  151572481  B  0  +
+    chrX  151087187  151087355  A  0  -
+    chrX  151572400  151572481  B  0  +
 
-avec ce jeu de données::
+with Dataset1::
 
-    habitat1  151242630  151242955  X  0  +
-    habitat1  151271715  151271999  Y  0  +
-    habitat1  151278832  151279227  Z  0  -
+    chr1  151242630  151242955  X  0  +
+    chr1  151271715  151271999  Y  0  +
+    chr1  151278832  151279227  Z  0  -
 
-et celui-là::
+and with Dataset2::
 
-    habitat2  100000030  200000955  P  0  +
-    habitat2  100000015  200000999  Q  0  +
+    chr2  100000030  200000955  P  0  +
+    chr2  100000015  200000999  Q  0  +
 
-produira ce nouveau jeu de données::
+will result in the following::
 
-    habitatX  151087187  151087355  A  0  -
-    habitatX  151572400  151572481  B  0  +
-    habitat1  151242630  151242955  X  0  +
-    habitat1  151271715  151271999  Y  0  +
-    habitat1  151278832  151279227  Z  0  -
-    habitat2  100000030  200000955  P  0  +
-    habitat2  100000015  200000999  Q  0  +
+    chrX  151087187  151087355  A  0  -
+    chrX  151572400  151572481  B  0  +
+    chr1  151242630  151242955  X  0  +
+    chr1  151271715  151271999  Y  0  +
+    chr1  151278832  151279227  Z  0  -
+    chr2  100000030  200000955  P  0  +
+    chr2  100000015  200000999  Q  0  +
 
     </help>
 </tool>
