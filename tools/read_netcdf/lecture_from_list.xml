@@ -18,7 +18,7 @@
             if ! [[ \$lat =~ \$re ]] || ! [[ \$lon =~ \$re ]] ; then continue ;fi
             &&
             i=\$((\$i+1)) &&
-            python '$__tool_directory__/lec_general_ncdf.py' '$input' '$var_tab' $var
+            python '$__tool_directory__/netcdf_read.py' '$input' '$var_tab' $var
             #for $i,$uc in enumerate($user_choice)
                 ${uc.dim} ${uc.comparator} ${uc.value}
             #end for   
@@ -41,7 +41,7 @@
 
     #else
 
-        python '$__tool_directory__/lec_general_ncdf.py' '$input' '$var_tab' $var
+        python '$__tool_directory__/netcdf_read.py' '$input' '$var_tab' $var
         #for $i,$uc in enumerate($user_choice)
             ${uc.dim} ${uc.comparator} ${uc.value}
         #end for 
@@ -57,7 +57,7 @@
         &&
         sed -i 's/_/\t/g' 'supersortie_transposed.tabular'
         &&
-        cat 'header_names' 'supersortie_transposed.tabular' | sed 's/\s/\t/g' > 'output_dir/final.tabular'
+        cat 'header_names' 'supersortie_transposed.tabular' | sed 's/\s/\t/g' > 'final.tabular'
 
     #end if
 
@@ -141,8 +141,14 @@
     <outputs>
         <data name="output">
             <discover_datasets pattern="__designation_and_ext__" visible="true" format="tabular" directory="output_dir"/>
+            <filter>condi_source_coord['coord_source'] == 'coord_from_file'</filter>
+        </data>
+        <data name="simpleoutput" from_work_dir="final.tabular" format="tabular">
+            <filter>condi_source_coord['coord_source'] == 'coord_from_stdin'</filter>
         </data>
     </outputs>
+
+
     <tests>
         <test>
              <param name="input" value="dataset-ibi-reanalysis-bio-005-003-monthly-regulargrid_1510914389133.nc"/>
