@@ -20,7 +20,6 @@
         cat 'header_cleaned' 'sortie.tabular' > 'supersortie.tabular'
         &&
         datamash transpose < 'supersortie.tabular' > 'supersortie_transposed.tabular'
-        ##bash '$__tool_directory__/transpose.sh'
         &&
         sed -i 's/_/\t/g' 'supersortie_transposed.tabular'
         &&

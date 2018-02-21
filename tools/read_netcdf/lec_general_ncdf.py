@@ -88,7 +88,7 @@ def is_equal(filename, dim_name, value):
 #Get Input file
 inputfile=Dataset(sys.argv[1])
 var_file_tab=sys.argv[2]
-var=sys.argv[3] #User chosen by user
+var=sys.argv[3] #Var chosen by user
 
 Coord_bool=False
 
@@ -152,7 +152,7 @@ my_dic={} ##d["string{0}".format(x)]
 for i in range(4,arg_n,3):
     #print("\nDimension name : "+sys.argv[i]+" action : "+sys.argv[i+1]+" .Value : "+sys.argv[i+2]+"\n") #Standard msg
     my_dic["string{0}".format(i)]="list_index_dim"
-    my_dic_index="list_index_dim"+str(sys.argv[i])   #TODO Verif si il y a lon et lat
+    my_dic_index="list_index_dim"+str(sys.argv[i])   #Possible improvement: Check if lon/lat are not parsed again
 
     #Apply every user filter. Call function and return list of index wich validate condition for every dim.
     if (sys.argv[i+1]=="l"): #<
@@ -220,7 +220,7 @@ if Coord_bool:
                 i=i+1
         if i<vec2.size: #There is at least 1 nonNA value
             noval=False
-        else: #If only NA, pop the closest coord and search in the second closest coord in the next loop.
+        else: #If only NA : pop the closest coord and search in the second closest coord in the next loop.
             all_coord=np.delete(all_coord,cc_index,0)
 
 
