@@ -111,8 +111,9 @@ datasets <- list_datasets(terrestrial = FALSE, marine = TRUE)
 
 To learn more about R Markdown and interactive documents, please visit rmarkdown.rstudio.com.
       ```
-       
+# Interesting R packages
 
+* [glmmTMB](https://cran.r-project.org/web/packages/glmmTMB/index.html)
 
 
 

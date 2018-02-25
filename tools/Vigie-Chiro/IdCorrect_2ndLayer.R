@@ -1,7 +1,8 @@
 library(data.table)
 library(randomForest)
 args <- commandArgs(trailingOnly = TRUE)
-#print(args)
+
+set.seed(1) #To test reproductibility
 
 filename=args[3]
 if (exists("ClassifEspC2b")==F){load(args[2])}

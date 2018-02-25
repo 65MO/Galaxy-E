@@ -1,6 +1,9 @@
 <tool id="IdCorrect_2ndLayer" name="IdCorrect_2ndLayer.R" version="0.1">
     <requirements>
-        <requirement type="package" version="1.20.0">r-getopt</requirement>
+<!--        <requirement type="package" version="1.20.0">r-getopt</requirement>  -->
+        <requirement type="package" version="1.10.4">r-data.table</requirement>
+        <requirement type="package" version="4.6_12">r-randomforest</requirement>
+        <requirement type="package" version="7.0">readline</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         Rscript 
@@ -36,15 +39,15 @@
     </outputs>
     <tests>
         <test> 
-            <param name="participation_file" value="participation-57b5b8e377f6c1000c9a65c1-observations.csv"/>
+            <param name="participation_file" value="IdCor2Layer_Test1_obs.csv"/>
             <param name="condi_learner" value="default_learner"/>
-            <param name="output" value="test_output.tabular"/>
+            <output name="output" file="IdCor2Layer_Test1_out.tabular"/>
         </test>
         <test>             
-            <param name="participation_file" value="participation-57b5b8e377f6c1000c9a65c1-observations.csv"/>
+            <param name="participation_file" value="IdCor2Layer_Test1_obs.csv"/>
             <param name="condi_learner" value="custom_learner"/>
             <param name="user_learner" value="ClassifEspC2b_171206.learner"/>
-            <param name="output" value="test_output.tabular"/>
+            <output name="output" file="IdCor2Layer_Test1_out.tabular"/>
         </test> 
 
 

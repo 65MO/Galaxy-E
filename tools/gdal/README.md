@@ -10,3 +10,4 @@ Official documentation is available here : http://www.gdal.org/
 * GDALmerge
 * GDALbuildvrt
 * GDALwarp
+* OGRinfo
