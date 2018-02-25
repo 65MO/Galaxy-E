@@ -14,10 +14,10 @@ shinyServer(function(input, output) {
   data_cadavres <- reactive({
     # lecture du fichier csv ou txt contenant le resultat des visites de terrain 
     # (nombre de cadavres trouves sous les eoliennes, une ligne par visite de terrain)    
-    in_file <- input$fichier_c
+    in_file <- read.table("/srv/shiny-server/data/inputdata.txt", header=T, sep="\t")
     if (is.null(in_file))
       return(NULL)
-    df <- read.csv2(in_file$datapath, h=T)
+    df <- read.table("/srv/shiny-server/data/inputdata.txt", header=T, sep="\t")
     # extraire colonne 1, supprimer les éventuelles valeurs non-numériques
     v <- df[[1]]
     vnum <- suppressWarnings(!is.na(as.numeric(v)))
@@ -29,10 +29,10 @@ shinyServer(function(input, output) {
   data_persistence <- reactive({
     # lecture du fichier csv ou txt contenant la duree de presence de cadavres deposes par les experimentateurs 
     # (une ligne par cadavre depose)
-    in_file <- input$fichier_p
+    in_file <- read.table("/srv/shiny-server/data/inputdata.txt", header=T, sep="\t")
     if (is.null(in_file)) 
       return(NULL)
-    df <- read.csv2(in_file$datapath, h=T)
+    df <- read.table("/srv/shiny-server/data/inputdata.txt", header=T, sep="\t")
     # extraire colonne 1, supprimer les éventuelles valeurs non-numériques
     v <- df[[1]]
     vnum <- suppressWarnings(!is.na(as.numeric(v)))

@@ -20,5 +20,6 @@ RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup && \
 
 COPY shiny-server.sh /usr/bin/shiny-server.sh
 COPY .Rprofile /home/shiny/.Rprofile
+ADD ./monitor_traffic.sh /monitor_traffic.sh
 COPY ./shiny-server.conf /etc/shiny-server/shiny-server.conf
 CMD ["/usr/bin/shiny-server.sh"]
