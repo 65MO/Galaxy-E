@@ -1,0 +1,34 @@
+# This file lists acceptable images to allow runing.
+#
+# This allows you, the admin, to create multiple flavours
+# for your users to run. E.g. maybe you need a geosciences flavour,
+# you can create the image based on our default image and add the
+# appropriate `apt-get/pip install` statements.
+---
+-
+    image: shiny-hrapp:dev
+    mako: mako.mako
+    description: |
+      CEFE HRApp
+-
+    image: shiny-eolapp:dev
+    mako: pas.mako
+    description : |
+     CEFE EolApp
+-
+    image: shiny-eol2app:dev
+    mako: mako.mako
+    description: |
+     CEFE Eol2App
+-
+    image: shiny-wallace:dev
+    description : |
+      Reproducible modeling of species niches and distributions
+-
+    image: shiny-geoexplorer:dev
+    description : |
+      Dashboard to visualise geographic data
+-
+    image: valentinchdock/wallace-galaxy-ie:17.09
+    description : |
+      Reproducible modeling of species niches and distributions
