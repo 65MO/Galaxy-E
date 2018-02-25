@@ -1,0 +1,23 @@
+FROM rocker/shiny:latest
+
+# Installing packages needed for check traffic on the container and kill if none
+RUN apt-get update && apt-get install net-tools -y
+RUN apt-get update && apt-get install procps libgdal-dev libproj-dev -y
+# Installing R package dedicated to the shniy app
+RUN Rscript -e "install.packages('leaflet')"
+RUN Rscript -e "install.packages('sp')"
+RUN Rscript -e "install.packages('rgdal')"
+RUN Rscript -e "install.packages('raster')"
+RUN Rscript -e "install.packages('adehabitatHR')"
+
+
+
+# Bash script to check traffic
+RUN mkdir /srv/shiny-server/sample-apps/CEFE
+RUN mkdir /srv/shiny-server/sample-apps/CEFE/www
+COPY www/test_IT117.txt /srv/shiny-server/sample-apps/CEFE/www/test_IT117.txt
+COPY server.R /srv/shiny-server/sample-apps/CEFE/server.R
+COPY ui.R /srv/shiny-server/sample-apps/CEFE/ui.r
+ADD ./monitor_traffic.sh /monitor_traffic.sh
+COPY shiny-server.sh /usr/bin/shiny-server.sh
+CMD ["/usr/bin/shiny-server.sh"]

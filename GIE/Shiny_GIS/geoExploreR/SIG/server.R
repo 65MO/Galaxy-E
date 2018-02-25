@@ -27,7 +27,7 @@ function(input, output,session) {
   
   
   
-  df <- datasets[['galaxy']]
+  df <- datasets[['Quakes']]
   makeReactiveBinding('df')
   
   observeEvent(input$dataset,{

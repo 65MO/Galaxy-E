@@ -23,7 +23,7 @@ shinyUI(
                 dashboardSidebar(
                   
                   selectInput('dataset',label = 'Dataset',
-                              choices = c('Quakes','Meuse','Jura','Fulmar')),
+                              choices = c('Quakes','Galaxy','Meuse','Jura','Fulmar')),
                   #                     selectInput('xvar',label='x Var',choices = names(meuse@data),selected =  names(meuse@data)[1]),
                   #                     selectInput('yvar',label='y Var',choices = names(meuse@data),selected = names(meuse@data)[2]),
                   #                     selectInput('color',label='Color Var',choices = names(meuse@data),selected =  names(meuse@data)[1]),
@@ -75,7 +75,7 @@ shinyUI(
                   
                   #                             box(width=2,status = 'success',
                   #                                 selectInput('dataset',label = 'Dataset',
-                  #                                             choices = c('Quakes','Meuse','Jura','Fulmar')),
+                  #                                             choices = c('Quakes','Galaxy','Meuse','Jura','Fulmar')),
                   #                                 #                     selectInput('xvar',label='x Var',choices = names(meuse@data),selected =  names(meuse@data)[1]),
                   #                                 #                     selectInput('yvar',label='y Var',choices = names(meuse@data),selected = names(meuse@data)[2]),
                   #                                 #                     selectInput('color',label='Color Var',choices = names(meuse@data),selected =  names(meuse@data)[1]),

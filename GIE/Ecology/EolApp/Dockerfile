@@ -6,10 +6,10 @@ RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup && \
     apt-get -qq update && apt-get install --no-install-recommends -y net-tools procps && \
 
 # Installing R package dedicated to the shniy app
-    Rscript -e "install.packages('leaflet')"
+    Rscript -e "install.packages('boot')"
 
 # Bash script to check traffic
-COPY SIG /srv/shiny-server/sample-apps/SIG
+COPY CEFE /srv/shiny-server/sample-apps/CEFE
 ADD ./monitor_traffic.sh /monitor_traffic.sh
 COPY shiny-server.sh /usr/bin/shiny-server.sh
 CMD ["/usr/bin/shiny-server.sh"]

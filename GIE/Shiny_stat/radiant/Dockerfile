@@ -12,10 +12,10 @@ RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup && \
     Rscript -e "install.packages('dplyr')" && \
     Rscript -e "install.packages('radiant', repos = c('https://radiant-rstats.github.io/minicran/', 'https://cloud.r-project.org', 'https://cran.r-project.org'))" && \
     # Bash script to check traffic
-    mkdir /srv/shiny-server/sample-apps/STAT
+    mkdir /srv/shiny-server/sample-apps/STAT && \
 
 
-RUN git clone https://github.com/radiant-rstats/radiant.git /srv/shiny-server/sample-apps/STAT/
+    git clone https://github.com/radiant-rstats/radiant.git /srv/shiny-server/sample-apps/STAT/
 
 
 COPY shiny-server.sh /usr/bin/shiny-server.sh

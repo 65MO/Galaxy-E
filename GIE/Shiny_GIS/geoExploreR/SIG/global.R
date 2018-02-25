@@ -16,8 +16,12 @@ coordinates(meuse) = ~x+y
 proj4string(meuse) <- CRS("+init=epsg:28992")
 meuse <- spTransform(meuse, CRSobj = CRS("+proj=longlat +datum=WGS84 +no_defs"))
 
+data("quakes")
+names(quakes)[1:2] <- c('y','x')
+coordinates(quakes) <- ~x+y
+
 galaxy <- read.csv("/srv/shiny-server/data/inputdata.txt", header=TRUE)
-names(galaxy)[1:2] <- c('y','x')
+names(galaxy)[3:2] <- c('y','x')
 coordinates(galaxy) <- ~x+y
 
 data('jura')
@@ -32,13 +36,15 @@ fulmar <- spTransform(fulmar, CRSobj = CRS("+proj=longlat +datum=WGS84 +no_defs"
 
 datasets <- list(
   'Meuse'=meuse,
-  'galaxy'=galaxy,
+  'Galaxy'=galaxy,
+  'Quakes'=quakes,
   'Jura'=jura,
   'Fulmar'=fulmar
 )
 
 baselayers <- list(
   'Meuse'='DarkMatter (CartoDB)',
+  'Quakes'="Esri.OceanBasemap",
   'galaxy'="Esri.OceanBasemap",
   'Jura'='OpenStreetmap',
   'Fulmar'='OpenStreetmap'
