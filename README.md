@@ -20,6 +20,7 @@ New version of the galaxy client incomming, a new PR has been open [PR](https://
 * BARCODE OF LIFE DATA SYSTEM, Advancing biodiversity science through DNA-based species identification: http://boldsystems.org/index.php/resources/api?type=webservices. Example of API request can be:
   * `http://boldsystems.org/index.php/API_Public/specimen?taxon=Aves&geo=Costa%20Rica&format=tsv`
   * `http://boldsystems.org/index.php/API_Public/specimen?taxon=Dicentrarchus%20labrax&geo=France&format=tsv`
+  * `http://boldsystems.org/index.php/API_Public/specimen?taxon=taxon=Aves|Reptilia&geo=France&format=tsv`
 ## Environmental data
 * IPSL https://cse.ipsl.fr/donnees/114-prodiguer
 * WorldClim - Global Climate Data http://www.worldclim.org/
