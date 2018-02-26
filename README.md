@@ -16,6 +16,9 @@ This repository will gather ideas and development of Galaxy-E tools
 New version of the galaxy client incomming, a new PR has been open [PR](https://github.com/galaxyproject/galaxy/pull/5089)
 
 # Interesting Data sources
+## Species data
+* BARCODE OF LIFE DATA SYSTEM, Advancing biodiversity science through DNA-based species identification: http://boldsystems.org/index.php/resources/api?type=webservices. Example of API request can be : `http://boldsystems.org/index.php/API_Public/specimen?taxon=Aves&geo=Costa%20Rica&format=tsv`
+## Environmental data
 * IPSL https://cse.ipsl.fr/donnees/114-prodiguer
 * WorldClim - Global Climate Data http://www.worldclim.org/
 * Copernicus Climate Change Service Providing climate data http://climate.copernicus.eu/
