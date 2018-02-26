@@ -17,7 +17,11 @@ New version of the galaxy client incomming, a new PR has been open [PR](https://
 
 # Interesting Data sources
 ## Species data
-* BARCODE OF LIFE DATA SYSTEM, Advancing biodiversity science through DNA-based species identification: http://boldsystems.org/index.php/resources/api?type=webservices. Example of API request can be:
+* Using R for occurences data through the spocc package: https://github.com/ropensci/spocc
+* Global Biodiversity Information Facility (GBIF) : https://www.gbif.org/developer/summary
+* IDigBio
+* PlutoF
+* BARCODE OF LIFE DATA SYSTEM (BOLD), Advancing biodiversity science through DNA-based species identification: http://boldsystems.org/index.php/resources/api?type=webservices. Example of API request can be:
   * `http://boldsystems.org/index.php/API_Public/specimen?taxon=Aves&geo=Costa%20Rica&format=tsv`
   * `http://boldsystems.org/index.php/API_Public/specimen?taxon=Dicentrarchus%20labrax&geo=France&format=tsv`
   * `http://boldsystems.org/index.php/API_Public/specimen?taxon=taxon=Aves|Reptilia&geo=France&format=tsv`
