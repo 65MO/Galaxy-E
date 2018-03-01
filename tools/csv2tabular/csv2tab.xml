@@ -1,0 +1,70 @@
+<tool id="csv2tab_R" name="CSV to Tabular" version="0.1">
+    <requirements>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+        Rscript '$__tool_directory__/csv2tab.R' '$input1' '$sep' '$header' '$output' ]]>
+    </command>
+    <inputs>
+        <param format="csv" name="input1" type="data" label="CSV file"/>
+        <param name="sep" type="text" label="Separator" value=","/>
+        <param name="header" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="true" label="Header in file"/>
+
+    </inputs>
+
+    <outputs>
+        <data format="tabular" name="output" from_work_dir="out.tabular" />
+    </outputs>
+    
+    <tests>
+        <test>
+            <param name="input1" value="example_csv.csv"/>
+            <param name="sep" value=","/>
+            <param name="header" value="FALSE"/>
+            <output name="output" file="out.tabular"/>
+        </test>
+    </tests>
+
+    <help>
+**What it does**
+
+Convert a CSV file to a tabular.
+
+Transform the chosen separator to tab. It is important to specify if the file has a header line.
+
+If the field separator is a comma and there are commas inside text fields the tool will only modify the first category in tabs.
+
+------
+
+**Example**
+
+Input CSV :
+
+	"John","Smith","2 mySteet, myCity"
+
+	"François","LeFrançais","1 rue du Général, Paris"
+
+	"Other","Random","Stuff, stuff, stuff"
+
+
+
+Output tabular :
+
+	"John"	"Smith"	"2 mySteet, myCity"
+
+	"François"	"LeFrançais"	"1 rue du Général, Paris"
+
+	"Other"	"Random"	"Stuff, stuff, stuff"
+
+------
+
+**Arguments**
+
+Input : csv file.
+
+Separator : default is ",".
+
+Header : True/False.
+
+
+    </help>
+</tool>
