@@ -1,5 +1,5 @@
-<tool id="secure_hash_message_digest" name="Vérification de l'intégrité d'un jeu de données" version="0.0.1">
-    <description>via md5, sha1 ou autres méthodes</description>
+<tool id="secure_hash_message_digest" name="Secure Hash / Message Digest" version="0.0.1">
+    <description>on a dataset</description>
     <command interpreter="python">secure_hash_message_digest.py --input "${input1}" --output "${out_file1}"
         #if $algorithms.value:
             #for $algorithm in str( $algorithms ).split( "," ):
@@ -8,15 +8,15 @@
         #end if
     </command>
     <inputs>
-        <param format="data" name="input1" type="data" label="Fichier texte"/>
-        <param name="algorithms" type="select" multiple="True" display="checkboxes" label="Choisir l'algoritme">
+        <param format="data" name="input1" type="data" label="Text file"/>
+        <param name="algorithms" type="select" multiple="True" display="checkboxes" label="Choose the algorithms">
           <option value="md5"/>
           <option value="sha1"/>
           <option value="sha224"/>
           <option value="sha256"/>
           <option value="sha384"/>
           <option value="sha512"/>
-          <validator type="no_options" message="Vous devez sélectionner au moins un algoritme." />
+          <validator type="no_options" message="You must select at least one algorithm." />
         </param>
     </inputs>
     <outputs>
@@ -31,19 +31,15 @@
     </tests>
     <help>
 
-**Ce que fait l'outil**
+**What it does**
 
-Cet outil génére des messages de sécurité correspondant à un jeu de données en utilisant l'algoritme choisi.
+This tool outputs Secure Hashes / Message Digests of a dataset using the user selected algorithms.
 
 ------
 
 **Citation**
 
-Si vous utilisez cet outil dans Galaxy, merci de citer `Blankenberg D, Gordon A, Von Kuster G, Coraor N, Taylor J, Nekrutenko A; Galaxy Team. Manipulation of FASTQ data with Galaxy. Bioinformatics. 2010 Jul 15;26(14):1783-5. &lt;http://www.ncbi.nlm.nih.gov/pubmed/20562416&gt;`_
+If you use this tool in Galaxy, please cite Blankenberg D, et al. *In preparation.*
 
-
-  </help>
-  <citations>
-    <citation type="doi">10.1093/bioinformatics/btq281</citation>
-  </citations>
+    </help>
 </tool>

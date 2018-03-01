@@ -1,5 +1,5 @@
-<tool id="mergeCols1" name="Merger des colonnes" version="1.0.1">
-  <description>ensemble</description>
+<tool id="mergeCols1" name="Merge Columns" version="1.0.1">
+  <description>together</description>
   <command interpreter="python">
    mergeCols.py 
       $input1
@@ -11,11 +11,11 @@
       #end for
   </command>
   <inputs>
-    <param format="tabular" name="input1" type="data" label="Selection du jeu de données" help="Jeu de données non présent dans la liste ? Voir ASTUCE ci-dessous."/>
-    <param name="col1" label="Merger les colonnes" type="data_column" data_ref="input1" />
-    <param name="col2" label="avec les colonnes" type="data_column" data_ref="input1" help="Besoin d'ajouter des colonnes ? Utiliser les options ci-dessous."/>
+    <param format="tabular" name="input1" type="data" label="Select data" help="Dataset missing? See TIP below."/>
+    <param name="col1" label="Merge column" type="data_column" data_ref="input1" />
+    <param name="col2" label="with column" type="data_column" data_ref="input1" help="Need to add more columns? Use controls below."/>
     <repeat name="columns" title="Columns">
-      <param name="datacol" label="Ajouter la colonne" type="data_column" data_ref="input1" />
+      <param name="datacol" label="Add column" type="data_column" data_ref="input1" />
     </repeat>
   </inputs>
   <outputs>
@@ -34,17 +34,17 @@
 
 .. class:: infomark
 
-**ASTUCE:** Si vos données ne sont pas au format tabulé, utilisez l'outil *Manipulation de texte-&gt;Convertir*
+**TIP:** If your data is not TAB delimited, use *Text Manipulation-&gt;Convert*
 
 -----
 
-**Ce que fait l'outil**
+**What it does**
 
-Cet outil merge les colonnes ensemble. Any number of valid columns can be merged in any order.
+This tool merges columns together. Any number of valid columns can be merged in any order.
 
 -----
 
-**Exemple**
+**Example**
 
 Input dataset (five columns: c1, c2, c3, c4, and c5)::
 

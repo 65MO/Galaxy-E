@@ -1,22 +1,22 @@
-<tool id="Count1" name="Compter" version="1.0.2">
-  <description>le nombre d'occurrences de chaque enregistrement</description>
+<tool id="Count1" name="Count" version="1.0.2">
+  <description>occurrences of each record</description>
   <command interpreter="python">uniq.py -i $input -o $out_file1 -c "$column" -d $delim -s $sorting</command>
   <inputs>
-    <param name="input" type="data" format="tabular" label="Sur le jeu de données" help="Données non présentes? Voir ASTUCE i-dessous"/>
-    <param name="column" type="data_column" data_ref="input" multiple="True" numerical="False" label="Compter les occurrences des valeurs présentes dans la(les) colonne(s)" help="Liste de sélection multiple - Vous pouvez maintenir le bouton CTRL en cliquant pour sélectionner des multiples colonnes" />
-    <param name="delim" type="select" label="Délimité par">
-      <option value="T">Tabulation</option>
-      <option value="Sp">Espace</option>
-      <option value="Dt">Point</option>
-      <option value="C">Virgule</option>
-      <option value="D">Tiret</option>
+    <param name="input" type="data" format="tabular" label="from dataset" help="Dataset missing? See TIP below"/>
+    <param name="column" type="data_column" data_ref="input" multiple="True" numerical="False" label="Count occurrences of values in column(s)" help="Multi-select list - hold the appropriate key while clicking to select multiple columns" />
+    <param name="delim" type="select" label="Delimited by">
+      <option value="T">Tab</option>
+      <option value="Sp">Whitespace</option>
+      <option value="Dt">Dot</option>
+      <option value="C">Comma</option>
+      <option value="D">Dash</option>
       <option value="U">Underscore</option>
-      <option value="P">Double point</option>
+      <option value="P">Pipe</option>
     </param>
-    <param name="sorting" type="select" label="Comment les résultats doivent t'ils être triés ?">
-      <option value="value">Par les valeurs comptées</option>
-      <option value="largest">Avec la valeur la plus présente en premier</option>
-      <option value="smallest">Avec la valeur la plus rare en premier</option>
+    <param name="sorting" type="select" label="How should the results be sorted?">
+      <option value="value">By the values being counted</option>
+      <option value="largest">With the most common values first</option>
+      <option value="smallest">With the rarest values first</option>
     </param>
   </inputs>
   <outputs>
@@ -59,22 +59,22 @@
   <help>
 .. class:: infomark
 
-**ASTUCE:** Si vos données ne sont pas au format tabulé, utiliser *Manipulation de fichiers texte-&gt;Convertir*
+**TIP:** If your data is not TAB delimited, use *Text Manipulation-&gt;Convert*
 
 -----
 
-**Syntaxe**
+**Syntax**
 
-Cet outil compte les occurrences de valeurs uniques dans la(les) colonne(s) sélectionnée(s).
+This tool counts occurrences of unique values in selected column(s).
 
-- Si de multiples colonnes sont sélectionnées, le comptage est effectué sur chaque group unique de toute les valeurs des colonnes sélectionnées.
-- La première colonne du jeu de données résultant correspondera au comptage des valeurs uniques de la (des) colonne(s) sélectionnée(s) et sera suivi par chaque valeur unique.
+- If multiple columns are selected, counting is performed on each unique group of all values in the selected columns.
+- The first column of the resulting dataset will be the count of unique values in the selected column(s) and will be followed by each value.
 
 -----
 
-**Exemple**
+**Example**
 
-- Données d'entrée::
+- Input file::
      
        chr1   10  100  gene1
        chr1  105  200  gene2
@@ -85,14 +85,14 @@ Cet outil compte les occurrences de valeurs uniques dans la(les) colonne(s) sél
        chr4   10 1765  gene7
        chr4   10 1765  gene8
 
-- Compter les valeurs uniques dans la colonne c1 générera le résultat suivant ::
+- Counting unique values in column c1 will result in::
 
        3 chr1
        2 chr2
        1 chr3
        2 chr4   
 
-- Compter les valeurs uniques dans le groupement des colonnes c2 et c3 générera le résultat suivant ::
+- Counting unique values in the grouping of columns c2 and c3 will result in::
 
        2    10    100
        2    10    1765

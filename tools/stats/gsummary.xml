@@ -1,5 +1,5 @@
-<tool id="Summary_Statistics1" name="Statistiques descriptives" version="1.1.1">
-  <description>d'une colonne numérique</description>
+<tool id="Summary_Statistics1" name="Summary Statistics" version="1.1.1">
+  <description>for any numerical column</description>
   <edam_topics>
     <edam_topic>topic_2269</edam_topic>
   </edam_topics>
@@ -11,9 +11,9 @@
   </stdio>
   <command>python $__tool_directory__/gsummary.py "$input" "$out_file1" "$cond"</command>
   <inputs>
-    <param format="tabular" name="input" type="data" label="Summary statistics on" help="Jeu de données non présent ? Voir ASTUCE plus bas"/>
-    <param name="cond" size="30" type="text" value="c5" label="Colonne ou expression" help="Voir la syntaxe plus bas">
-      <validator type="empty_field" message="Entrer une colonne ou une expression valide, voir la syntaxe plus bas pour des exemples"/>
+    <param format="tabular" name="input" type="data" label="Summary statistics on" help="Dataset missing? See TIP below"/>
+    <param name="cond" size="30" type="text" value="c5" label="Column or expression" help="See syntax below">
+      <validator type="empty_field" message="Enter a valid column or expression, see syntax below for examples"/>
     </param>
   </inputs>
   <outputs>
@@ -30,43 +30,42 @@
 
 .. class:: warningmark
 
-Cet outil suppose que les jeux de données d'entrée consistent en des colonnes séparées par des tabulations (les lignes vides ou de commentaires débutant par un caractère # sont automatiquement sautées).
+This tool expects input datasets consisting of tab-delimited columns (blank or comment lines beginning with a # character are automatically skipped).
 
 .. class:: infomark
 
-**ASTUCE:** Si vos données ne sont pas au format tabulé, utilisez l'outil *Manipulation de texte-&gt;Convertir*
-
-
-.. class:: infomark
-
-**ASTUCE:** Le calcul de statistiques peut aboutir à des erreurs si la valeur des données de chaque ligne des colonnes considérées ne sont pas numériques. Si une ligne présente des valeurs manquantes, ou contient des valeurs non-numériques dans la colonne concernée, cette ligne est sautée et la valeur n'est pas incluse dans les calculs statistiques. Le nombre de lignes non considérées est documenté dans le jeu de données résultant dans l'historique.
+**TIP:** If your data is not TAB delimited, use *Text Manipulation-&gt;Convert delimiters to TAB*
 
 .. class:: infomark
 
-**UTILISATION DE FONCTIONS R:** La plupart des fonctions (comme *abs*) ne prennent que des expressions simples. *log* peut prendre 1 ou 2 paramètres, comme *log(expression,base)*
+**TIP:** Computing summary statistics may throw exceptions if the data value in every line of the columns being summarized is not numerical.  If a line is missing a value or contains a non-numerical value in the column being summarized, that line is skipped and the value is not included in the statistical computation.  The number of invalid skipped lines is documented in the resulting history item.
 
-Actuellement, ces fonctions R sont supportées : *abs, sign, sqrt, floor, ceiling, trunc, round, signif, exp, log, cos, sin, tan, acos, asin, atan, cosh, sinh, tanh, acosh, asinh, atanh, lgamma, gamma, gammaCody, digamma, trigamma, cumsum, cumprod, cummax, cummin*
+.. class:: infomark
+
+**USING R FUNCTIONS:** Most functions (like *abs*) take only a single expression. *log* can take one or two parameters, like *log(expression,base)*
+
+Currently, these R functions are supported: *abs, sign, sqrt, floor, ceiling, trunc, round, signif, exp, log, cos, sin, tan, acos, asin, atan, cosh, sinh, tanh, acosh, asinh, atanh, lgamma, gamma, gammaCody, digamma, trigamma, cumsum, cumprod, cummax, cummin*
 
 -----
 
-**Syntaxe**
+**Syntax**
 
-Cet outil calcul des statistiques descriptives basiques sur une colonne particulière, ou sur une expression valide contenant une ou plusieurs colonnes.
+This tool computes basic summary statistics on a given column, or on a valid expression containing one or more columns.
 
-- Les colonnes sont référencés avec **c** et un **nombre**. Par exemple, **c1** fait référence à la première colonne d'un fichier tabulé.
+- Columns are referenced with **c** and a **number**. For example, **c1** refers to the first column of a tab-delimited file.
 
-- Par exemple :
+- For example:
 
-  - **log(c5)** calcule des statistiques descriptives pour le log naturel de la colonne 5
-  - **(c5 + c6 + c7) / 3** calcule des statistiques descriptives sur la moyenne des colonnes 5-7
-  - **log(c5,10)** calcule des statistiques descriptives pour le log de base 10 de la colonne 5
-  - **sqrt(c5+c9)** calcule des statistiques descriptives pour la racine carrée de la colonne 5 + colonne 9
+  - **log(c5)** calculates the summary statistics for the natural log of column 5
+  - **(c5 + c6 + c7) / 3** calculates the summary statistics on the average of columns 5-7
+  - **log(c5,10)** summary statistics of the base 10 log of column 5
+  - **sqrt(c5+c9)** summary statistics of the square root of column 5 + column 9
 
 -----
 
-**Exemples**
+**Examples**
 
-- Données d'entrée ::
+- Input Dataset::
 
     c1      c2      c3      c4      c5              c6
     586     chrX    161416  170887  41108_at        16990
@@ -74,7 +73,7 @@ Cet outil calcul des statistiques descriptives basiques sur une colonne particul
     595     chrX    1361578 1388460 33665_s_at      1960
     74      chrX    1420620 1461919 1185_at         8600
 
-- Statistiques descriptives sur la colonne c6 du jeu de données ci-dessus ::
+- Summary Statistics on column c6 of the above input dataset::
 
     #sum       mean      stdev     0%        25%       50%       75%        100%
     29250.000  7312.500  7198.636  1700.000  1895.000  5280.000  10697.500  16990.000

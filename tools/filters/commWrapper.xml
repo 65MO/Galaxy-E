@@ -1,36 +1,36 @@
-<tool id="Comm1" name="Trouver des similarités et des différences" version="1.0.0">
-  <description>entre 2 jeux de données</description>
+<tool id="Comm1" name="Find Similarities and Differences" version="1.0.0">
+  <description>between two datasets</description>
   <command interpreter="perl">commWrapper.pl $input1 $input2 $mode $out_file1</command>
   <inputs>
     <param format="tabular" name="input1" type="data" label="Compare Dataset1"/>
     <param format="tabular" name="input2" type="data" label="with Dataset2"/>
     <param name="mode" type="select" label="And find">
-      <option value="-23">Lignes uniques du jeu de données 1</option>
-      <option value="-12">Lignes partagées entre jeu de données 1 et jeu de données 2</option>
+      <option value="-23">Lines unique to Dataset1</option>
+      <option value="-12">Lines shared between Dataset1 and Dataset2</option>
     </param>
   </inputs>
   <outputs>
     <data format="input" name="out_file1" metadata_source="input1" />
   </outputs>
   <help>
-Cet outil est basé sur la commande shell UNIX comm. Il compare deux ensembles de données et renvoie des similitudes ou des différences. Par exemple, si vous avez deux jeux de données::
+This tool is based on UNIX shell command comm. It compares two datasets and returns similarities or differences. For example, if you have two datasets::
   
  a  1
  b  2
  c  3
 
-et::
+and::
 
  a  1
  f  6
  h  8
 
-Utiliser cet outil avec l'option **Lines unique to Dataset1** retournera::
+Using this tool with **Lines unique to Dataset1** option will return::
 
  b  2
  c  3
 
-Si vous utilisez l'option **Lines shared between Dataset1 and Dataset2** la sortie ressemblera à cela::
+If you use **Lines shared between Dataset1 and Dataset2** option output will look like this::
 
  a  1
 

@@ -1,18 +1,18 @@
-<tool id="Condense characters1" name="Condenser" version="1.0.0">
-  <description>des caractères consécutifs</description>
+<tool id="Condense characters1" name="Condense" version="1.0.0">
+  <description>consecutive characters</description>
   <command interpreter="perl">condense_characters.pl $input $character $out_file1</command>
   <inputs>
 <!--    <display>condense all consecutive $character from $input</display> -->
-    <param name="character" type="select" label="Condenser tous les caractères consécutifs du type">
-      <option value="T">Tabulations</option>
-      <option value="Sp">Espaces</option>
-      <option value="Dt">Points</option>
-      <option value="C">Virgules</option>
-      <option value="D">Tirets</option>
+    <param name="character" type="select" label="Condense all consecutive">
+      <option value="T">Tabs</option>
+      <option value="Sp">Spaces</option>
+      <option value="Dt">Dots</option>
+      <option value="C">Commas</option>
+      <option value="D">Dashes</option>
       <option value="U">Underscores</option>
       <option value="P">Pipes</option>
     </param>
-    <param format="txt" name="input" type="data" label="dans ce jeu de données"/>
+    <param format="txt" name="input" type="data" label="in this Dataset"/>
   </inputs>
   <outputs>
     <data format="input" name="out_file1" metadata_source="input" />
@@ -26,23 +26,23 @@
   </tests>
   <help>
 
-**Ce que fait l'outil**
+**What it does**
 
-Cet outil condense tous caractères consécutifs d'un type spécifique.
+This tool condenses all consecutive characters of a specified type.
 
 -----
 
-**Exemple**
+**Example**
 
-- Donnée d'entré::
+- Input file::
 
-    individuX,,,10,,,,,20
-    individuY,,5,,,,,12,15,9,
+    geneX,,,10,,,,,20
+    geneY,,5,,,,,12,15,9,
 
-- Condenser toutes les virgules consécutives. Le fichier ci-dessus sera converti en::
+- Condense all consecutive commas. The above file will be converted into::
 
-    individuX,10,20
-    individuY,5,12,15,9
+    geneX,10,20
+    geneY,5,12,15,9
 
 </help>
 </tool>

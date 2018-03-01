@@ -1,23 +1,23 @@
-<tool id="random_lines1" name="Selection aléatoire de lignes" version="2.0.1">
-  <description>à partir d'un fichier</description>
+<tool id="random_lines1" name="Select random lines" version="2.0.1">
+  <description>from a file</description>
   <command interpreter="python">random_lines_two_pass.py "${input}" "${out_file1}" "${num_lines}"
   #if str( $seed_source.seed_source_selector ) == "set_seed":
       --seed "${seed_source.seed}"
   #end if
   </command>
   <inputs>
-    <param name="num_lines" size="5" type="integer" value="1" label="Sélectionner aléatoirement" help="des lignes"/>
-    <param format="txt" name="input" type="data" label="à partir de"/>
+    <param name="num_lines" size="5" type="integer" value="1" label="Randomly select" help="lines"/>
+    <param format="txt" name="input" type="data" label="from"/>
     <conditional name="seed_source">
-      <param name="seed_source_selector" type="select" label="fixer une graine aléatoire">
-        <option value="no_seed" selected="True">Ne pas fixer de graine</option>
-        <option value="set_seed">Fixer une graine</option>
+      <param name="seed_source_selector" type="select" label="Set a random seed">
+        <option value="no_seed" selected="True">Don't set seed</option>
+        <option value="set_seed">Set seed</option>
       </param>
       <when value="no_seed">
         <!-- Do nothing here -->
       </when>
       <when value="set_seed"> 
-        <param name="seed" type="text" label="graine aléatoire" />
+        <param name="seed" type="text" label="Random seed" />
       </when>
     </conditional>
   </inputs>
@@ -41,15 +41,15 @@
   </tests>
   <help>
 
-**Ce que fait l'outil**
+**What it does**
 
-Cet outil sélectionne N lignes aléatoires à partir d'un jeu de données, sans répétitions et en préservant l'ordre.
+This tool selects N random lines from a file, with no repeats, and preserving ordering.
 
 -----
 
-**Exemple**
+**Example**
 
-Données d'entrée::
+Input File::
 
     chr7  56632  56652   D17003_CTCF_R6  310  +
     chr7  56736  56756   D17003_CTCF_R7  354  +
@@ -57,7 +57,7 @@ Données d'entrée::
     chr7  56772  56792   D17003_CTCF_R7  372  +
     chr7  56775  56795   D17003_CTCF_R4  207  +
 
-Sélectionner 2 lignes aléatoires retournera::
+Selecting 2 random lines might return this::
 
     chr7  56736  56756   D17003_CTCF_R7  354  +
     chr7  56775  56795   D17003_CTCF_R4  207  +

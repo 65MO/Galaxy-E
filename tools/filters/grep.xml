@@ -1,13 +1,13 @@
-<tool id="Grep1" name="Selectionner" version="1.0.1">
-  <description>des lignes par une requête pouvant être une expression régulière</description>
+<tool id="Grep1" name="Select" version="1.0.1">
+  <description>lines that match an expression</description>
   <command interpreter="python">grep.py -i $input -o $out_file1 -pattern '$pattern' -v $invert</command>
   <inputs>
-    <param format="txt" name="input" type="data" label="Sélectionner les lignes de ce jeu de données"/>
-    <param name="invert" type="select" label="qui">
-      <option value="false">Correspondent</option>
-      <option value="true">Ne Correspondent pas</option>
+    <param format="txt" name="input" type="data" label="Select lines from"/>
+    <param name="invert" type="select" label="that">
+      <option value="false">Matching</option>
+      <option value="true">NOT Matching</option>
     </param>
-    <param name="pattern" size="40" type="text" value="^chr([0-9A-Za-z])+" label="à l'expression" help="ici vous pouvez entrer du texte ou une expression régulière (pour la syntaxe à appliquer, voir la section help ci-dessous)">
+    <param name="pattern" size="40" type="text" value="^chr([0-9A-Za-z])+" label="the pattern" help="here you can enter text or regular expression (for syntax check lower part of this frame)">
       <sanitizer>
         <valid initial="string.printable">
          <remove value="&apos;"/>
@@ -33,50 +33,50 @@
 
 .. class:: infomark
 
-**ASTUCE:** Si vos données ne sont pas au format tabulé, utilisez l'outil *Manipulation de texte-&gt;Convertir*
+**TIP:** If your data is not TAB delimited, use *Text Manipulation-&gt;Convert*
 
 -----
 
-**Syntaxe**
+**Syntax**
 
-L'outil Selectionner cherche dans un jeu de données les lignes contenant ou ne contenant pas une expression donnée. Il est possible d'utiliser des expressions régulières dans cet outil. Une epression régulière est une expression décrivant une certaine quantité de texte. 
+The select tool searches the data for lines containing or not containing a match to the given pattern. Regular Expression is introduced in this tool. A Regular Expression is a pattern describing a certain amount of text. 
 
-- **( ) { } [ ] . * ? + \ ^ $** sont des caractères spéciaux. **\\** peut être utilisé pour "échapper" un caractère spécial, rendant possible l'utilisation de caratères spéciaux dans la recherche.
-- **\\A** représente le début d'une chaîne de caractères (pas une ligne interne).
-- **\\d** représente un chiffre, idem à [0-9].
-- **\\D** représente un caractère autre qu'un chiffre.
-- **\\s** représente un espace.
-- **\\S** représente tous sauf un espace.
-- **\\t** représente une tabulation.
-- **\\w** représente un caractère alphanumérique.
-- **\\W** représente tout sauf un caractère alphanumérique.
-- **(** .. **)** groupe un pattern particuliers.
-- **\\Z** représente la fin d'une chaîne de caractères (pas une ligne interne).
-- **{** n or n, or n,m **}** permet de spécifier un nombre de répétitions du pattern précédent.
+- **( ) { } [ ] . * ? + \ ^ $** are all special characters. **\\** can be used to "escape" a special character, allowing that special character to be searched for.
+- **\\A** matches the beginning of a string(but not an internal line).
+- **\\d** matches a digit, same as [0-9].
+- **\\D** matches a non-digit.
+- **\\s** matches a whitespace character.
+- **\\S** matches anything BUT a whitespace.
+- **\\t** matches a tab.
+- **\\w** matches an alphanumeric character.
+- **\\W** matches anything but an alphanumeric character.
+- **(** .. **)** groups a particular pattern.
+- **\\Z** matches the end of a string(but not a internal line).
+- **{** n or n, or n,m **}** specifies an expected number of repetitions of the preceding pattern.
 
-  - **{n}** L'item précédent est trouvé exactement n fois.
-  - **{n,}** L'item précédent est trouvé n fois ou plus. 
-  - **{n,m}** L'item précédent est trouvé au moins n fois mais pas plus de m fois. 
+  - **{n}** The preceding item is matched exactly n times.
+  - **{n,}** The preceding item is matched n or more times. 
+  - **{n,m}** The preceding item is matched at least n times but not more than m times. 
 
-- **[** ... **]** créé une classe de caractères. Entre les crochets, des caractères simples peuvent être placés. Un tiret (-) peut être utilisé pour indiquer une plage de valeurs comme **a-z**.
-- **.** représente n'importe qu'el caractère simple à part une nouvelle ligne.
-- ***** L'item précédent doit être présent 0 ou plus de fois.
-- **?** L'item précédent est optionel et peut être retrouvé au maximum une fois.
-- **+** L'item précédent sera trouvé une fois ou plus.
-- **^** possède 2 interprétations:
-  - correspond au début d'une ligne ou d'une chaîne de caractères. 
-  - indique une négation au sein d'une classe de caractères. Par exemple, [^...] correspond à tous caractères à part ceux placés entre crochets.
-- **$** correspond à la fin d'une ligne ou d'une chaîne de caractères.
-- **\|** Sépare des possibilités alternatives. 
+- **[** ... **]** creates a character class. Within the brackets, single characters can be placed. A dash (-) may be used to indicate a range such as **a-z**.
+- **.** Matches any single character except a newline.
+- ***** The preceding item will be matched zero or more times.
+- **?** The preceding item is optional and matched at most once.
+- **+** The preceding item will be matched one or more times.
+- **^** has two meaning:
+  - matches the beginning of a line or string. 
+  - indicates negation in a character class. For example, [^...] matches every character except the ones inside brackets.
+- **$** matches the end of a line or string.
+- **\|** Separates alternate possibilities. 
 
 -----
 
-**Exemple**
+**Example**
 
-- **^chr([0-9A-Za-z])+** peut correspondre aux lignes qui débutent avec des chromosomes, comme des lignes dans un fichier au format BED.
-- **(ACGT){1,5}** correspond à chercher au moins un "ACGT" et au max 5 "ACGT" consécutivement.
-- **([^,][0-9]{1,3})(,[0-9]{3})\*** correspond à un nombre à plusieurs chiffres séparés par des virgules comme 23,078,651.
-- **(abc)|(def)** correspond à "abc" ou "def".
-- **^\\W+#** correspond à n'importe qu'elle ligne de commentaire.
+- **^chr([0-9A-Za-z])+** would match lines that begin with chromosomes, such as lines in a BED format file.
+- **(ACGT){1,5}** would match at least 1 "ACGT" and at most 5 "ACGT" consecutively.
+- **([^,][0-9]{1,3})(,[0-9]{3})\*** would match a large integer that is properly separated with commas such as 23,078,651.
+- **(abc)|(def)** would match either "abc" or "def".
+- **^\\W+#** would match any line that is a comment.
 </help>
 </tool>

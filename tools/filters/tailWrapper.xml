@@ -1,9 +1,9 @@
-<tool id="Show tail1" name="Selectionner les dernières lignes" version="1.0.0">
-  <description>d'un jeu de données</description>
+<tool id="Show tail1" name="Select last" version="1.0.0">
+  <description>lines from a dataset</description>
   <command interpreter="perl">tailWrapper.pl $input $lineNum $out_file1</command>
   <inputs>
-    <param name="lineNum" size="5" type="integer" value="10" label="Selectionner les dernières" help="lignes"/>
-    <param format="txt" name="input" type="data" label="de"/>
+    <param name="lineNum" size="5" type="integer" value="10" label="Select last" help="lines"/>
+    <param format="txt" name="input" type="data" label="from"/>
   </inputs>
   <outputs>
     <data format="input" name="out_file1" metadata_source="input"/>
@@ -17,15 +17,15 @@
   </tests>
   <help>
 
-**Ce que fait l'outil**
+**What it does**
 
-Cet outil génère un nombre spécifique de lignes depuis la **fin** d'un jeu de données
+This tool outputs specified number of lines from the **end** of a dataset
 
 -----
 
-**Exemple**
+**Example**
 
-- Fichier d'entrée::
+- Input File::
 
     chr7    57134   57154   D17003_CTCF_R7  356     -
     chr7    57247   57267   D17003_CTCF_R4  207     +
@@ -33,7 +33,7 @@ Cet outil génère un nombre spécifique de lignes depuis la **fin** d'un jeu de
     chr7    57341   57361   D17003_CTCF_R7  375     +
     chr7    57457   57477   D17003_CTCF_R3  188     +
 
-- Sélectionner les deux dernières lignes du jeu de données ci-dessus. Le résultat est alors::
+- Show last two lines of above file. The result is::
 
     chr7    57341   57361   D17003_CTCF_R7  375     +
     chr7    57457   57477   D17003_CTCF_R3  188     +

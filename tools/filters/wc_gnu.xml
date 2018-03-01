@@ -1,5 +1,5 @@
-<tool id="wc_gnu" name="Compter le nombre de lignes/mots/caractères" version="1.0.0">
-    <description>d'un jeu de données</description>
+<tool id="wc_gnu" name="Line/Word/Character count" version="1.0.0">
+    <description>of a dataset</description>
     <command>
         #set $word_to_arg = { 'characters':'m', 'words':'w', 'lines':'l' }
         #set $arg_order = [ 'lines', 'words', 'characters' ]
@@ -20,15 +20,15 @@
         &gt;&gt; $out_file1
     </command>
     <inputs>
-        <param format="txt" name="input1" type="data" label="Fichier texte"/>
-        <param name="options" type="select" multiple="True" display="checkboxes" label="Méthode désirée">
+        <param format="txt" name="input1" type="data" label="Text file"/>
+        <param name="options" type="select" multiple="True" display="checkboxes" label="Desired values">
             <!-- <option value="bytes" selected="True">Byte count</option> -->
-            <option value="lines" selected="True">Comptage de lignes</option>
-            <option value="words" selected="True">Comptage de mots</option>
-            <option value="characters" selected="True">Comptage de caractères</option>
-            <validator type="no_options" message="Vous devez spécifier une méthode de comptage." />
+            <option value="lines" selected="True">Line count</option>
+            <option value="words" selected="True">Word count</option>
+            <option value="characters" selected="True">Character count</option>
+            <validator type="no_options" message="You must pick at least one attribute to count." />
         </param>
-        <param name="include_header" type="boolean" label="Inclure l'en-tête dans la sortie" checked="True"/>
+        <param name="include_header" type="boolean" label="Include Output header" checked="True"/>
     </inputs>
     <outputs>
         <data format="tabular" name="out_file1"/>
@@ -49,13 +49,13 @@
     </tests>
     <help>
 
-**Ce que fait l'outil**
+**What it does**
 
-Cet outil renvoi le compte du nombre d'attributs spécifiés (lignes, mots, caractères) d'un jeu de données. 
+This tool outputs counts of specified attributes (lines, words, characters) of a dataset. 
 
 -----
 
-**Exemple de sortie**
+**Example Output**
 
 ::
 
@@ -66,11 +66,7 @@ Cet outil renvoi le compte du nombre d'attributs spécifiés (lignes, mots, cara
 
 **Citation**
 
-Si vous utilisez cet outil dans Galaxy, merci de citer `Blankenberg D, Gordon A, Von Kuster G, Coraor N, Taylor J, Nekrutenko A; Galaxy Team. Manipulation of FASTQ data with Galaxy. Bioinformatics. 2010 Jul 15;26(14):1783-5. &lt;http://www.ncbi.nlm.nih.gov/pubmed/20562416&gt;`_
+If you use this tool in Galaxy, please cite Blankenberg D, et al. *In preparation.*
 
-
-  </help>
-  <citations>
-    <citation type="doi">10.1093/bioinformatics/btq281</citation>
-  </citations>
+    </help>
 </tool>

@@ -1,0 +1,7 @@
+[submodule "GIE/OpenRefine-galaxy-ie"]
+	path = GIE/OpenRefine-galaxy-ie
+	url = https://github.com/ValentinChCloud/OpenRefine-galaxy-ie.git
+[submodule "GIE/Wallace-galaxy-ie"]
+	path = GIE/Wallace-galaxy-ie
+	url = https://github.com/ValentinChCloud/Wallace-galaxy-ie
+        branch = master

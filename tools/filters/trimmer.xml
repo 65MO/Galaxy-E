@@ -1,20 +1,20 @@
-<tool id="trimmer" name="Couper" version="0.0.1">
-    <description>les caractères de tête ou de queue</description>
+<tool id="trimmer" name="Trim" version="0.0.1">
+    <description>leading or trailing characters</description>
     <command detect_errors="exit_code">
 <![CDATA[
 python '$__tool_directory__/trimmer.py' -a -f '$input1' -c $col -s $start -e $end -i '$ignore' $fastq > '$out_file1'
 ]]>
     </command>
     <inputs>
-        <param name="input1" type="data" format="tabular,txt" label="Données d'entrée" />
-        <param name="col" type="integer" value="0" label="Couper cette colonne uniquement" help="0 = opérer sur les lignes entères" />
-        <param name="start" type="integer" value="1" label="Couper du début jusqu'à cette position" help="Seuls les positions positives sont permises. 1 = ne pas couper le début"/>
-        <param name="end" type="integer" value="0" label="Supprimer tout depuis cette position jusqu'à la fin" help="Utilisez une position négative pour indiquer une position de départ depuis la fin. 0 = ne pas couper la fin"/>
-        <param name="fastq" type="select" label="Le jeu de données d'entrée est t'il au format FASTQ?" help="Is 'Oui', l'outil ne coupera pas les lignes paires (0, 2, 4, etc...). Cela permet de couper les séquences nucléotidiques et la qualité des nucléotides correspondants, seulement si ces lignes ne sont pas en multilignes (voir le warning ci-dessous)">
-            <option value="" selected="true">Non</option>
-            <option value="-q">Oui</option>
+        <param name="input1" type="data" format="tabular,txt" label="Input dataset" />
+        <param name="col" type="integer" value="0" label="Trim this column only" help="0 = process entire line" />
+        <param name="start" type="integer" value="1" label="Trim from the beginning up to this position" help="Only positive positions allowed. 1 = do not trim the beginning"/>
+        <param name="end" type="integer" value="0" label="Remove everything from this position to the end" help="Use negative position to indicate position starting from the end. 0 = do not trim the end"/>
+        <param name="fastq" type="select" label="Is input dataset in FASTQ format?" help="If set to 'Yes', the tool will not trim evenly numbered lines (0, 2, 4, etc...). This allows for trimming the seq and qual lines, only if they are not spread over multiple lines (see warning below)">
+            <option value="" selected="true">No</option>
+            <option value="-q">Yes</option>
         </param>
-        <param name="ignore" type="select" display="checkboxes" multiple="true" label="Ignorer les lignes débutant avec ces caractères" help="Lignes débutant avec ces caractères ne seront pas touchées">
+        <param name="ignore" type="select" display="checkboxes" multiple="true" label="Ignore lines beginning with these characters" help="Lines beginning with these are not trimmed">
             <option value="62">&gt;</option>
             <option value="64">@</option>
             <option value="43">+</option>
@@ -67,74 +67,74 @@ python '$__tool_directory__/trimmer.py' -a -f '$input1' -c $col -s $start -e $en
     </tests>
 
     <help>
-**Ce que fait l'outil**
+**What it does**
 
-Couper le nombre de caractères spécifiés d'un jeu de données ou de ces champs (si au format tabulé).
+Trims specified number of characters from a dataset or its field (if dataset is tab-delimited).
 
 -----
 
-**Exemple 1**
+**Example 1**
 
-Couper ce jeu de données::
+Trimming this dataset::
 
   1234567890
   abcdefghijk
 
-en spécifiant pour **Couper du début jusqu'à cette position** à *2* et **Supprimer tout depuis cette position jusqu'à la fin** à *6* produira::
+by setting **Trim from the beginning up to this position** to *2* and **Remove everything from this position to the end** to *6* will produce::
 
   23456
   bcdef
 
 -----
 
-**Exemple 2**
+**Example 2**
 
-Couper la colonne 2 de ce jeu de données::
+Trimming column 2 of this dataset::
 
   abcde 12345 fghij 67890
   fghij 67890 abcde 12345
 
-en spécifiant pour **Couper cette colonne uniquement** à *2*, **Couper du début jusqu'à cette position** à *2*, et **Supprimer tout depuis cette position jusqu'à la fin** à *4* produira::
+by setting **Trim content of this column only** to *2*, **Trim from the beginning up to this position** to *2*, and **Remove everything from this position to the end** to *4* will produce::
 
   abcde  234 fghij 67890
   fghij  789 abcde 12345
 
 -----
 
-**Exemple 3**
+**Example 3**
 
-Couper la colonne 2 de ce jeu de données::
+Trimming column 2 of this dataset::
 
   abcde 12345 fghij 67890
   fghij 67890 abcde 12345
 
-en spécifiant pour **Couper cette colonne uniquement** à *2*, **Couper du début jusqu'à cette position** à *2*, et **Supprimer tout depuis cette position jusqu'à la fin** à *-2* produira::
+by setting **Trim content of this column only** to *2*, **Trim from the beginning up to this position** to *2*, and **Remove everything from this position to the end** to *-2* will produce::
 
   abcde  23 fghij 67890
   fghij  78 abcde 12345
 
 ----
 
-**Couper des jeux de données de séquence au format FASTQ**
+**Trimming FASTQ datasets**
 
-Cet outil peut être utilisé pour couper des séquences et les qualités correspondantes dans des jeux de données FASTQ. Il suffit de spécifier *Oui* à partir pour le paramètre **Le jeu de données d'entrée est t'il au format FASTQ ?**. Si le paramètre est sur *Oui*, l'outil ne considérera pas les lignes paires. PAr exemple, couper les 5 dernières bases de ce jeu de données::
+This tool can be used to trim sequences and quality strings in FASTQ datasets. This is done by selected *Yes* from the **Is input dataset in FASTQ format?** dropdown. If set to *Yes*, the tool will skip all even numbered lines (see warning below). For example, trimming last 5 bases of this dataset::
 
   @081017-and-081020:1:1:1715:1759
   GGACTCAGATAGTAATCCACGCTCCTTTAAAATATC
   +
   II#IIIIIII$5+.(9IIIIIII$%*$G$A31I&amp;&amp;B
 
-Voilàla sortie en ayant spécifié 31 pour le paramètre **Supprimer tout depuis cette position jusqu'à la fin**::
+cab done by setting **Remove everything from this position to the end** to 31::
 
   @081017-and-081020:1:1:1715:1759
   GGACTCAGATAGTAATCCACGCTCCTTTAAA
   +
   II#IIIIIII$5+.(9IIIIIII$%*$G$A3
 
-**Notez** que les en-têtes sont épargnés.
+**Note** that headers are skipped.
 
 .. class:: warningmark
 
-**ATTENTION:** Cet outil ne fonctionnera seulement que sur des données proprement formattées en FASTQ où (1) chaque lecture et chaîne de caractères encodant la qualité n'occupe qu'une seule ligne et (2) '@' (marquant le début de l'en-tête d'une séquence) et "+" (marquant le début de l'en-tête de l'en-tête de qualité) sont numérotées de manière pair comme dans l'exemple ci-dessus.
+**WARNING:** This tool will only work on properly formatted FASTQ datasets where (1) each read and quality string occupy one line and (2) '@' (read header) and "+" (quality header) lines are evenly numbered like in the above example.
     </help>
 </tool>

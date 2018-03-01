@@ -1,5 +1,5 @@
-<tool id="sort1" name="Trier" version="1.0.3">
-    <description>des données de manière ascendante ou descendante</description>
+<tool id="sort1" name="Sort" version="1.0.3">
+    <description>data in ascending or descending order</description>
     <command interpreter="python">
         sorter.py
         
@@ -35,27 +35,27 @@
         #end for
     </command>
     <inputs>
-        <param format="tabular" name="input" type="data" label="Trier le jeu de données" />
-        <param name="column" label="par la colonne" type="data_column" data_ref="input" accept_default="true"/>
-        <param name="style" type="select" label="de type">
-            <option value="num">Numérique</option>
-            <option value="gennum">Numérique général</option>
-            <option value="alpha">Alphabetique</option>
+        <param format="tabular" name="input" type="data" label="Sort Dataset" />
+        <param name="column" label="on column" type="data_column" data_ref="input" accept_default="true"/>
+        <param name="style" type="select" label="with flavor">
+            <option value="num">Numerical sort</option>
+            <option value="gennum">General numeric sort</option>
+            <option value="alpha">Alphabetical sort</option>
         </param>
-        <param name="order" type="select" label="dans l'ordre">
-            <option value="DESC">Descendant</option>
-            <option value="ASC">Ascendant</option>
+        <param name="order" type="select" label="everything in">
+            <option value="DESC">Descending order</option>
+            <option value="ASC">Ascending order</option>
         </param>
-        <repeat name="column_set" title="Sélection de colonnes">
-            <param name="other_column" label="par la colonne" type="data_column" data_ref="input" accept_default="true" />
-            <param name="other_style" type="select" label="de type">
-                <option value="num">Numérique</option>
-                <option value="gennum">Numérique général</option>
-                <option value="alpha">Alphabetique</option>
+        <repeat name="column_set" title="Column selection">
+            <param name="other_column" label="on column" type="data_column" data_ref="input" accept_default="true" />
+            <param name="other_style" type="select" label="with flavor">
+                <option value="num">Numerical sort</option>
+                <option value="gennum">General numeric sort</option>
+                <option value="alpha">Alphabetical sort</option>
             </param>
-            <param name="other_order" type="select" label="dans l'ordre">
-                <option value="DESC">Descendant</option>
-                <option value="ASC">Ascendant</option>
+            <param name="other_order" type="select" label="everything in">
+                <option value="DESC">Descending order</option>
+                <option value="ASC">Ascending order</option>
             </param>
         </repeat>
     </inputs>
@@ -94,25 +94,25 @@
     <help>
 .. class:: infomark
         
-**ASTUCE:** Si vos données ne sont pas au format tabulé, utiliser *Manipulation de fichiers texte-&gt;Convertir*
+**TIP:** If your data is not TAB delimited, use *Text Manipulation-&gt;Convert*
         
 -----
 
-**Syntaxe**
+**Syntax**
 
-Cet outil tri les jeux de données sur n'importe quel nombre de colonnes de manière ascendante ou descendante.
+This tool sorts the dataset on any number of columns in either ascending or descending order.
 
-* Le tri **Numérique** ordonne les nombres par leur magnitude, ignore tous les caractères autres que nombres, et évalue une chaîne de nombres pour la valeur qu'elle représente.
-* Le tri **Numérique général** ordonne les nombres par leur valeur numérique générale. Contrairement à l'option Numérique, il peut gérer les nombres sous une notation scientifique également.
-* Le tri **Alphabétique** est de type annuaire basé sur l'ordre conventionnel des lettres dans un alphabet. Chaque nième lettre est comparée avec la nième lettre des autres mots de la liste, en commençant par la première lettre de chaque mot et avançant à la seconde, troisième, quatrième et ainsi de suite, jusqu'à ce que l'ordre soit établi. Cela explique qu'en mode alphabétique, 2 arrive après 100 (1 &lt; 2).
+* **Numerical sort** orders numbers by their magnitude, ignores all characters besides numbers, and evaluates a string of numbers to the value they signify.
+* **General numeric sort** orders numbers by their general numerical value. Unlike the numerical sort option, it can handle numbers in scientific notation too.
+* **Alphabetical sort** is a phonebook type sort based on the conventional order of letters in an alphabet. Each nth letter is compared with the nth letter of other words in the list, starting at the first letter of each word and advancing to the second, third, fourth, and so on, until the order is established. Therefore, in an alphabetical sort, 2 comes after 100 (1 &lt; 2).
         
 -----
 
-**Exemples**
+**Examples**
 
-La liste des nombres 4,17,3,5 devient 3,4,5,17 par tri numérique, et 17,3,4,5 par tri alphabétique.
+The list of numbers 4,17,3,5 collates to 3,4,5,17 by numerical sorting, while it collates to 17,3,4,5 by alphabetical sorting.
 
-Trier les données suivantes::
+Sorting the following::
 
     Q     d    7   II    jhu  45
     A     kk   4   I     h    111
@@ -134,7 +134,7 @@ Trier les données suivantes::
     A     g    10  H     h    43
     A     g    4   I     h    500
 
-par les colonnes 11 (alphabétique), 3 (numérique), et 6 (numérique) dans un ordre ascendant générera::
+on columns 1 (alphabetical), 3 (numerical), and 6 (numerical) in ascending order will yield::
 
     A     kk   4   I     h    111
     A     edf  4   tw    b    234
@@ -157,7 +157,7 @@ par les colonnes 11 (alphabétique), 3 (numérique), et 6 (numérique) dans un o
     rS    hty  90  YY    LOp  89
 
 
-Trier les données suivantes::
+Sorting the following::
 
     chr10  100  200  feature1  100.01   +
     chr20  800  900  feature2  1.1      +
@@ -166,7 +166,7 @@ Trier les données suivantes::
     chr21  300  500  feature5  1.1e2    +
     chr15  700  800  feature6  1.1e4    +
 
-sur la colonne 5 (numérique) dans un ordre ascendant générera::
+on column 5 (numerical) in ascending order will yield::
 
     chr1   300  400  feature4  1.1e-05  +
     chr15  700  800  feature6  1.1e4    +
@@ -175,7 +175,7 @@ sur la colonne 5 (numérique) dans un ordre ascendant générera::
     chr10  100  200  feature1  100.01   +
     chr2   500  600  feature3  1000.1   +
 
-sur la colonne 5 (numérique général) dans un ordre ascendant générera::
+on column 5 (general numeric) in ascending order will yield::
 
     chr1   300  400  feature4  1.1e-05  +
     chr20  800  900  feature2  1.1      +

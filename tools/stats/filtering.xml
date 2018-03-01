@@ -1,5 +1,5 @@
-<tool id="Filter1" name="Filtrer" version="1.1.0">
-  <description>des données sur une colonne en utilisant des epressions simples</description>
+<tool id="Filter1" name="Filter" version="1.1.0">
+  <description>data on any column using simple expressions</description>
   <edam_operations>
     <edam_operation>operation_0335</edam_operation>
   </edam_operations>
@@ -7,11 +7,11 @@
     filtering.py $input $out_file1 "$cond" ${input.metadata.columns} "${input.metadata.column_types}" $header_lines
   </command>
   <inputs>
-    <param format="tabular" name="input" type="data" label="Filter" help="Données non affichées ? Voir ASTUCE plus bas."/>
-    <param name="cond" size="40" type="text" value="c1=='habitat2'" label="En utilisant la condition suivante" help="Un signe égale double, ==, doit être utilisé comme montré plus bas. Pour filtrer pour une chaîne arbitraire, utiliser l'outil Sélection.">
-      <validator type="empty_field" message="Entrer une condition de filtre valide, voir la syntaxe et les exemples plus bas."/>
+    <param format="tabular" name="input" type="data" label="Filter" help="Dataset missing? See TIP below."/>
+    <param name="cond" size="40" type="text" value="c1=='chr22'" label="With following condition" help="Double equal signs, ==, must be used as shown above. To filter for an arbitrary string, use the Select tool.">
+      <validator type="empty_field" message="Enter a valid filtering condition, see syntax and examples below."/>
     </param>
-    <param name="header_lines" type="integer" value="0" label="Nombre de lignes d'en-têtes à passer"/>
+    <param name="header_lines" type="integer" value="0" label="Number of header lines to skip"/>
   </inputs>
   <outputs>
     <data format="input" name="out_file1" metadata_source="input"/>
@@ -53,38 +53,38 @@
 
 .. class:: warningmark
 
-Le signe égale doublé, ==, doit être utilisé en tant que *"strictement égal à"* (i.e., **c1 == 'concarneau'**)
+Double equal signs, ==, must be used as *"equal to"* (e.g., **c1 == 'chr22'**)
 
 .. class:: infomark
 
-**ASTUCE:** En voulant appliquer un filtre conditionnel, vous pourriez tomber sur des exceptions si le type de données (i.e., caractère, entier) si toutes les lignes des colonnes filtrées ne sont pas appropriés pour la condition posée (i.e., attendre cerains calculs numériques sur des caratères).  En cas d'exeption à appliquer sur une ligne, cette ligne ne sera pas considérée par le filtre car jugée invalide. Le nombre de lignes invalides non considérées est documenté dans le jeu de données résultant de l'historique comme une "erreur de condition/donnée".
+**TIP:** Attempting to apply a filtering condition may throw exceptions if the data type (e.g., string, integer) in every line of the columns being filtered is not appropriate for the condition (e.g., attempting certain numerical calculations on strings).  If an exception is thrown when applying the condition to a line, that line is skipped as invalid for the filter condition.  The number of invalid skipped lines is documented in the resulting history item as a "Condition/data issue".
 
 .. class:: infomark
 
-**ASTUCE :** Si vos données ne sont pas au format tabulé, utilisez l'outil *Manipulation de texte-&gt;Convertir*
+**TIP:** If your data is not TAB delimited, use *Text Manipulation-&gt;Convert*
 
 -----
 
-**Syntaxe**
+**Syntax**
 
-L'outil filtre vous permet de réduire un jeu de données en utilisant des expressions conditionnelles simples.
+The filter tool allows you to restrict the dataset using simple conditional statements.
 
-- Les colonnes sont référencées par **c** et un **nombre**. Par exemple, **c1** fait référence à la première colonne dun fichier tabulé
-- Soyez sûr que les opérateurs multi-caractères ne contiennet pas d'espaces ( i.e., **&lt;=** est valide alors que **&lt; =** ne l'est pas )
-- Quand vous utilisez l'opérateur 'égal à' **un signe égale double '==' doit être utilisé** ( i.e., **c1=='habitat'** )
-- Les valeurs non-numériques doivent être incluses entre simple ou double guillemets ( i.e., **c6=='+'** )
-- Une conditionnelle peut contenir des opérateurs logique, mais **soyez sûre que les opérateurs soient bien notés en minuscule** ( i.e., **(c1!='concarneau' and c1!='paris') or not c6=='+'** )
+- Columns are referenced with **c** and a **number**. For example, **c1** refers to the first column of a tab-delimited file
+- Make sure that multi-character operators contain no white space ( e.g., **&lt;=** is valid while **&lt; =** is not valid )
+- When using 'equal-to' operator **double equal sign '==' must be used** ( e.g., **c1=='chr1'** )
+- Non-numerical values must be included in single or double quotes ( e.g., **c6=='+'** )
+- Filtering condition can include logical operators, but **make sure operators are all lower case** ( e.g., **(c1!='chrX' and c1!='chrY') or not c6=='+'** )
 
 -----
 
-**Exemple**
+**Example**
 
-- **c1=='concarneau'** sélectionne les lignes pour lesquelles le contenu de la première colonne est concarneau
-- **c3-c2&lt;100*c4** selectionne les lignes pour lesquelles la soustraction de la colonne 3 par la 2 est inférieure à la valeur de la colonne 4 multipliée par 100
-- **len(c2.split(',')) &lt; 4** sélectionnera les lignes pour lesquelles la seconde colonne a moins de 4 éléments séparés par des virgules
-- **c2>=1** sélectionnera les lignes pour lesquelles la valeur de la colonne 2 est supérieure ou égale à 1
-- Les nombres ne doivent pas contenir de virgules - **c2&lt;=44,554,350** ne fonctionnera pas, mais **c2&lt;=44554350** oui
-- Certains mots peuvent être utilisés, mais ils doivent être placés entre simple ou double guillemets ( i.e., **c3=='cesco'** )
+- **c1=='chr1'** selects lines in which the first column is chr1
+- **c3-c2&lt;100*c4** selects lines where subtracting column 3 from column 2 is less than the value of column 4 times 100
+- **len(c2.split(',')) &lt; 4** will select lines where the second column has less than four comma separated elements
+- **c2>=1** selects lines in which the value of column 2 is greater than or equal to 1
+- Numbers should not contain commas - **c2&lt;=44,554,350** will not work, but **c2&lt;=44554350** will
+- Some words in the data can be used, but must be single or double quoted ( e.g., **c3=='exon'** )
 
 </help>
 </tool>

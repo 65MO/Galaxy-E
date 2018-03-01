@@ -1,5 +1,5 @@
-<tool id="Convert characters1" name="Convertir" version="1.0.0">
-  <description>des délimiteurs en tabulation</description>
+<tool id="Convert characters1" name="Convert" version="1.0.0">
+  <description>delimiters to TAB</description>
   <command interpreter="python">
 convert_characters.py
 #if $strip
@@ -11,21 +11,21 @@ convert_characters.py
 $input $convert_from $out_file1
   </command>
   <inputs>
-    <param name="convert_from" type="select" label="Convertir tous les">
-      <option value="s">Espaces</option>
-      <option value="T">Tabulations</option>
+    <param name="convert_from" type="select" label="Convert all">
+      <option value="s">Whitespaces</option>
+      <option value="T">Tabs</option>
       <!--<option value="Sp">Spaces</option>-->
-      <option value="Dt">Points</option>
-      <option value="C">Virgules</option>
-      <option value="D">Tirets</option>
+      <option value="Dt">Dots</option>
+      <option value="C">Commas</option>
+      <option value="D">Dashes</option>
       <option value="U">Underscores</option>
       <option value="P">Pipes</option>
-      <option value="Co">double points</option>
-      <option value="Sc">point virgule</option>
+      <option value="Co">Colons</option>
+      <option value="Sc">Semicolons</option>
     </param>
-    <param format="txt" name="input" type="data" label="du jeu de données"/>
-    <param name="strip" type="boolean" checked="true" label="supprimer les espaces de début et de fin" />
-    <param name="condense" type="boolean" checked="true" label="Condenser les délimiteurs successifs en une tabulation" />
+    <param format="txt" name="input" type="data" label="in Dataset"/>
+    <param name="strip" type="boolean" checked="true" label="Strip leading and trailing whitespaces" />
+    <param name="condense" type="boolean" checked="true" label="Condense consecutive delimiters in one TAB" />
   </inputs>
   <outputs>
     <data format="tabular" name="out_file1" />
@@ -51,22 +51,22 @@ $input $convert_from $out_file1
   </tests>
   <help>
 
-**Ce que fait l'outil**
+**What it does**
 
-Converti tous les délimiteurs d'un type spécifique en tabulations. Les délimiteurs consécutifs peuvent être condensés en une seule tabulation.
+Converts all delimiters of a specified type into TABs. Consecutive delimiters can be condensed in a single TAB.
 
 -----
 
-**Exemple**
+**Example**
 
-- Fichier d'entrée::
+- Input file::
 
     chrX||151283558|151283724|NM_000808_exon_8_0_chrX_151283559_r|0|-
     chrX|151370273|151370486|NM_000808_exon_9_0_chrX_151370274_r|0|-
     chrX|151559494|151559583|NM_018558_exon_1_0_chrX_151559495_f|0|+
     chrX|151564643|151564711|NM_018558_exon_2_0_chrX_151564644_f||||0|+
 
-- Converti tous les pipes du fichier en tabulations et en condensant les délimiteurs, cela donne ::
+- Converting all pipe delimiters of the above file to TABs and condensing delimiters will get::
 
     chrX  151283558  151283724  NM_000808_exon_8_0_chrX_151283559_r  0  -
     chrX  151370273  151370486  NM_000808_exon_9_0_chrX_151370274_r  0  -
