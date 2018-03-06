@@ -7,7 +7,9 @@
     </command>
     <inputs>
         <param format="csv" name="input1" type="data" label="CSV file"/>
-        <param name="sep" type="text" label="Separator" value=","/>
+        <param name="sep" type="text" label="Separator" value=",">
+            <sanitizer sanitize="False"/>
+        </param>
         <param name="header" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="true" label="Header in file"/>
 
     </inputs>
