@@ -12,14 +12,15 @@ f2p <- function(x) #get date-time data from recording file names
 
 args <- commandArgs(trailingOnly = TRUE)
 print(args)
-EchelleErreur=c(99,50,10,1)
+EchelleErreur=c("","POSSIBLE","PROBABLE","SUR")
+EchelleNumErreur=c(99,50,10,1)
 
 #for test
 #i=5
-#inputest=list.files("C:/Users/Yves Bas/Documents/GitHub/65MO_Galaxy-E/raw_scripts/Vigie-Chiro/output_IdValid_input_BilanEnrichi/",full.names=T)
+#inputest=list.files("C:/Users/Yves Bas/Documents/GitHub/65MO_Galaxy-E/raw_scripts/Vigie-Chiro/output_IdValid_input_BilanEnrichi/",pattern="IdC2.csv",full.names=T)
 #for (i in 1:length(inputest))
 #{
-#   args=c(inputest[i],"refPF.csv","GroupList_HF.csv")
+#   args=c(inputest[i],"refPF.csv","SpeciesList.csv")
    
    
 IdC2=fread(args[1])
@@ -37,9 +38,10 @@ if(substr(IdC2$`nom du fichier`[1],2,2)!="a")
 RisqueErreurT=aggregate(IdC2$IdProb,by=list(IdC2$IdExtrap),FUN=function(x) ceiling((1-max(x))*100))
 barplot(RisqueErreurT$x,names.arg=RisqueErreurT$Group.1,las=2)
 #compute error risk accoring to observer/validator (a little dirty because it relies on alphabetical order of confidence classes: POSSIBLE < PROBABLE < SUR)
-RisqueErreurOV=aggregate(IdC2$ConfV,by=list(IdC2$IdExtrap)
-                         ,FUN=function(x) max(as.numeric(as.factor(x)))) 
-RisqueErreurOV2=EchelleErreur[RisqueErreurOV$x]
+RisqueErreurOV0=match(IdC2$ConfV,EchelleErreur)
+RisqueErreurOV=aggregate(RisqueErreurOV0,by=list(IdC2$IdExtrap)
+                         ,FUN=max) 
+RisqueErreurOV2=EchelleNumErreur[RisqueErreurOV$x]
 #compute minimum error risk between man and machine
 RisqueErreur=pmin(RisqueErreurT$x,RisqueErreurOV2)
 
@@ -118,14 +120,14 @@ QualifActMot=ClassAct[QualifAct]
 #ActNuit=aggregate(IdC2$`nom du fichier`,by=list(IdC2$DateNuit,IdC2$IdExtrap),FUN=length)
 
 #organize the csv summary
-SummPart0=cbind(Nesp=levels(as.factor(IdC2$IdExtrap))
+SummPart0=cbind(Esp=levels(as.factor(IdC2$IdExtrap))
                 ,RisqueErreur,NbValid=NbValid2$x,EffortValid=EffortClassMot
                 ,Contacts_Nuit=round(ActMoy$x),Niveau_Activite=QualifActMot)
 
 
-InfoSp=c("GroupFR","NomFR","Scientific name","Nesp")
+InfoSp=c("GroupFR","NomFR","Scientific name","Esp")
 GroupShort=GroupList[,..InfoSp]
-SummPart=merge(GroupShort,SummPart0,by="Nesp")
+SummPart=merge(GroupShort,SummPart0,by="Esp")
 IndexGroupe=c("Autre","Sauterelle","Chauve-souris")
 SummPart$IndexSumm=match(SummPart$GroupFR,IndexGroupe)
 SummPart=SummPart[with(SummPart
@@ -133,11 +135,11 @@ SummPart=SummPart[with(SummPart
 colnames(SummPart)=c("Code","Groupe","Nom français","Nom scientifique"
                      ,"Risque d'erreur (%)","Nb Validations"
                      ,"Effort de validation","Nb de Contacts par Nuit"
-                     ,"Niveau d'Activite","IndexG")
+                     ,"Niveau d'Activite","TriGroupe")
 
 #to do: extend colors to other columns to improve readability
 SummHTML=datatable(SummPart, rownames = FALSE) %>%
-  formatStyle(columns = "Risque d'erreur (%)", 
+  formatStyle(columns = c("Code","Groupe","Nom français","Nom scientifique","Risque d'erreur (%)"),valueColumns="Risque d'erreur (%)", 
               background = styleInterval(c(1, 10, 50), c("white", "khaki", "orange", "orangered"))) %>%
   formatStyle(columns = "Effort de validation", 
               background = styleEqual(c("-","FAIBLE","SUFFISANT","FORT"), c("white", "cyan", "royalblue", "darkblue"))) %>%
