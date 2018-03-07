@@ -1,6 +1,12 @@
 <tool id="autocor-acf" name="Autocorrection residus" version="0.1">
+    <requirements>
+        <requirement type="package" version="3.1_131">r-nlme</requirement>
+        <requirement type="package" version="7.3_48">r-mass</requirement>
+        <requirement type="package" version="0.9.10">xorg-libxrender</requirement>
+        <requirement type="package" version="1.1.2">xorg-libsm</requirement>
+    </requirements>
     <command detect_errors="exit_code"><![CDATA[
-        Rscript $__tool_directory__/autocorr-res_acf.R $input1 $output ]]>
+        Rscript '$__tool_directory__/autocorr-res_acf.R' '$input1' '$output' ]]>
     </command>
     <inputs>
         <param format="rdata" name="input1" type="data" label="Modèle gls" help="Fichier Rdata"/>

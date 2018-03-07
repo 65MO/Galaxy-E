@@ -1,9 +1,15 @@
 <tool id="plot_trend" name="Trend" version="0.1">
+    <requirements>
+        <requirement type="package" version="3.1_131">r-nlme</requirement>
+        <requirement type="package" version="7.3_48">r-mass</requirement>
+        <requirement type="package" version="0.9.10">xorg-libxrender</requirement>
+        <requirement type="package" version="1.1.2">xorg-libsm</requirement>
+    </requirements>
     <command detect_errors="exit_code"><![CDATA[
-        Rscript $__tool_directory__/plot_trend.R $input1 $input2 $output ]]>
+        Rscript '$__tool_directory__/plot_trend.R' '$input1' '$input2' '$output' ]]>
     </command>
     <inputs>
-        <param format="data" name="input1" type="data" label="Fichier produit par l'outil ab_index"/>
+        <param format="tabular" name="input1" type="data" label="Fichier produit par l'outil ab_index"/>
         <param format="rdata" name="input2" type="data" label="Modèle gls" help="Fichier Rdata"/>
     </inputs>
     <outputs>

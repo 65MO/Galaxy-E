@@ -15,4 +15,4 @@ write.table(col.index, file="output-glmmpql", row.names=FALSE, sep=" ")
 
 png('output-plot.png')
 plot(year,col.index,type='o', xlab="year",ylab="collated index")
-dev.off()
+invisible(dev.off())
