@@ -7,4 +7,4 @@ load(args[1])
 
 png('output-acf.png')
 graph<-acf(residuals(mod,type="normalized"))
-dev.off()
+invisible(dev.off())
