@@ -188,9 +188,9 @@ SummHTML=datatable(SummPart, rownames = FALSE) %>%
               background = styleInterval(c(1, 10, 50), c("white", "khaki", "orange", "orangered"))) %>%
   formatStyle(columns = "Effort de validation", 
               background = styleEqual(c("-","FAIBLE","SUFFISANT","FORT"), c("white", "cyan", "royalblue", "darkblue"))) %>%
-  formatStyle(columns = "Niveau d'Activite en expansion", 
+  formatStyle(columns = c("Nb de Contacts en expansion","Niveau d'Activite en expansion"),valueColumns="Niveau d'Activite en expansion", 
               background = styleEqual(c("FAIBLE","MODEREE","FORTE","TRES FORTE"), c("palegoldenrod", "greenyellow", "limegreen", "darkgreen"))) %>%
-  formatStyle(columns = "Niveau d'Activite en direct", 
+  formatStyle(columns = c("Nb de Contacts en direct","Niveau d'Activite en direct"),valueColumns="Niveau d'Activite en direct", 
               background = styleEqual(c("FAIBLE","MODEREE","FORTE","TRES FORTE"), c("palegoldenrod", "greenyellow", "limegreen", "darkgreen")))
 
 
@@ -205,7 +205,6 @@ IdC2M$Canal=sapply(IdC2M$Direct,FUN=function(x) if(x){"Direct"}else{"Expansion"}
 ActMoyTA=aggregate(IdC2M$`nom du fichier`,by=list(IdC2M$IdExtrap,IdC2M$Canal,IdC2M$Session),FUN=length)
 ActMoyT=dcast(data=IdC2M,formula=IdExtrap+Canal~Session
               ,fun.aggregate=length)
-ncs=ncol(SummPart)
 SummPartshort=cbind(SummPart[,c(1:5)],TriGroupe=SummPart[,TriGroupe])
 SummPartTron=merge(SummPartshort,ActMoyT,by.x="Code",by.y="IdExtrap")
 SummPartTron=SummPartTron[order(TriGroupe,decreasing=T),]

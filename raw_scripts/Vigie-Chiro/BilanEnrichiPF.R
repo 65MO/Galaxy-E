@@ -16,7 +16,6 @@ EchelleErreur=c("","POSSIBLE","PROBABLE","SUR")
 EchelleNumErreur=c(99,50,10,1)
 
 #for test
-#i=5
 #inputest=list.files("C:/Users/Yves Bas/Documents/GitHub/65MO_Galaxy-E/raw_scripts/Vigie-Chiro/output_IdValid_input_BilanEnrichi/",pattern="IdC2.csv",full.names=T)
 #for (i in 1:length(inputest))
 #{
@@ -35,7 +34,7 @@ if(substr(IdC2$`nom du fichier`[1],2,2)!="a")
 
 #compute error risk by species (minimum error among files)
 #to be replaced by glm outputs if I'll have time
-RisqueErreurT=aggregate(IdC2$IdProb,by=list(IdC2$IdExtrap),FUN=function(x) ceiling((1-max(x))*100))
+RisqueErreurT=aggregate(IdC2$IdProb,by=list(IdC2$IdExtrap),FUN=function(x) ceiling((1-max(x-0.0001))*100))
 barplot(RisqueErreurT$x,names.arg=RisqueErreurT$Group.1,las=2)
 #compute error risk accoring to observer/validator (a little dirty because it relies on alphabetical order of confidence classes: POSSIBLE < PROBABLE < SUR)
 RisqueErreurOV0=match(IdC2$ConfV,EchelleErreur)
@@ -143,11 +142,94 @@ SummHTML=datatable(SummPart, rownames = FALSE) %>%
               background = styleInterval(c(1, 10, 50), c("white", "khaki", "orange", "orangered"))) %>%
   formatStyle(columns = "Effort de validation", 
               background = styleEqual(c("-","FAIBLE","SUFFISANT","FORT"), c("white", "cyan", "royalblue", "darkblue"))) %>%
-  formatStyle(columns = "Niveau d'Activite", 
+  formatStyle(columns = c("Nb de Contacts par Nuit","Niveau d'Activite"),valueColumns="Niveau d'Activite",
               background = styleEqual(c("FAIBLE","MODEREE","FORTE","TRES FORTE"), c("palegoldenrod", "greenyellow", "limegreen", "darkgreen")))
 
 saveWidget(SummHTML,paste0(substr(args[1],1,nchar(args[1])-9),"-summary.html"))
 write.csv2(SummPart,paste0(substr(args[1],1,nchar(args[1])-9),"-summary.csv"),row.names=F)
+
+#compute number of files validated per night/hour
+IdC2$Heure=sapply(IdC2$`nom du fichier`,FUN=function(x) substr(x,nchar(x)-9,nchar(x)-8))
+
+ActNuit=aggregate(IdC2$`nom du fichier`,by=list(IdC2$IdExtrap,IdC2$Session),FUN=length)
+ListSpref=match(ActNuit$Group.1,refPF$Espece)
+Subref=refPF[ListSpref]
+
+
+QualifActN=vector()
+for (k in 1:nrow(ActNuit))
+{
+  if(is.na(Subref$Q25[k]))
+  {
+    QualifActN=c(QualifActN,NA)
+  }else{
+    cuts=cbind(-Inf,as.numeric(Subref$Q25[k]),as.numeric(Subref$Q75[k])
+               ,as.numeric(Subref$Q98[k]),Inf)
+    
+    QualifActN=c(QualifActN,findInterval(ActNuit$x[k],cuts,left.open=T))
+  }
+}
+ActNuit$QualifActN=QualifActN
+
+ActNuitT=dcast(data=ActNuit,formula=Group.1~Group.2
+              ,value.var="x")
+ActNuitT[is.na(ActNuitT)]=0
+RefNuitT=dcast(data=ActNuit,formula=Group.1~Group.2
+               ,value.var="QualifActN")
+ARNuit=merge(ActNuitT,RefNuitT,by="Group.1")
+
+SummPartshort=cbind(SummPart[,c(1:5)],TriGroupe=SummPart[,TriGroupe])
+SummPartN=merge(SummPartshort,ARNuit,by.x="Code",by.y="Group.1")
+SummPartN=SummPartN[order(TriGroupe,decreasing=T),]
+
+test=grepl(".x",colnames(SummPartN))
+colnames(SummPartN)=mapply(FUN=function(x,y) if(y){substr(x,1,2)}else{x}
+                           ,colnames(SummPartN),test)
+ListNuit=subset(colnames(SummPartN),test)
+ListRef=subset(colnames(SummPartN),grepl(".y",colnames(SummPartN)))
+testHide=match(ListRef,colnames(SummPartN))-1
+#to do: extend colors to other columns to improve readability
+SummHTMLN=datatable(SummPartN, rownames = FALSE,options = list(
+  columnDefs = list(list(targets = testHide,visible = FALSE)))) %>%
+  formatStyle(columns = c("Code","Groupe","Nom français","Nom scientifique","Risque d'erreur (%)"),valueColumns="Risque d'erreur (%)", 
+              background = styleInterval(c(1, 10, 50), c("white", "khaki", "orange", "orangered"))) %>%
+  formatStyle(columns = ListNuit,valueColumns=ListRef, 
+              background = styleEqual(c(1,2,3,4), c("palegoldenrod", "greenyellow", "limegreen", "darkgreen")))
+
+saveWidget(SummHTMLN,paste0(substr(args[1],1,nchar(args[1])-9),"-nightly.html"))
+write.csv2(SummPartN,paste0(substr(args[1],1,nchar(args[1])-9),"-nightly.csv"),row.names=F)
+
+
+#summary by hour
+ActMoyH=dcast(data=IdC2,formula=IdExtrap~Heure
+              ,fun.aggregate=length)
+ActMoyHA=aggregate(IdC2$`nom du fichier`
+                   ,by=list(IdC2$IdExtrap,IdC2$Heure)
+                   ,FUN=length)
+
+test=(as.numeric(colnames(ActMoyH))>12)
+ColDebut=subset(colnames(ActMoyH),test)
+ColFin=subset(colnames(ActMoyH),test==F)
+ListH=c(ColDebut,ColFin)
+neworder=c("IdExtrap",ColDebut,ColFin)
+ActMoyH=ActMoyH[,..neworder]
+
+SummPartH=merge(SummPartshort,ActMoyH,by.x="Code",by.y="IdExtrap")
+SummPartH=SummPartH[order(TriGroupe,decreasing=T),]
+
+
+brks <- quantile(ActMoyHA$x, probs = seq(.05, .95, .05), na.rm = TRUE)-1
+clrs <- round(seq(255, 40, length.out = length(brks) + 1), 0) %>%
+{paste0("rgb(255,", ., ",", ., ")")}
+
+
+SummHTMLH=datatable(SummPartH, rownames = FALSE) %>%
+  formatStyle(columns = c("Code","Groupe","Nom français","Nom scientifique","Risque d'erreur (%)"),valueColumns="Risque d'erreur (%)", 
+              background = styleInterval(c(1, 10, 50), c("white", "khaki", "orange", "orangered"))) %>%
+  formatStyle(columns=ListH, backgroundColor = styleInterval(brks, clrs))
+
+saveWidget(SummHTMLH,paste0(substr(args[1],1,nchar(args[1])-9),"-hourly.html"))
+write.csv2(SummPartH,paste0(substr(args[1],1,nchar(args[1])-9),"-hourly.csv"),row.names=F)
 
 }
 
