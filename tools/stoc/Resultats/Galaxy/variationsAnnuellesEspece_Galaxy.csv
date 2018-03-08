@@ -1,0 +1,15 @@
+id;code_espece;nom_espece;indicateur;annee;abondance_relative;IC_inferieur;IC_superieur;erreur_standard;p_value;significatif;nb_carre;nb_carre_presence;abondance
+Galaxy;ORIORI;Loriot d'Europe;TRUE;2001;1;1;1;0;1;FALSE;15;3;8
+Galaxy;ORIORI;Loriot d'Europe;TRUE;2002;0,682;0,49;1,043;0,1752;0,029;TRUE;46;4;7
+Galaxy;ORIORI;Loriot d'Europe;TRUE;2003;0,452;0,266;0,83;0,2034;0,008;TRUE;55;2;2
+Galaxy;ORIORI;Loriot d'Europe;TRUE;2004;0,226;0,116;0,476;0,1709;0;TRUE;57;1;1
+Galaxy;ORIORI;Loriot d'Europe;TRUE;2005;0;0;NA;453,3376;0,992;FALSE;55;0;0
+Galaxy;ORIORI;Loriot d'Europe;TRUE;2006;0;0;NA;0;0,992;FALSE;56;0;0
+Galaxy;ORIORI;Loriot d'Europe;TRUE;2007;1,517;0,918;2,629;0;0,114;FALSE;52;2;5
+Galaxy;ORIORI;Loriot d'Europe;TRUE;2008;1,881;1,209;2,972;0,3892;0,014;TRUE;44;2;6
+Galaxy;ORIORI;Loriot d'Europe;TRUE;2009;0,607;0,396;1,061;0,5996;0,118;FALSE;48;2;3
+Galaxy;ORIORI;Loriot d'Europe;TRUE;2010;2,911;1,886;5,165;0,1626;0;TRUE;43;4;5
+Galaxy;ORIORI;Loriot d'Europe;TRUE;2011;0;0;NA;10033,8598;0,996;FALSE;27;0;0
+Galaxy;ORIORI;Loriot d'Europe;TRUE;2012;2,239;1,321;4,309;0;0,002;TRUE;23;5;6
+Galaxy;ORIORI;Loriot d'Europe;TRUE;2013;0,82;0,369;1,854;0,9162;0,627;FALSE;30;1;1
+Galaxy;ORIORI;Loriot d'Europe;TRUE;2014;0,952;0;NA;7461,1604;1;FALSE;7;0;0

@@ -1,0 +1,48 @@
+<tool id="STOC" name="STOC.R" version="0.1">
+    <requirements>
+        <requirement type="package" version="7.0">readline</requirement>
+        <requirement type="package">r-r.methodss3 </requirement>
+        <requirement type="package" version="1.1*">r-lme4</requirement>
+        <requirement type="package" version="1.9_3">r-arm</requirement>
+        <requirement type="package" version="2.2.1">r-ggplot2</requirement>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+        mkdir Donnees; mkdir Resultats;
+        cp '$input' Donnees/;
+        Rscript 
+         '$__tool_directory__/scriptSTOCeps.R' '$listSp' 
+         ##'$__tool_directory__/Librairie'
+         
+         
+         '$variationsAnnuellesEspece'
+         '$variationsAnnuellesGroupes'
+         '$variationsAnnuellesGroupesPng'
+         '$donneesGroupes'
+         '$tendanceGlobalEspece'
+
+         '$outputfigures'
+
+]]>
+    </command>
+    <inputs>
+        <param name="input" type="data" label="Input birdy file"/>
+        <param name="listSp" type="text" label="BirdyBirdy"/>
+
+    </inputs>
+    <outputs>
+        <data name="variationsAnnuellesEspece" from_work_dir="Resultats/variationsAnnuellesEspece_Galaxy.csv" format="csv"/>
+        <data name="variationsAnnuellesGroupes" from_work_dir="Resultats/variationsAnnuellesGroupes_Galaxy.csv" format="csv"/>
+        <data name="variationsAnnuellesGroupesPng" from_work_dir="Resultats/variationsAnnuellesGroupes_Galaxy.png" format="png"/>
+        <data name="donneesGroupes" from_work_dir="Resultats/donnesGroupes_Galaxy.csv" format="csv"/>
+        <data name="tendanceGlobalEspece" from_work_dir="Resultats/tendanceGlobalEspece_Galaxy.csv" format="csv"/>
+        <data  name="outputfigures" format="png" directory="Resultats/Incertain">
+            <discover_datasets pattern="__designation_and_ext__" visible="true"/>
+        </data>
+    </outputs>
+    <tests>
+    </tests>
+    <help><![CDATA[
+**What it does**
+Birdy birdy ]]>
+    </help>
+</tool>
