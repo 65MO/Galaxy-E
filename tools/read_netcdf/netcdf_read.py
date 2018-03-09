@@ -1,8 +1,10 @@
-from pylab import *
 import netCDF4
 from netCDF4 import Dataset
 import numpy as np
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from pylab import *
 import sys
 import os
 from scipy import spatial
