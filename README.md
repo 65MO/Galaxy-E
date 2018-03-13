@@ -125,6 +125,10 @@ To learn more about R Markdown and interactive documents, please visit rmarkdown
 
 * [glmmTMB](https://cran.r-project.org/web/packages/glmmTMB/index.html)
 
+# Interesting initiatives
+
+* [Kaggle](https://www.kaggle.com/rtatman/welcome-to-data-science-in-r)
+
 
 
 # Collaborators
