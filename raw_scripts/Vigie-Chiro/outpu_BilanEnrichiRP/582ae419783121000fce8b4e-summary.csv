@@ -1,0 +1,10 @@
+"Code";"Groupe";"Nom français";"Nom scientifique";"Risque d'erreur (%)";"Nb Validations";"Effort de validation";"Nb de Contacts en expansion";"Niveau d'Activite en expansion";"Nb de Contacts en direct";"Niveau d'Activite en direct";"TriGroupe"
+"Pippip";"Chauve-souris";"Pipistrelle commune";"Pipistrellus pipistrellus";"1";"0";"-";"17";"MODEREE";"";"";3
+"Eptser";"Chauve-souris";"Serotine commune";"Eptesicus serotinus";"92";"0";"-";"1";"FAIBLE";"";"";3
+"Pipnat";"Chauve-souris";"Pipistrelle de Nathusius";"Pipistrellus nathusii";"1";"0";"-";"1";"FAIBLE";"";"";3
+"Pleaus";"Chauve-souris";"Oreillard gris";"Plecotus austriacus";"88";"0";"-";"1";"FAIBLE";"";"";3
+"Plaalb";"Sauterelle";"Decticelle chagrinee";"Platycleis albopunctata";"1";"0";"-";"13";"FORTE";"";"";2
+"Rusnit";"Sauterelle";"Conocephale gracieux";"Ruspolia nitidula";"1";"0";"-";"12";"MODEREE";"";"";2
+"Tetvir";"Sauterelle";"Sauterelle verte";"Tettigonia viridissima";"8";"0";"-";"5";"MODEREE";"";"";2
+"Testes";"Sauterelle";"Decticelle carroyee";"Tessellana tessellata";"63";"0";"-";"1";"FAIBLE";"";"";2
+"noise";"Autre";"bruit";"noise";"1";"0";"-";"423";"FAIBLE";"";"";1

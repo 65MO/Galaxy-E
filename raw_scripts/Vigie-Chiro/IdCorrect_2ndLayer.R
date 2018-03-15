@@ -6,7 +6,7 @@ print(args)
 #inputest=list.files("C:/Users/Yves Bas/Documents/GitHub/65MO_Galaxy-E/raw_scripts/Vigie-Chiro/input_examples/",full.names=T)
 #for (i in 1:length(inputest))
 #{
-#  args=c(inputest[i],"ClassifEspC2b_171206.learner")
+# args=c(inputest[i],"ClassifEspC2b_180222.learner")
 
 set.seed(1)
 
