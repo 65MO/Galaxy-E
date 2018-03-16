@@ -7,7 +7,7 @@
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         Rscript 
-         '$__tool_directory__/IdCorrect_2ndLayer.R' '$participation_file' 
+         '$__tool_directory__/IdCorrect_2ndLayer_Vfinale.R' '$participation_file' 
 
          #if $learner.condi_learner == "custom_learner":
              '$learner.user_learner'

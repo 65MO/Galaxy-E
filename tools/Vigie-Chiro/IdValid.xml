@@ -8,7 +8,7 @@
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         Rscript 
-         '$__tool_directory__/IdValid.R' '$inputfile' '$output'
+         '$__tool_directory__/IdValid_Vfinale.R' '$inputfile'  '$__tool_directory__/Referentiel_seuils_C2.csv'  '$output'
 ]]>
     </command>
     <inputs>
