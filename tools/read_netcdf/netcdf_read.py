@@ -153,6 +153,12 @@ my_dic={} ##d["string{0}".format(x)]
 
 for i in range(4,arg_n,3):
     #print("\nDimension name : "+sys.argv[i]+" action : "+sys.argv[i+1]+" .Value : "+sys.argv[i+2]+"\n") #Standard msg
+
+    #Check if the dim selected for filtering is present in the var dimensions.
+    if (sys.argv[i] not in dim_names):
+        print("Warning ! "+sys.argv[i]+" is not a dimension of "+var+".\nThis filter will be skipped\nCheck in the file \"variables\" the dimensions available.\n\n")
+        pass
+
     my_dic["string{0}".format(i)]="list_index_dim"
     my_dic_index="list_index_dim"+str(sys.argv[i])   #Possible improvement: Check if lon/lat are not parsed again
 
