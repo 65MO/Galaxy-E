@@ -1,0 +1,6 @@
+"Code";"Groupe";"Nom français";"Nom scientifique";"Risque d'erreur (%)";"Nb Validations";"Effort de validation";"Nb de Contacts en expansion";"Niveau d'Activite en expansion";"Nb de Contacts en direct";"Niveau d'Activite en direct";"TriGroupe"
+"Pippip";"Chauve-souris";"Pipistrelle commune";"Pipistrellus pipistrellus";"1";"0";"-";"17";"MODEREE";"28";"MODEREE";3
+"Tetvir";"Sauterelle";"Sauterelle verte";"Tettigonia viridissima";"1";"0";"-";"0";NA;"5";"FAIBLE";2
+"Phogri";"Sauterelle";"Decticelle cendree";"Pholidoptera griseoaptera";"88";"0";"-";"0";NA;"1";"FAIBLE";2
+"noise";"Autre";"bruit";"noise";"1";"0";"-";"305";"MODEREE";"729";"FORTE";1
+"piaf";"Autre";"Oiseau sp.";"Aves sp.";"1";"0";"-";"0";NA;"2";NA;1
