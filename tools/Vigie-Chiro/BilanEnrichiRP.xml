@@ -12,7 +12,7 @@
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         Rscript 
-            '$__tool_directory__/BilanEnrichiRP_Vfinale.R' '$IdC2' '$__tool_directory__/refRPSeuil50.csv' '$__tool_directory__/SpeciesList.csv' 
+            '$__tool_directory__/BilanEnrichiRP.R' '$IdC2' '$__tool_directory__/refRPSeuil50.csv' '$__tool_directory__/SpeciesList.csv' 
  
             ## List of outputs :
             ##'$output_summary_tabular' '$output_summary_html' 

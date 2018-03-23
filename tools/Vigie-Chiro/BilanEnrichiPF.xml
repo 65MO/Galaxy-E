@@ -11,7 +11,7 @@
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         Rscript 
-            '$__tool_directory__/BilanEnrichiPF_Vfinale.R' '$IdC2' '$__tool_directory__/refPF.csv' '$__tool_directory__/SpeciesList.csv' 
+            '$__tool_directory__/BilanEnrichiPF.R' '$IdC2' '$__tool_directory__/refPF.csv' '$__tool_directory__/SpeciesList.csv' 
  
             ## List of outputs :
             ##'$output_summary_tabular' '$output_summary_html' 
