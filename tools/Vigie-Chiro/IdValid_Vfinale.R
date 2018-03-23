@@ -16,7 +16,7 @@ f2p <- function(x) #get date-time data from recording file names
 args <- commandArgs(trailingOnly = TRUE)
 
 
-print(args)
+#print(args)
 
 
 #for test
@@ -48,7 +48,7 @@ IdCorrect$ConfV=mapply(ValidHier,IdCorrect$observateur_probabilite
                        ,IdCorrect$validateur_probabilite)
 
 
-print(paste(args[1],length(subset(IdCorrect$ConfV,IdCorrect$ConfV!=""))))
+#print(paste(args[1],length(subset(IdCorrect$ConfV,IdCorrect$ConfV!=""))))
 
 #Step 2: Get numerictime data
 suppressWarnings(IdCorrect$Session<-NULL)

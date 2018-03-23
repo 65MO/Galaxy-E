@@ -3,7 +3,7 @@ library(DT)
 library(htmlwidgets)
 
 args <- commandArgs(trailingOnly = TRUE)
-print(args)
+#print(args)
 EchelleErreur=c("","POSSIBLE","PROBABLE","SUR")
 EchelleNumErreur=c(99,50,10,1)
 
