@@ -9,10 +9,12 @@
         Rscript 
          '$__tool_directory__/IdCorrect_2ndLayer_Vfinale.R' '$participation_file' 
 
-         #if $learner.condi_learner == "custom_learner":
+         #if $learner.condi_learner == "custom":
              '$learner.user_learner'
-         #else: 
+         #elif $learner.condi_learner == "c17": 
              '$__tool_directory__/ClassifEspC2b_171206.learner'
+         #else
+             '$__tool_directory__/ClassifEspC2b_180222.learner'
          #end if
 
          '${participation_file.name}' 
@@ -25,11 +27,19 @@
         <param name="learner" type="data" label="Choose your leaner" format="rdata"/>
 
         <conditional name="learner">
-            <param name="condi_learner" type="boolean" checked="false" truevalue="custom_learner" falsevalue="default_learner" label="Use a cutsom learner" help="Default is ClassifEspC2b_171206"/>
-            <when value="default_learner">
+            <param name="condi_learner" type="select" label="Select a classifier" help="Default is ClassifEspC2b_171206">
+                <option value="c17">ClassifEspC2b_171206</option>
+                <option value="c18">ClassifEspC2b_180222</option>
+                <option value="custom">Custom Classifier</option>
+            </param>
+
+
+            <when value="c17">
             </when>
-            <when value="custom_learner">        
-                <param name="user_learner" type="data" label="Choose your leaner" format="rdata"/>
+            <when value="c18">
+            </when>
+            <when value="custom">        
+                <param name="user_learner" type="data" label="Choose your classifier" format="rdata"/>
             </when>
         </conditional>
 
