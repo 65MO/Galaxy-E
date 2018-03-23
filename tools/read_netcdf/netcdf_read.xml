@@ -74,7 +74,6 @@
                 <column name="n_dim" index="1"/>
             </options>
         </param>
-        <param type="data" label="Tabular of dimensions" name="dim_tab" format="tabular" help="Netcdf Info on data X (dimensions_myVariable)"/>
 
         <conditional name="condi_source_coord">
             <param name="coord_source" type="select" label="Source of coordinates">
@@ -85,12 +84,12 @@
             <when value="coord_from_file">
                 <param type="data" label="Tabular of coord" name="coord_tabular" format="tabular" help="Format : Latitude	Longitude"/>
                 <param name="lat_dim" type="select" label="Select latitude" >
-                    <options from_dataset="dim_tab">
+                    <options from_dataset="var_tab">
                         <column name="value" index="0"/>
                     </options>
                 </param>
                 <param name="lon_dim" type="select" label="Select longitude" >
-                    <options from_dataset="dim_tab">
+                    <options from_dataset="var_tab">
                         <column name="value" index="0"/>
                     </options>
                 </param>
@@ -101,13 +100,13 @@
                     <param name="coord" type="boolean" label="Search values for custom coordinates" truevalue="yes_cust_coord" checked="true" falsevalue="nope" help="Use this option to get valid values at your custom coordinates. If only NA values are availables the tool will search for the next closest coordinate until valid values."/>
                     <when value="yes_cust_coord">
                         <param name="lat_dim" type="select" label="Select latitude" >
-                            <options from_dataset="dim_tab">
+                            <options from_dataset="var_tab">
                                 <column name="value" index="0"/>
                             </options>
                         </param>
                         <param name="lat_val" type="float" value="0" label="Latitude"/>
                         <param name="lon_dim" type="select" label="Select longitude" >
-                            <options from_dataset="dim_tab">
+                            <options from_dataset="var_tab">
                                 <column name="value" index="0"/>
                             </options>
                         </param>
@@ -122,7 +121,7 @@
 
         <repeat name="user_choice" title="Filter">
             <param name="dim" type="select" label="Dimensions">
-                <options from_dataset="dim_tab">
+                <options from_dataset="var_tab">
                     <column name="value" index="0"/>
                 </options>
             </param>
@@ -139,10 +138,10 @@
     </inputs>        
 
     <outputs>
-        <data name="output">
-            <discover_datasets pattern="__designation_and_ext__" visible="true" format="tabular" directory="output_dir"/>
+        <collection type="list" name="output">
+            <discover_datasets pattern="__designation_and_ext__" visible="false" format="tabular" directory="output_dir"/>
             <filter>condi_source_coord['coord_source'] == 'coord_from_file'</filter>
-        </data>
+        </collection>
         <data name="simpleoutput" from_work_dir="final.tabular" format="tabular">
             <filter>condi_source_coord['coord_source'] == 'coord_from_stdin'</filter>
         </data>

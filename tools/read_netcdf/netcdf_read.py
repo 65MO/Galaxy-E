@@ -221,12 +221,14 @@ if Coord_bool:
         #Check integrity of vec2. We don't want  NA values
         i=0 
         #Check every value, if at least one non NA is found vec2 and the current closest coords are validated
-        while i<len(vec2): 
+        vecsize=vec2.size
+        while i<vecsize: 
             if vec2[i]!="nan": 
                 break
             else: 
                 i=i+1
-        if i<vec2.size: #There is at least 1 nonNA value
+
+        if i<vecsize: #There is at least 1 nonNA value
             noval=False
         else: #If only NA : pop the closest coord and search in the second closest coord in the next loop.
             all_coord=np.delete(all_coord,cc_index,0)
@@ -280,8 +282,11 @@ for i in dim_names:
     else:
         b.append(inputfile[i][my_dic['list_index_dim'+i]])
         #print (i,inputfile[i][my_dic['list_index_dim'+i]])
+
     a.append(b) 
     fo.write(i+"\t")
+if Coord_bool: 
+    fo.write("input_lat\t"+"input_lon\t")
 fo.write(var+"\n")
 fo.close()
 
@@ -293,7 +298,10 @@ fo.close()
 #Write header in file
 fo=open("header",'w')
 for combination in itertools.product(*a):
-    fo.write(str(combination)+"\t")
+    if Coord_bool:
+        fo.write(str(combination)+"_"+str(value_dim_lat)+"_"+str(value_dim_lon)+"\t")
+    else:
+        fo.write(str(combination)+"\t")
 fo.write("\n")
 fo.close()
 
