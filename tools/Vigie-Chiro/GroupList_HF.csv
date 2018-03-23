@@ -1,0 +1,112 @@
+Nesp;France;Turquie;Espagne;Norfolk;Scientific name;Group;Seuil_grossier;NomFR;GroupFR
+amph;x;x;x;x;Amphibia sp.;frog;0;Amphibien sp.;Autre
+Antius;x;;x;;Antaxius spinibrachius;bush-cricket;0;Antaxie voyageuse;Sauterelle
+Antped;x;;;;Antaxius pedestris;bush-cricket;0.6;Antaxie marbree;Sauterelle
+Antsor;x;;;;Antaxius sorrezensis;bush-cricket;0;Antaxie cevenole;Sauterelle
+Aposp;x;x;x;;Apodemus sp.;other mammal;0;Mulot sp.;Autre
+Barbar;x;x;x;x;Barbastella barbastellus;bat;0.45;Barbastelle d'Europe;Chauve-souris
+Barfis;x;;;;Barbitistes fischeri;bush-cricket;0.25;Barbitiste languedocien;Sauterelle
+Barsan;x;;x;;Barbitistes cf. sanzii;bush-cricket;0;Barbitiste cryptique;Sauterelle
+Barser;x;;x;;Barbitistes serricauda;bush-cricket;0;Barbitiste des bois;Sauterelle
+Bicbic;x;;x;;Bicolorana bicolor;bush-cricket;0.5;Decticelle bicolore;Sauterelle
+chirp;x;;;;chirp;noise;0;chirp;Autre
+Cicorn;x;x;x;;Cicada orni;cicada;0;Cigale grise;Autre
+Condor;x;x;x;x;Conocephalus dorsalis;bush-cricket;0.7;Conocephale des marais;Sauterelle
+Confus;x;;x;x;Conocephalus fuscus;bush-cricket;0.7;Conocephale bigarre;Sauterelle
+criq;x;x;x;x;Acrididae sp.;grasshopper;0;Criquet sp.;Autre
+Cympud;x;;x;;Cymbalophora pudica;moth;0;Ecaille pudique;Autre
+Cyrscu;x;;x;;Cyrtaspis scutatus;bush-cricket;0;Meconeme a bouclier;Sauterelle
+Decalb;x;x;x;;Decticus albifrons;bush-cricket;0;Dectique a front blanc;Sauterelle
+Epheph;x;;x;;Ephippiger ephippiger;bush-cricket;0.7;Ephippigere des vignes;Sauterelle
+Eptana;;x;;;Eptesicus anatolicus;bat;0;Serotine d'Anatolie;Chauve-souris
+Eptisa;;;x;;Eptesicus isabellinus;bat;0;Serotine isabelle;Chauve-souris
+Eptser;x;x;x;x;Eptesicus serotinus;bat;0.35;Serotine commune;Chauve-souris
+Eumbor;x;x;x;;Eumodycogryllus bordigalensis;ground-cricket;0;Grillon bordelais;Autre
+Eupcha;x;x;;;Eupholidoptera chabrieri;bush-cricket;0;Decticelle splendide;Sauterelle
+Hypsav;x;x;x;;Hypsugo savii;bat;0.63;Vespere de Savi;Chauve-souris
+Inssp1;x;;x;x;Insect sp.1;insect;0;Insecte sp. type 1;Autre
+Inssp2;x;;x;x;Insect sp.2;insect;0;Insecte sp. type 2;Autre
+Inssp5;x;;x;x;Insect sp.5;insect;0;Insecte sp. type 5;Autre
+Inssp6;x;;x;x;Insect sp.6;insect;0;Insecte sp. type 6;Autre
+Inssp7;x;;x;x;Insect sp.7;insect;0;Insecte sp. type 7;Autre
+InsTu1;;x;;;Insect sp. from Turkey 1;insect;0;Insecte sp. Tu1;Autre
+Isopyr;x;x;x;;Isophya pyrenea;bush-cricket;0.6;Barbatiste pyreneen;Sauterelle
+Lamsp.;x;x;x;x;Lampyris sp.;beetle;0;Lampyre sp.;Autre
+Lepalb;;x;;;Leptophyes albovittata;bush-cricket;0;Sauterelle rayee;Sauterelle
+Lepbos;x;;;;Leptophyes boscii;bush-cricket;0;Sauterelle sarmate;Sauterelle
+Leppun;x;;x;x;Leptophyes punctatissima;bush-cricket;0.7;Sauterelle ponctuee;Sauterelle
+Llusta;;;x;;Lluciapomaresius stalii;bush-cricket;0;Ephippigere de Stal;Sauterelle
+mamm;x;x;x;x;Mammalia sp.;other mammal;0;Mammifere sp.;Autre
+Metbra;x;;;x;Metrioptera brachyptera;bush-cricket;0;Decticelle des bruyeres;Sauterelle
+Micagr;x;x;x;x;Microtus agrestis;other mammal;0;Campagnol agreste;Autre
+Minsch;x;x;x;;Miniopterus schreibersii;bat;0.57;Minioptere;Chauve-souris
+Mussp;x;x;x;x;Crocidura russula;other mammal;0;Musaraigne sp.;Autre
+Myoalc;x;x;x;x;Myotis alcathoe;bat;0.35;Murin d'Alcathoe;Chauve-souris
+Myobec;x;x;x;x;Myotis bechsteinii;bat;0;Murin de Bechstein;Chauve-souris
+Myobra;x;x;;x;Myotis brandtii;bat;0;Murin de Brandt;Chauve-souris
+Myocap;x;x;x;;Myotis capaccinii;bat;0.69;Murin de Capaccini;Chauve-souris
+Myodas;x;x;;;Myotis dasycneme;bat;0;Murin des marais;Chauve-souris
+Myodau;x;x;x;x;Myotis daubentonii;bat;0.27;Murin de Daubenton;Chauve-souris
+Myoema;x;x;x;x;Myotis emarginatus;bat;0.42;Murin a oreilles echancrees;Chauve-souris
+MyoGT;x;x;x;;Myotis cf. myotis;bat;0.35;Murin de grande taille;Chauve-souris
+Myomys;x;x;x;x;Myotis mystacinus;bat;0.55;Murin a moustaches;Chauve-souris
+Myonat;x;x;;x;Myotis cf. nattereri;bat;0.46;Murin groupe Natterer;Chauve-souris
+noise;x;x;x;x;noise;noise;0;bruit;Autre
+Nyclas;x;x;x;;Nyctalus lasiopterus;bat;0.5;Grande Noctule;Chauve-souris
+Nyclei;x;x;x;x;Nyctalus leisleri;bat;0.42;Noctule de Leisler;Chauve-souris
+Nycnoc;x;x;x;x;Nyctalus noctula;bat;0.5;Noctule commune;Chauve-souris
+Odomac;;;x;;Odontura macphersoni;bush-cricket;0;Sauterelle de MacPherson;Sauterelle
+Phafal;x;x;x;;Phaneroptera falcata;bush-cricket;0;Phaneroptere commun;Sauterelle
+Phanan;x;x;x;;Phaneroptera nana;bush-cricket;0.55;Phaneroptere meridional;Sauterelle
+Phofem;x;x;;;Pholidoptera femorata;bush-cricket;0;Decticelle des friches;Sauterelle
+Phogri;x;x;x;x;Pholidoptera griseoaptera;bush-cricket;0.8;Decticelle cendree;Sauterelle
+piaf;x;x;x;x;Aves sp.;bird;0;Oiseau sp.;Autre
+Pipkuh;x;x;x;x;Pipistrellus kuhlii;bat;0.43;Pipistrelle de Kuhl;Chauve-souris
+Pipnat;x;x;x;x;Pipistrellus nathusii;bat;0.68;Pipistrelle de Nathusius;Chauve-souris
+Pippip;x;x;x;x;Pipistrellus pipistrellus;bat;0.24;Pipistrelle commune;Chauve-souris
+Pippyg;x;x;x;x;Pipistrellus pygmaeus;bat;0.68;Pipistrelle soprane;Chauve-souris
+Plaaff;x;;x;;Platycleis affinis;bush-cricket;0;Decticelle cotiere;Sauterelle
+Plaalb;x;;x;x;Platycleis albopunctata;bush-cricket;0;Decticelle chagrinee;Sauterelle
+Plafal;x;;x;;Platycleis falx;bush-cricket;0;Decticelle a serpe;Sauterelle
+Plaibe;;;x;;Platycleis iberica;bush-cricket;0;Decticelle iberique;Sauterelle
+Plaint;x;;x;;Platycleis intermedia;bush-cricket;0;Decticelle intermediaire;Sauterelle
+Plasab;x;;x;;Platycleis sabulosa;bush-cricket;0;Decticelle des sables;Sauterelle
+Pleaur;x;;x;x;Plecotus auritus;bat;0.3;Oreillard roux;Chauve-souris
+Pleaus;x;;x;x;Plecotus austriacus;bat;0.52;Oreillard gris;Chauve-souris
+Plekol;;x;;;Plecotus kolombatovici;bat;0;Oreillard des Balkans;Chauve-souris
+Plemac;x;x;x;;Plecotus macrobullaris;bat;0.5;Oreillard montagnard;Chauve-souris
+Pteger;x;x;;;Pterolepis germanica;bush-cricket;0;Decticelle orientale;Sauterelle
+Ptegra;;x;x;;Pterolepis grallata;bush-cricket;0;Decticelle a pattes fines;Sauterelle
+Ptepon;x;x;x;;Pterolepis poneli;bush-cricket;0;Decticelle varoise;Sauterelle
+Pycjug;;;x;;Pycnogaster jugicola;bush-cricket;0;Ephippigere droite;Sauterelle
+Ratnor;x;x;x;x;Rattus norvegicus;other mammal;0;Surmulot;Autre
+Rhibla;x;x;;;Rhinolophus blasii;bat;0;Rhinolophe de Blasius;Chauve-souris
+Rhieur;x;x;x;;Rhinolophus euryale;bat;0.2;Rhinolophe euryale;Chauve-souris
+Rhifer;x;x;x;x;Rhinolophus ferrumequinum;bat;0.3;Grand Rhinolophe;Chauve-souris
+Rhihip;x;x;x;x;Rhinolophus hipposideros;bat;0.53;Petit Rhinolophe;Chauve-souris
+Rhimeh;;x;x;;Rhinolophus mehelyi;bat;0;Rinolophe de Mehely;Chauve-souris
+Roeroe;x;x;x;x;Roeseliana roeselii;bush-cricket;0;Decticelle bariolee;Sauterelle
+Rusnit;x;x;x;x;Ruspolia nitidula;bush-cricket;0;Conocephale gracieux;Sauterelle
+SauTu4;;x;;;Tettigoniidae sp. from Turkey 4;bush-cricket;0;Sauterelle sp. Tu4;Sauterelle
+SauTu5;;x;;;Tettigoniidae sp. from Turkey 5;bush-cricket;0;Sauterelle sp. Tu5;Sauterelle
+SauTu6;;x;;;Tettigoniidae sp. from Turkey 6;bush-cricket;0;Sauterelle sp. Tu6;Sauterelle
+SauTu7;;x;;;Tettigoniidae sp. from Turkey 7;bush-cricket;0;Sauterelle sp. Tu7;Sauterelle
+SauTurquiesp1;;x;;;Tettigoniidae sp. from Turkey 1;bush-cricket;0;Sauterelle sp. Tu1;Sauterelle
+SauTurquiesp2;;x;;;Tettigoniidae sp. from Turkey 2;bush-cricket;0;Sauterelle sp. Tu2;Sauterelle
+SauTurquiesp3;;x;;;Tettigoniidae sp. from Turkey 3;bush-cricket;0;Sauterelle sp. Tu3;Sauterelle
+Sepsep;x;;x;;Sepiana sepium;bush-cricket;0;Decticelle echassiere;Sauterelle
+Tadten;x;x;x;;Tadarida teniotis;bat;0.4;Molosse;Chauve-souris
+Tesori;;;;;Tessellana orina;bush-cricket;0;Decticelle orina;Sauterelle
+Testes;x;x;x;;Tessellana tessellata;bush-cricket;0;Decticelle carroyee;Sauterelle
+Tetarg;x;;x;;Tettigetta argentata;cicada;0;Cigale argentee;Autre
+Tetcan;x;x;x;;Tettigonia cantans;bush-cricket;0;Sauterelle cymbaliere;Sauterelle
+Tethis;;;x;;Tettigonia hispanica;bush-cricket;0;Sauterelle hispanique;Sauterelle
+Tetpyg;x;;x;;Tettigetta pygmea;cicada;0;Cigale pygmee;Autre
+Tetvir;x;x;x;x;Tettigonia viridissima;bush-cricket;0;Sauterelle verte;Sauterelle
+Thycor;x;;x;;Thyreonotus corsicus;bush-cricket;0;Decticelle marocaine;Sauterelle
+Tyllil;x;x;x;;Tylopsis lilifolia;bush-cricket;0;Phaneroptere liliace;Sauterelle
+Urorug;x;;x;;Uromenus rugosicollis;bush-cricket;0;Ephippigere carenee;Sauterelle
+Vesmur;x;x;x;;Vespertilio murinus;bat;0.5;Serotine bicolore;Chauve-souris
+Yerbey;x;;;;Yersinella beybienkoi;bush-cricket;0;Decticelle italienne;Sauterelle
+Yerray;x;;x;;Yersinella raymondii;bush-cricket;0;Decticelle frele;Sauterelle
+Zeuabb;x;;x;;Zeuneriana abbreviata;bush-cricket;0;Decticelle aquitaine;Sauterelle
