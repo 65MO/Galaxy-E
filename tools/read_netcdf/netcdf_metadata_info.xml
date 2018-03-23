@@ -27,10 +27,13 @@
         <param type="data" name="input" label="Netcdf file" format="netcdf" help="Netcdf file you need information about."/>
     </inputs>
     <outputs>
+<!--
         <data name="var_tabs" format="tabular">
             <discover_datasets pattern="__designation_and_ext__" visible="true"/>
             <discover_datasets pattern="conda_activate.log" visible="false"/>
         </data>
+-->
+        <data name="output" format="tabular" label="Metadata infos from ${input.name}.Variables.tab" from_work_dir="variables.tabular"/>
         <data name="info" label="info file" format="txt"/>
     </outputs>
 
