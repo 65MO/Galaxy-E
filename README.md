@@ -34,6 +34,7 @@ New version of the galaxy client incomming, a new PR has been open [PR](https://
 * Copernicus Global Land Service Providing bio-geophysical products of global land surface http://land.copernicus.eu/global/products/NDVI (included [Corine Land Cover products](http://land.copernicus.eu/pan-european/corine-land-cover))
 * CESBIO Carte d'occupation des sols. http://www.cesbio.ups-tlse.fr/multitemp/?p=10104
 * GEONETCast global network of satellite-based data dissemination systems providing environmental data http://www.eumetsat.int/website/home/Data/DataDelivery/EUMETCast/GEONETCast/index.html
+* Donéens agricoles via Agreste: http://agreste.agriculture.gouv.fr/
 * Bio-ORACLE Marine data layers for ecological modelling: http://www.bio-oracle.org/ (R invocation through ```sdmpredictors::list_layers("Bio-ORACLE", version=2)``` )
 * MARSPEC monthly layers for temperature and salinity (R invocation through ```paleo: sdmpredictors::list_layers("MARSPEC")```) and paleo layers for these (R invocation through ```paleo: sdmpredictors::list_layers_paleo("MARSPEC")```): http://onlinelibrary.wiley.com/doi/10.1890/12-1358.1/abstract
 * Use of sdmpredictor R package: 
