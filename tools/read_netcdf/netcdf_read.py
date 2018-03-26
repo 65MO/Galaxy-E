@@ -83,6 +83,24 @@ def is_equal(filename, dim_name, value):
         index=find_nearest(filename.variables[dim_name][:],value)
     return index
 
+def is_between_include(filename, dim_name, threshold1, threshold2):
+    list_dim=[]
+    for i in range(0,filename.variables[dim_name].size):
+        if filename.variables[dim_name][i] >= threshold1 and filename.variables[dim_name][i] <= threshold2:
+            list_dim.append(i)
+    checklist(list_dim,dim_name,">=",threshold1)
+    checklist(list_dim,dim_name,"=<",threshold2)
+    return list_dim
+
+def is_between_exclude(filename, dim_name, threshold1, threshold2):
+    list_dim=[]
+    for i in range(0,filename.variables[dim_name].size):
+        if filename.variables[dim_name][i] > threshold1 and filename.variables[dim_name][i] < threshold2:
+            list_dim.append(i)
+    checklist(list_dim,dim_name,">",threshold1)
+    checklist(list_dim,dim_name,"<",threshold2)
+    return list_dim
+
 #######################
 #######################
 
@@ -175,7 +193,16 @@ for i in range(4,arg_n,3):
         my_dic[my_dic_index]=is_equal(inputfile, sys.argv[i], float(sys.argv[i+2]))
     if (sys.argv[i+1]==":"): #all
         my_dic[my_dic_index]=np.arange(inputfile.variables[sys.argv[i]].size)
-
+    if (sys.argv[i+1]=="be"): #between_exclude
+        #Get the 2 thresholds from the arg which looks like "threshold1-threshold2"
+        threshold1=sys.argv[i+2].split("-")[0] 
+        threshold2=sys.argv[i+2].split("-")[1] 
+        my_dic[my_dic_index]=is_between_exclude(inputfile, sys.argv[i], float(threshold1), float(threshold2))
+    if (sys.argv[i+1]=="bi"): #between_include
+        #Get the 2 thresholds from the arg which looks like "threshold1-threshold2"
+        threshold1=sys.argv[i+2].split("-")[0]
+        threshold2=sys.argv[i+2].split("-")[1]
+        my_dic[my_dic_index]=is_between_include(inputfile, sys.argv[i], float(threshold1), float(threshold2))
 
 #####################
 #####################

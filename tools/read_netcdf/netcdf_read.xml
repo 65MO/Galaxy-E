@@ -20,7 +20,13 @@
             i=\$((\$i+1)) &&
             python '$__tool_directory__/netcdf_read.py' '$input' '$var_tab' $var
             #for $i,$uc in enumerate($user_choice)
-                ${uc.dim} ${uc.comparator} ${uc.value}
+                #if $uc.condi_between.comparator=="bi"
+                    ${uc.dim} ${uc.condi_between.comparator} ${uc.condi_between.t1}-${uc.condi_between.t2}
+                #elif $uc.condi_between.comparator=="be"
+                    ${uc.dim} ${uc.condi_between.comparator} ${uc.condi_between.t1}-${uc.condi_between.t2}
+                #else
+                    ${uc.dim} ${uc.condi_between.comparator} ${uc.condi_between.value}
+                #end if
             #end for   
             '$condi_source_coord.lat_dim'
             \$lat
@@ -125,14 +131,40 @@
                     <column name="value" index="0"/>
                 </options>
             </param>
-            <param name="comparator" type="select" label="Comparator">
-                <option value="e">Equal</option>
-                <option value="g">Greater</option>
-                <option value="ge">Greater or equal</option>
-                <option value="l">Less</option>
-                <option value="le">Less or equal</option>
-            </param>
-            <param name="value" type="float" value="0" label="Value"/>
+            <conditional name="condi_between">
+                <param name="comparator" type="select" label="Comparator">
+                    <option value="e">Equal</option>
+                    <option value="g">Greater</option>
+                    <option value="ge">Greater or equal</option>
+                    <option value="l">Less</option>
+                    <option value="le">Less or equal</option>
+                    <option value="be">Between-exclude ]threshold1,threshold2[</option>
+                    <option value="bi">Between-include [threshold1,threshold2]</option>
+                </param>
+                <when value="bi">
+                    <param name="t1" type="float" value="0" label="Inferior threshold"/>
+                    <param name="t2" type="float" value="0" label="Superior threshold"/>
+                </when>
+                <when value="be">
+                    <param name="t1" type="float" value="0" label="Inferior threshold"/>
+                    <param name="t2" type="float" value="0" label="Superior threshold"/>
+                </when>
+                <when value="e">
+                    <param name="value" type="float" value="0" label="Value"/>
+                </when>
+                <when value="g">
+                    <param name="value" type="float" value="0" label="Value"/>
+                </when>
+                <when value="ge">
+                    <param name="value" type="float" value="0" label="Value"/>
+                </when>
+                <when value="l">
+                    <param name="value" type="float" value="0" label="Value"/>
+                </when>
+                <when value="le">
+                    <param name="value" type="float" value="0" label="Value"/>
+                </when>
+            </conditional>
         </repeat>
 
     </inputs>        
@@ -182,10 +214,36 @@
     </tests>
 
     <help><![CDATA[
+**What it does**
+
+This tool extracts variable values with custom conditions on dimensions.
+
+It can use manualy given coordinates or automaticaly take them from a tabular file to filter informations.
+
+If no values are availables at a coordinate X, the tool will search the closest coordinate with a non NA value.
+
+Filter can be set on every dimension. Available filtering operations are : =, >, <, >=, <=, [interval], ]interval[.
+
+
+
+**Input**
+
+A netcdf file (.nc).
+
+Variable tabular file from 'Netcdf Metadate Info'.
+
+Tabular file with coordinates and the following structure : 'lat'	'lon'.
+
+
+**Outputs**
+
+A single output with values for the wanted variable if there is only one coordinate.
+
+A data collection where one file is created for every coordinate, if multiple coordinates from tabular file.
+
+
+------------------------------------------------- 
+
 The Netcdf Read tool can be used after the Netcdf Info. 
-
-Values for each variable can be extract with custom conditions on dimensions.
-
-Eg every valid values for Var1 at time T latitude 45 longitude -3.
     ]]></help>
 </tool>
