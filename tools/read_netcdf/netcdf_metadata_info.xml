@@ -38,13 +38,37 @@
     </outputs>
 
     <help><![CDATA[
-The Netcdf Info tool use the netcdf functions : https://www.unidata.ucar.edu/software/netcdf/docs/index.html
+**What it does**
 
-First the tool will give general information about the input file in the stdout. (command $ncdump -h inputfile)
+First the tool will give general information about the input in a 'info file' output. (command $ncdump -h inputfile)
 
 A general tabular 'variables' summarize dimensions details inside each available variable.
 
-A tabular file is created for every variable, it details dimensions inside it. (dimensions_varX.tabular).
+
+The summary tabular file has the general structure :
+
+
+    Variable1    Var1_Number_of_Dim    Dim1    Dim1_size   ...    DimN    DimN_size    
+ 
+    VariableX    VarX_Number_of_Dim    DimX1   DimX1_size  ...    DimXN   DimXN_size   
+
+    ...                                                                              
+
+
+**Input**
+
+A netcdf file (xxx.nc).
+
+**Outputs**
+
+An Information file.
+
+A summary tabular file.
+
+
+--------------------------------
+ 
+The Netcdf Info tool use the netcdf functions : https://www.unidata.ucar.edu/software/netcdf/docs/index.html
 
 Run this tool before considering using Netcdf Read.
     ]]></help>
