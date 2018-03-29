@@ -24,7 +24,7 @@
         ncdump -h '$input' > '$info'
     ]]></command>
     <inputs>
-        <param type="data" name="input" label="Netcdf file" format="netcdf" help="Netcdf file you need information about."/>
+        <param type="data" name="input" label="Netcdf file" format="netcdf,h5" help="Netcdf file you need information about."/>
     </inputs>
     <outputs>
 <!--
