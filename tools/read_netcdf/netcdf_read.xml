@@ -49,8 +49,14 @@
 
         python '$__tool_directory__/netcdf_read.py' '$input' '$var_tab' $var
         #for $i,$uc in enumerate($user_choice)
-            ${uc.dim} ${uc.comparator} ${uc.value}
-        #end for 
+            #if $uc.condi_between.comparator=="bi"
+                ${uc.dim} ${uc.condi_between.comparator} ${uc.condi_between.t1}-${uc.condi_between.t2}
+            #elif $uc.condi_between.comparator=="be"
+                ${uc.dim} ${uc.condi_between.comparator} ${uc.condi_between.t1}-${uc.condi_between.t2}
+            #else
+                ${uc.dim} ${uc.condi_between.comparator} ${uc.condi_between.value}
+            #end if
+        #end for
         #if $condi_source_coord.condi_coord.coord=='yes_cust_coord'
             $condi_source_coord.condi_coord.lat_dim $condi_source_coord.condi_coord.lat_val $condi_source_coord.condi_coord.lon_dim $condi_source_coord.condi_coord.lon_val
         #end if
@@ -70,7 +76,7 @@
 
     ]]></command>
     <inputs>
-        <param type="data" name="input" label="Input netcdf file" format="netcdf"/>
+        <param type="data" name="input" label="Input netcdf file" format="netcdf,h5"/>
         <param type="data" label="Tabular of variables" name="var_tab" format="tabular" help="Select the tabular file which summarize the available variables and dimensions."/>
 
         <param name="var" type="select" label="Chose the variable to extract">
