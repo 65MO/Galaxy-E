@@ -2,6 +2,8 @@
     <requirements>
         <requirement type="package" version="2.1.0">gdal</requirement>
         <requirement type="package" version="3.5.0">geos</requirement>
+        <requirement type="package" version="9b">jpeg</requirement>
+        <requirement type="package" version="1.5.90">libjpeg-turbo</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         gdalwarp 
