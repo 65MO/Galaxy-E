@@ -9,9 +9,11 @@ EchelleNumErreur=c(99,50,10,1)
 
 #for test
 #inputest=list.files("C:/Users/Yves Bas/Documents/GitHub/65MO_Galaxy-E/raw_scripts/Vigie-Chiro/output_IdValid_input_BilanEnrichi/",pattern="IdC2.csv",full.names=T)
+#inputest=list.files("C:/Users/Yves Bas/Documents/test/",pattern="IdC2.csv",full.names=T)
+
 #for (i in 1:length(inputest))
 #{
-#   args=c(inputest[i],"refRPSeuil50.csv","SpeciesList.csv")
+#  args=c(inputest[i],"refRPSeuil50.csv","SpeciesList.csv")
    
 IdC2=fread(args[1])
 refRP=fread(args[2])
@@ -47,6 +49,7 @@ for (j in 1:nlevels(as.factor(IdC2$IdExtrap)))
 {
   IdSp=subset(IdC2
               ,IdC2$IdExtrap==levels(as.factor(IdC2$IdExtrap))[j])
+  IdSp$IdProb[is.na(IdSp$IdProb)]=0
   IdSp=IdSp[order(IdSp$IdProb),]
   IdSpV=subset(IdSp,IdSp$IdV!="")
   if(nrow(IdSpV)>0)
