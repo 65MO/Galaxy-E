@@ -51,11 +51,13 @@
     <help><![CDATA[
 **What it does**
 
-
+The tool analyses the observations made with the "Routier" or "Pedestre" protocols.
 
 **Arguments**
 
-Input is a tabular file, output from the tool IdValid.R
+- Input is an observation/participation file corrected by the tools IdCorrect_2ndLayer and IdValid.
+- Outputs are Summary and details raw tabulars, and html visualisations.
+
 
   ]]></help>
 </tool>

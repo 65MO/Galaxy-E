@@ -55,11 +55,12 @@
     <help><![CDATA[
 **What it does**
 
-
+The tool analyses the observations made with the "Point fixe" protocol.
 
 **Arguments**
 
-Input is a tabular file, output from the tool IdValid.R
+- Input is an observation/participation file corrected by the tools IdCorrect_2ndLayer and IdValid.
+- Outputs are Summary/Nightly/Hourly raw tabulars, and html visualisations.
 
   ]]></help>
 </tool>

@@ -11,8 +11,6 @@
 
          #if $learner.condi_learner == "custom":
              '$learner.user_learner'
-         #elif $learner.condi_learner == "c17": 
-             '$__tool_directory__/ClassifEspC2b_171206.learner'
          #else
              '$__tool_directory__/ClassifEspC2b_180222.learner'
          #end if
@@ -27,15 +25,11 @@
         <param name="learner" type="data" label="Choose your leaner" format="rdata"/>
 
         <conditional name="learner">
-            <param name="condi_learner" type="select" label="Select a classifier" help="Default is ClassifEspC2b_171206">
-                <option value="c17">ClassifEspC2b_171206</option>
+            <param name="condi_learner" type="select" label="Select a classifier" help="Default is ClassifEspC2b_180222">
                 <option value="c18">ClassifEspC2b_180222</option>
                 <option value="custom">Custom Classifier</option>
             </param>
 
-
-            <when value="c17">
-            </when>
             <when value="c18">
             </when>
             <when value="custom">        
@@ -60,8 +54,6 @@
             <output name="output" file="IdCor2Layer_Test1_out.tabular"/>
         </test> 
 
-
-
     </tests>
     <help><![CDATA[
 **What it does**
@@ -75,6 +67,6 @@ This tool intend to correct ids from 1st layer of Tadarida software, and improve
 It should be called with 2 consecutive arguments :
 
 - a summary table of TadaridaC output from vigiechiro.herokuapp.com web portal. 
-- the 2nd layer classifier built on validated id in Vigie-Chiro database (eg : "ClassifEspC2b_171206.learner")
+- the 2nd layer classifier built on validated id in Vigie-Chiro database (eg : "ClassifEspC2b_180222.learner")
   ]]></help>
 </tool>
