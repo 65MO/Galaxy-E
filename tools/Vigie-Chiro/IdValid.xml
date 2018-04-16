@@ -8,7 +8,7 @@
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         Rscript 
-         '$__tool_directory__/IdValid.R' '$inputfile' '$output'
+         '$__tool_directory__/IdValid.R' '$inputfile'  '$__tool_directory__/Referentiel_seuils_C2.csv'  '$output'
 ]]>
     </command>
     <inputs>
@@ -34,7 +34,8 @@ This tool allows to integrate identifications made by observers and validators a
 
 **Arguments**
 
-Input is a csv file, output from the tool IdCorrect_2ndLayer.
+- The input is a tabular file, output from the tool IdCorrect_2ndLayer.
+- The output is a single tabular file with validated Ids
 
   ]]></help>
 </tool>

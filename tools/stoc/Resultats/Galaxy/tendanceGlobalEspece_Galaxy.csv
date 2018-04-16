@@ -1,2 +1,0 @@
-id;code_espece;nom_espece;indicateur;nombre_annees;premiere_annee;derniere_annee;tendance;IC_inferieur;IC_superieur;pourcentage_variation;erreur_standard;p_value;significatif;categorie_tendance_EBCC;mediane_occurrence;valide;raison_incertitude
-Galaxy;ORIORI;Loriot d'Europe;TRUE;13;2001;2014;1,16;1,111;1,215;590,848;0,028;0;TRUE;Forte augmentation;2;Incertain;espece trop rare

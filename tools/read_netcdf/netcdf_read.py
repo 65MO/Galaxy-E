@@ -83,6 +83,24 @@ def is_equal(filename, dim_name, value):
         index=find_nearest(filename.variables[dim_name][:],value)
     return index
 
+def is_between_include(filename, dim_name, threshold1, threshold2):
+    list_dim=[]
+    for i in range(0,filename.variables[dim_name].size):
+        if filename.variables[dim_name][i] >= threshold1 and filename.variables[dim_name][i] <= threshold2:
+            list_dim.append(i)
+    checklist(list_dim,dim_name,">=",threshold1)
+    checklist(list_dim,dim_name,"=<",threshold2)
+    return list_dim
+
+def is_between_exclude(filename, dim_name, threshold1, threshold2):
+    list_dim=[]
+    for i in range(0,filename.variables[dim_name].size):
+        if filename.variables[dim_name][i] > threshold1 and filename.variables[dim_name][i] < threshold2:
+            list_dim.append(i)
+    checklist(list_dim,dim_name,">",threshold1)
+    checklist(list_dim,dim_name,"<",threshold2)
+    return list_dim
+
 #######################
 #######################
 
@@ -97,6 +115,10 @@ Coord_bool=False
 
 ######################
 ######################
+#len_threshold=1000000
+len_threshold=7000
+x_percent=0.75
+threshold_latlon=100
 
 
 #Check if coord is passed as parameter
@@ -110,10 +132,64 @@ if(((arg_n-3)%3)!=0):
     value_dim_lon=float(sys.argv[-1])
 
     #Get all lat & lon
-    try:
-        lat=np.ma.MaskedArray(inputfile.variables[name_dim_lat])
-        lon=np.ma.MaskedArray(inputfile.variables[name_dim_lon])
-    except:
+    #try:
+    if True:
+        latitude=np.ma.MaskedArray(inputfile.variables[name_dim_lat])
+        longitude=np.ma.MaskedArray(inputfile.variables[name_dim_lon])
+        lat=latitude;lon=longitude #Usefull to keep the originals lat/lon vect before potentially resize it bellow.
+        len_all_coord=len(lat)*len(lon)
+        
+        print("len all coord "+str(len_all_coord)+" threshold "+str(len_threshold))
+
+        #To avoid case when all_coord is to big and need to much memory
+        #If the vector is too big, reduce it to its third in a loop until its < to the threshold
+        while len_all_coord > len_threshold:
+            
+            if len(lat)<threshold_latlon: #If lat and lon are very different and lon is >> than lat. This way only lon is reduce and not lat.
+                x_percent_len_lat=99999999
+            else:
+                x_percent_len_lat=int(x_percent*len(lat))
+
+            if len(lon)<threshold_latlon: #If lat and lon are very different and lat is >> than lon. This way only lat is reduce and not lon.
+                x_percent_len_lon=99999999
+            else:
+                x_percent_len_lon=int(x_percent*len(lon))
+
+            print("len(lat) :"+str(len(lat))+" x_percent_len_lat "+str(x_percent_len_lat))
+            print("len(lon) :"+str(len(lon))+" x_percent_len_lon "+str(x_percent_len_lon))
+
+ 
+            pos_lat_user=find_nearest(lat,value_dim_lat)
+            pos_lon_user=find_nearest(lon,value_dim_lon)
+
+              
+            #This part is to avoid having a vector that start bellow 0
+            lat_reduced=int(pos_lat_user-x_percent_len_lat/2-1)
+            if lat_reduced<0:
+                lat_reduced=0
+            lon_reduced=int(pos_lon_user-x_percent_len_lon/2-1)
+            if lon_reduced<0:
+                lon_reduced=0
+            #Opposite here to avoid having vector with len > to len(vector)
+            lat_extended=int(pos_lat_user+x_percent_len_lat/2-1)
+            if lat_extended>len(lat):
+                lat_extended=len(lat)
+            lon_extended=int(pos_lon_user+x_percent_len_lon/2-1)
+            if lon_extended>len(lon):
+                lon_extended=len(lon)
+
+            lat=lat[lat_reduced:lat_extended] #add a test to check if pos_lat_user-x_percent_len_lat/2-1 >0
+            lon=lon[lon_reduced:lon_extended]
+            print("latreduced : "+str(lat_reduced)+" latextended "+str(lat_extended))
+            print("lonreduced : "+str(lon_reduced)+" lonextended "+str(lon_extended))
+            print("lat : "+str(lat))
+            print("lon : "+str(lon))
+            len_all_coord=len(lat)*len(lon)
+
+            print ("len_all_coord : "+str(len_all_coord)+". len_lat : "+str(len(lat))+" .len_lon : "+str(len(lon)))
+
+    else:
+    #except:
         sys.exit("Latitude & Longitude not found") 
 
     #Set all lat-lon pair avaible in list_coord
@@ -124,7 +200,9 @@ if(((arg_n-3)%3)!=0):
 
     #Reshape
     all_coord=np.reshape(list_coord_dispo,(lat.size*lon.size,2))
+    print(str(all_coord))
     noval=True
+
 
 
 #########################
@@ -153,6 +231,12 @@ my_dic={} ##d["string{0}".format(x)]
 
 for i in range(4,arg_n,3):
     #print("\nDimension name : "+sys.argv[i]+" action : "+sys.argv[i+1]+" .Value : "+sys.argv[i+2]+"\n") #Standard msg
+
+    #Check if the dim selected for filtering is present in the var dimensions.
+    if (sys.argv[i] not in dim_names):
+        print("Warning ! "+sys.argv[i]+" is not a dimension of "+var+".\nThis filter will be skipped\nCheck in the file \"variables\" the dimensions available.\n\n")
+        pass
+
     my_dic["string{0}".format(i)]="list_index_dim"
     my_dic_index="list_index_dim"+str(sys.argv[i])   #Possible improvement: Check if lon/lat are not parsed again
 
@@ -169,7 +253,16 @@ for i in range(4,arg_n,3):
         my_dic[my_dic_index]=is_equal(inputfile, sys.argv[i], float(sys.argv[i+2]))
     if (sys.argv[i+1]==":"): #all
         my_dic[my_dic_index]=np.arange(inputfile.variables[sys.argv[i]].size)
-
+    if (sys.argv[i+1]=="be"): #between_exclude
+        #Get the 2 thresholds from the arg which looks like "threshold1-threshold2"
+        threshold1=sys.argv[i+2].split("-")[0] 
+        threshold2=sys.argv[i+2].split("-")[1] 
+        my_dic[my_dic_index]=is_between_exclude(inputfile, sys.argv[i], float(threshold1), float(threshold2))
+    if (sys.argv[i+1]=="bi"): #between_include
+        #Get the 2 thresholds from the arg which looks like "threshold1-threshold2"
+        threshold1=sys.argv[i+2].split("-")[0]
+        threshold2=sys.argv[i+2].split("-")[1]
+        my_dic[my_dic_index]=is_between_include(inputfile, sys.argv[i], float(threshold1), float(threshold2))
 
 #####################
 #####################
@@ -188,10 +281,10 @@ if Coord_bool:
 
         #Get coord index into dictionary
         my_dic_index="list_index_dim"+str(name_dim_lat)
-        my_dic[my_dic_index]=lat.tolist().index(closest_lat)
+        my_dic[my_dic_index]=latitude.tolist().index(closest_lat)
 
         my_dic_index="list_index_dim"+str(name_dim_lon)
-        my_dic[my_dic_index]=lon.tolist().index(closest_lon)
+        my_dic[my_dic_index]=longitude.tolist().index(closest_lon)
 
 
         #All dictionary are saved in the string exec2 which will be exec(). Value got are in vec2
@@ -215,12 +308,19 @@ if Coord_bool:
         #Check integrity of vec2. We don't want  NA values
         i=0 
         #Check every value, if at least one non NA is found vec2 and the current closest coords are validated
-        while i<len(vec2): 
-            if vec2[i]!="nan": 
-                break
-            else: 
+        vecsize=vec2.size
+        #print (str(vecsize))
+        while i<vecsize:
+            #print (str(vec2))
+            try:
+                if vec2[i]!="nan": 
+                    break
+                else: 
+                    i=i+1
+            except:
                 i=i+1
-        if i<vec2.size: #There is at least 1 nonNA value
+
+        if i<vecsize: #There is at least 1 nonNA value
             noval=False
         else: #If only NA : pop the closest coord and search in the second closest coord in the next loop.
             all_coord=np.delete(all_coord,cc_index,0)
@@ -274,8 +374,11 @@ for i in dim_names:
     else:
         b.append(inputfile[i][my_dic['list_index_dim'+i]])
         #print (i,inputfile[i][my_dic['list_index_dim'+i]])
+
     a.append(b) 
     fo.write(i+"\t")
+if Coord_bool: 
+    fo.write("input_lat\t"+"input_lon\t")
 fo.write(var+"\n")
 fo.close()
 
@@ -287,13 +390,17 @@ fo.close()
 #Write header in file
 fo=open("header",'w')
 for combination in itertools.product(*a):
-    fo.write(str(combination)+"\t")
+    if Coord_bool:
+        fo.write(str(combination)+"_"+str(value_dim_lat)+"_"+str(value_dim_lon)+"\t")
+    else:
+        fo.write(str(combination)+"\t")
 fo.write("\n")
 fo.close()
 
 
 #Write vec2 in a tabular formated file
 fo=open("sortie.tabular",'w')
+#print(str(vec2))
 try:
     vec2.tofile(fo,sep="\t",format="%s")
 except:

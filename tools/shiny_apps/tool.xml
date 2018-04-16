@@ -1,0 +1,6 @@
+<tool name="Geoexplorer" id="id" tool_type="shiny" version="0.1">
+ <description>Desc</description>
+ <inputs action="https://openstack-192-168-100-44.genouest.org/plugins/interactive_environments/interactiveShiny/show?image_tag=shiny-wallace%3Adev&amp;dataset_id=f8ad74e54c4d2083&amp;additional_dataset_ids=?GALAXY_URL=http%3A//openstack-192-168-100-44.genouest.org/tool_runner%3Ftool_id%3Dwallace" check_values="true" method="get" target="_self">
+ <display>GNEH</display>
+ </inputs>
+</tool>
