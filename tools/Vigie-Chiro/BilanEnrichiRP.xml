@@ -1,14 +1,12 @@
 <tool id="BilanEnrichiRP" name="BilanEnrichiRP.R" version="0.1">
     <requirements>
-<!--        <requirement type="package" version="7.0">readline</requirement> 
-        <requirement type="package" version="6.0">ncurses</requirement> --> 
+        <requirement type="package" version="7.0">readline</requirement> 
         <requirement type="package" version="1.4.3">r-reshape2</requirement> 
         <requirement type="package" version="1.10.4">r-data.table</requirement>
         <requirement type="package" version="0.2">r-dt</requirement>
         <requirement type="package" version="0.9">r-htmlwidgets</requirement>
         <requirement type="package" version="2.1.1">pandoc</requirement>
         <requirement type="package" version="54">icu</requirement>  
-<!--        <requirement type="package" version="3.4.1-1">r-base</requirement>  -->
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         Rscript 
