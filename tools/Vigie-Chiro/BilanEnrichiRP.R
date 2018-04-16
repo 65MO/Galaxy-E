@@ -47,6 +47,7 @@ for (j in 1:nlevels(as.factor(IdC2$IdExtrap)))
 {
   IdSp=subset(IdC2
               ,IdC2$IdExtrap==levels(as.factor(IdC2$IdExtrap))[j])
+  IdSp$IdProb[is.na(IdSp$IdProb)]=0
   IdSp=IdSp[order(IdSp$IdProb),]
   IdSpV=subset(IdSp,IdSp$IdV!="")
   if(nrow(IdSpV)>0)

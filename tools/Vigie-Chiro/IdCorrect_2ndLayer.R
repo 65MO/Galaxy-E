@@ -9,12 +9,17 @@ if (exists("ClassifEspC2b")==F){load(args[2])}
 
 DataPar=fread(args[1]) #id to be corrected
 DataPar$participation=substr(filename,nchar(filename)-40,nchar(filename)-17)
-test=duplicated(cbind(DataPar$'nom du fichier',DataPar$tadarida_taxon))
-DataPar=subset(DataPar,!test)
+test1=duplicated(cbind(DataPar$'nom du fichier',DataPar$tadarida_taxon))
+test2=(DataPar$tadarida_taxon=="empty")
+DataPar=subset(DataPar,(!test1)|(test2))
+DataPar$tadarida_probabilite[DataPar$tadarida_probabilite==""]="0"
+DataPar$tadarida_probabilite=as.numeric(DataPar$tadarida_probabilite)
+
 
 #tableau comptabilisant le nombre de contacts par espèces 
 nbcT=as.matrix(table(DataPar$participation,DataPar$tadarida_taxon))
 
+DataPar$tadarida_probabilite=as.numeric(DataPar$tadarida_probabilite)
 
 #generating input variables for second layer classification
 
@@ -159,11 +164,9 @@ DataCorrC2=cbind(VoteC4[,1:colnum],ProbEsp_C2b,ProbEsp_C2bs)
 DataCorrC2=DataCorrC2[order(DataCorrC2$tadarida_probabilite,decreasing=T),]
 DataCorrC2=DataCorrC2[order(DataCorrC2$'nom du fichier'),]
 
-#write.csv(DataCorrC2,paste0(substr(args[1],nchar(args[1])-40,nchar(args[1])-17),"DataCorrC2.csv"),row.names=F)
-#write.csv(DataCorrC2,file="out.csv",row.names=FALSE)
-#fout_name=(paste0(substr(args[1],nchar(args[1])-40,nchar(args[1])-17),"DataCorrC2.csv_Alan"))
+DataCorrC2$ProbEsp_C2bs=as.character(DataCorrC2$ProbEsp_C2bs)
+DataCorrC2$ProbEsp_C2bs[is.na(DataCorrC2$ProbEsp_C2bs)]="empty"
 
 fout_name="output.tabular"
 
-#write.csv(DataCorrC2,file=fout_name,row.names=FALSE,sep=",")
 write.table(DataCorrC2,file=fout_name,row.names=FALSE,sep="\t")
