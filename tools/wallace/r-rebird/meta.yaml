@@ -1,0 +1,95 @@
+{% set version = '0.4.0' %}
+
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
+
+package:
+  name: r-rebird
+  version: {{ version|replace("-", "_") }}
+
+source:
+  fn: rebird_{{ version }}.tar.gz
+  url:
+    - https://cran.r-project.org/src/contrib/rebird_{{ version }}.tar.gz
+    - https://cran.r-project.org/src/contrib/Archive/rebird/rebird_{{ version }}.tar.gz
+  sha256: 01111ea3c1c633fb27c082b901ec3f05358e4fb8e53b82a09ef034fd40969cab
+
+
+  # patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  merge_build_host: True  # [win]
+  # If this is a new build for the same version, increment the build number.
+  number: 0
+  noarch: generic
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+# Suggests: knitr, testthat, covr
+requirements:
+  build:
+
+  host:
+    - r-base
+    - r-dplyr
+    - r-httr >=1.0.0
+    - r-jsonlite
+
+  run:
+    - r-base
+    - r-dplyr
+    - r-httr >=1.0.0
+    - r-jsonlite
+
+test:
+  commands:
+    # You can put additional test commands to be run here.
+    - $R -e "library('rebird')"           # [not win]
+    - "\"%R%\" -e \"library('rebird')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
+
+about:
+  home: http://github.com/ropensci/rebird
+  license: MIT + file LICENSE
+  summary: A programmatic client for the eBird database, including functions for searching for
+    bird observations by geographic location (latitude, longitude), eBird hotspots,
+    location identifiers, by notable sightings, by region, and by taxonomic name.
+  license_family: MIT
+
+
+
+# The original CRAN metadata for this package was:
+
+# Package: rebird
+# Version: 0.4.0
+# Date: 2016-04-25
+# Title: R Client for the eBird Database of Bird Observations
+# Description: A programmatic client for the eBird database, including functions for searching for bird observations by geographic location (latitude, longitude), eBird hotspots, location identifiers, by notable sightings, by region, and by taxonomic name.
+# License: MIT + file LICENSE
+# Authors@R: c( person("Rafael", "Maia", role = "aut", email = "rm72@zips.uakron.edu"), person("Scott", "Chamberlain", role = "aut", email = "myrmecocystus@gmail.com"), person("Andy", "Teucher", role = "aut", email = "andy.teucher@gmail.com"),  person("Sebastian", "Pardo", role = c("aut", "cre"), email = "sebpardo@gmail.com") )
+# URL: http://github.com/ropensci/rebird
+# BugReports: http://github.com/ropensci/rebird/issues
+# VignetteBuilder: knitr
+# Imports: methods, utils, stats, httr (>= 1.0.0), jsonlite, dplyr
+# Suggests: knitr, testthat, covr
+# RoxygenNote: 6.0.1
+# NeedsCompilation: no
+# Packaged: 2017-04-26 03:03:30 UTC; mavzz
+# Author: Rafael Maia [aut], Scott Chamberlain [aut], Andy Teucher [aut], Sebastian Pardo [aut, cre]
+# Maintainer: Sebastian Pardo <sebpardo@gmail.com>
+# Repository: CRAN
+# Date/Publication: 2017-04-26 05:37:07 UTC
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
