@@ -5,65 +5,62 @@
         <requirement type="package" version="1.5.90">libjpeg-turbo</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
-        gdalbuildvrt
-        	
-        	'$output'
-        	
-        	#for $i, $s in enumerate( $series )
-                '${s.input}'
-            #end for
+    gdalbuildvrt 
+        '$output'
+         
+        #for $i, $s in enumerate( $series )
+            '${s.input}'
+        #end for
         
-            #if $settings.advanced=='advanced'
-            	
-            	#unless $settings.b=='e.g : -b 1 -b 2 -b 3'
-                    $settings.b
-                #end unless
-            	
-                #if $settings.condi_te.te=='te'
-                    -te $settings.condi_te.xmin $settings.condi_te.ymin $settings.condi_te.xmax $settings.condi_te.ymax
-                #end if
+        #if $settings.advanced=='advanced'       
+            #unless $settings.b=='e.g : -b 1 -b 2 -b 3'
+                $settings.b
+            #end unless
+            
+            #if $settings.condi_te.te=='te'
+                -te $settings.condi_te.xmin $settings.condi_te.ymin $settings.condi_te.xmax $settings.condi_te.ymax
+            #end if
                 
-                #if $condi_tr.tr=='tr'
-    	            -tr $condi_tr.xres $condi_tr.yres
-	            #end if
+            #if $condi_tr.tr=='tr'
+                -tr $condi_tr.xres $condi_tr.yres
+            #end if
                 
-                #if $settings.condi_resample.resample=='resampling'
-                    -r $settings.condi_resample.r
-                #end if
+            #if $settings.condi_resample.resample=='resampling'
+                -r $settings.condi_resample.r
+            #end if
                 
-                #if $settings.condi_resolution.resolution=='chose_resolution'
-                    -r $settings.condi_resolution.reso
-                #end if
+            #if $settings.condi_resolution.resolution=='chose_resolution'
+                -r $settings.condi_resolution.reso
+            #end if
                 
-                #unless $settings.a_srs==''
-                    -a_srs '$settings.a_srs'
-                #end unless
+            #unless $settings.a_srs==''
+                -a_srs '$settings.a_srs'
+            #end unless
                 
-                $settings.tap
-                $settings.addalpha
-                $settings.hidenodata
-                $settings.separate
-                $settings.q
+            $settings.tap
+            $settings.addalpha
+            $settings.hidenodata
+            $settings.separate
+            $settings.q
+             
+            #unless $settings.oo=='NAME=VALUE'
+                -oo '$settings.oo'
+            #end unless
                 
-                #unless $settings.oo=='NAME=VALUE'
-                    -oo '$settings.oo'
-                #end unless
+            $settings.allow_projection_difference
                 
-                $settings.allow_projection_difference
+            #unless $settings.tileindex=='field_name'
+                -tileindex '$settings.tileindex'
+            #end unless
                 
-                #unless $settings.tileindex=='field_name'
-                    -tileindex '$settings.tileindex'
-                #end unless
-                
-                #unless $settings.sb=='subdataset'
-                    -sb '$settings.sb'
-                #end unless
+            #unless $settings.sb=='subdataset'
+                -sb '$settings.sb'
+            #end unless
                                         
-            #end if 
+        #end if 
         
     ]]></command>
-    <inputs>
-        
+    <inputs>      
         <repeat name="series" title="Input file">
             <param type="data" name="input" format="data" label="Gdal supported input file" help="http://www.gdal.org/formats_list.html"/>
         </repeat>
@@ -76,10 +73,10 @@
             <when value="simple">
             </when>
             <when value="advanced">
-            	
-            	<param name="b" type="text" label="-b band" help="Select an input band band for output. Bands are numbered from 1. Multiple -b switches may be used to select a set of input bands to write to the output file, or to reorder bands." value="e.g : -b 1 -b 2 -b 3"/>
-            	
-            	<conditional name="condi_te">
+            
+                <param name="b" type="text" label="-b band" help="Select an input band band for output. Bands are numbered from 1. Multiple -b switches may be used to select a set of input bands to write to the output file, or to reorder bands." value="e.g : -b 1 -b 2 -b 3"/>
+                
+                <conditional name="condi_te">
                     <param name="te" type="select" label="-te" help="Set georeferenced extents of output file to be created (in target SRS by default).">
                         <option value="no_te" selected="true">Don't use the -te option</option>
                         <option value="te">Use the -te option</option>
@@ -93,20 +90,20 @@
                         <param name="ymax" type="float" label="ymax" value="0"/>
                     </when>
                 </conditional>    
-                
+                    
                 <conditional name="condi_tr">
-				    <param name="tr" type="select" label="-tr" help="Set output file resolution (in target georeferenced units).">
-				        <option value="no_tr" selected="true">Don't use the -tr option</option>
-				        <option value="tr">Use the -tr option</option>
-				    </param>
-				    <when value="no_tr">
-				    </when>
-				    <when value="tr">
-				        <param name="xres" type="float" label="xres" value="0"/>
-				        <param name="yres" type="float" label="yres" value="0"/>
-				    </when>
-				</conditional>
-                
+                    <param name="tr" type="select" label="-tr" help="Set output file resolution (in target georeferenced units).">
+                        <option value="no_tr" selected="true">Don't use the -tr option</option>
+                        <option value="tr">Use the -tr option</option>
+                    </param>
+                    <when value="no_tr">
+                    </when>
+                    <when value="tr">
+                        <param name="xres" type="float" label="xres" value="0"/>
+                        <param name="yres" type="float" label="yres" value="0"/>
+                    </when>
+                </conditional>
+                    
                 <conditional name="condi_resample">
                     <param name="resample" type="boolean" truevalue="resampling" falsevalue="no_resampling" checked="false" help="Use a resampling algorithm"/>
                     <when value="resampling">
@@ -128,7 +125,7 @@
                     <when value="no_resampling">
                     </when>
                 </conditional>
-                
+                    
                 <conditional name="condi_resolution">
                     <param name="resolution" type="boolean" truevalue="chose_resolution" falsevalue="no_resolution" checked="false" help="In case the resolution of all input files is not the same, the -resolution flag enables the user to control the way the output resolution is computed. 'average' is the default. 'highest' will pick the smallest values of pixel dimensions within the set of source rasters. 'lowest' will pick the largest values of pixel dimensions within the set of source rasters. 'average' will compute an average of pixel dimensions within the set of source rasters. 'user' is new in GDAL 1.7.0 and must be used in combination with the -tr option to specify the target resolution."/>
                     <when value="chose_resolution">
@@ -153,7 +150,7 @@
                 <param name="oo" type="text" label="-oo" value="NAME=VALUE" help="Dataset open option (format specific)."/>
                 <param name="tileindex" type="text" label="-tileindex field_name" value="field_name" help="Use the specified value as the tile index field, instead of the default value with is 'location'."/>
                 <param name="sb" type="text" label="-sb subdataset" value="subdataset" help="If the input dataset contains several subdatasets use a subdataset with the specified number (starting from 1). This is an alternative of giving the full subdataset name as an input."/>
-                
+                    
             </when>
         </conditional>
     </inputs>
@@ -164,13 +161,12 @@
     
     
     <tests>
-	    <test>
+        <test>
             <param name="input" value="east.dem"/>
             <param name="input" value="west.dem"/>
             <param name="advanced" value="simple"/>
             <output name="output" file="dem.vrt" lines_diff="4"/>
         </test>    
-        
     </tests>
     
     <help><![CDATA[
