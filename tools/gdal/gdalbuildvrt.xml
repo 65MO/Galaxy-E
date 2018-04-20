@@ -169,7 +169,7 @@
     
     <help><![CDATA[
 ==========================
-Gdalinfo
+Gdalbuildvrt
 ==========================
 **What it does**
 
