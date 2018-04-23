@@ -7,7 +7,7 @@
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         gdalwarp 
-            
+            -q
             #for $i, $s in enumerate( $series )
                 '${s.input}'
             #end for
