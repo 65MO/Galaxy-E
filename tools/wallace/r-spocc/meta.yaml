@@ -1,0 +1,116 @@
+{% set version = '0.7.0' %}
+
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
+
+package:
+  name: r-spocc
+  version: {{ version|replace("-", "_") }}
+
+source:
+  fn: spocc_{{ version }}.tar.gz
+  url:
+    - https://cran.r-project.org/src/contrib/spocc_{{ version }}.tar.gz
+    - https://cran.r-project.org/src/contrib/Archive/spocc/spocc_{{ version }}.tar.gz
+  sha256: 0acbd785fb83e6593a8b909bc2de80c120849e6dad8f15550c70597dd801212b
+
+
+  # patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  merge_build_host: True  # [win]
+  # If this is a new build for the same version, increment the build number.
+  number: 0
+  noarch: generic
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+# Suggests: roxygen2 (>= 6.0.1), testthat, knitr, taxize (>= 0.8.4)
+requirements:
+  build:
+
+  host:
+    - r-base
+    - r-crul >=0.3.4
+    - r-data.table >=1.9.6
+    - r-jsonlite >=1.4
+    - r-lubridate >=1.5.0
+    - r-rbison >=0.5.0
+    - r-rebird >=0.3.0
+    - r-rgbif >=0.9.8
+    - r-ridigbio >=0.3.5
+    - r-rvertnet >=0.5.0
+    - r-tibble >=1.2
+    - r-whisker >=0.3_2
+    - r-wicket >=0.3.0
+
+  run:
+    - r-base
+    - r-crul >=0.3.4
+    - r-data.table >=1.9.6
+    - r-jsonlite >=1.4
+    - r-lubridate >=1.5.0
+    - r-rbison >=0.5.0
+    - r-rebird >=0.3.0
+    - r-rgbif >=0.9.8
+    - r-ridigbio >=0.3.5
+    - r-rvertnet >=0.5.0
+    - r-tibble >=1.2
+    - r-whisker >=0.3_2
+    - r-wicket >=0.3.0
+
+test:
+  commands:
+    # You can put additional test commands to be run here.
+    - $R -e "library('spocc')"           # [not win]
+    - "\"%R%\" -e \"library('spocc')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
+
+about:
+  home: https://github.com/ropensci/spocc
+  license: MIT + file LICENSE
+  summary: A programmatic interface to many species occurrence data sources, including Global
+    Biodiversity Information Facility ('GBIF'), 'USGSs' Biodiversity Information Serving
+    Our Nation ('BISON'), 'iNaturalist', Berkeley 'Ecoinformatics' Engine, 'eBird',
+    'AntWeb', Integrated Digitized 'Biocollections' ('iDigBio'), 'VertNet', Ocean 'Biogeographic'
+    Information System ('OBIS'), and Atlas of Living Australia ('ALA'). Includes functionality
+    for retrieving species occurrence data, and combining those data.
+  license_family: MIT
+
+
+
+# The original CRAN metadata for this package was:
+
+# Package: spocc
+# Title: Interface to Species Occurrence Data Sources
+# Description: A programmatic interface to many species occurrence data sources, including Global Biodiversity Information Facility ('GBIF'), 'USGSs' Biodiversity Information Serving Our Nation ('BISON'), 'iNaturalist', Berkeley 'Ecoinformatics' Engine, 'eBird', 'AntWeb', Integrated Digitized 'Biocollections' ('iDigBio'), 'VertNet', Ocean 'Biogeographic' Information System ('OBIS'), and Atlas of Living Australia ('ALA'). Includes functionality for retrieving species occurrence data, and combining those data.
+# Version: 0.7.0
+# License: MIT + file LICENSE
+# Authors@R: c( person("Scott", "Chamberlain", role = c("aut", "cre"), email = "myrmecocystus@gmail.com"), person("Karthik", "Ram", role = "ctb"), person("Ted", "Hart", role = "ctb") )
+# URL: https://github.com/ropensci/spocc
+# BugReports: https://github.com/ropensci/spocc/issues
+# LazyData: true
+# VignetteBuilder: knitr
+# Imports: utils, rgbif (>= 0.9.8), rbison (>= 0.5.0), rebird (>= 0.3.0), rvertnet (>= 0.5.0), ridigbio (>= 0.3.5), lubridate (>= 1.5.0), crul (>= 0.3.4), whisker (>= 0.3-2), jsonlite (>= 1.4), data.table (>= 1.9.6), tibble (>= 1.2), wicket (>= 0.3.0)
+# Suggests: roxygen2 (>= 6.0.1), testthat, knitr, taxize (>= 0.8.4)
+# RoxygenNote: 6.0.1
+# NeedsCompilation: no
+# Packaged: 2017-04-20 19:22:58 UTC; sacmac
+# Author: Scott Chamberlain [aut, cre], Karthik Ram [ctb], Ted Hart [ctb]
+# Maintainer: Scott Chamberlain <myrmecocystus@gmail.com>
+# Repository: CRAN
+# Date/Publication: 2017-04-21 05:54:31 UTC
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml

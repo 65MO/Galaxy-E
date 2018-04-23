@@ -139,7 +139,7 @@ if(((arg_n-3)%3)!=0):
         lat=latitude;lon=longitude #Usefull to keep the originals lat/lon vect before potentially resize it bellow.
         len_all_coord=len(lat)*len(lon)
         
-        print("len all coord "+str(len_all_coord)+" threshold "+str(len_threshold))
+        #print("len all coord "+str(len_all_coord)+" threshold "+str(len_threshold))
 
         #To avoid case when all_coord is to big and need to much memory
         #If the vector is too big, reduce it to its third in a loop until its < to the threshold
@@ -155,8 +155,8 @@ if(((arg_n-3)%3)!=0):
             else:
                 x_percent_len_lon=int(x_percent*len(lon))
 
-            print("len(lat) :"+str(len(lat))+" x_percent_len_lat "+str(x_percent_len_lat))
-            print("len(lon) :"+str(len(lon))+" x_percent_len_lon "+str(x_percent_len_lon))
+            #print("len(lat) :"+str(len(lat))+" x_percent_len_lat "+str(x_percent_len_lat))
+            #print("len(lon) :"+str(len(lon))+" x_percent_len_lon "+str(x_percent_len_lon))
 
  
             pos_lat_user=find_nearest(lat,value_dim_lat)
@@ -180,13 +180,13 @@ if(((arg_n-3)%3)!=0):
 
             lat=lat[lat_reduced:lat_extended] #add a test to check if pos_lat_user-x_percent_len_lat/2-1 >0
             lon=lon[lon_reduced:lon_extended]
-            print("latreduced : "+str(lat_reduced)+" latextended "+str(lat_extended))
-            print("lonreduced : "+str(lon_reduced)+" lonextended "+str(lon_extended))
-            print("lat : "+str(lat))
-            print("lon : "+str(lon))
+            #print("latreduced : "+str(lat_reduced)+" latextended "+str(lat_extended))
+            #print("lonreduced : "+str(lon_reduced)+" lonextended "+str(lon_extended))
+            #print("lat : "+str(lat))
+            #print("lon : "+str(lon))
             len_all_coord=len(lat)*len(lon)
 
-            print ("len_all_coord : "+str(len_all_coord)+". len_lat : "+str(len(lat))+" .len_lon : "+str(len(lon)))
+            #print ("len_all_coord : "+str(len_all_coord)+". len_lat : "+str(len(lat))+" .len_lon : "+str(len(lon)))
 
     else:
     #except:
@@ -200,7 +200,8 @@ if(((arg_n-3)%3)!=0):
 
     #Reshape
     all_coord=np.reshape(list_coord_dispo,(lat.size*lon.size,2))
-    print(str(all_coord))
+    #np.set_printoptions(threshold='nan')#to print full vec
+    #print(str(all_coord))
     noval=True
 
 
@@ -269,7 +270,7 @@ for i in range(4,arg_n,3):
 
 
 #If precise coord given.
-if Coord_bool: 
+if Coord_bool:
     while noval: #While no closest coord with valid values is found
         #Return closest coord avaible
         tree=spatial.KDTree(all_coord)
@@ -310,16 +311,19 @@ if Coord_bool:
         #Check every value, if at least one non NA is found vec2 and the current closest coords are validated
         vecsize=vec2.size
         #print (str(vecsize))
-        while i<vecsize:
-            #print (str(vec2))
-            try:
-                if vec2[i]!="nan": 
+        if vecsize>1:
+            while i<vecsize:
+                #print (str(vec2))
+                if vec2[i]!="nan":
                     break
                 else: 
                     i=i+1
-            except:
+        else:
+            if vec2!="nan":
+                break
+            else: 
                 i=i+1
-
+   
         if i<vecsize: #There is at least 1 nonNA value
             noval=False
         else: #If only NA : pop the closest coord and search in the second closest coord in the next loop.

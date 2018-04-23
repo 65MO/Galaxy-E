@@ -7,6 +7,7 @@
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         gdaladdo '$input1'
+            -q
             -ro
             #if $levels!='e.g : 2 4 8 16'
                 #if '$levels'==''
@@ -39,8 +40,30 @@
     </tests>
     
     <help><![CDATA[
-        
+==========================
+Gdaladdo
+==========================
+**What it does**
+
 The gdaladdo utility can be used to build or rebuild overview images for most supported file formats with one of several downsampling algorithms. 
+
+|
+
+**How to use it**        
+
+Select a raster file from history and chose levels to build.
+
+|
+
+**Option**
+
+*-levels*
+
+    A list of integral overview levels to build. Ignored with -clean option. Starting with GDAL 2.3, levels are no longer required to build overviews. In which case, appropriate overview power-of-two factors will be selected until the smallest overview is smaller than the value of the -minsize switch.
+
+|
+
+**Sources**
 
 http://www.gdal.org
 
