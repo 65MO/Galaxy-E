@@ -7,6 +7,7 @@
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         gdaladdo '$input1'
+            -q
             -ro
             #if $levels!='e.g : 2 4 8 16'
                 #if '$levels'==''
