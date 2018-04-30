@@ -1,11 +1,11 @@
-"Code";"Groupe";"Nom français";"Nom scientifique";"Risque d'erreur (%)";"Nb Validations";"Effort de validation";"Nb de Contacts par Nuit";"Niveau d'Activite";"TriGroupe"
-"Pippip";"Chauve-souris";"Pipistrelle commune";"Pipistrellus pipistrellus";"1";"0";"-";"489";"FORTE";3
-"Pippyg";"Chauve-souris";"Pipistrelle soprane";"Pipistrellus pygmaeus";"97";"0";"-";"1";"FAIBLE";3
-"Tadten";"Chauve-souris";"Molosse";"Tadarida teniotis";"1";"0";"-";"1";"FAIBLE";3
-"Testes";"Sauterelle";"Decticelle carroyee";"Tessellana tessellata";"4";"0";"-";"6";"MODEREE";2
-"Tetvir";"Sauterelle";"Sauterelle verte";"Tettigonia viridissima";"1";"0";"-";"6";"FAIBLE";2
-"Phogri";"Sauterelle";"Decticelle cendree";"Pholidoptera griseoaptera";"68";"0";"-";"3";"MODEREE";2
-"Rusnit";"Sauterelle";"Conocephale gracieux";"Ruspolia nitidula";"27";"0";"-";"1";"FAIBLE";2
-"noise";"Autre";"bruit";"noise";"1";"0";"-";"198";"FAIBLE";1
-"piaf";"Autre";"Oiseau sp.";"Aves sp.";"1";"0";"-";"32";"MODEREE";1
-"Aposyl";"Autre";"Mulot sylvestre";"Apodemus sylvaticus";"1";"0";"-";"3";NA;1
+"Code"	"Groupe"	"Nom francais"	"Nom scientifique"	"Risque d'erreur (%)"	"Nb Validations"	"Effort de validation"	"Nb de Contacts par Nuit"	"Niveau d'Activite"	"TriGroupe"
+"Pippip"	"Chauve-souris"	"Pipistrelle commune"	"Pipistrellus pipistrellus"	"4"	"0"	"-"	"490"	"FORTE"	3
+"Tadten"	"Chauve-souris"	"Molosse"	"Tadarida teniotis"	"84"	"0"	"-"	"1"	"FAIBLE"	3
+"Testes"	"Sauterelle"	"Decticelle carroyee"	"Tessellana tessellata"	"93"	"0"	"-"	"6"	"MODEREE"	2
+"Tetvir"	"Sauterelle"	"Sauterelle verte"	"Tettigonia viridissima"	"38"	"0"	"-"	"6"	"FAIBLE"	2
+"Phogri"	"Sauterelle"	"Decticelle cendree"	"Pholidoptera griseoaptera"	"93"	"0"	"-"	"2"	"FAIBLE"	2
+"Rusnit"	"Sauterelle"	"Conocephale gracieux"	"Ruspolia nitidula"	"45"	"0"	"-"	"1"	"FAIBLE"	2
+"noise"	"Autre"	"bruit"	"noise"	"36"	"0"	"-"	"198"	"FAIBLE"	1
+"piaf"	"Autre"	"Oiseau sp."	"Aves sp."	"3"	"0"	"-"	"33"	"MODEREE"	1
+"Aposp"	"Autre"	"Mulot sp."	"Apodemus sp."	"98"	"0"	"-"	"2"	NA	1
+"Mussp"	"Autre"	"Musaraigne sp."	"Soricidae sp."	"99"	"0"	"-"	"1"	"FAIBLE"	1

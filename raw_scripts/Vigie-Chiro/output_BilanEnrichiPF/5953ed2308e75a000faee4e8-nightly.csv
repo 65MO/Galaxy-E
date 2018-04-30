@@ -1,9 +1,8 @@
-"Code";"Groupe";"Nom français";"Nom scientifique";"Risque d'erreur (%)";"TriGroupe";"09";"09/06/2017.y"
-"Hypsav";"Chauve-souris";"Vespere de Savi";"Hypsugo savii";"1";3;1;1
-"Myomys";"Chauve-souris";"Murin a moustaches";"Myotis mystacinus";"97";3;1;1
-"Pipkuh";"Chauve-souris";"Pipistrelle de Kuhl";"Pipistrellus kuhlii";"36";3;1;1
-"Pipnat";"Chauve-souris";"Pipistrelle de Nathusius";"Pipistrellus nathusii";"46";3;1;1
-"Pippip";"Chauve-souris";"Pipistrelle commune";"Pipistrellus pipistrellus";"1";3;405;3
-"Tetvir";"Sauterelle";"Sauterelle verte";"Tettigonia viridissima";"1";2;14;2
-"noise";"Autre";"bruit";"noise";"1";1;1689;2
-"piaf";"Autre";"Oiseau sp.";"Aves sp.";"1";1;6;1
+"Code"	"Groupe"	"Nom francais"	"Nom scientifique"	"Risque d'erreur (%)"	"TriGroupe"	"09"	"09/06/2017.y"
+"Pipkuh"	"Chauve-souris"	"Pipistrelle de Kuhl"	"Pipistrellus kuhlii"	"43"	3	2	1
+"Pipnat"	"Chauve-souris"	"Pipistrelle de Nathusius"	"Pipistrellus nathusii"	"46"	3	1	1
+"Pippip"	"Chauve-souris"	"Pipistrelle commune"	"Pipistrellus pipistrellus"	"2"	3	405	3
+"Confus"	"Sauterelle"	"Conocephale bigarre"	"Conocephalus fuscus"	"97"	2	1	1
+"Tetvir"	"Sauterelle"	"Sauterelle verte"	"Tettigonia viridissima"	"20"	2	16	2
+"noise"	"Autre"	"bruit"	"noise"	"3"	1	1684	2
+"piaf"	"Autre"	"Oiseau sp."	"Aves sp."	"2"	1	8	1

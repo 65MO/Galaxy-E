@@ -1,14 +1,12 @@
-"Code";"Groupe";"Nom français";"Nom scientifique";"Risque d'erreur (%)";"Nb Validations";"Effort de validation";"Nb de Contacts en expansion";"Niveau d'Activite en expansion";"Nb de Contacts en direct";"Niveau d'Activite en direct";"TriGroupe"
-"Pipkuh";"Chauve-souris";"Pipistrelle de Kuhl";"Pipistrellus kuhlii";"1";"0";"-";"5";"MODEREE";"46";"FORTE";3
-"Pippip";"Chauve-souris";"Pipistrelle commune";"Pipistrellus pipistrellus";"1";"0";"-";"9";"MODEREE";"22";"MODEREE";3
-"Eptser";"Chauve-souris";"Serotine commune";"Eptesicus serotinus";"1";"0";"-";"0";NA;"7";"MODEREE";3
-"Barbar";"Chauve-souris";"Barbastelle d'Europe";"Barbastella barbastellus";"1";"0";"-";"0";NA;"1";"FAIBLE";3
-"Hypsav";"Chauve-souris";"Vespere de Savi";"Hypsugo savii";"79";"0";"-";"0";NA;"1";NA;3
-"Myomys";"Chauve-souris";"Murin a moustaches";"Myotis mystacinus";"92";"0";"-";"1";NA;"0";NA;3
-"Tetvir";"Sauterelle";"Sauterelle verte";"Tettigonia viridissima";"1";"0";"-";"6";"MODEREE";"176";"FORTE";2
-"Rusnit";"Sauterelle";"Conocephale gracieux";"Ruspolia nitidula";"1";"0";"-";"7";"MODEREE";"21";"MODEREE";2
-"Plaalb";"Sauterelle";"Decticelle chagrinee";"Platycleis albopunctata";"1";"0";"-";"3";"FORTE";"17";"TRES FORTE";2
-"Testes";"Sauterelle";"Decticelle carroyee";"Tessellana tessellata";"1";"0";"-";"0";NA;"12";"MODEREE";2
-"Plaaff";"Sauterelle";"Decticelle cotiere";"Platycleis affinis";"87";"0";"-";"0";NA;"2";NA;2
-"Leppun";"Sauterelle";"Sauterelle ponctuee";"Leptophyes punctatissima";"99";"0";"-";"0";NA;"1";"FAIBLE";2
-"noise";"Autre";"bruit";"noise";"1";"0";"-";"544";"MODEREE";"661";"MODEREE";1
+"Code"	"Groupe"	"Nom francais"	"Nom scientifique"	"Risque d'erreur (%)"	"Nb Validations"	"Effort de validation"	"Nb de Contacts en expansion"	"Niveau d'Activite en expansion"	"Nb de Contacts en direct"	"Niveau d'Activite en direct"	"TriGroupe"
+"Pipkuh"	"Chauve-souris"	"Pipistrelle de Kuhl"	"Pipistrellus kuhlii"	"2"	"0"	"-"	"5"	"MODEREE"	"47"	"FORTE"	3
+"Pippip"	"Chauve-souris"	"Pipistrelle commune"	"Pipistrellus pipistrellus"	"8"	"0"	"-"	"8"	"MODEREE"	"22"	"MODEREE"	3
+"Eptser"	"Chauve-souris"	"Serotine commune"	"Eptesicus serotinus"	"18"	"0"	"-"	"2"	"MODEREE"	"7"	"MODEREE"	3
+"Barbar"	"Chauve-souris"	"Barbastelle d'Europe"	"Barbastella barbastellus"	"29"	"0"	"-"	"0"	NA	"1"	"FAIBLE"	3
+"Tetvir"	"Sauterelle"	"Sauterelle verte"	"Tettigonia viridissima"	"2"	"0"	"-"	"6"	"MODEREE"	"115"	"FORTE"	2
+"Rusnit"	"Sauterelle"	"Conocephale gracieux"	"Ruspolia nitidula"	"1"	"0"	"-"	"7"	"MODEREE"	"21"	"MODEREE"	2
+"Plaalb"	"Sauterelle"	"Decticelle chagrinee"	"Platycleis albopunctata"	"3"	"0"	"-"	"2"	"MODEREE"	"18"	"TRES FORTE"	2
+"Testes"	"Sauterelle"	"Decticelle carroyee"	"Tessellana tessellata"	"6"	"0"	"-"	"0"	NA	"12"	"MODEREE"	2
+"Leppun"	"Sauterelle"	"Sauterelle ponctuee"	"Leptophyes punctatissima"	"71"	"0"	"-"	"0"	NA	"1"	"FAIBLE"	2
+"noise"	"Autre"	"bruit"	"noise"	"10"	"0"	"-"	"545"	"MODEREE"	"738"	"FORTE"	1
+"Cympud"	"Autre"	"Ecaille pudique"	"Cymbalophora pudica"	"17"	"0"	"-"	"0"	NA	"1"	NA	1

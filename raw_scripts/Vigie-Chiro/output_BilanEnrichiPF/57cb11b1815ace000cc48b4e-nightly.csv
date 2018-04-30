@@ -1,22 +1,22 @@
-"Code";"Groupe";"Nom français";"Nom scientifique";"Risque d'erreur (%)";"TriGroupe";"02";"02/09/2016.y"
-"Barbar";"Chauve-souris";"Barbastelle d'Europe";"Barbastella barbastellus";"1";3;3;2
-"Eptser";"Chauve-souris";"Serotine commune";"Eptesicus serotinus";"1";3;63;3
-"MyoGT";"Chauve-souris";"Murin de grande taille";"Myotis cf. myotis";"1";3;4;3
-"Myodau";"Chauve-souris";"Murin de Daubenton";"Myotis daubentonii";"1";3;4;2
-"Myoema";"Chauve-souris";"Murin a oreilles echancrees";"Myotis emarginatus";"1";3;4;3
-"Myonat";"Chauve-souris";"Murin groupe Natterer";"Myotis nattereri";"1";3;14;3
-"Nyclei";"Chauve-souris";"Noctule de Leisler";"Nyctalus leisleri";"1";3;26;3
-"Nycnoc";"Chauve-souris";"Noctule commune";"Nyctalus noctula";"1";3;38;3
-"Pipkuh";"Chauve-souris";"Pipistrelle de Kuhl";"Pipistrellus kuhlii";"1";3;42;2
-"Pipnat";"Chauve-souris";"Pipistrelle de Nathusius";"Pipistrellus nathusii";"1";3;20;3
-"Pippip";"Chauve-souris";"Pipistrelle commune";"Pipistrellus pipistrellus";"1";3;949;3
-"Pleaur";"Chauve-souris";"Oreillard roux";"Plecotus auritus";"1";3;4;3
-"Pleaus";"Chauve-souris";"Oreillard gris";"Plecotus austriacus";"1";3;21;3
-"Rhihip";"Chauve-souris";"Petit Rhinolophe";"Rhinolophus hipposideros";"1";3;2;2
-"Leppun";"Sauterelle";"Sauterelle ponctuee";"Leptophyes punctatissima";"50";2;1;1
-"Phanan";"Sauterelle";"Phaneroptere meridional";"Phaneroptera nana";"1";2;357;3
-"Phogri";"Sauterelle";"Decticelle cendree";"Pholidoptera griseoaptera";"98";2;1;1
-"Rusnit";"Sauterelle";"Conocephale gracieux";"Ruspolia nitidula";"98";2;1;1
-"Urorug";"Sauterelle";"Ephippigere carenee";"Uromenus rugosicollis";"1";2;3;2
-"Yerray";"Sauterelle";"Decticelle frele";"Yersinella raymondii";"1";2;7;2
-"noise";"Autre";"bruit";"noise";"1";1;271;1
+"Code"	"Groupe"	"Nom francais"	"Nom scientifique"	"Risque d'erreur (%)"	"TriGroupe"	"02"	"02/09/2016.y"
+"Barbar"	"Chauve-souris"	"Barbastelle d'Europe"	"Barbastella barbastellus"	"1"	3	3	2
+"Eptser"	"Chauve-souris"	"Serotine commune"	"Eptesicus serotinus"	"1"	3	339	4
+"MyoGT"	"Chauve-souris"	"Murin de grande taille"	"Myotis cf. myotis"	"1"	3	4	3
+"Myodau"	"Chauve-souris"	"Murin de Daubenton"	"Myotis daubentonii"	"28"	3	2	2
+"Myoema"	"Chauve-souris"	"Murin a oreilles echancrees"	"Myotis emarginatus"	"10"	3	4	3
+"Myonat"	"Chauve-souris"	"Murin groupe Natterer"	"Myotis nattereri"	"1"	3	14	3
+"Nyclei"	"Chauve-souris"	"Noctule de Leisler"	"Nyctalus leisleri"	"1"	3	59	3
+"Nycnoc"	"Chauve-souris"	"Noctule commune"	"Nyctalus noctula"	"1"	3	12	3
+"Pipkuh"	"Chauve-souris"	"Pipistrelle de Kuhl"	"Pipistrellus kuhlii"	"1"	3	69	2
+"Pipnat"	"Chauve-souris"	"Pipistrelle de Nathusius"	"Pipistrellus nathusii"	"7"	3	20	3
+"Pippip"	"Chauve-souris"	"Pipistrelle commune"	"Pipistrellus pipistrellus"	"1"	3	930	3
+"Pleaur"	"Chauve-souris"	"Oreillard roux"	"Plecotus auritus"	"10"	3	3	3
+"Pleaus"	"Chauve-souris"	"Oreillard gris"	"Plecotus austriacus"	"10"	3	18	3
+"Rhihip"	"Chauve-souris"	"Petit Rhinolophe"	"Rhinolophus hipposideros"	"1"	3	2	2
+"Leppun"	"Sauterelle"	"Sauterelle ponctuee"	"Leptophyes punctatissima"	"89"	2	1	1
+"Phanan"	"Sauterelle"	"Phaneroptere meridional"	"Phaneroptera nana"	"31"	2	234	3
+"Rusnit"	"Sauterelle"	"Conocephale gracieux"	"Ruspolia nitidula"	"87"	2	1	1
+"Urorug"	"Sauterelle"	"Ephippigere carenee"	"Uromenus rugosicollis"	"83"	2	3	2
+"Yerray"	"Sauterelle"	"Decticelle frele"	"Yersinella raymondii"	"90"	2	13	2
+"noise"	"Autre"	"bruit"	"noise"	"81"	1	165	1
+"piaf"	"Autre"	"Oiseau sp."	"Aves sp."	"99"	1	1	1

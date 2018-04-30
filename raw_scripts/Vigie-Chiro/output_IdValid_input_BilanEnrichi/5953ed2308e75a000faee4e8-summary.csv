@@ -1,9 +1,0 @@
-"Code"	"Groupe"	"Nom francais"	"Nom scientifique"	"Risque d'erreur (%)"	"Nb Validations"	"Effort de validation"	"Nb de Contacts par Nuit"	"Niveau d'Activite"	"TriGroupe"
-"Pippip"	"Chauve-souris"	"Pipistrelle commune"	"Pipistrellus pipistrellus"	"11"	"0"	"-"	"405"	"FORTE"	3
-"Hypsav"	"Chauve-souris"	"Vespere de Savi"	"Hypsugo savii"	"47"	"0"	"-"	"1"	"FAIBLE"	3
-"Myomys"	"Chauve-souris"	"Murin a moustaches"	"Myotis mystacinus"	"95"	"0"	"-"	"1"	"FAIBLE"	3
-"Pipkuh"	"Chauve-souris"	"Pipistrelle de Kuhl"	"Pipistrellus kuhlii"	"59"	"0"	"-"	"1"	"FAIBLE"	3
-"Pipnat"	"Chauve-souris"	"Pipistrelle de Nathusius"	"Pipistrellus nathusii"	"46"	"0"	"-"	"1"	"FAIBLE"	3
-"Tetvir"	"Sauterelle"	"Sauterelle verte"	"Tettigonia viridissima"	"33"	"0"	"-"	"14"	"MODEREE"	2
-"noise"	"Autre"	"bruit"	"noise"	"4"	"0"	"-"	"1689"	"MODEREE"	1
-"piaf"	"Autre"	"Oiseau sp."	"Aves sp."	"2"	"0"	"-"	"6"	"FAIBLE"	1
