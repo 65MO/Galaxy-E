@@ -1,0 +1,9 @@
+"Code"	"Groupe"	"Nom francais"	"Nom scientifique"	"Risque d'erreur (%)"	"TriGroupe"	"09"	"09/06/2017.y"
+"Hypsav"	"Chauve-souris"	"Vespere de Savi"	"Hypsugo savii"	"47"	3	1	1
+"Myomys"	"Chauve-souris"	"Murin a moustaches"	"Myotis mystacinus"	"95"	3	1	1
+"Pipkuh"	"Chauve-souris"	"Pipistrelle de Kuhl"	"Pipistrellus kuhlii"	"59"	3	1	1
+"Pipnat"	"Chauve-souris"	"Pipistrelle de Nathusius"	"Pipistrellus nathusii"	"46"	3	1	1
+"Pippip"	"Chauve-souris"	"Pipistrelle commune"	"Pipistrellus pipistrellus"	"11"	3	405	3
+"Tetvir"	"Sauterelle"	"Sauterelle verte"	"Tettigonia viridissima"	"33"	2	14	2
+"noise"	"Autre"	"bruit"	"noise"	"4"	1	1689	2
+"piaf"	"Autre"	"Oiseau sp."	"Aves sp."	"2"	1	6	1

@@ -1,0 +1,15 @@
+"Code"	"Groupe"	"Nom francais"	"Nom scientifique"	"Risque d'erreur (%)"	"TriGroupe"	"20"	"21"	"22"	"23"	"00"	"01"	"02"	"03"	"04"	"05"	"06"
+"Barbar"	"Chauve-souris"	"Barbastelle d'Europe"	"Barbastella barbastellus"	"3"	3	0	0	0	5	0	2	1	0	1	0	0
+"Minsch"	"Chauve-souris"	"Minioptere"	"Miniopterus schreibersii"	"8"	3	0	0	0	0	1	0	0	0	0	0	0
+"Myodau"	"Chauve-souris"	"Murin de Daubenton"	"Myotis daubentonii"	"24"	3	0	1	2	3	4	4	4	1	0	0	0
+"Myomys"	"Chauve-souris"	"Murin a moustaches"	"Myotis mystacinus"	"39"	3	0	2	5	7	12	3	3	2	3	6	0
+"Myonat"	"Chauve-souris"	"Murin groupe Natterer"	"Myotis nattereri"	"65"	3	0	0	0	1	0	1	0	1	0	0	0
+"Nyclei"	"Chauve-souris"	"Noctule de Leisler"	"Nyctalus leisleri"	"15"	3	0	4	0	0	0	4	1	0	0	0	0
+"Pipnat"	"Chauve-souris"	"Pipistrelle de Nathusius"	"Pipistrellus nathusii"	"54"	3	0	0	0	1	0	1	2	0	0	0	0
+"Pippip"	"Chauve-souris"	"Pipistrelle commune"	"Pipistrellus pipistrellus"	"34"	3	0	1	70	121	86	175	33	104	58	3	0
+"Pleaus"	"Chauve-souris"	"Oreillard gris"	"Plecotus austriacus"	"99"	3	0	0	0	1	0	0	0	0	0	0	0
+"Tadten"	"Chauve-souris"	"Molosse"	"Tadarida teniotis"	"23"	3	0	0	6	10	8	4	0	0	0	0	0
+"Plaint"	"Sauterelle"	"Decticelle intermediaire"	"Platycleis intermedia"	"98"	2	0	0	0	0	0	0	0	0	0	1	0
+"Tetvir"	"Sauterelle"	"Sauterelle verte"	"Tettigonia viridissima"	"16"	2	5	434	326	238	147	52	0	7	0	2	2
+"noise"	"Autre"	"bruit"	"noise"	"70"	1	11	163	95	111	303	90	24	11	10	9	2
+"piaf"	"Autre"	"Oiseau sp."	"Aves sp."	"20"	1	5	126	1	1	4	0	0	0	0	162	147
