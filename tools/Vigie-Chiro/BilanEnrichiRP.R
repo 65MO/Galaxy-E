@@ -225,6 +225,11 @@ SummHTMLT=datatable(SummPartTron, rownames = FALSE) %>%
 saveWidget(SummHTMLT,"output-detailRP.html")
 write.table(SummPartTron,"output-detailRP.tabular",row.names=F,sep="\t")
 
+#saveWidget(SummHTML,paste0(substr(args[1],1,nchar(args[1])-9),"-summary.html"))
+#write.table(SummPart,paste0(substr(args[1],1,nchar(args[1])-9),"-summary.csv"),row.names=F,sep="\t")
+#saveWidget(SummHTMLT,paste0(substr(args[1],1,nchar(args[1])-9),"-detail.html"))
+#write.table(SummPartTron,paste0(substr(args[1],1,nchar(args[1])-9),"-detail.csv"),row.names=F,sep="\t")
+
 
 
 }

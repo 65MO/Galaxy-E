@@ -16,10 +16,10 @@ EchelleErreur=c("","POSSIBLE","PROBABLE","SUR")
 EchelleNumErreur=c(99,50,10,1)
 
 #for test
-#inputest=list.files("C:/Users/Yves Bas/Documents/GitHub/65MO_Galaxy-E/raw_scripts/Vigie-Chiro/output_IdValid_input_BilanEnrichi/",pattern="IdC2.csv",full.names=T)
-#for (i in 1:length(inputest))
-#{
-#   args=c(inputest[i],"refPF.csv","SpeciesList.csv")
+inputest=list.files("C:/Users/Yves Bas/Documents/GitHub/65MO_Galaxy-E/raw_scripts/Vigie-Chiro/output_IdValid_input_BilanEnrichi/",pattern="IdC2.csv",full.names=T)
+for (i in 1:length(inputest))
+{
+   args=c(inputest[i],"refPF.csv","SpeciesList.csv")
    
    
 IdC2=fread(args[1])

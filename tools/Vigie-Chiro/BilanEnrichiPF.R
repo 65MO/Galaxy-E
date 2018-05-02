@@ -232,6 +232,15 @@ SummHTMLH=datatable(SummPartH, rownames = FALSE) %>%
 saveWidget(SummHTMLH,"output-hourly.html")
 write.table(SummPartH,"output-hourly.tabular",sep="\t",row.names=F)
 
+
+#saveWidget(SummHTML,paste0(substr(args[1],1,nchar(args[1])-9),"-summary.html"))
+#write.table(SummPart,paste0(substr(args[1],1,nchar(args[1])-9),"-summary.csv"),sep="\t",row.names=F)
+#saveWidget(SummHTMLN,paste0(substr(args[1],1,nchar(args[1])-9),"-nightly.html"))
+#write.table(SummPartN,paste0(substr(args[1],1,nchar(args[1])-9),"-nightly.csv"),sep="\t",row.names=F)
+#saveWidget(SummHTMLH,paste0(substr(args[1],1,nchar(args[1])-9),"-hourly.html"))
+#write.table(SummPartH,paste0(substr(args[1],1,nchar(args[1])-9),"-hourly.csv"),sep="\t",row.names=F)
+
+
 }
 
 

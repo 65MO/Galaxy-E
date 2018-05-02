@@ -1,6 +1,4 @@
-"Code";"Groupe";"Nom français";"Nom scientifique";"Risque d'erreur (%)";"Nb Validations";"Effort de validation";"Nb de Contacts en expansion";"Niveau d'Activite en expansion";"Nb de Contacts en direct";"Niveau d'Activite en direct";"TriGroupe"
-"Pipnat";"Chauve-souris";"Pipistrelle de Nathusius";"Pipistrellus nathusii";"29";"0";"-";"2";"MODEREE";"0";NA;3
-"Pippip";"Chauve-souris";"Pipistrelle commune";"Pipistrellus pipistrellus";"1";"0";"-";"1";"FAIBLE";"0";NA;3
-"Tetvir";"Sauterelle";"Sauterelle verte";"Tettigonia viridissima";"1";"0";"-";"0";NA;"6";"FAIBLE";2
-"Phogri";"Sauterelle";"Decticelle cendree";"Pholidoptera griseoaptera";"99";"0";"-";"0";NA;"1";"FAIBLE";2
-"noise";"Autre";"bruit";"noise";"1";"0";"-";"719";"FORTE";"646";"MODEREE";1
+"Code"	"Groupe"	"Nom francais"	"Nom scientifique"	"Risque d'erreur (%)"	"Nb Validations"	"Effort de validation"	"Nb de Contacts en expansion"	"Niveau d'Activite en expansion"	"Nb de Contacts en direct"	"Niveau d'Activite en direct"	"TriGroupe"
+"Pippip"	"Chauve-souris"	"Pipistrelle commune"	"Pipistrellus pipistrellus"	"77"	"0"	"-"	"3"	"FAIBLE"	"0"	NA	3
+"Tetvir"	"Sauterelle"	"Sauterelle verte"	"Tettigonia viridissima"	"10"	"0"	"-"	"0"	NA	"6"	"FAIBLE"	2
+"noise"	"Autre"	"bruit"	"noise"	"1"	"0"	"-"	"719"	"FORTE"	"647"	"MODEREE"	1
