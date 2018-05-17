@@ -39,7 +39,9 @@ IdCorrect$IdScore=apply(as.data.frame(IdCorrect)[,(test+1):(ncol(IdCorrect)-1)],
 CorrSp=match(IdCorrect$ProbEsp_C2bs,RefSeuil$Espece)
 PSp=RefSeuil$Pente[CorrSp]
 ISp=RefSeuil$Int[CorrSp]
+
 suppressWarnings(IdCorrect$IdProb<-mapply(FUN=function(w,x,y) if((!is.na(y))&(y>0)&(y<1000)) {(exp(y*w+x)/(1+exp(y*w+x)))}else{w} ,IdCorrect$IdScore,ISp,PSp))
+
 
 
 
