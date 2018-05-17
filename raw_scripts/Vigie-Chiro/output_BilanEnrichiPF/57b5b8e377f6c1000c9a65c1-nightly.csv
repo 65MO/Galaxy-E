@@ -1,0 +1,11 @@
+"Code"	"Groupe"	"Nom francais"	"Nom scientifique"	"Risque d'erreur (%)"	"TriGroupe"	"06"	"06/07/2015.y"
+"Pippip"	"Chauve-souris"	"Pipistrelle commune"	"Pipistrellus pipistrellus"	"4"	3	490	3
+"Tadten"	"Chauve-souris"	"Molosse"	"Tadarida teniotis"	"84"	3	1	1
+"Phogri"	"Sauterelle"	"Decticelle cendree"	"Pholidoptera griseoaptera"	"93"	2	2	1
+"Rusnit"	"Sauterelle"	"Conocephale gracieux"	"Ruspolia nitidula"	"45"	2	1	1
+"Testes"	"Sauterelle"	"Decticelle carroyee"	"Tessellana tessellata"	"93"	2	6	2
+"Tetvir"	"Sauterelle"	"Sauterelle verte"	"Tettigonia viridissima"	"38"	2	6	1
+"Aposp"	"Autre"	"Mulot sp."	"Apodemus sp."	"98"	1	2	NA
+"Mussp"	"Autre"	"Musaraigne sp."	"Soricidae sp."	"99"	1	1	1
+"noise"	"Autre"	"bruit"	"noise"	"36"	1	198	1
+"piaf"	"Autre"	"Oiseau sp."	"Aves sp."	"3"	1	33	2

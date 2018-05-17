@@ -3,10 +3,10 @@ library(randomForest)
 args <- commandArgs(trailingOnly = TRUE)
 print(args)
 #for test
-#inputest=list.files("C:/Users/Yves Bas/Documents/GitHub/65MO_Galaxy-E/raw_scripts/Vigie-Chiro/input_examples/",full.names=T)
+#inputest=list.files("C:/Users/Yves Bas/Documents/test/",full.names=T,pattern="participation-")
 #for (i in 1:length(inputest))
 #{
-#  args=c(inputest[i],"ClassifEspC2b_171206.learner")
+# args=c(inputest[i],"ClassifEspC2b_180222.learner")
 
 set.seed(1)
 
@@ -14,13 +14,15 @@ if (exists("ClassifEspC2b")==F){load(args[2])}
 
 DataPar=fread(args[1]) #id to be corrected
 DataPar$participation=substr(args[1],nchar(args[1])-40,nchar(args[1])-17)
-test=duplicated(cbind(DataPar$'nom du fichier',DataPar$tadarida_taxon))
-DataPar=subset(DataPar,!test)
-
+test1=duplicated(cbind(DataPar$'nom du fichier',DataPar$tadarida_taxon))
+test2=(DataPar$tadarida_taxon=="empty")
+DataPar=subset(DataPar,(!test1)|(test2))
+DataPar$tadarida_probabilite[DataPar$tadarida_probabilite==""]="0"
+DataPar$tadarida_probabilite=as.numeric(DataPar$tadarida_probabilite)
 #tableau comptabilisant le nombre de contacts par espèces 
 nbcT=as.matrix(table(DataPar$participation,DataPar$tadarida_taxon))
 
-
+DataPar$tadarida_probabilite=as.numeric(DataPar$tadarida_probabilite)
 #generating input variables for second layer classification
 
 Q25=vector()
@@ -167,5 +169,7 @@ DataCorrC2=DataCorrC2[order(DataCorrC2$'nom du fichier'),]
 test=match(DataCorrC2$`nom du fichier`,"Cir440730-2016-Pass2-Tron8-Chiro_1_00369_859")
 test2=subset(DataCorrC2,is.na(test)==F)
 
+DataCorrC2$ProbEsp_C2bs=as.character(DataCorrC2$ProbEsp_C2bs)
+DataCorrC2$ProbEsp_C2bs[is.na(DataCorrC2$ProbEsp_C2bs)]="empty"
 
 write.table(DataCorrC2,paste0(substr(args[1],nchar(args[1])-40,nchar(args[1])-17),"-DataCorrC2.csv"),row.names=F,sep="\t")

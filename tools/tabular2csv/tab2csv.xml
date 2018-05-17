@@ -1,0 +1,73 @@
+<tool id="tab2csv_R" name="Tabular to CSV" version="0.1">
+    <requirements>
+        <requirement type="package" version="3.2.1">R</requirement>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+        Rscript '$__tool_directory__/tab2csv.R' '$input1' '$sep' '$header' '$output' ]]>
+    </command>
+    <inputs>
+        <param format="tabular" name="input1" type="data" label="tabular file"/>
+        <param name="sep" type="text" label="output csv Separator" value=",">
+            <sanitizer sanitize="False"/>
+        </param>
+        <param name="header" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="true" label="Header in file"/>
+
+    </inputs>
+
+    <outputs>
+        <data format="csv" name="output" from_work_dir="out.csv" />
+    </outputs>
+    
+    <tests>
+        <test>
+            <param name="input1" value="example_tab.tabular"/>
+            <param name="sep" value=","/>
+            <param name="header" value="FALSE"/>
+            <output name="output" file="out.csv"/>
+        </test>
+    </tests>
+
+    <help>
+**What it does**
+
+Convert a tabular file to a CSV.
+
+Transform the tabs to the chosen separator. It is important to specify if the file has a header line.
+
+------
+
+**Example**
+
+Input tabular :
+
+	"John"	"Smith"	"2 mySteet, myCity"
+
+	"François"	"LeFrançais"	"1 rue du Général, Paris"
+
+	"Other"	"Random"	"Stuff, stuff, stuff"
+
+
+Output CSV :
+
+	"John","Smith","2 mySteet, myCity"
+
+	"François","LeFrançais","1 rue du Général, Paris"
+
+	"Other","Random","Stuff, stuff, stuff"
+
+
+
+
+------
+
+**Arguments**
+
+Input : tabular file.
+
+Separator : default is ",".
+
+Header : True/False.
+
+
+    </help>
+</tool>

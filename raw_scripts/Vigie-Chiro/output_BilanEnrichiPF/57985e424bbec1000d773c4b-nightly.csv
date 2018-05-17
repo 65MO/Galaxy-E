@@ -1,0 +1,27 @@
+"Code"	"Groupe"	"Nom francais"	"Nom scientifique"	"Risque d'erreur (%)"	"TriGroupe"	"11"	"12"	"13"	"14"	"15"	"16"	"17"	"11/07/2016.y"	"12/07/2016.y"	"13/07/2016.y"	"14/07/2016.y"	"15/07/2016.y"	"16/07/2016.y"	"17/07/2016.y"
+"Barbar"	"Chauve-souris"	"Barbastelle d'Europe"	"Barbastella barbastellus"	"1"	3	9	4	1	1	5	6	6	2	2	1	1	2	2	2
+"Eptser"	"Chauve-souris"	"Serotine commune"	"Eptesicus serotinus"	"1"	3	71	68	203	95	143	156	107	3	3	4	3	4	4	3
+"Hypsav"	"Chauve-souris"	"Vespere de Savi"	"Hypsugo savii"	"1"	3	382	228	22	15	108	63	81	4	4	3	3	4	3	3
+"Minsch"	"Chauve-souris"	"Minioptere"	"Miniopterus schreibersii"	"29"	3	5	8	10	5	12	3	4	2	3	3	2	3	2	2
+"Myodau"	"Chauve-souris"	"Murin de Daubenton"	"Myotis daubentonii"	"95"	3	1	0	0	1	1	0	1	1	NA	NA	1	1	NA	1
+"Myoema"	"Chauve-souris"	"Murin a oreilles echancrees"	"Myotis emarginatus"	"14"	3	7	4	1	0	1	0	0	3	3	1	NA	1	NA	NA
+"Myomys"	"Chauve-souris"	"Murin a moustaches"	"Myotis mystacinus"	"1"	3	59	34	1	2	1	9	6	4	3	1	2	1	3	3
+"Myonat"	"Chauve-souris"	"Murin groupe Natterer"	"Myotis nattereri"	"1"	3	2	4	7	3	1	3	1	2	2	3	2	1	2	1
+"Nyclei"	"Chauve-souris"	"Noctule de Leisler"	"Nyctalus leisleri"	"50"	3	4	2	1	3	4	0	5	2	1	1	2	2	NA	2
+"Pipkuh"	"Chauve-souris"	"Pipistrelle de Kuhl"	"Pipistrellus kuhlii"	"30"	3	699	261	122	60	312	252	318	3	3	3	2	3	3	3
+"Pippip"	"Chauve-souris"	"Pipistrelle commune"	"Pipistrellus pipistrellus"	"1"	3	400	852	558	543	302	302	188	3	3	3	3	2	2	2
+"Pippyg"	"Chauve-souris"	"Pipistrelle soprane"	"Pipistrellus pygmaeus"	"86"	3	0	0	1	0	0	1	1	NA	NA	1	NA	NA	1	1
+"Pleaus"	"Chauve-souris"	"Oreillard gris"	"Plecotus austriacus"	"40"	3	0	20	1	0	0	0	0	NA	3	1	NA	NA	NA	NA
+"Rhieur"	"Chauve-souris"	"Rhinolophe euryale"	"Rhinolophus euryale"	"25"	3	0	1	0	1	1	1	1	NA	1	NA	1	1	1	1
+"Rhifer"	"Chauve-souris"	"Grand Rhinolophe"	"Rhinolophus ferrumequinum"	"1"	3	2	6	7	50	6	5	6	2	2	2	3	2	2	2
+"Rhihip"	"Chauve-souris"	"Petit Rhinolophe"	"Rhinolophus hipposideros"	"7"	3	1	1	2	0	0	0	2	1	1	2	NA	NA	NA	2
+"Tadten"	"Chauve-souris"	"Molosse"	"Tadarida teniotis"	"57"	3	11	11	12	1	5	5	5	3	3	3	1	2	2	2
+"Barsan"	"Sauterelle"	"Barbitiste cryptique"	"Barbitistes 'sanzii'"	"1"	2	86	111	66	14	64	52	39	NA	NA	NA	NA	NA	NA	NA
+"Leppun"	"Sauterelle"	"Sauterelle ponctuee"	"Leptophyes punctatissima"	"96"	2	4	2	1	3	0	4	2	1	1	1	1	NA	1	1
+"Phanan"	"Sauterelle"	"Phaneroptere meridional"	"Phaneroptera nana"	"97"	2	1	1	3	0	0	1	0	1	1	1	NA	NA	1	NA
+"Plaint"	"Sauterelle"	"Decticelle intermediaire"	"Platycleis intermedia"	"98"	2	1	0	0	0	0	0	0	1	NA	NA	NA	NA	NA	NA
+"Tetvir"	"Sauterelle"	"Sauterelle verte"	"Tettigonia viridissima"	"78"	2	9	23	20	3	6	7	123	1	2	2	1	1	1	2
+"Yerray"	"Sauterelle"	"Decticelle frele"	"Yersinella raymondii"	"96"	2	2	1	1	0	1	1	1	1	1	1	NA	1	1	1
+"Mussp"	"Autre"	"Musaraigne sp."	"Soricidae sp."	"99"	1	1	0	0	0	0	0	0	1	NA	NA	NA	NA	NA	NA
+"noise"	"Autre"	"bruit"	"noise"	"56"	1	152	316	535	336	255	369	240	1	1	1	1	1	1	1
+"piaf"	"Autre"	"Oiseau sp."	"Aves sp."	"2"	1	58	38	27	43	17	18	24	2	2	2	2	2	2	2

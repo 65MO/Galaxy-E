@@ -1,9 +1,8 @@
-"Code";"Groupe";"Nom français";"Nom scientifique";"Risque d'erreur (%)";"Nb Validations";"Effort de validation";"Nb de Contacts par Nuit";"Niveau d'Activite";"IndexG"
-"Pippip";"Chauve-souris";"Pipistrelle commune";"Pipistrellus pipistrellus";"31";"0";"-";"405";"FORTE";3
-"Hypsav";"Chauve-souris";"Vespere de Savi";"Hypsugo savii";"48";"0";"-";"1";"FAIBLE";3
-"Myomys";"Chauve-souris";"Murin a moustaches";"Myotis mystacinus";"86";"0";"-";"1";"FAIBLE";3
-"Pipkuh";"Chauve-souris";"Pipistrelle de Kuhl";"Pipistrellus kuhlii";"65";"0";"-";"1";"FAIBLE";3
-"Pipnat";"Chauve-souris";"Pipistrelle de Nathusius";"Pipistrellus nathusii";"40";"0";"-";"1";"FAIBLE";3
-"Tetvir";"Sauterelle";"Sauterelle verte";"Tettigonia viridissima";"59";"0";"-";"14";"MODEREE";2
-"noise";"Autre";"bruit";"noise";"39";"0";"-";"1689";"MODEREE";1
-"piaf";"Autre";"Oiseau sp.";"Aves sp.";"20";"0";"-";"6";"FAIBLE";1
+"Code"	"Groupe"	"Nom francais"	"Nom scientifique"	"Risque d'erreur (%)"	"Nb Validations"	"Effort de validation"	"Nb de Contacts par Nuit"	"Niveau d'Activite"	"TriGroupe"
+"Pippip"	"Chauve-souris"	"Pipistrelle commune"	"Pipistrellus pipistrellus"	"2"	"0"	"-"	"405"	"FORTE"	3
+"Pipkuh"	"Chauve-souris"	"Pipistrelle de Kuhl"	"Pipistrellus kuhlii"	"43"	"0"	"-"	"2"	"FAIBLE"	3
+"Pipnat"	"Chauve-souris"	"Pipistrelle de Nathusius"	"Pipistrellus nathusii"	"46"	"0"	"-"	"1"	"FAIBLE"	3
+"Tetvir"	"Sauterelle"	"Sauterelle verte"	"Tettigonia viridissima"	"20"	"0"	"-"	"16"	"MODEREE"	2
+"Confus"	"Sauterelle"	"Conocephale bigarre"	"Conocephalus fuscus"	"97"	"0"	"-"	"1"	"FAIBLE"	2
+"noise"	"Autre"	"bruit"	"noise"	"3"	"0"	"-"	"1684"	"MODEREE"	1
+"piaf"	"Autre"	"Oiseau sp."	"Aves sp."	"2"	"0"	"-"	"8"	"FAIBLE"	1

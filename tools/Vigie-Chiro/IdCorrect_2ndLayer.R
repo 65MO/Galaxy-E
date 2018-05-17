@@ -4,6 +4,14 @@ args <- commandArgs(trailingOnly = TRUE)
 
 set.seed(1) #To test reproductibility
 
+
+#for test
+#inputest=list.files("C:/Users/Yves Bas/Documents/GitHub/65MO_Galaxy-E/raw_scripts/Vigie-Chiro/input_examples",full.names=T,pattern="participation-")
+#for (i in 1:length(inputest))
+#{
+# args=c(inputest[i],"ClassifEspC2b_180222.learner")
+#args[3]=basename(args[1])
+
 filename=args[3]
 if (exists("ClassifEspC2b")==F){load(args[2])}
 
@@ -170,3 +178,4 @@ DataCorrC2$ProbEsp_C2bs[is.na(DataCorrC2$ProbEsp_C2bs)]="empty"
 fout_name="output.tabular"
 
 write.table(DataCorrC2,file=fout_name,row.names=FALSE,sep="\t")
+#write.table(DataCorrC2,paste0(substr(args[1],nchar(args[1])-40,nchar(args[1])-17),"-DataCorrC2.csv"),row.names=F,sep="\t")

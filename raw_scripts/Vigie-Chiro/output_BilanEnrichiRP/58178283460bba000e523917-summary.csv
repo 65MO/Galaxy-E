@@ -1,0 +1,4 @@
+"Code"	"Groupe"	"Nom francais"	"Nom scientifique"	"Risque d'erreur (%)"	"Nb Validations"	"Effort de validation"	"Nb de Contacts en expansion"	"Niveau d'Activite en expansion"	"Nb de Contacts en direct"	"Niveau d'Activite en direct"	"TriGroupe"
+"Pippip"	"Chauve-souris"	"Pipistrelle commune"	"Pipistrellus pipistrellus"	"7"	"0"	"-"	"13"	"MODEREE"	"0"	NA	3
+"Tetvir"	"Sauterelle"	"Sauterelle verte"	"Tettigonia viridissima"	"25"	"0"	"-"	"0"	NA	"1"	"FAIBLE"	2
+"noise"	"Autre"	"bruit"	"noise"	"3"	"0"	"-"	"666"	"FORTE"	"665"	"MODEREE"	1

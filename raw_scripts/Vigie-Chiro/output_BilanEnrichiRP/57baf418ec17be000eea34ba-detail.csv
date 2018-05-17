@@ -1,0 +1,13 @@
+"Code"	"Groupe"	"Nom francais"	"Nom scientifique"	"Risque d'erreur (%)"	"TriGroupe"	"Canal"	"1"	"2"	"3"	"4"	"5"	"6"	"7"	"8"	"9"	"10"
+"Hypsav"	"Chauve-souris"	"Vespere de Savi"	"Hypsugo savii"	"90"	3	"Expansion"	0	0	0	0	0	0	0	1	0	0
+"Myodau"	"Chauve-souris"	"Murin de Daubenton"	"Myotis daubentonii"	"94"	3	"Expansion"	0	0	0	0	0	0	0	3	0	0
+"Myonat"	"Chauve-souris"	"Murin groupe Natterer"	"Myotis nattereri"	"49"	3	"Expansion"	0	0	0	0	0	0	0	2	0	0
+"Pipkuh"	"Chauve-souris"	"Pipistrelle de Kuhl"	"Pipistrellus kuhlii"	"61"	3	"Expansion"	1	0	0	0	0	0	0	1	2	2
+"Pippip"	"Chauve-souris"	"Pipistrelle commune"	"Pipistrellus pipistrellus"	"4"	3	"Direct"	0	0	4	0	0	0	0	0	0	0
+"Pippip"	"Chauve-souris"	"Pipistrelle commune"	"Pipistrellus pipistrellus"	"4"	3	"Expansion"	50	35	2	5	2	28	28	5	23	3
+"Pippyg"	"Chauve-souris"	"Pipistrelle soprane"	"Pipistrellus pygmaeus"	"94"	3	"Expansion"	0	0	1	0	0	0	0	0	0	0
+"Pleaur"	"Chauve-souris"	"Oreillard roux"	"Plecotus auritus"	"95"	3	"Expansion"	0	0	0	0	0	0	0	1	0	0
+"Pleaus"	"Chauve-souris"	"Oreillard gris"	"Plecotus austriacus"	"99"	3	"Expansion"	0	0	0	0	0	0	0	2	0	0
+"Phanan"	"Sauterelle"	"Phaneroptere meridional"	"Phaneroptera nana"	"92"	2	"Direct"	0	0	0	0	0	0	0	0	0	3
+"noise"	"Autre"	"bruit"	"noise"	"3"	1	"Direct"	43	41	25	41	49	37	52	13	27	27
+"noise"	"Autre"	"bruit"	"noise"	"3"	1	"Expansion"	73	69	71	73	81	73	73	103	73	75

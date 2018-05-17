@@ -23,6 +23,7 @@ args <- commandArgs(trailingOnly = TRUE)
 #inputest=list.files("C:/Users/Yves Bas/Documents/GitHub/65MO_Galaxy-E/raw_scripts/Vigie-Chiro/output_IdCorrect_2ndLayer_input_IdValid/",full.names=T)
 #for (i in 1:length(inputest))
 #{
+#args=c(inputest[i],"Referentiel_seuils_C2.csv")
 #args=c("5857d56d9ebce1000ed89ea7-DataCorrC2.csv","Referentiel_seuils_C2.csv")
 
 
@@ -38,7 +39,9 @@ IdCorrect$IdScore=apply(as.data.frame(IdCorrect)[,(test+1):(ncol(IdCorrect)-1)],
 CorrSp=match(IdCorrect$ProbEsp_C2bs,RefSeuil$Espece)
 PSp=RefSeuil$Pente[CorrSp]
 ISp=RefSeuil$Int[CorrSp]
-suppressWarnings(IdCorrect$IdProb<-mapply(FUN=function(w,x,y) if((!is.na(y))&(y>0)&(y<1000)) {(exp(y*w+x)/(1+exp(y*w+x)))}else{w} ,IdCorrect$IdScore,RefSeuil$Int,RefSeuil$Pente))
+
+suppressWarnings(IdCorrect$IdProb<-mapply(FUN=function(w,x,y) if((!is.na(y))&(y>0)&(y<1000)) {(exp(y*w+x)/(1+exp(y*w+x)))}else{w} ,IdCorrect$IdScore,ISp,PSp))
+
 
 
 
@@ -174,3 +177,4 @@ IdC2=IdC2[order(IdC2$`nom du fichier`),]
 IdC2=unique(IdC2,by=c("nom du fichier","IdExtrap"))
 
 write.table(IdC2,"output.tabular",row.names=F,sep="\t")
+#write.table(IdC2,paste0(substr(args[1],1,nchar(args[1])-15),"-IdC2.csv"),row.names=F,sep="\t")

@@ -1,0 +1,40 @@
+# This file lists acceptable images to allow runing.
+#
+# This allows you, the admin, to create multiple flavours
+# for your users to run. E.g. maybe you need a geosciences flavour,
+# you can create the image based on our default image and add the
+# appropriate `apt-get/pip install` statements.
+---
+-
+    image: shiny-gie-gis-region:latest
+    description: |
+      Map observations on Regions
+-
+    image: shiny-gie-gis-plot:latest
+    description : |
+      Map observations and plot data
+-
+    image: shiny-geoexplorer:dev
+    description : |
+      Dashboard to visualise geographic data
+-
+    image: valentinchdock/wallace-galaxy-ie:17.09
+    description : |
+      Reproducible modeling of species niches and distributions
+-
+    image: shiny-hrapp:dev
+    description : |
+      Home Range estimation based on adehabitatHR
+-
+    image: shiny-eolapp:dev
+    description : |
+      Estimation of the mortalities induced by wind turbines
+-
+    image: shiny-eol2app:dev
+    description : |
+      Prepare your monitoring  of mortality induced by wind turbines
+-
+    image: shiny-stat:dev
+    description: |
+      Powerfull statistics analyses
+

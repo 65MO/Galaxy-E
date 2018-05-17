@@ -1,0 +1,17 @@
+"Code"	"Groupe"	"Nom francais"	"Nom scientifique"	"Risque d'erreur (%)"	"TriGroupe"	"20"	"21"	"22"	"23"	"00"	"01"	"02"	"03"	"04"	"05"	"06"
+"Barbar"	"Chauve-souris"	"Barbastelle d'Europe"	"Barbastella barbastellus"	"3"	3	0	0	1	5	0	2	1	0	1	0	0
+"Minsch"	"Chauve-souris"	"Minioptere"	"Miniopterus schreibersii"	"16"	3	0	0	0	0	1	0	0	0	0	0	0
+"Myoalc"	"Chauve-souris"	"Murin d'Alcathoe"	"Myotis alcathoe"	"10"	3	0	0	0	0	3	1	1	0	0	0	0
+"Myodau"	"Chauve-souris"	"Murin de Daubenton"	"Myotis daubentonii"	"29"	3	0	0	0	1	2	0	1	0	0	0	0
+"Myoema"	"Chauve-souris"	"Murin a oreilles echancrees"	"Myotis emarginatus"	"89"	3	0	0	0	1	0	0	0	0	0	0	0
+"Myomys"	"Chauve-souris"	"Murin a moustaches"	"Myotis mystacinus"	"8"	3	0	3	6	8	14	7	6	3	3	6	0
+"Myonat"	"Chauve-souris"	"Murin groupe Natterer"	"Myotis nattereri"	"64"	3	0	0	0	1	0	1	0	1	0	0	0
+"Nyclei"	"Chauve-souris"	"Noctule de Leisler"	"Nyctalus leisleri"	"5"	3	0	4	0	0	0	4	1	0	0	0	0
+"Pipnat"	"Chauve-souris"	"Pipistrelle de Nathusius"	"Pipistrellus nathusii"	"57"	3	0	0	0	1	0	1	2	0	0	0	0
+"Pippip"	"Chauve-souris"	"Pipistrelle commune"	"Pipistrellus pipistrellus"	"5"	3	0	1	70	121	86	175	33	104	58	3	0
+"Pleaus"	"Chauve-souris"	"Oreillard gris"	"Plecotus austriacus"	"99"	3	0	0	0	1	0	0	0	0	0	0	0
+"Tadten"	"Chauve-souris"	"Molosse"	"Tadarida teniotis"	"81"	3	0	0	1	2	0	0	0	0	0	0	0
+"Plaint"	"Sauterelle"	"Decticelle intermediaire"	"Platycleis intermedia"	"98"	2	0	0	0	0	0	0	0	0	0	1	0
+"Tetvir"	"Sauterelle"	"Sauterelle verte"	"Tettigonia viridissima"	"3"	2	5	441	337	244	188	54	0	8	0	2	2
+"noise"	"Autre"	"bruit"	"noise"	"61"	1	11	153	83	101	257	87	23	10	10	9	3
+"piaf"	"Autre"	"Oiseau sp."	"Aves sp."	"8"	1	5	129	7	13	12	4	0	0	0	162	147

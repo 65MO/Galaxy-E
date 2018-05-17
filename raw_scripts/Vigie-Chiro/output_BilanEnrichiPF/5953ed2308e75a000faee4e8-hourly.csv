@@ -1,0 +1,8 @@
+"Code"	"Groupe"	"Nom francais"	"Nom scientifique"	"Risque d'erreur (%)"	"TriGroupe"	"21"	"22"	"23"	"00"	"01"	"02"	"03"	"04"	"05"	"06"
+"Pipkuh"	"Chauve-souris"	"Pipistrelle de Kuhl"	"Pipistrellus kuhlii"	"43"	3	0	0	0	0	0	0	0	0	2	0
+"Pipnat"	"Chauve-souris"	"Pipistrelle de Nathusius"	"Pipistrellus nathusii"	"46"	3	0	0	0	0	0	0	0	0	1	0
+"Pippip"	"Chauve-souris"	"Pipistrelle commune"	"Pipistrellus pipistrellus"	"2"	3	0	105	279	6	2	1	0	0	12	0
+"Confus"	"Sauterelle"	"Conocephale bigarre"	"Conocephalus fuscus"	"97"	2	0	0	1	0	0	0	0	0	0	0
+"Tetvir"	"Sauterelle"	"Sauterelle verte"	"Tettigonia viridissima"	"20"	2	0	0	0	0	0	0	0	7	5	4
+"noise"	"Autre"	"bruit"	"noise"	"3"	1	4	88	93	8	4	12	70	353	592	460
+"piaf"	"Autre"	"Oiseau sp."	"Aves sp."	"2"	1	0	2	1	0	0	0	1	0	3	1
