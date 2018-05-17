@@ -1,22 +1,44 @@
-<tool id="Grep1" name="Select" version="1.0.1">
-  <description>lines that match an expression</description>
-  <command interpreter="python">grep.py -i $input -o $out_file1 -pattern '$pattern' -v $invert</command>
+<tool id="Grep1" name="Select" version="1.1.1">
+  <description>lines that match an expression2</description>
+  <command interpreter="python">
+      grep.py 
+          -i $input 
+          -o $out_file1 
+          -pattern
+              #if $condi_source_regex.source_regex=="stdin"
+                  '$condi_source_regex.pattern' 
+              #else
+                  \$(cat '$condi_source_regex.pattern_file')
+              #end if
+          -v $invert
+  </command>
   <inputs>
     <param format="txt" name="input" type="data" label="Select lines from"/>
     <param name="invert" type="select" label="that">
       <option value="false">Matching</option>
       <option value="true">NOT Matching</option>
     </param>
-    <param name="pattern" size="40" type="text" value="^chr([0-9A-Za-z])+" label="the pattern" help="here you can enter text or regular expression (for syntax check lower part of this frame)">
-      <sanitizer>
-        <valid initial="string.printable">
-         <remove value="&apos;"/>
-        </valid>
-        <mapping initial="none">
-          <add source="&apos;" target="__sq__"/>
-        </mapping>
-      </sanitizer>
-    </param>
+    <conditional name="condi_source_regex">
+        <param name="source_regex" type="select" label="a pattern from" help="You can either write your regular expression or select a text file with one inside it" >
+            <option value="stdin">standard input</option>
+            <option value="file">a text file</option>
+        </param>
+        <when value="stdin">
+            <param name="pattern" size="40" type="text" value="^chr([0-9A-Za-z])+" label="write your pattern" help="here you can enter text or regular expression (for syntax check lower part of this frame)">
+              <sanitizer>
+                <valid initial="string.printable">
+                  <remove value="&apos;"/>
+                </valid>
+                <mapping initial="none">
+                  <add source="&apos;" target="__sq__"/>
+                </mapping>
+              </sanitizer>
+            </param>
+        </when>
+        <when value="file">
+            <param format="txt" name="pattern_file" type="data" label="Select a file with your regex"/>
+        </when>
+    </conditional>
   </inputs>
   <outputs>
     <data format="input" name="out_file1" metadata_source="input"/>
