@@ -1,16 +1,17 @@
 <tool id="Grep1" name="Select" version="1.1.1">
   <description>lines that match an expression2</description>
   <command interpreter="python">
+      ##\$(cat '$condi_source_regex.pattern_file');
       grep.py 
           -i $input 
-          -o $out_file1 
+          -o $out_file1
+          -v $invert 
           -pattern
               #if $condi_source_regex.source_regex=="stdin"
                   '$condi_source_regex.pattern' 
               #else
-                  \$(cat '$condi_source_regex.pattern_file')
+                  "\$(cat '$condi_source_regex.pattern_file')"
               #end if
-          -v $invert
   </command>
   <inputs>
     <param format="txt" name="input" type="data" label="Select lines from"/>
