@@ -68,7 +68,15 @@ grep_system<-paste("grep '",sname,"' ",path_taxref,sep="")
 taxref_header<-("REGNE	PHYLUM	CLASSE	ORDRE	FAMILLE	SOUS_FAMILLE	TRIBU	GROUP1_INPN	GROUP2_INPN	CD_NOM	CD_TAXSUP	CD_SUP	CD_REF	RANG	LB_NOM	LB_AUTEUR	NOM_COMPLET	NOM_COMPLET_HTML	NOM_VALIDE	NOM_VERN	NOM_VERN_ENG	HABITAT	FR	GF	MAR	GUA	SM	SB	SPM	MAY	EPA	REU	SA	TA	TAAF	PF	NC	WF	CLI	URL\n")
 
 #Concatenate
-inpn_taxref<-system(command=grep_system,intern=TRUE)
+tryCatch(
+    {inpn_taxref<-system(command=grep_system,intern=TRUE)},
+    error=function(e){
+        cat("\nQuery not found in taxref.\n")
+        quit("no")},
+    warning=function(w){
+        cat("\nQuery not found in taxref.\n")
+        quit("no")}
+    )
 inpn_taxref<-paste(inpn_taxref,collapse='\n')
 res_taxref_grep<-paste(taxref_header,inpn_taxref)
 
