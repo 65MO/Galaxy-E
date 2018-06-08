@@ -433,7 +433,7 @@ gglocal <- function(d,
 filename="BDD_PAPILLONS_2016.txt"
 color_filename<-"code_couleurs.csv"
 #filtre1niveau(nom_fichier=filename,nom_fichierCouleur=color_filename,col_sousGroup=NULL)
-filtre1niveau(nom_fichier=filename,nom_fichierCouleur=color_filename,col_sousGroup = "PARCELLENOM",vec_col_filtre = c("NOM_RESEAU")) ## ==local()
+#filtre1niveau(nom_fichier=filename,nom_fichierCouleur=color_filename,col_sousGroup = "PARCELLENOM",vec_col_filtre = c("NOM_RESEAU")) ## ==local()
 #local()
 
 
@@ -443,13 +443,27 @@ filtre1niveau(nom_fichier=filename,nom_fichierCouleur=color_filename,col_sousGro
 #########################################
 #########################################
 
-compareLevel <- function(nom_fichier = "BDD_PAPILLONS_2016.txt",dec=".",nom_fichierCouleur= "code_couleurs.csv",
-                  col_abscisse = "AB_MOYENNE",figure_abscisse = "Abondance",
-                  col_ordonnee = "DIVERSITE_MOYENNE",figure_ordonnee = "Diversite",nomGenerique="GLOBAL",
-                  vec_figure_titre = c("Les Papillons"),colourProtocole = TRUE,nomProtocole="Papillons",
-                  vec_col_filtre = c("CONDUITEPARCELLE"), 
-                  val_filtre = NULL,figure_nom_filtre = NULL,
-                  bagplot = TRUE,bagProp=c(.05,.5,.95),seuilSegment=30,segmentSousSeuil=TRUE,forcageMajusculeFiltre=FALSE) {
+compareLevel <- function(nom_fichier = "BDD_PAPILLONS_2016.txt",
+                         dec=".",
+                         nom_fichierCouleur= "code_couleurs.csv",
+                         col_abscisse = "AB_MOYENNE",
+                         figure_abscisse = "Abondance",
+                         col_ordonnee = "DIVERSITE_MOYENNE",
+                         figure_ordonnee = "Diversite",
+                         nomGenerique="GLOBAL",
+                         vec_figure_titre = c("Les Papillons"),
+                         colourProtocole = TRUE,
+                         nomProtocole="Papillons",
+                         vec_col_filtre = c("CONDUITEPARCELLE"), 
+                         col_sousGroup=NULL,#
+                         val_filtre = NULL,
+                         figure_nom_filtre = NULL,
+                         bagplot = TRUE,
+                         bagProp=c(.05,.5,.95),
+                         seuilSegment=30,
+                         segmentSousSeuil=TRUE,
+                         forcageMajusculeFiltre=FALSE,
+                         forcageMajusculeSousGroupe=TRUE) {
 
     dCouleur <- read.data(file=paste("librairie/",nom_fichierCouleur,sep=""))
     d <- read.data(file=paste("donnees/",nom_fichier,sep=""),decimalSigne=dec)
@@ -461,117 +475,121 @@ compareLevel <- function(nom_fichier = "BDD_PAPILLONS_2016.txt",dec=".",nom_fich
 
         if(length(vec_figure_titre)==1) figure_titre_f <-  vec_figure_titre else figure_titre_f <- vec_figure_titre[f]
         col_filtre_f <- vec_col_filtre[f]
-        ggCompareLevel(d,col_abscisse,figure_abscisse,
-                col_ordonnee,figure_ordonnee,
-                figure_titre = figure_titre_f,col_filtre = col_filtre_f,
-                nomGenerique = nomGenerique,
-                val_filtre = NULL,figure_nom_filtre = NULL,
-                tab_figure_couleur= subset(dCouleur,Filtre==col_filtre_f),
-                colourProtocole = colourProtocole_p,nomProtocole, bagplot,bagProp,
-                seuilSegment,segmentSousSeuil,forcageMajusculeFiltre)
-
-
+        ggCompareLevel(d,
+                       col_abscisse,
+                       figure_abscisse,
+                       col_ordonnee,
+                       figure_ordonnee,
+                       figure_titre = figure_titre_f,
+                       col_filtre = col_filtre_f,
+                       nomGenerique = nomGenerique,
+                       val_filtre = NULL,
+                       figure_nom_filtre = NULL,
+                       tab_figure_couleur= subset(dCouleur,Filtre==col_filtre_f),
+                       colourProtocole = colourProtocole_p,
+                       nomProtocole, 
+                       bagplot,
+                       bagProp,
+                       seuilSegment,
+                       segmentSousSeuil,
+                       forcageMajusculeFiltre)
      }
-
-
 }
 
 
-ggCompareLevel <- function(d,col_abscisse = "abond_moyenne",figure_abscisse = "Abondance",
-                           col_ordonnee = "diversite_moyenne",figure_ordonnee = "Diversite",
-                           figure_titre = "Rhooo il dechire ce graphe",col_filtre = "nom_reseau",
+ggCompareLevel <- function(d,
+                           col_abscisse = "abond_moyenne",
+                           figure_abscisse = "Abondance",
+                           col_ordonnee = "diversite_moyenne",
+                           figure_ordonnee = "Diversite",
+                           figure_titre = "Rhooo il dechire ce graphe",
+                           col_filtre = "nom_reseau",
                            nomGenerique = "Global",
-                           val_filtre = NULL,figure_nom_filtre = NULL,
+                           val_filtre = NULL,
+                           figure_nom_filtre = NULL,
                            tab_figure_couleur= NULL,
-                           colourProtocole = NULL,nomProtocole = NULL,
-                           bagplot = TRUE,bagProp=c(.05,.5,.95),
-                           seuilSegment=30,segmentSousSeuil=FALSE,forcageMajusculeFiltre=TRUE) {
+                           colourProtocole = NULL,
+                           nomProtocole = NULL,
+                           bagplot = TRUE,
+                           bagProp=c(.05,.5,.95),
+                           seuilSegment=30,
+                           segmentSousSeuil=FALSE,
+                           forcageMajusculeFiltre=TRUE){
 
     d$groupe <- d[,col_filtre]
     d$abscisse <- d[,col_abscisse]
     d$ordonnee <- d[,col_ordonnee]
     d$groupe <-gsub("/","_",d$groupe)
-    d$groupe <-gsub("!","",d$groupe)
+    d$groupe <-gsub("!","",d$groupe)    
     
-    
-    if(forcageMajusculeFiltre) d$groupe <- toupper(d$groupe)
+    if(forcageMajusculeFiltre){
+        d$groupe <- toupper(d$groupe)}
     d <- subset(d,!(is.na(groupe)) & !(is.na(abscisse)) & !(is.na(ordonnee)) & groupe != "")
-    
-    if(is.null(val_filtre)) lesModalites <- unique(d$groupe) else lesModalites <- val_filtre
-
-
+    if(is.null(val_filtre)){
+        lesModalites <- unique(d$groupe) 
+    }else{
+        lesModalites <- val_filtre
+    }
     repResult <- dir("resultats/")
-    if(!(col_filtre %in% repResult)) dir.create(paste("resultats/",col_filtre,sep=""))
-
-
-    if(!is.null(nomProtocole)) {
+    if(!(col_filtre %in% repResult)){
+        dir.create(paste("resultats/",col_filtre,sep=""))
+    }
+    if(!is.null(nomProtocole)){
         repResult <- dir(paste("resultats/",col_filtre,sep=""))
-        if(!(nomProtocole %in% repResult)) dir.create(paste("resultats/",col_filtre,"/",nomProtocole,sep=""))
+        if(!(nomProtocole %in% repResult)){
+            dir.create(paste("resultats/",col_filtre,"/",nomProtocole,sep=""))}
         nomRep <- paste("resultats/",col_filtre,"/",nomProtocole,"/",sep="")
-    } else {
+    }else{
         nomRep <- paste("resultats/",col_filtre,"/",sep="")   
     }
-
-    
-    
     d.autre <- d
     d.autre$groupe <- nomGenerique
-    
-    
-    
     d.reseau <-  subset(d,groupe %in% lesModalites)
-    
     ggTable <- rbind(d.autre,d.reseau)
-    
     ggTableResum <- aggregate(cbind(ordonnee, abscisse) ~ groupe, data = ggTable,quantile, c(.25,.5,.75))
     ggTableResum <- data.frame(ggTableResum[,1],ggTableResum[,2][,1:3],ggTableResum[,3][,1:3])
     colnames(ggTableResum) <- c("groupe","ordonnee.inf","ordonnee.med","ordonnee.sup","abscisse.inf","abscisse.med","abscisse.sup")
-
     ggSeuil <- aggregate(ordonnee ~ groupe, data=ggTable,length)
     ggSeuil$seuilResum <- ggSeuil$ordonnee >= seuilSegment
     colnames(ggSeuil)[ncol(ggSeuil)] <- "seuil"
-    
     ggTableResum <- merge(ggTableResum,ggSeuil,by="groupe")
- 
-
-      t_figure_couleur <- subset(tab_figure_couleur,Modalite %in% c(nomGenerique,lesModalites))
+    t_figure_couleur <- subset(tab_figure_couleur,Modalite %in% c(nomGenerique,lesModalites))
     modaliteSansCouleur <- lesModalites[(!(lesModalites %in% t_figure_couleur$Modalite))]
-
     nbNxCol <- length(modaliteSansCouleur)
     mypalette<-brewer.pal(nbNxCol,"YlGnBu")
-
     figure_couleur <- setNames(c(as.character(t_figure_couleur$couleur),mypalette),c(as.character(t_figure_couleur$Modalite),modaliteSansCouleur))
     tab_coul <- data.frame(groupe=names(figure_couleur),couleur=figure_couleur)
     tab_coul <- merge(tab_coul,ggTableResum,"groupe")
     tab_coul$nom <- paste(tab_coul$groupe," (",tab_coul$ordonnee,")",sep="")
-
-      figure_couleur <- setNames(as.character(tab_coul$couleur),tab_coul$groupe)
-
+    figure_couleur <- setNames(as.character(tab_coul$couleur),tab_coul$groupe)
     figure_couleur_nom<- tab_coul$nom
-
-    
-
     gg <- ggplot(ggTable,aes(x=abscisse,y=ordonnee,colour=groupe,fill=groupe))
-    if(bagplot)  gg <- gg + stat_bag(data=d.autre,prop=bagProp[1],colour=NA,alpha=.7) + stat_bag(data=d.autre,prop=bagProp[2],colour=NA,alpha=.4) + stat_bag(data=d.autre,prop=bagProp[3],colour=NA,alpha=.2) else gg <- gg + geom_point(alpha=.2)
+    if(bagplot){
+        gg <- gg + stat_bag(data=d.autre,prop=bagProp[1],colour=NA,alpha=.7) + stat_bag(data=d.autre,prop=bagProp[2],colour=NA,alpha=.4) + stat_bag(data=d.autre,prop=bagProp[3],colour=NA,alpha=.2) 
+    }else{
+        gg <- gg + geom_point(alpha=.2)
+    }
     gg <- gg + geom_hline(data=subset(ggTableResum,groupe=="Autre"),aes(yintercept = ordonnee.med,colour=groupe),size=.5,linetype="dashed") + geom_vline(data=subset(ggTableResum,groupe=="Autre"),aes(xintercept = abscisse.med,colour=groupe),size=.5,linetype="dashed") 
     gg <- gg + geom_segment(data=ggTableResum,aes(x = abscisse.med, y = ordonnee.inf, xend = abscisse.med, yend = ordonnee.sup),alpha=.7,size = 2.5)
     gg <- gg + geom_segment(data=ggTableResum,aes(x = abscisse.inf, y = ordonnee.med, xend = abscisse.sup, yend = ordonnee.med),alpha=.7,size = 2.5)
-    if(any(ggTableResum$seuil)) {
-   gg <- gg + geom_segment(data=subset(ggTableResum,!(seuil)),aes(x = abscisse.med, y = ordonnee.inf, xend = abscisse.med, yend = ordonnee.sup),alpha=.5,size = 1.5,colour="white")
-                gg <- gg + geom_segment(data=subset(ggTableResum,!(seuil)),aes(x = abscisse.inf, y = ordonnee.med, xend = abscisse.sup, yend = ordonnee.med),alpha=.5,size = 1.5,colour="white")
-        }
+    if(any(ggTableResum$seuil)){
+        gg <- gg + geom_segment(data=subset(ggTableResum,!(seuil)),aes(x = abscisse.med, y = ordonnee.inf, xend = abscisse.med, yend = ordonnee.sup),alpha=.5,size = 1.5,colour="white")
+        gg <- gg + geom_segment(data=subset(ggTableResum,!(seuil)),aes(x = abscisse.inf, y = ordonnee.med, xend = abscisse.sup, yend = ordonnee.med),alpha=.5,size = 1.5,colour="white")
+    }
                     
     #browser()                    #  gg <- gg + geom_point(data=d.reseau,size=2)
- gg <- gg + scale_colour_manual(values = figure_couleur,name = "",labels =  figure_couleur_nom) + scale_fill_manual(values = figure_couleur,name = "",guide=FALSE)
+    gg <- gg + scale_colour_manual(values = figure_couleur,name = "",labels =  figure_couleur_nom) + scale_fill_manual(values = figure_couleur,name = "",guide=FALSE)
     gg <- gg + labs(list(title=figure_titre,x=figure_abscisse,y=figure_ordonnee))
-    if(!is.null(colourProtocole)) gg <- gg + theme(legend.justification=c(1,0), legend.position=c(1,0),legend.text = element_text(size = 7),legend.background = element_rect(fill=NA), axis.ticks = element_line(colour = colourProtocole, size = 1), axis.ticks.length = unit(0.3, "cm"),plot.title = element_text(colour = colourProtocole)) else gg <- gg + theme(legend.justification=c(1,0), legend.position=c(1,0),legend.text = element_text(size = 7),legend.background = element_rect(fill=NA))
-
- 
+    if(!is.null(colourProtocole)){
+        gg <- gg + theme(legend.justification=c(1,0), legend.position=c(1,0),legend.text = element_text(size = 7),legend.background = element_rect(fill=NA), axis.ticks = element_line(colour = colourProtocole, size = 1), axis.ticks.length = unit(0.3, "cm"),plot.title = element_text(colour = colourProtocole)) 
+    }else{
+        gg <- gg + theme(legend.justification=c(1,0), legend.position=c(1,0),legend.text = element_text(size = 7),legend.background = element_rect(fill=NA))
+    }
     ggfile <- paste(nomRep,nomProtocole,"_",col_filtre,"_","comparaison.png",sep="")
-    cat("Check",ggfile,":")
-    
+    cat("Check",ggfile,":")    
     ggsave(ggfile,gg)
     cat("\n")
 flush.console()
 }
 
+compareLevel()
