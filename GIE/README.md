@@ -10,10 +10,28 @@
 * The idea of this Galaxy R Shiny implementation is that integrators need to modify the Shiny app to integrate it on Galaxy through the Galaxy Interactive Environemnt functionality. So Galaxy-E project has created an easy way to integrate Shiny apps following 3 steps:
  * Build your shiny app Dockerfile
    * using the ```rocker/shiny:latest``` as a Docker based image as you can see on this [Dockerfile](https://github.com/65MO/Galaxy-E/blob/master/GIE/Shiny_GIS/geoExploreR/Dockerfile)
-   * adding the original Shiny app source code to the Docker as made here with the [SIG](https://github.com/65MO/Galaxy-E/tree/master/GIE/Shiny_GIS/geoExploreR/SIG) folder
+   ```
+    FROM rocker/shiny:latest
+   ```
+   * adding the Shiny app source code on a folder to the Docker as made here with the [SIG](https://github.com/65MO/Galaxy-E/tree/master/GIE/Shiny_GIS/geoExploreR/SIG) example
+   ```
+    COPY regressionmodels /srv/shiny-server/sample-apps/regressionmodels
+   ```
    * adding to the Docker a monitor_traffic.sh file as the one you can find here: https://github.com/65MO/Galaxy-E/tree/master/GIE/Shiny_GIS/geoExploreR
-   * adding to the Docker all modified R Shiny related parts as here only the [shiny-server.sh](https://github.com/65MO/Galaxy-E/tree/master/GIE/Shiny_GIS/geoExploreR) file
+   ```
+    ADD ./monitor_traffic.sh /monitor_traffic.sh
+   ```
+   * adding to the Docker the [shiny-server.sh](https://github.com/65MO/Galaxy-E/tree/master/GIE/Shiny_GIS/geoExploreR) file
+   ```
+    COPY shiny-server.sh /usr/bin/shiny-server.sh
+   ```
    * specifying the mandatory R packages as mentionned [in this Dockerfile](https://github.com/65MO/Galaxy-E/blob/master/GIE/Shiny_GIS/geoExploreR/Dockerfile)
+   ```
+       # Installing R package dedicated to the shniy app
+    Rscript -e "install.packages('ggplot2')" && \
+    Rscript -e "install.packages('mgcv')" && \
+    Rscript -e "install.packages('MASS')"
+   ```
  * Update your dedicated Galaxy server GIE folder as mention in this Galaxy-E [template](https://github.com/65MO/Galaxy-E/tree/master/GIE/GIE)
  * Add your R Shiny app related Docker image to the config/allowed_images.yml as you can see in [the Galaxy-E example](https://github.com/65MO/Galaxy-E/blob/master/GIE/GIE/config/allowed_images.yml)
 
