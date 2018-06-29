@@ -32,7 +32,11 @@
     Rscript -e "install.packages('mgcv')" && \
     Rscript -e "install.packages('MASS')"
    ```
- * Update your dedicated Galaxy server GIE folder as mention in this Galaxy-E [template](https://github.com/65MO/Galaxy-E/tree/master/GIE/GIE)
+ * Update your dedicated Galaxy server GIE folder as mention in this Galaxy-E [template](https://github.com/65MO/Galaxy-E/blob/master/GIE/GIE/templates/interactiveShiny.mako)
+ ```
+     notebook_access_url = ie_request.url_template('${PROXY_URL}/sample-apps/CEFE/?')
+ elif image=="shiny-stat:dev":
+ ```
  * Add your R Shiny app related Docker image to the config/allowed_images.yml as you can see in [the Galaxy-E example](https://github.com/65MO/Galaxy-E/blob/master/GIE/GIE/config/allowed_images.yml)
 
 This original concept can propose an easy way to use R Shiny apps on Galaxy datasets without using advanced functionnalities. For example, we are thinking this is a good template to have a Shiny app dedicated to interactive visualization.
