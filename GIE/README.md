@@ -38,6 +38,26 @@
    notebook_access_url = ie_request.url_template('${PROXY_URL}/sample-apps/SIG/?')
  ```
  * Add your R Shiny app related Docker image to the config/allowed_images.yml as you can see in [the Galaxy-E example](https://github.com/65MO/Galaxy-E/blob/master/GIE/GIE/config/allowed_images.yml)
+ ```
+ # This file lists acceptable images to allow runing.
+ #
+ # This allows you, the admin, to create multiple flavours
+ # for your users to run. E.g. maybe you need a geosciences flavour,
+ # you can create the image based on our default image and add the
+ # appropriate `apt-get/pip install` statements.
+ ---
+ -
+     image: shiny-gie-gis-region:latest
+     mako: mako.mako
+     description: |
+       Map observations on Regions
+ -
+     image: shiny-gie-gis-plot:latest
+     mako: pas.mako
+     description : |
+       Map observations and plot data
+
+ ```
 
 This original concept can propose an easy way to use R Shiny apps on Galaxy datasets without using advanced functionnalities. For example, we are thinking this is a good template to have a Shiny app dedicated to interactive visualization.
 
