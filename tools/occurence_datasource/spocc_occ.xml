@@ -4,12 +4,15 @@
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         Rscript 
-         '$__tool_directory__/spocc_occ.R' '$sname' '$from' $limit '$taxref_choice' 
+         '$__tool_directory__/spocc_occ.R' '$sname' '$from' $limit '$taxref_choice';
+         #if $from=='gbif':
+             sed -z -i -e 's/\n  \\/ /g' -e 's/\n}/ /g' output.tab;
+         #end if
     ]]></command>
 
     <inputs>
         <param name="sname" type="text" label="Scientific name" value="Genus species"/>
-        <param name="from" type="text" label="Data source to get data from, any combination of gbif, bison, inat, ebird, ecoengine and/or vertnet" value="gbif,bison,inat"/>
+        <param name="from" type="text" label="Data source to get data from, any combination of gbif, bison, inat, ecoengine and/or vertnet" value="gbif,bison,inat"/>
         <param name="limit" type="integer" label="Number of records to return. This is passed across all sources" value="500"/>
         <param name="taxref_choice" type="select" label="Get species information from taxref database" help="Taxref v11.0 : https://inpn.mnhn.fr/telechargement/referentielEspece/referentielTaxo">
             <option value="dont_link_taxref">No</option>
@@ -37,9 +40,13 @@
 ==========
 Spocc::occ
 ==========       
+**What id does**
+
 Search on a single species name, or many. And search across a single or many data sources.
 
 |
+
+**How it works**
 
 This tool use the spocc R package :
 
@@ -48,6 +55,7 @@ A programmatic interface to many species occurrence data sources, including Glob
 |
 
 Original source here : https://cran.r-project.org/web/packages/spocc/index.html
- 
+
+Note : The ebird database is not available in the current version. 
     ]]></help>
 </tool>
