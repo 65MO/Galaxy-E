@@ -30,9 +30,33 @@
     </tests>
 
     <help><![CDATA[
-======
-Noice
-======        
+========
+ebirdgeo
+========
+
+This tool is inspired by the Rpackage rebird but does not use the official version yet (https://cran.r-project.org/web/packages/rebird/index.html).
+
+|
+        
+**What it does**
+
+Returns the most recent sighting date and specific location for the requested species of bird reported
+within the number of days specified and reported in the specified area.
+
+|
+
+**How to use it**
+
+Specify a species by its scientific name (Genus species) and add geographic informations.
+
+|
+
+**Output**
+
+The output file is a tabular with the following header : "lng", "locName", "howMany", "sciName", "obsValid", "locationPrivate", "obsDt", "obsReviewed", "lat", "locID", "locId"
+
+It details the observation place and the number of observations.
+
     ]]></help>
 </tool>
 

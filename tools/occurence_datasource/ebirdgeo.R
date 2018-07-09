@@ -1,4 +1,7 @@
 #!/usr/bin/env Rscript
+#This script copies the original from rebird that is not fully working yet. 
+#https://cran.r-project.org/web/packages/rebird/index.html
+
 
 library(httr)
 library(methods)
@@ -15,7 +18,6 @@ maxi<-as.numeric(args[6])
 
 
 urlhttps <- paste0('https://ebird.org/ws1.1/', 'data/obs/', 'geo_spp/recent')
-urlhttp <- paste0('http://ebird.org/ws1.1/', 'data/obs/', 'geo_spp/recent')
 
 ebird_compact <- function(x) Filter(Negate(is.null), x)
 
@@ -56,8 +58,4 @@ ebird_GET <- function(url, args, ...){
 }
 
 data<-ebird_GET(urlhttps, args)
-##data<-GET(urlhttps, query = args, config = verbose())
-#content_data <- content(data, as = "text", encoding = "UTF-8")
-#summary(data)
-#summary(content_data)
 write.table(data,file="content_data.tab",row.names=FALSE,sep='\t')
