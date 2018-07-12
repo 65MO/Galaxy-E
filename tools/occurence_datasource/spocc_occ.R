@@ -50,6 +50,8 @@ if(length(dbase)==1){
     results_data <- res
 }
 
+results_data<-as.matrix(results_data)
+
 #If empty
 if(length(results_data)==0){cat("\nNo occurrences found.\nLittle tip : Check your input typo, some databases are case sensitive : Genus species.\n")}
 
