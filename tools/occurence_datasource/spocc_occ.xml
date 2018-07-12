@@ -6,7 +6,6 @@
         Rscript 
          '$__tool_directory__/spocc_occ.R' '$sname' '$from' $limit '$taxref_choice';
          #if $from=='gbif':
-             echo "pd";
              sed -z -i -e 's/\n  \"/ /g' -e 's/\n}/ /g' output.tab;
          #end if
     ]]></command>
