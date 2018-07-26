@@ -1,4 +1,5 @@
 <tool id="ab_index" name="Abundance index" version="0.1">
+    <description>computation across species, sites and years</description>
     <requirements>
         <requirement type="package" version="7.0">readline</requirement>
         <requirement type="package" version="3.4">r</requirement>
@@ -21,6 +22,10 @@
         </test>
     </tests>
     <help>
-This tool is an implementation of the abundance_index function from RegionalGAM package.
+This tool is an implementation of the abundance_index function from `RegionalGAM package:  &lt;https://github.com/RetoSchmucki/regionalGAM/&gt;`_.
+This function computes the area under the curve (Abundance Index) across species, sites and years.
     </help>
+    <citations>
+        <citation type="doi">10.1111/1365-2664.12561</citation>  
+    </citations>
 </tool>
