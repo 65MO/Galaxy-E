@@ -27,6 +27,9 @@
     </outputs>
     <help>
 <![CDATA[
+
+.. class:: infomark 
+
 ==========================
 Rdata parser
 ==========================
