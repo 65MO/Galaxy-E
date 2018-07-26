@@ -1,4 +1,5 @@
 <tool id="IdCorrect_2ndLayer" name="IdCorrect_2ndLayer.R" version="0.1">
+    <description>clean data from animal detection on acoustic recordings</description>
     <requirements>
 <!--        <requirement type="package" version="1.20.0">r-getopt</requirement>  -->
         <requirement type="package" version="1.10.4">r-data.table</requirement>
@@ -56,11 +57,16 @@
 
     </tests>
     <help><![CDATA[
+
+.. class:: infomark 
+
+==========================
+Tadarida data cleaner
+==========================
+
 **What it does**
 
 This tool intend to correct ids from 1st layer of Tadarida software, and improve data output according to context (= the whole output of a sampling session).
-
-
 
 **Arguments**
 
@@ -69,4 +75,30 @@ It should be called with 2 consecutive arguments :
 - a summary table of TadaridaC output from vigiechiro.herokuapp.com web portal. 
 - the 2nd layer classifier built on validated id in Vigie-Chiro database (eg : "ClassifEspC2b_180222.learner")
   ]]></help>
+    <citations>
+        <citation type="bibtex">
+            @article{kerbiriou2015vigie,
+            title={Vigie-Chiro: 9 ans de suivi des tendances des esp{\`e}ces communes},
+            author={Kerbiriou, C and Julien, JF and Bas, Y and Marmet, J and Le Viol, I and Lorrilliere, R and Azam, C and Gasc, A and Lois, G},
+            journal={Symbioses, nouvelle s{\'e}rie},
+            number={34},
+            year={2015}
+            }
+        </citation>
+        <citation type="bibtex">
+            @inproceedings{bas2013automatic,
+            title={Automatic echolocation calls identification in Europe vs. Neotropics: more species does not mean more difficult},
+            author={Bas, Yves and Escallon, Antoine and Ferre, Matthieu and Haquart, Alexandre and Rufray, Vincent and Disca, Thierry and Julien, Jean-Fran{\c{c}}ois}
+            }
+        </citation>
+        <citation type="bibtex">
+            @inproceedings{kerbiriou2010long,
+            title={Long term trends monitoring of bats, from biodiversity indicator production to species specialization assessment},
+            author={Kerbiriou, C and Bas, Y and Dufr{\^e}ne, L and Robert, A and Julien, JF},
+            booktitle={24th Annual Meeting of the Society for Conservation Biology, Edmonton, Canada},
+            year={2010}
+            }
+        </citation>
+        <citation type="doi">10.5334/jors.154</citation>  
+</citations>
 </tool>
