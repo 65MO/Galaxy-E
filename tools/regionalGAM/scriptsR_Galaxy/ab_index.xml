@@ -21,10 +21,19 @@
             <param name="output" value="data_index.tabular"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
+
+.. class:: infomark 
+
+==========================
+Compute abundance index
+==========================
+
 This tool is an implementation of the abundance_index function from `RegionalGAM package:  &lt;https://github.com/RetoSchmucki/regionalGAM/&gt;`_.
-This function computes the area under the curve (Abundance Index) across species, sites and years.
-    </help>
+
+This function compute the Abundance Index across sites and years from your dataset and the regional flight curve.
+
+    ]]></help>
     <citations>
         <citation type="doi">10.1111/1365-2664.12561</citation>  
     </citations>
