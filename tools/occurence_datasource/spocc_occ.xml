@@ -1,4 +1,5 @@
-<tool id="spocc_occ_taxrefv2" name="Get species occurrences data and taxref informations" version="0.2">
+<tool id="spocc_occ_taxrefv2" name="Get species occurrences data" version="0.2">
+    <description>from GBIF, ALA, iNAT and others and add taxref informations</description>
     <requirements>
         <requirement type="package" version="1.2.3">r-stringi</requirement>
         <requirement type="package" version="7.0">readline</requirement>
@@ -83,4 +84,14 @@ https://inpn.mnhn.fr/programme/referentiel-taxonomique-taxref
 https://inpn.mnhn.fr/telechargement/referentielEspece/taxref/11.0/menu
 
     ]]></help>
+    <citations>
+        <citation type="bibtex">
+            @techreport{techreport,
+            author = {Gargominy, O and Tercerie, S and Regnier, C and Ramage, T and Dupont, P and Daszkiewicz, P and Poncet, Laurent},
+            year = {2017},
+            title = {TAXREF v11, référentiel taxonomique pour la France},
+            url = {https://inpn.mnhn.fr/docs-web/docs/download/210233}
+            }
+        </citation>
+    </citations>
 </tool>
