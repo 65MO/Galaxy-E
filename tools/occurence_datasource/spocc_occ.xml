@@ -25,7 +25,7 @@
 
     <inputs>
         <param name="sname" type="text" label="Scientific name" value="Genus species"/>
-        <param name="from" type="text" label="Data source to get data from, any combination of gbif, bison, inat, ecoengine and/or vertnet" value="gbif,bison,inat"/>
+        <param name="from" type="text" label="Data source to get data from, any combination of gbif, bison, inat, ebird, antweb, ala, idigbio, obis, ecoengine and/or vertnet" value="gbif,bison,inat"/>
         <param name="limit" type="integer" label="Number of records to return. This is passed across all sources" value="500"/>
         <param name="taxref_choice" type="select" label="Get species information from taxref database" help="Taxref v11.0 : https://inpn.mnhn.fr/telechargement/referentielEspece/referentielTaxo">
             <option value="dont_link_taxref">No</option>
