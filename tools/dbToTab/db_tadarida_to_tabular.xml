@@ -122,4 +122,157 @@ SQLite to Tabular
   Une selection de colonne et de ligne par défini par les espèces.
 
     ]]></help>
+<?xml version="1.0"?>
+<tool id="sqlite_to_tabular" name="SQLite (tadarida) to tabular" version="1.0.0">
+    
+    <description>Extraire des données de la base de donnée tadarida</description>
+<!-- 
+    <requirements>
+        <requirement type="package">Python</requirement>
+        <requirement type="package">r-r.methodss3 </requirement>
+        <requirement type="package">r-arm</requirement>
+    </requirements> -->
+
+    <command detect_errors="exit_code"><![CDATA[
+    python '$__tool_directory__/sqlite_to_tabular.py'
+    --sqlitedb='${db}' 
+    --query_file='$query_file'
+    $no_header 
+    --output='$query_results'
+    ]]></command>
+
+    <configfiles>
+        <configfile name="query_file">
+SELECT $sqlquery FROM tadarida WHERE espece="$esp";
+        </configfile>
+    </configfiles>
+
+    <inputs>
+
+        <param name="db" type="data" format="sqlite" label="Base de donnée sql" help="Cette base de donnée DOIT être celle de vigi_chiro et DOIT contenir les informations extraites par l'outils galaxy. Si ce n'est pas le cas, cette outils ne fonctionnera pas !"/>
+
+        <!-- <param name="sqlitedb" type="data" format="sqlite" label="SQLite Database"/> -->
+
+        <!-- Changer le système de selection en utilisant des .loc pour permettre de les générer automatiquement gràce à une extraction des noms des variables dans les tables de la base de donnée -->
+        <param name="sqlquery" type="select" multiple="true" label="Colonne" help="Nom des colonnes qui seront extraite de la base de donnée. ">
+            <option value="num_ligne" selected="true">num_ligne</option>
+            <option value="participation" selected="true">participation</option>
+            <option value="donnee" selected="true">donnee</option>
+            <option value="date" selected="true">date</option>
+            <option value="frequence" selected="true">frequence</option>
+            <option value="espece" selected="true">espece</option>
+            <option value="probabilite" selected="true">probabilite</option>
+            <option value="proprietaire" selected="true">proprietaire</option>
+            <option value="temps_debut" selected="true">temps_debut</option>
+            <option value="temps_fin" selected="true">temps_debu</option>
+        </param>
+
+        <!-- Changer le système de selection en utilisant des .loc -->
+        <param name="esp" type="select" multiple="true" label="Ligne espece" help="Nom des espèces dans la base de données">
+            <option value="Barbar" selected="true">Barbar</option>
+            <option value="Confus" selected="true">Confus</option>
+            <option value="Epheph" selected="true">Epheph</option>
+            <option value="Eptser" selected="true">Eptser</option>
+            <option value="Hypsav" selected="true">Hypsav</option>
+            <option value="Leppun" selected="true">Leppun</option>
+            <option value="Minsch" selected="true">Minsch</option>
+            <option value="Myocap" selected="true">Myocap</option>
+            <option value="Myodau" selected="true">Myodau</option>
+            <option value="Myoema" selected="true">Myoema</option>
+            <option value="MyoGT" selected="true">MyoGT</option>
+            <option value="Myomys" selected="true">Myomys</option>
+            <option value="Myonat" selected="true">Myonat</option>
+            <option value="noise" selected="true">BRUIT</option>
+            <option value="Nyclei" selected="true">Nyclei</option>
+            <option value="Nycnoc" selected="true">Nycnoc</option>
+            <option value="Phanan" selected="true">Phanan</option>
+            <option value="Phogri" selected="true">Phogri</option>
+            <option value="piaf" selected="true">OISEAU</option>
+            <option value="Pipkuh" selected="true">Pipkuh</option>
+            <option value="Pipnat" selected="true">Pipnat</option>
+            <option value="Pippip" selected="true">Pippip</option>
+            <option value="Pippyg" selected="true">Pippyg</option>
+            <option value="Plaaff" selected="true">Plaaff</option>
+            <option value="Plaalb" selected="true">Plaalb</option>
+            <option value="Plaint" selected="true">Plaint</option>
+            <option value="Plasab" selected="true">Plasab</option>
+            <option value="Pleaus" selected="true">Pleaus</option>
+            <option value="Roeroe" selected="true">Roeroe</option>
+            <option value="Rusnit" selected="true">Rusnit</option>
+            <option value="Sepsep" selected="true">Sepsep</option>
+            <option value="Testes" selected="true">Testes</option>
+            <option value="Tetvir" selected="true">Tetvir</option>
+            <option value="Urorug" selected="true">Urorug</option>
+        </param>
+
+        <!-- <param name="sqlquery" type="text" area="True" size="120x20" label="SQL query">
+            <validator type="regex">(?ims)^\s*SELECT\s.*\sFROM\s.*$</validator>
+            <sanitizer sanitize="False"/>
+        </param> -->
+
+        <param name="no_header" type="boolean" truevalue="-n" falsevalue="" checked="False" label="Omit column headers"/>
+
+    </inputs>
+
+    <outputs>
+        <data name="query_results" format="tabular" />
+    </outputs>
+
+    <tests>
+        <test>
+            <param name="sqlitedb" ftype="sqlite" value="testdb.sqlite" />
+            <param name="sqlquery" value="SELECT first_name, last_name, age FROM contacts WHERE first_name = 'Sam'" />
+            <output name="query_results">
+                <assert_contents>
+                    <has_text text="Smith" />
+                    <not_has_text text="Doe" />
+                </assert_contents>
+            </output>
+        </test>
+    </tests>
+
+    <help><![CDATA[
+
+=================
+SQLite to Tabular
+=================
+
+**Entrée**
+
+  Base de donné vigie-chiro avec des sorties tadarida.
+
+
+**Outputs**
+
+  Une selection de colonne et de ligne par défini par les espèces.
+
+    ]]></help>
+    <citations>
+        <citation type="bibtex">
+            @article{kerbiriou2015vigie,
+            title={Vigie-Chiro: 9 ans de suivi des tendances des esp{\`e}ces communes},
+            author={Kerbiriou, C and Julien, JF and Bas, Y and Marmet, J and Le Viol, I and Lorrilliere, R and Azam, C and Gasc, A and Lois, G},
+            journal={Symbioses, nouvelle s{\'e}rie},
+            number={34},
+            year={2015}
+            }
+        </citation>
+        <citation type="bibtex">
+            @inproceedings{bas2013automatic,
+            title={Automatic echolocation calls identification in Europe vs. Neotropics: more species does not mean more difficult},
+            author={Bas, Yves and Escallon, Antoine and Ferre, Matthieu and Haquart, Alexandre and Rufray, Vincent and Disca, Thierry and Julien, Jean-Fran{\c{c}}ois}
+            }
+        </citation>
+        <citation type="bibtex">
+            @inproceedings{kerbiriou2010long,
+            title={Long term trends monitoring of bats, from biodiversity indicator production to species specialization assessment},
+            author={Kerbiriou, C and Bas, Y and Dufr{\^e}ne, L and Robert, A and Julien, JF},
+            booktitle={24th Annual Meeting of the Society for Conservation Biology, Edmonton, Canada},
+            year={2010}
+            }
+        </citation>
+        <citation type="doi">10.5334/jors.154</citation>  
+    </citations>
+</tool>
+
 </tool>
