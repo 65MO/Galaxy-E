@@ -1,6 +1,6 @@
 <tool id="stoc2" name="STOCeps2" version="1.0">
     
-    <description>Annual variation and global trend by specialist groups from STOCeps (Simple Spot Sampling).</description>
+    <description>Annual variation and global trend by specialist groups from STOCeps (simple spot sampling).</description>
     
     <requirements>
         <requirement type="package">r</requirement>
