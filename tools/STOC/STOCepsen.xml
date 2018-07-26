@@ -1,6 +1,6 @@
 <tool id="stoc" name="STOCeps" version="1.0">
     
-    <description>Annual variation & global trend by species from STOCeps.</description>
+    <description>Annual variation and global trend by species from STOCeps.</description>
     
     <requirements>
         <requirement type="package">r</requirement>
@@ -58,7 +58,7 @@ One presenting annual variation by species :
 
 Another with global trends by species : 
  * This file contains the outputs and its interpretations of the statistical model which makes it possible to have the global tendency of the variation of abundance over the whole period of time of the considered species. The model used is the same as for inter-annual variations, but uses the years as a continuous variable.
-    </help>
+    ]]></help>
 
     <citations>
         <citation type="bibtex">
