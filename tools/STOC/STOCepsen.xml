@@ -68,7 +68,7 @@ Another with global trends by species :
             pages = {68-86},
             title = {Avifaune nicheuse d’une jeune forêt de plaine du Pays Basque. Paramètres démographiques dans le cadre d’une évolution rapide du milieu},
             volume = {16},
-            booktitle = {Casseur d'os}
+            booktitle = {Casseur d'os},
             url = {https://crbpo.mnhn.fr/IMG/pdf/fontanilles_2016_casseur_d_os_stoc_briscous.pdf}
             }
         </citation>
@@ -82,7 +82,7 @@ Another with global trends by species :
             pages = {73-99},
             title = {Avifaune nicheuse d'une lande atlantique de la côte basque, structure démographique et tendance temporel le.},
             volume = {15},
-            booktitle = {Casseur d'os}
+            booktitle = {Casseur d'os},
             url = {https://crbpo.mnhn.fr/IMG/pdf/fontanilles_2015_casseur_d_os_bilan_stoc_abbadia.pdf}
             }
         </citation>
@@ -93,7 +93,7 @@ Another with global trends by species :
             month = {01},
             pages = {11-19},
             title = {DIX-SEPT ANNÉES DE SUIVI TEMPOREL DES OISEAUX COMMUNS PAR BAGUAGE (STOC CAPTURE) À LIART (ARDENNES). QUELLES ÉVOLUTIONS ET TENDANCES DE LA POPULATION ?},
-            booktitle = {In'Fox Bulletin annuel du Regroupement des Naturalistes ARDenais}
+            booktitle = {In'Fox Bulletin annuel du Regroupement des Naturalistes ARDenais},
             url = {https://crbpo.mnhn.fr/IMG/pdf/Delorme_2014_INFOX_bilan_STOC.pdf}
             }
         </citation>
@@ -113,6 +113,18 @@ Another with global trends by species :
             url = {https://crbpo.mnhn.fr/IMG/pdf/julliard_2001_alauda_bilan_stoc.pdf}
             }
         </citation>
+        <citation type="bibtex">
+            @article{article,
+            author = {Julliard, Romain},
+            year = {2004},
+            title = {Estimating the contribution of survival and recruitment to large scale population dynamics},
+            booktitle = {Animal Biodiversity and Conservation},
+            url = {https://crbpo.mnhn.fr/IMG/pdf/Julliard_2004_Anim_Biodiv_Cons_lambda_phi_recrut.pdf}
+            }
+        </citation>
+        <citation type="doi">10.1098/rsbl.2004.0229</citation>
+        <citation type="doi">10.1016/j.ecolecon.2010.03.001</citation>
+        <citation type="doi">10.1111/j.1600-0706.2010.18955.x</citation>
     </citations>
 
 
