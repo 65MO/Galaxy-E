@@ -26,14 +26,21 @@
         </data>
     </outputs>
     <help>
+<![CDATA[
+
+.. class:: infomark 
+
 ==========================
 Rdata parser
 ==========================
 **What it does**        
 
-The Rdata parser tool allows to extract infomations from a binary R file. 
+The Rdata parser tool allows to extract infomations from a binary R file in .RData format. 
 
 It produces a summary file and extract the selected dimensions.
+
+More informations concerning R Data format and save / load functions can be found `here:  &lt;http://www.sthda.com/english/wiki/saving-data-into-r-data-format-rds-and-rdata&gt;`_ .
+
 
 |
 
@@ -42,6 +49,8 @@ It produces a summary file and extract the selected dimensions.
 First use the Rdata reader tool to get the list of dimensions available in the binary file.
 
 Use the reader tool output to select the dimension(s) you want to extract.
+
+]]>
 
     </help>
 </tool>
