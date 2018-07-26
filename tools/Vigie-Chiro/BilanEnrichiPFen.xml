@@ -1,4 +1,4 @@
-<tool id="BilanEnrichiPF" name="Advanced restitution" version="0.1">
+<tool id="BilanEnrichiPF" name="Advanced restitution: summary" version="0.1">
     <description>from Animal Detection on Acoustic Recordings</description>
     <requirements>
       <!--  <requirement type="package" version="1.20.0">r-getopt</requirement> 
