@@ -25,8 +25,7 @@
             <discover_datasets pattern="__designation_and_ext__" visible="true" directory="outputs"/>
         </data>
     </outputs>
-    <help>
-<![CDATA[
+    <help><![CDATA[
 
 .. class:: infomark 
 
@@ -48,7 +47,5 @@ More informations concerning R Data format and save / load functions can be foun
 First use the Rdata reader tool to get the list of dimensions available in the binary file.
 
 Use the reader tool output to select the dimension(s) you want to extract.
-
-]]>
-    </help>
+    ]]></help>
 </tool>
