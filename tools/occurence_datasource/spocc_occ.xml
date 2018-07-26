@@ -1,10 +1,23 @@
-<tool id="spocc_occ" name="Get occurrences" version="0.1">
+<tool id="spocc_occ_taxref" name="Get occurrences and taxref informations" version="0.1">
     <requirements>
-        <requirement type="package" version="0.7.0">r-spocc</requirement>
+        <requirement type="package" version="1.2.3">r-stringi</requirement>
+        <requirement type="package" version="7.0">readline</requirement>
+        <requirement type="package" version="0.8.0">r-spocc</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         Rscript 
-         '$__tool_directory__/spocc_occ.R' '$sname' '$from' $limit '$taxref_choice';
+         '$__tool_directory__/spocc_occ.R' '$sname' '$from' $limit;
+
+        #if $taxref_choice=='do_link_taxref':
+
+          echo "REGNE	PHYLUM	CLASSE	ORDRE	FAMILLE	SOUS_FAMILLE	TRIBU	GROUP1_INPN	GROUP2_INPN	CD_NOM	CD_TAXSUP	CD_SUP	CD_REF	RANG	LB_NOM	LB_AUTEUR	NOM_COMPLET	NOM_COMPLET_HTML	NOM_VALIDE	NOM_VERN	NOM_VERN_ENG	HABITAT	FR	GF	MAR	GUA	SM	SB	SPM	MAY	EPA	REU	SA	TA	TAAF	PF	NC	WF	CLI	URL" > res_taxref_grep.tab;
+
+          grep '$sname' '$__tool_directory__/taxref11/TAXREFv11.txt'  >> res_taxref_grep.tab;
+
+        #end if
+
+
+
          #if $from=='gbif':
              sed -z -i -e 's/\n  \"/ /g' -e 's/\n}/ /g' output.tab;
          #end if
@@ -20,13 +33,13 @@
         </param>
     </inputs>
     <outputs>
-        <data name="output" format="tabular" from_work_dir="output.tab" label="${tool.name}"/>
-        <data name="output_taxref" format="tabular" from_work_dir="res_taxref_grep.tab" label="${tool.name} taxref link">
+        <data name="output" format="tabular" from_work_dir="output.tab" label="Species occurences"/>
+        <data name="output_taxref" format="tabular" from_work_dir="res_taxref_grep.tab" label="Species taxref informations">
             <filter>taxref_choice == 'do_link_taxref'</filter>
         </data>
     </outputs>
     <tests>
-        <test>
+        <test> 
             <param name="sname" value="Canis lupus"/>
             <param name="from" value="gbif,bison"/>
             <param name="limit" value="50"/>
@@ -56,6 +69,18 @@ A programmatic interface to many species occurrence data sources, including Glob
 
 Original source here : https://cran.r-project.org/web/packages/spocc/index.html
 
-Note : The ebird database is not available in the current version. 
+
+===========
+Taxref link
+===========
+
+This tool can look in the INPN taxref database for informations that match the scientific name of the species.
+
+The version of taxref used is v11.0. More informations and download at : 
+
+https://inpn.mnhn.fr/programme/referentiel-taxonomique-taxref
+
+https://inpn.mnhn.fr/telechargement/referentielEspece/taxref/11.0/menu
+
     ]]></help>
 </tool>

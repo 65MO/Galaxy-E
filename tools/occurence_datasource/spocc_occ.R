@@ -27,10 +27,6 @@ if(args[1]=="-h" || args[1]=="--help" || length(args)<3){help()}
 sname<-args[1]
 dbase_input<-args[2]
 max<-as.integer(args[3])
-link_taxref<-args[4] #v11.0 #dl 01/06/2018 #https://inpn.mnhn.fr/telechargement/referentielEspece/taxref/11.0/menu
-
-#Set taxref doc path
-path_taxref<-"/media/linux-65mo/Linux/65MO/Galaxy-E/tools/occurence_datasource/taxref/TAXREFv11.txt"
 
 #Get all databases
 bases<-strsplit(dbase_input,",")
@@ -58,29 +54,4 @@ if(length(results_data)==0){cat("\nNo occurrences found.\nLittle tip : Check you
 #Write them
 write.table(file="output.tab",results_data,sep="\t",row.names=FALSE)
 
-if(link_taxref=="dont_link_taxref"){q("no")}
-
-
-####################
-##Link with taxref##
-####################
-#Def grep sname
-grep_system<-paste("grep '",sname,"' ",path_taxref,sep="")
-#Header
-taxref_header<-("REGNE	PHYLUM	CLASSE	ORDRE	FAMILLE	SOUS_FAMILLE	TRIBU	GROUP1_INPN	GROUP2_INPN	CD_NOM	CD_TAXSUP	CD_SUP	CD_REF	RANG	LB_NOM	LB_AUTEUR	NOM_COMPLET	NOM_COMPLET_HTML	NOM_VALIDE	NOM_VERN	NOM_VERN_ENG	HABITAT	FR	GF	MAR	GUA	SM	SB	SPM	MAY	EPA	REU	SA	TA	TAAF	PF	NC	WF	CLI	URL\n")
-
-#Concatenate
-tryCatch(
-    {inpn_taxref<-system(command=grep_system,intern=TRUE)},
-    error=function(e){
-        cat("\nQuery not found in taxref.\n")
-        quit("no")},
-    warning=function(w){
-        cat("\nQuery not found in taxref.\n")
-        quit("no")}
-    )
-inpn_taxref<-paste(inpn_taxref,collapse='\n')
-res_taxref_grep<-paste(taxref_header,inpn_taxref)
-
-#Write it !
-write(res_taxref_grep,file="res_taxref_grep.tab")
+q('no')

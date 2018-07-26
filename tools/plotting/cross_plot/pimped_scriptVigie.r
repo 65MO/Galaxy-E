@@ -75,7 +75,7 @@ filtre1niveau <- function(nom_fichier = filename,
                           colourProtocole = TRUE,
                           nomProtocole = "Papillons",
                           vec_col_filtre = c("REGION"),
-                          col_sousGroup = NULL,#
+			  col_sousGroup = NULL,#
                           val_filtre = NULL,#
                           figure_nom_filtre = NULL,#
                           bagplot = TRUE,
@@ -90,11 +90,15 @@ filtre1niveau <- function(nom_fichier = filename,
     if(colourProtocole & !is.null(nomProtocole)) colourProtocole_p <- as.character(dCouleur[dCouleur[,2]==nomProtocole,3]) else colourProtocole_p <- NULL 
 
     for(f in 1:length(vec_col_filtre)) {
-        if(length(vec_figure_titre)==1) figure_titre_f <-  vec_figure_titre else figure_titre_f <- vec_figure_titre[f]
+        if(length(vec_figure_titre)==1){
+            figure_titre_f <-  vec_figure_titre
+        }else{
+            figure_titre_f <- vec_figure_titre[f]
+        }
         col_filtre_f <- vec_col_filtre[f]
-        print(col_sousGroup)
+        print(col_sousGroup) #Just to check
         if(is.null(col_sousGroup)){
-            print("paslol")
+            print("ggfiltre1niveau")
             ggfiltre1niveau(d,
                         col_abscisse,
                         figure_abscisse,
@@ -114,7 +118,7 @@ filtre1niveau <- function(nom_fichier = filename,
                         segmentSousSeuil,
                         forcageMajusculeFiltre)
         }else{
-            print("lol")
+            print("gglocal")
             gglocal(d,
                     col_abscisse,
                     figure_abscisse,
@@ -136,8 +140,28 @@ filtre1niveau <- function(nom_fichier = filename,
                     segmentSousSeuil,
                     forcageMajusculeFiltre,
                     forcageMajusculeSousGroupe)
+        }else{
+            print("ggCompareLevel")
+            ggCompareLevel(d,
+                           col_abscisse,
+                           figure_abscisse,
+                           col_ordonnee,
+                           figure_ordonnee,
+                           figure_titre = figure_titre_f,
+                           col_filtre = col_filtre_f,
+                           nomGenerique = nomGenerique,
+                           val_filtre = NULL,
+                           figure_nom_filtre = NULL,
+                           tab_figure_couleur= subset(dCouleur,Filtre==col_filtre_f),
+                           colourProtocole = colourProtocole_p,
+                           nomProtocole, 
+                           bagplot,
+                           bagProp,
+                           seuilSegment,
+                           segmentSousSeuil,
+                           forcageMajusculeFiltre)
         }
-    }
+    }    
 }
 
 ggfiltre1niveau <- function(d,
@@ -467,12 +491,9 @@ compareLevel <- function(nom_fichier = "BDD_PAPILLONS_2016.txt",
 
     dCouleur <- read.data(file=paste("librairie/",nom_fichierCouleur,sep=""))
     d <- read.data(file=paste("donnees/",nom_fichier,sep=""),decimalSigne=dec)
-    
     if(colourProtocole & !is.null(nomProtocole)) colourProtocole_p <- as.character(dCouleur[dCouleur[,2]==nomProtocole,3]) else colourProtocole_p <- NULL 
     
-    
     for(f in 1:length(vec_col_filtre)) {
-
         if(length(vec_figure_titre)==1) figure_titre_f <-  vec_figure_titre else figure_titre_f <- vec_figure_titre[f]
         col_filtre_f <- vec_col_filtre[f]
         ggCompareLevel(d,

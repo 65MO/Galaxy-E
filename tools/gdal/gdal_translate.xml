@@ -11,6 +11,10 @@
             '$typeinput.input1' '$output'
             #if $settings.advanced=='advanced'
                 
+                #unless $settings.ot=='eg : Byte/Int16/UInt16/UInt32/Int32/Float32/Float64/CInt16/CInt32/CFloat32/CFloat64'
+                    -ot $settings.ot
+                #end unless
+
                 $settings.strict
                 
                 #unless $settings.b=='e.g : -b 1 -b 2 -b 3'
@@ -106,6 +110,7 @@
             </when>
             <when value="advanced">
 
+                <param name="ot" type="text" label="-ot type" value="eg : Byte/Int16/UInt16/UInt32/Int32/Float32/Float64/CInt16/CInt32/CFloat32/CFloat64"/>
                 <param name="strict" type="boolean" truevalue="-strict" falsevalue="" checked="false" label="-strict"/>
                 <param name="b" type="text" label="-b band" value="e.g : -b 1 -b 2 -b 3"/>
                 <param name="mask" type="text" label="-mask band" value="e.g : -mask 1"/>
@@ -297,6 +302,12 @@ Specifiy output format using short name (http://www.gdal.org/formats_list.html).
 |
 
 **Other options, advanced usage**
+
+*-ot*
+
+    For the output bands to be of the indicated data type.
+
+|
 
 *-strict*
 
