@@ -1,6 +1,6 @@
 <tool id="stoc" name="STOCeps" version="1.0">
     
-    <description>Annual variation and global trend by species from STOCeps.</description>
+    <description>Annual variation and global trend by species from STOCeps (simple spot sampling).</description>
     
     <requirements>
         <requirement type="package">r</requirement>
