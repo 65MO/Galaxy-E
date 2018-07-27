@@ -1,4 +1,5 @@
 <tool id="gls-adjusted" name="Linear regression ajusted" version="0.1">
+    <description>for autocorrelation in the residuals</description>
     <requirements>
         <requirement type="package" version="3.1_131">r-nlme</requirement>
         <requirement type="package" version="7.3_48">r-mass</requirement>
@@ -22,9 +23,19 @@
             <param name="output2" value="gls-adju_rda.rda"/>
         </test>
     </tests>
-    <help>
-See https://github.com/RetoSchmucki/regionalGAM .
+    <help><![CDATA[
+    
+.. class:: infomark 
 
-Modèle de régression ajusté aux autocorrélations des résidus ?.
-    </help>
+==========================
+STOC eps for specialists groups
+==========================
+
+This tool is an implementation of the gls_adjusted function from `RegionalGAM package:  &lt;https://github.com/RetoSchmucki/regionalGAM/&gt;`_.
+This function adjust the model to account for autocorrelation in the residuals.
+
+    ]]></help>
+    <citations>
+        <citation type="doi">10.1111/1365-2664.12561</citation>  
+    </citations>
 </tool>
