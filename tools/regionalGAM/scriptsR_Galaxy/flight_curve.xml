@@ -1,4 +1,5 @@
 <tool id="flight-curve" name="Flight curve">
+<description>compute the regional expected pattern of abundance</description>
     <requirements>
         <requirement type="package" version="7.0">readline</requirement>
         <requirement type="package" version="3.4">r</requirement>
@@ -18,8 +19,20 @@
             <param name="output" value="flight_curve_result.tabular"/>
         </test>
     </tests>
-    <help>
-This tool is an implementation of the flight_curve function from RegionalGAM package.
-See https://github.com/RetoSchmucki/regionalGAM.    
-    </help>
+    <help><![CDATA[
+    
+.. class:: infomark 
+
+==========================
+Regional phenology
+==========================
+
+This tool is an implementation of the flight_curve function `RegionalGAM package:  &lt;https://github.com/RetoSchmucki/regionalGAM/&gt;`_.
+This function computes the annual phenology on a specific region.
+
+    ]]></help>
+    <citations>
+        <citation type="doi">10.1111/1365-2664.12561</citation>  
+    </citations>
+    ]]></help>
 </tool>
