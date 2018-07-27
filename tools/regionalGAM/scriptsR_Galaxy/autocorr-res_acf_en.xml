@@ -1,0 +1,39 @@
+<tool id="autocor-acf" name="Autocorrelation test" version="0.1">
+    <description>check for temporal autocorrelation in the residuals</description>
+    <requirements>
+        <requirement type="package" version="3.1_131">r-nlme</requirement>
+        <requirement type="package" version="7.3_48">r-mass</requirement>
+        <requirement type="package" version="0.9.10">xorg-libxrender</requirement>
+        <requirement type="package" version="1.1.2">xorg-libsm</requirement>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+        Rscript '$__tool_directory__/autocorr-res_acf.R' '$input1' '$output' ]]>
+    </command>
+    <inputs>
+        <param format="rdata" name="input1" type="data" label="gls model" help="Rdata file"/>
+    </inputs>
+    <outputs>
+        <data format="png" name="output" from_work_dir="output-acf.png" />
+    </outputs>
+    <tests>
+        <test>
+            <param name="input1" value="mod1"/>
+            <param name="output" value="res.png"/>
+        </test>
+    </tests>
+
+    <help><![CDATA[
+
+.. class:: infomark 
+
+==========================
+Model residuals autocorrelation check 
+==========================
+
+This tool is an implementation of the autocorr-res_acf function from `RegionalGAM package:  &lt;https://github.com/RetoSchmucki/regionalGAM/&gt;`_.
+This function uses a simple linear model and explore for temporal autocorrelation that we will account in the final model.
+    ]]></help>
+    <citations>
+        <citation type="doi">10.1111/1365-2664.12561</citation>  
+</citations>
+</tool>
