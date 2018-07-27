@@ -1,4 +1,5 @@
-<tool id="BilanEnrichiRP" name="BilanEnrichiRP.R" version="0.1">
+<tool id="BilanEnrichiRP" name="Advanced restitution: raw approach" version="0.1">
+    <description>from Animal Detection on Acoustic Recordings</description>
     <requirements>
         <requirement type="package" version="7.0">readline</requirement> 
         <requirement type="package" version="1.4.3">r-reshape2</requirement> 
@@ -57,7 +58,8 @@ The tool analyses the observations made with the "Routier" or "Pedestre" protoco
 - Outputs are Summary and details raw tabulars, and html visualisations.
 
 
-  ]]></help>
+    ]]></help>
+    
     <citations>
         <citation type="bibtex">
             @article{kerbiriou2015vigie,
@@ -83,5 +85,5 @@ The tool analyses the observations made with the "Routier" or "Pedestre" protoco
             }
         </citation>
         <citation type="doi">10.5334/jors.154</citation>  
-    </citations>
+</citations>
 </tool>

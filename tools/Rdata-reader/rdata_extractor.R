@@ -59,5 +59,8 @@ for (i in 1:len){
 		next
 	}
 	file<-file_ext(".tabular")
-	write.table(attribute_val,file=file,row.names=FALSE)	
+        write(attribute,file=file)
+	write.table(attribute_val,file=file,row.names=FALSE,col.names=FALSE,append=TRUE)	
 }
+
+

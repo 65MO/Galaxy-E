@@ -1,4 +1,4 @@
-<tool id="IdCorrect_2ndLayer" name="IdCorrect_2ndLayer.R" version="0.1">
+<tool id="IdCorrect_2ndLayer" name="Tadarida data cleaner" version="0.1">
     <description>clean data from animal detection on acoustic recordings</description>
     <requirements>
 <!--        <requirement type="package" version="1.20.0">r-getopt</requirement>  -->

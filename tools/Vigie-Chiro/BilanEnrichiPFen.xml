@@ -1,35 +1,42 @@
-<tool id="BilanEnrichiRP" name="BilanEnrichiRP.R" version="0.1">
+<tool id="BilanEnrichiPF" name="Advanced restitution: summary" version="0.1">
+    <description>from Animal Detection on Acoustic Recordings</description>
     <requirements>
-        <requirement type="package" version="7.0">readline</requirement> 
+      <!--  <requirement type="package" version="1.20.0">r-getopt</requirement> 
+        <requirement type="package" version="7.0">readline</requirement>  --> 
         <requirement type="package" version="1.4.3">r-reshape2</requirement> 
         <requirement type="package" version="1.10.4">r-data.table</requirement>
         <requirement type="package" version="0.2">r-dt</requirement>
         <requirement type="package" version="0.9">r-htmlwidgets</requirement>
         <requirement type="package" version="2.1.1">pandoc</requirement>
-        <requirement type="package" version="54">icu</requirement>  
+        <requirement type="package" version="54">icu</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         Rscript 
-            '$__tool_directory__/BilanEnrichiRP.R' '$IdC2' '$__tool_directory__/refRPSeuil50.csv' '$__tool_directory__/SpeciesList.csv' 
+            '$__tool_directory__/BilanEnrichiPF.R' '$IdC2' '$__tool_directory__/refPF.csv' '$__tool_directory__/SpeciesList.csv' 
  
             ## List of outputs :
             ##'$output_summary_tabular' '$output_summary_html' 
-            ##'$output_detail_tabular' '$output_detail_html' 
+            ##'$output_nightly_tabular' '$output_nightly_html' 
+            ##'$output_hourly_tabular' '$output_hourly_html' 
             ##'$barplot'
         ;
-        tail -n +2 output-summaryRP.html > tmp && mv tmp output-summaryRP.html;
-        tail -n +2 output-detailRP.html > tmp && mv tmp output-detailRP.html;
+        tail -n +2 output-summary.html > tmp && mv tmp output-summary.html;
+        tail -n +2 output-nightly.html > tmp && mv tmp output-nightly.html;
+        tail -n +2 output-hourly.html > tmp && mv tmp output-hourly.html;
 ]]>
     </command>
     <inputs>
         <param name="IdC2" type="data" format="tabular" label="IdValid output"/>
     </inputs>
     <outputs>
-        <data name="output_summary_tabular" format="tabular" from_work_dir="output-summaryRP.tabular" label="${tool.name} on ${on_string} Summary"/>
-        <data name="output_summary_html" format="html" from_work_dir="output-summaryRP.html" label="${tool.name} on ${on_string} Summary"/>
+        <data name="output_summary_tabular" format="tabular" from_work_dir="output-summary.tabular" label="${tool.name} on ${on_string} Summary"/>
+        <data name="output_summary_html" format="html" from_work_dir="output-summary.html" label="${tool.name} on ${on_string} Summary"/>
 
-        <data name="output_detail_tabular" format="tabular" from_work_dir="output-detailRP.tabular" label="${tool.name} on ${on_string} Detail"/>
-        <data name="output_detail_html" format="html" from_work_dir="output-detailRP.html" label="${tool.name} on ${on_string} Detail"/>
+        <data name="output_nightly_tabular" format="tabular" from_work_dir="output-nightly.tabular" label="${tool.name} on ${on_string} Nightly"/>
+        <data name="output_nightly_html" format="html" from_work_dir="output-nightly.html" label="${tool.name} on ${on_string} Nightly"/>
+
+        <data name="output_hourly_tabular" format="tabular" from_work_dir="output-hourly.tabular" label="${tool.name} on ${on_string} Hourly"/>
+        <data name="output_hourly_html" format="html" from_work_dir="output-hourly.html" label="${tool.name} on ${on_string} Hourly"/>
 
        <!-- TODO see if usefull to implement
        <data name="barplot" format="png" from_work_dir="Rplots.png" label="${tool.name} on ${on_string}"/>
@@ -47,17 +54,24 @@
     </tests>
 
     <help><![CDATA[
+
+.. class:: infomark 
+
+==========================
+Advanced restitution 
+==========================
+
 **What it does**
 
-The tool analyses the observations made with the "Routier" or "Pedestre" protocols.
+The tool treats observations made with the "Point fixe" `protocol:  &lt;https://www.vigienature-ecole.fr/node/954&gt;`_ ..
 
 **Arguments**
 
 - Input is an observation/participation file corrected by the tools IdCorrect_2ndLayer and IdValid.
-- Outputs are Summary and details raw tabulars, and html visualisations.
+- Outputs are Summary/Nightly/Hourly raw tabulars, and html visualisations.
 
+    ]]></help>
 
-  ]]></help>
     <citations>
         <citation type="bibtex">
             @article{kerbiriou2015vigie,

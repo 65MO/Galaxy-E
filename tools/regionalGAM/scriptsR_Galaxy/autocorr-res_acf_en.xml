@@ -10,7 +10,7 @@
         Rscript '$__tool_directory__/autocorr-res_acf.R' '$input1' '$output' ]]>
     </command>
     <inputs>
-        <param format="rdata" name="input1" type="data" label="Modèle gls" help="Fichier Rdata"/>
+        <param format="rdata" name="input1" type="data" label="gls model" help="Rdata file"/>
     </inputs>
     <outputs>
         <data format="png" name="output" from_work_dir="output-acf.png" />

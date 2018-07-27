@@ -8,7 +8,7 @@
         Rscript '$__tool_directory__/ab_index.R' '$__tool_directory__/dennis_gam_initial_functions.R' '$input1' '$input2' '$output' ]]>
     </command>
     <inputs>
-        <param format="tabular,csv" name="input1" type="data" label="Fichier de comptage" help="Le fichier doit contenir les colonnes SPECIES,SITE,YEAR,MONTH,DAY et COUNT. Fichier CSV separteur ',' ou tabulation."/>
+        <param format="tabular,csv" name="input1" type="data" label="Count file" help="The file must contain the SPECIES, SITE, YEAR, MONTH, DAY and COUNT columns. CSV file separator ',' or tab."/>
         <param format="tabular" name="input2" type="data" label="Flight curve output"/>
     </inputs>
     <outputs>

@@ -1,4 +1,5 @@
 <tool id="IdValid" name="IdValid.R" version="0.1">
+    <description>from Animal Detection on Acoustic Recordings</description>
     <requirements>
         <!--
         <requirement type="package" version="1.20.0">r-getopt</requirement> 
@@ -27,6 +28,13 @@
 
 
     <help><![CDATA[
+
+.. class:: infomark 
+
+==========================
+Tadarida identifications integration
+==========================
+
 **What it does**
 
 This tool allows to integrate identifications made by observers and validators and will provide an input for synthesis of participations. 
@@ -38,4 +46,30 @@ This tool allows to integrate identifications made by observers and validators a
 - The output is a single tabular file with validated Ids
 
   ]]></help>
+    <citations>
+        <citation type="bibtex">
+            @article{kerbiriou2015vigie,
+            title={Vigie-Chiro: 9 ans de suivi des tendances des esp{\`e}ces communes},
+            author={Kerbiriou, C and Julien, JF and Bas, Y and Marmet, J and Le Viol, I and Lorrilliere, R and Azam, C and Gasc, A and Lois, G},
+            journal={Symbioses, nouvelle s{\'e}rie},
+            number={34},
+            year={2015}
+            }
+        </citation>
+        <citation type="bibtex">
+            @inproceedings{bas2013automatic,
+            title={Automatic echolocation calls identification in Europe vs. Neotropics: more species does not mean more difficult},
+            author={Bas, Yves and Escallon, Antoine and Ferre, Matthieu and Haquart, Alexandre and Rufray, Vincent and Disca, Thierry and Julien, Jean-Fran{\c{c}}ois}
+            }
+        </citation>
+        <citation type="bibtex">
+            @inproceedings{kerbiriou2010long,
+            title={Long term trends monitoring of bats, from biodiversity indicator production to species specialization assessment},
+            author={Kerbiriou, C and Bas, Y and Dufr{\^e}ne, L and Robert, A and Julien, JF},
+            booktitle={24th Annual Meeting of the Society for Conservation Biology, Edmonton, Canada},
+            year={2010}
+            }
+        </citation>
+        <citation type="doi">10.5334/jors.154</citation>  
+    </citations>
 </tool>

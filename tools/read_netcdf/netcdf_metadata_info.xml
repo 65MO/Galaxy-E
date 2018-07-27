@@ -1,4 +1,5 @@
 <tool id="netcdf-metadata_info" name="Netcdf Metadata Info" version="0.1.0">
+    <description>summarize content of a nc file</description>
     <requirements>
         <requirement type="package" version="1.1.6">netcdf-metadata-info</requirement> 
     </requirements>
@@ -42,7 +43,7 @@
 
 First the tool will give general information about the input in a 'info file' output. (command $ncdump -h inputfile)
 
-A general tabular 'variables' summarize dimensions details inside each available variable.
+Then, a general tabular 'variables' summarize dimensions details inside each available variable.
 
 
 The summary tabular file has the general structure :
