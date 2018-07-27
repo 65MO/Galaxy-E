@@ -1,4 +1,5 @@
 <tool id="glmmpql" name="Expected temporal trend" version="0.1">
+    <description>of species abundance</description>
     <requirements>
         <requirement type="package" version="3.1_131">r-nlme</requirement>
         <requirement type="package" version="7.3_48">r-mass</requirement>
@@ -24,7 +25,19 @@
             <param name="output2" value="glmmpql.tabular"/>
         </test>
     </tests>
-    <help>
-See https://github.com/RetoSchmucki/regionalGAM .
+    <help><![CDATA[
+    
+.. class:: infomark 
+
+==========================
+Temporal trends of species abundance
+==========================
+
+This tool is an implementation of the glmmpql function from `RegionalGAM package:  &lt;https://github.com/RetoSchmucki/regionalGAM/&gt;`_.
+This function computes a collated index for each year and estimates the temporal trend.
+    ]]></help>
+    <citations>
+        <citation type="doi">10.1111/1365-2664.12561</citation>  
+    </citations>
     </help>
 </tool>
