@@ -3,9 +3,8 @@
     <description>Annual variation and global trend by specialist groups from STOCeps (simple spot sampling).</description>
     
     <requirements>
-        <requirement type="package">r</requirement>
-        <requirement type="package">r-r.methodss3 </requirement>
-        <requirement type="package">r-arm</requirement>
+        <requirement type="package" version="1.7.1">r-r.methodss3 </requirement>
+        <requirement type="package" version="1.9_3">r-arm</requirement>
     </requirements>
 
     <stdio>
