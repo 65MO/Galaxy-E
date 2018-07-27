@@ -17,7 +17,7 @@
     </command>
 
     <inputs>		
-		<param name="fichierTab" type="data" format="tabular" label="tabular file" help="Data table with header on the first row and a column with identifiers/informations. WARNING : This tabular file must contain only numeric values (exept header and first column)" />
+        <param name="fichierTab" type="data" format="tabular" label="tabular file" help="Data table with header on the first row and a column with identifiers/informations. WARNING : This tabular file must contain only numeric values (exept header and first column)" />
 
         <param name="nom1Colonne" type="text" value="evenementSonore" label="Name of the first column of the table" help="Row field caracterising names of the lines where are maximum numeric values. WARNING : Dataset must contains no spaces."/>
 
@@ -29,7 +29,7 @@
 
     <outputs>
         <data format="tabular" name="output" from_work_dir="./Resultat"/>
-	</outputs>
+    </outputs>
 
     <tests>
         <test>
