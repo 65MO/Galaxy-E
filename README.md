@@ -2,6 +2,10 @@
 
 
 
+[![DOI](https://zenodo.org/badge/108133531.svg)](https://zenodo.org/badge/latestdoi/108133531)
+
+
+
 
 ![Alt Text](https://github.com/65MO/Galaxy-E/blob/master/galaxy/static/Galaxy-E-concarneau-team-fin.gif)
 # Context
