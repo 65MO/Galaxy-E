@@ -30,9 +30,7 @@
         <test>
             <param name="variationsAnnuelles" value="variationsAnnuellesEspece.tsv"/>
             <param name="variationsGlobales" value="tendanceGlobalEspece.tsv"/>
-            <output name="output3" value="donneesGroupes.tsv" >
-                
-            </output>
+            <output name="output3" value="donneesGroupes.tsv" />
         </test>
     </tests>
 
