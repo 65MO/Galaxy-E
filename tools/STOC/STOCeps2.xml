@@ -3,7 +3,6 @@
     <description>Création des fichiers des variations annuelles par groupe de spécialiste et de la tendance globale par groupe de spécialiste.</description>
     
     <requirements>
-        <requirement type="package">r</requirement>
         <requirement type="package">r-r.methodss3 </requirement>
         <requirement type="package">r-arm</requirement>
     </requirements>
