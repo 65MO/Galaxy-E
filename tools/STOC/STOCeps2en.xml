@@ -9,10 +9,7 @@
 
     <command detect_errors="exit_code">
         <![CDATA[
-        $__tool_directory__/STOCeps2.R ${variationsAnnuelles} ${variationsGlobales} $__tool_directory__/Librairie ;
-        mv tendancesAnnuellesGroupes.tsv output1 ;
-        mv tendancesGlobalesGroupes.tsv output2 ;
-        mv donneesGroupes.tsv output3 ;
+        '$__tool_directory__/STOCeps2.R' '${variationsAnnuelles}' '${variationsGlobales}' '$__tool_directory__/Librairie' 
         ]]>
     </command>
 
@@ -24,10 +21,10 @@
 
 
     <outputs>
-        <data format="tabular" name="output1" label="AnnualTrendGroup_${variationsAnnuelles.element_identifier}" from_work_dir="./output1"/>
-        <data format="tabular" name="output2" label="GlobalTrendGroup_${variationsGlobales.element_identifier}" from_work_dir="./output2"/>
-        <data format="tabular" name="output3" label="summaryGroupes" from_work_dir="./output3"/>
-	</outputs>
+        <data format="tabular" name="output1" label="AnnualTrendGroup_${variationsAnnuelles.element_identifier}" from_work_dir="tendancesAnnuellesGroupes.tsv"/>
+        <data format="tabular" name="output2" label="GlobalTrendGroup_${variationsGlobales.element_identifier}" from_work_dir="tendancesGlobalesGroupes.tsv"/>
+        <data format="tabular" name="output3" label="summaryGroupes" from_work_dir="donneesGroupes.tsv"/>
+    </outputs>
 
     <tests>
         <test>
