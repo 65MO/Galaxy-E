@@ -8,7 +8,6 @@
         <requirement type="package" version="0.2">r-dt</requirement>
         <requirement type="package" version="0.9">r-htmlwidgets</requirement>
         <requirement type="package" version="2.1.1">pandoc</requirement>
-        <requirement type="package" version="54">icu</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         Rscript 
@@ -56,7 +55,7 @@
     <help><![CDATA[
 **What it does**
 
-The tool analyses the observations made with the "Point fixe" `protocol:  &lt;https://www.vigienature-ecole.fr/node/954&gt;`_ .
+The tool analyses the observations made with the "Point fixe" protocol:  https://www.vigienature-ecole.fr/node/954&gt; .
 
 **Arguments**
 

@@ -8,7 +8,6 @@
         <requirement type="package" version="0.2">r-dt</requirement>
         <requirement type="package" version="0.9">r-htmlwidgets</requirement>
         <requirement type="package" version="2.1.1">pandoc</requirement>
-        <requirement type="package" version="54">icu</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         Rscript 
@@ -19,10 +18,10 @@
             ##'$output_nightly_tabular' '$output_nightly_html' 
             ##'$output_hourly_tabular' '$output_hourly_html' 
             ##'$barplot'
-        ;
-        tail -n +2 output-summary.html > tmp && mv tmp output-summary.html;
-        tail -n +2 output-nightly.html > tmp && mv tmp output-nightly.html;
-        tail -n +2 output-hourly.html > tmp && mv tmp output-hourly.html;
+        &&
+        tail -n +2 output-summary.html > tmp && mv tmp output-summary.html &&
+        tail -n +2 output-nightly.html > tmp && mv tmp output-nightly.html &&
+        tail -n +2 output-hourly.html > tmp && mv tmp output-hourly.html
 ]]>
     </command>
     <inputs>

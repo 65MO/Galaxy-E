@@ -1,13 +1,14 @@
 <tool id="BilanEnrichiRP" name="Advanced restitution: raw approach" version="0.1">
     <description>from Animal Detection on Acoustic Recordings</description>
     <requirements>
+<!--
         <requirement type="package" version="7.0">readline</requirement> 
+-->
         <requirement type="package" version="1.4.3">r-reshape2</requirement> 
         <requirement type="package" version="1.10.4">r-data.table</requirement>
         <requirement type="package" version="0.2">r-dt</requirement>
         <requirement type="package" version="0.9">r-htmlwidgets</requirement>
         <requirement type="package" version="2.1.1">pandoc</requirement>
-        <requirement type="package" version="54">icu</requirement>  
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         Rscript 
@@ -17,9 +18,9 @@
             ##'$output_summary_tabular' '$output_summary_html' 
             ##'$output_detail_tabular' '$output_detail_html' 
             ##'$barplot'
-        ;
-        tail -n +2 output-summaryRP.html > tmp && mv tmp output-summaryRP.html;
-        tail -n +2 output-detailRP.html > tmp && mv tmp output-detailRP.html;
+        &&
+        tail -n +2 output-summaryRP.html > tmp && mv tmp output-summaryRP.html &&
+        tail -n +2 output-detailRP.html > tmp && mv tmp output-detailRP.html
 ]]>
     </command>
     <inputs>
