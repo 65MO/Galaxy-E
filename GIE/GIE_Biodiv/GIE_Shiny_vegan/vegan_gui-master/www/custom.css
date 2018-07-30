@@ -1,0 +1,27 @@
+.content-wrapper {
+  background-color: white;
+}
+
+.skin-blue .main-sidebar {
+  background-color: white;
+}
+
+.skin-blue .sidebar-menu>li>a:hover {
+  background-color: white;
+  color: black;
+  border: none;
+}
+
+.skin-blue .sidebar-menu>li.active>a, .skin-blue .sidebar-menu>li:hover>a {
+  background-color: white;
+  color: black;
+  border: none;
+}
+
+label {
+  color:black;
+}
+
+.shiny-output-error {
+  display: none;
+}
