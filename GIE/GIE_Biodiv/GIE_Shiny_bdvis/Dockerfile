@@ -11,7 +11,7 @@ RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup && \
 
 
 # Bash script to check traffic
-COPY vegan_gui-master /srv/shiny-server/sample-apps/vegan
+COPY bdvis-master /srv/shiny-server/sample-apps/bdvis
 ADD ./monitor_traffic.sh /monitor_traffic.sh
 COPY shiny-server.sh /usr/bin/shiny-server.sh
 CMD ["/usr/bin/shiny-server.sh"]
