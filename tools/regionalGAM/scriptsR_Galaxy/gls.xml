@@ -1,4 +1,5 @@
-<tool id="gls" name="Linear regression" version="0.1">
+<tool id="gls" name="Model temporal trend" version="0.1">
+    <description>with a simple linear regression</description>
     <requirements>
         <requirement type="package" version="3.1_131">r-nlme</requirement>
         <requirement type="package" version="7.3_48">r-mass</requirement>
@@ -24,9 +25,19 @@
         <param name="output2" value="gls_rda.rda"/>
     </test>
     </tests>
-    <help>
-Simple régression linéraire pour modaliser les tendance temporelles.
+    <help><![CDATA[
 
-See https://github.com/RetoSchmucki/regionalGAM .
-    </help>
+.. class:: infomark 
+
+==========================
+Model temporal trend
+==========================
+
+This tool is an implementation of the gls function from `RegionalGAM package:  &lt;https://github.com/RetoSchmucki/regionalGAM/&gt;`_.
+This function model temporal trend with a simple linear regression.
+
+    ]]></help>
+    <citations>
+        <citation type="doi">10.1111/1365-2664.12561</citation>  
+</citations>
 </tool>

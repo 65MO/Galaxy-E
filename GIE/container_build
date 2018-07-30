@@ -1,0 +1,19 @@
+#!/bin/env bash
+# Maintener Valentin Chambon MNHN
+
+set -o errexit
+set -o pipefail
+set -o nounset
+__dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+__file="${__dir}/$(basename "${BASH_SOURCE[0]}")"
+__base="$(basename ${__file} .sh)"
+
+
+echo $1
+if [ -d "$1" ] ; then
+    cd $1
+    target=${1%/}
+    echo "shiny-${target,,}:dev"
+    docker -H 0.0.0.0:4243 build -t "shiny-${target,,}:dev" .
+fi
+

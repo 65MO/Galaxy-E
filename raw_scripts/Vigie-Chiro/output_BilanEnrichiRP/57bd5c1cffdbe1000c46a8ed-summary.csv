@@ -1,0 +1,12 @@
+"Code"	"Groupe"	"Nom francais"	"Nom scientifique"	"Risque d'erreur (%)"	"Nb Validations"	"Effort de validation"	"Nb de Contacts en expansion"	"Niveau d'Activite en expansion"	"Nb de Contacts en direct"	"Niveau d'Activite en direct"	"TriGroupe"
+"Pipkuh"	"Chauve-souris"	"Pipistrelle de Kuhl"	"Pipistrellus kuhlii"	"2"	"0"	"-"	"5"	"MODEREE"	"47"	"FORTE"	3
+"Pippip"	"Chauve-souris"	"Pipistrelle commune"	"Pipistrellus pipistrellus"	"8"	"0"	"-"	"8"	"MODEREE"	"22"	"MODEREE"	3
+"Eptser"	"Chauve-souris"	"Serotine commune"	"Eptesicus serotinus"	"18"	"0"	"-"	"2"	"MODEREE"	"7"	"MODEREE"	3
+"Barbar"	"Chauve-souris"	"Barbastelle d'Europe"	"Barbastella barbastellus"	"29"	"0"	"-"	"0"	NA	"1"	"FAIBLE"	3
+"Tetvir"	"Sauterelle"	"Sauterelle verte"	"Tettigonia viridissima"	"2"	"0"	"-"	"6"	"MODEREE"	"115"	"FORTE"	2
+"Rusnit"	"Sauterelle"	"Conocephale gracieux"	"Ruspolia nitidula"	"1"	"0"	"-"	"7"	"MODEREE"	"21"	"MODEREE"	2
+"Plaalb"	"Sauterelle"	"Decticelle chagrinee"	"Platycleis albopunctata"	"3"	"0"	"-"	"2"	"MODEREE"	"18"	"TRES FORTE"	2
+"Testes"	"Sauterelle"	"Decticelle carroyee"	"Tessellana tessellata"	"6"	"0"	"-"	"0"	NA	"12"	"MODEREE"	2
+"Leppun"	"Sauterelle"	"Sauterelle ponctuee"	"Leptophyes punctatissima"	"71"	"0"	"-"	"0"	NA	"1"	"FAIBLE"	2
+"noise"	"Autre"	"bruit"	"noise"	"10"	"0"	"-"	"545"	"MODEREE"	"738"	"FORTE"	1
+"Cympud"	"Autre"	"Ecaille pudique"	"Cymbalophora pudica"	"17"	"0"	"-"	"0"	NA	"1"	NA	1

@@ -13,27 +13,37 @@ f2p <- function(x) #get date-time data from recording file names
   strptime(pretemps, "%Y%m%d_%H%M%OS",tz="UTC")-7200
 }
 
-
-
-#Unique input file
 args <- commandArgs(trailingOnly = TRUE)
+
+
 #print(args)
 
 
 #for test
-#inputest=list.files("/media/linux-65mo/Linux/65MO/Galaxy-E/tools/Vigie-Chiro/test-data/output_idcorrect2ndlayer",full.names=T)
+#inputest=list.files("C:/Users/Yves Bas/Documents/GitHub/65MO_Galaxy-E/raw_scripts/Vigie-Chiro/output_IdCorrect_2ndLayer_input_IdValid/",full.names=T)
 #for (i in 1:length(inputest))
 #{
-#args=c(inputest[i])
-#print(inputest[i])
+#args=c(inputest[i],"Referentiel_seuils_C2.csv")
+#args=c("5857d56d9ebce1000ed89ea7-DataCorrC2.csv","Referentiel_seuils_C2.csv")
+
 
 
 IdCorrect=fread(args[1])
+RefSeuil=fread(args[2])
 #IdV=as.data.frame(subset(IdCorrect,select=observateur_taxon:validateur_probabilite))
-#print(i) #Test for loop
+
 #Step 0 :compute id score from 2nd Layer
 test=match("participation",names(IdCorrect))
-IdCorrect$IdProb=apply(as.data.frame(IdCorrect)[,(test+1):(ncol(IdCorrect)-1)],MARGIN=1,FUN=max)
+IdCorrect$IdScore=apply(as.data.frame(IdCorrect)[,(test+1):(ncol(IdCorrect)-1)],MARGIN=1,FUN=max)
+#compute true success probabilities according to logistic regression issued from "Referentiel_seuils"
+CorrSp=match(IdCorrect$ProbEsp_C2bs,RefSeuil$Espece)
+PSp=RefSeuil$Pente[CorrSp]
+ISp=RefSeuil$Int[CorrSp]
+
+suppressWarnings(IdCorrect$IdProb<-mapply(FUN=function(w,x,y) if((!is.na(y))&(y>0)&(y<1000)) {(exp(y*w+x)/(1+exp(y*w+x)))}else{w} ,IdCorrect$IdScore,ISp,PSp))
+
+
+
 
 #Step 1 :compute id with confidence regarding a hierarchy (validator > observer)
 IdCorrect$IdV=mapply(ValidHier,IdCorrect$observateur_taxon,IdCorrect$validateur_taxon)
@@ -41,12 +51,11 @@ IdCorrect$ConfV=mapply(ValidHier,IdCorrect$observateur_probabilite
                        ,IdCorrect$validateur_probabilite)
 
 
-
+#print(paste(args[1],length(subset(IdCorrect$ConfV,IdCorrect$ConfV!=""))))
 
 #Step 2: Get numerictime data
-#Little trick to supress warning
-invisible(tryCatch({IdCorrect$Session=NULL}, warning=function(w){}))
-invisible(tryCatch({IdCorrect$TimeNum=NULL}, warning=function(w){}))
+suppressWarnings(IdCorrect$Session<-NULL)
+suppressWarnings(IdCorrect$TimeNum<-NULL)
 
 if (substr(IdCorrect$`nom du fichier`[1],2,2)=="i") #for car/walk transects
 {
@@ -62,7 +71,7 @@ if (substr(IdCorrect$`nom du fichier`[1],2,2)=="i") #for car/walk transects
       }else{
         IdCorrect$TimeNum=(IdCorrect$Session*800
         +as.numeric(TimeSec[,(ncol(TimeSec)-1)])
-        +as.numeric(TimeSec[,(ncol(TimeSec))]))
+        +as.numeric(TimeSec[,(ncol(TimeSec))])/1000)
   }
   
 }else{
@@ -146,7 +155,7 @@ for (j in 1:nlevels(as.factor(IdCorrect$ProbEsp_C2bs)))
       }
     
     
-   }
+  }
   
   
 }
@@ -160,10 +169,12 @@ if((test1==F)|(test2==F))
 IdC2$IdExtrap=IdExtrap
 IdC2$TypeE=TypeE
 
-#Ordering for comparison
-IdC2=IdC2[order(IdC2$tadarida_probabilite,decreasing=T),]
-IdC2=IdC2[order(IdC2$`nom du fichier`),]
 
-fout_name="output.tabular"
-write.table(IdC2,fout_name,row.names=F,sep="\t")
-#}#If for files in repo (test)
+IdC2=IdC2[order(IdC2$IdProb,decreasing=T),]
+IdC2=IdC2[order(IdC2$ConfV,decreasing=T),]
+IdC2=IdC2[order(IdC2$`nom du fichier`),]
+#discard duplicated species within the same files (= false positives corrected by 2nd layer)
+IdC2=unique(IdC2,by=c("nom du fichier","IdExtrap"))
+
+write.table(IdC2,"output.tabular",row.names=F,sep="\t")
+#write.table(IdC2,paste0(substr(args[1],1,nchar(args[1])-15),"-IdC2.csv"),row.names=F,sep="\t")

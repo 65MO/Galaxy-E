@@ -13,12 +13,13 @@ sum<-summary(rdata)
 attributes_selected <- commandArgs(trailingOnly=TRUE)[2]
 attributes<-strsplit(attributes_selected, ",") #List of elements
 
-write.table(sum,file = "summary.tsv")
+write.table(sum,file = "summary.tabular",sep='\t',row.names=FALSE)
 len<-length(attributes[[1]])
 
 #file type definition
 file_ext<-function(ext){
 	file<-paste(attributes[[1]][i],ext,sep="") #Filename definition
+        file<-paste("outputs/",file,sep="")
 	return(file)
 }
 
@@ -33,7 +34,7 @@ for (i in 1:len){
 
 	if(is.null(attribute_val)){ #Galaxy can't produce output if NULL
 		file<-file_ext(".txt")
-		write("Return NULL value",file = file)
+		write("Return NULL value",file=file)
 		next #Exit loop
 	}
 
@@ -47,16 +48,19 @@ for (i in 1:len){
 			next
 		}else{
 			attribute_val<-as.data.frame(do.call(rbind, attribute_val))
-			file<-file_ext(".tsv")
-			write.table(attribute_val,file = file)
+			file<-file_ext(".tabular")
+			write.table(attribute_val,file=file,row.names=FALSE)
 			next
 		}
 	}else if (typeof(attribute_val)=="language"){ #OK
 		attribute_val<-toString(attribute_val,width = NULL)
 		file<-file_ext(".txt")
-		write(attribute_val,file = file)
+		write(attribute_val,file=file)
 		next
 	}
-	file<-file_ext(".tsv")
-	write.table(attribute_val,file = file)	
+	file<-file_ext(".tabular")
+        write(attribute,file=file)
+	write.table(attribute_val,file=file,row.names=FALSE,col.names=FALSE,append=TRUE)	
 }
+
+

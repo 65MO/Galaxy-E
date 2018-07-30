@@ -1,7 +1,10 @@
 <tool id="gdalinfo" name="GDAL Informations" version="0.1.0">
+    <description>lists information about a raster dataset</description>
     <requirements>
         <requirement type="package" version="2.1.0">gdal</requirement>
         <requirement type="package" version="3.5.0">geos</requirement>
+        <requirement type="package" version="9b">jpeg</requirement>
+        <requirement type="package" version="1.5.90">libjpeg-turbo</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         gdalinfo '$input1'
@@ -20,11 +23,15 @@
                 -mdd '$settings.mdd'
             #end if
             #if $format.value=='json'
-                -json > '$outputJson'
-                && cat '$outputJson' | grep -A 1 "\"SUBDATASET_._NAME\":\".*\"," | cut -d "\"" -f4- | sed 's/..$//' | sed 's/\t//' | sed -e 'N; s/\n/\t/' > '${input1.name}_Subdatasets'
+                -json > '$outputJson';
+                #if $subdataset=='subd_y'
+                    cat '$outputJson' | grep -A 1 "\"SUBDATASET_._NAME\":\".*\"," | cut -d "\"" -f4- | sed 's/..$//' | sed 's/\t//' | sed -e 'N; s/\n/\t/' > '${input1.name}_Subdatasets'
+                #end if
             #else
-                > '$outputDefault'
-               && cat '$outputDefault' | grep -A 1 "SUBDATASET_._NAME=.*:.*$" | cut -d "=" -f 2 | sed 's/\t//' | sed -e 'N; s/\n/\t/' > '${input1.name}_Subdatasets'
+                > '$outputDefault';
+                #if $subdataset=='subd_y'
+                    cat '$outputDefault' | grep -A 1 "SUBDATASET_._NAME=.*:.*$" | cut -d "=" -f 2 | sed 's/\t//' | sed -e 'N; s/\n/\t/' > '${input1.name}_Subdatasets'
+                #end if
             #end if
     ]]></command>
     <inputs>
@@ -32,6 +39,10 @@
         <param name="format" type="select" label="Output format" display="radio" multiple="False">
             <option value="default" selected="true">Text</option>
             <option value="json">Json</option>
+        </param>
+        <param name="subdataset" type="select" label="Create list of potential subdatasets" display="radio" multiple="False">
+            <option value="subd_y">Yes</option>
+            <option value="subd_n" selected="True">No</option>
         </param>
         <conditional name="settings">
             <param name="advanced" type="select" label="Specify advanced parameters">
@@ -64,18 +75,22 @@
         <data name="outputJson" format="json" label="Json formated info file">
             <filter>format == "json"</filter>
         </data>
-        <data name="Subdatasets" format="tabular" from_work_dir="*_Subdatasets" label="Subdatasets from ${input1.name}"/>
+        <data name="Subdatasets" format="tabular" from_work_dir="*_Subdatasets" label="Subdatasets from ${input1.name}">
+            <filter>subdataset == "subd_y"</filter>
+        </data>
     </outputs>
     <tests>
         <test>
             <param name="input1" value="stere.tif"/>
             <param name="format" value="json" />
+            <param name="subdataset" value="subd_n" />
             <param name="advanced" value="simple"/>
             <output name="outputJson" file="stere_info.json" lines_diff="6"/>
         </test>
         <test>
             <param name="input1" value="stere.tif"/>
             <param name="format" value="default" />
+            <param name="subdataset" value="subd_n" />
             <param name="advanced" value="advanced"/>
             <param name="stats" value="-stats"/>
             <param name="hist" value="-hist"/>
@@ -85,13 +100,126 @@
         </test>
     </tests>
     <help><![CDATA[
-        
+==========================
+Gdalinfo
+==========================
+**What it does**        
+
 The gdalinfo program lists various information about a GDAL supported raster dataset. 
+
+It will report all of the following (if known):
+
+    - The format driver used to access the file.
+    - Raster size (in pixels and lines).
+    - The coordinate system for the file (in OGC WKT).
+    - The geotransform associated with the file (rotational coefficients are currently not reported).
+    - Corner coordinates in georeferenced, and if possible lat/long based on the full geotransform (but not GCPs).
+    - Ground control points.
+    - File wide (including subdatasets) metadata.
+    - Band data types.
+    - Band color interpretations.
+    - Band block size.
+    - Band descriptions.
+    - Band min/max values (internally known and possibly computed).
+    - Band checksum (if computation asked).
+    - Band NODATA value.
+    - Band overview resolutions available.
+    - Band unit type (i.e.. "meters" or "feet" for elevation bands).
+    - Band pseudo-color tables.
+
+|
+
+**How to use it**
+
+Select from history a suported raster file and choose either Json or Text format for result display.
+
+An additional option can list available subdatasets.
+
+|
+
+**Other options, advanced usage**
+
+
+*-mm*
+
+    Force computation of the actual min/max values for each band in the dataset. 
+
+|
+
+*-stats*
+
+    Read and display image statistics. Force computation if no statistics are stored in an image. 
+
+|
+
+*-approx_stats*
+
+    Read and display image statistics. Force computation if no statistics are stored in an image. However, they may be computed based on overviews or a subset of all tiles. Useful if you are in a hurry and don't want precise stats. 
+
+|
+
+*-hist*
+
+    Report histogram information for all bands. 
+
+|
+
+*-nogcp*
+
+    Suppress ground control points list printing. It may be useful for datasets with huge amount of GCPs, such as L1B AVHRR or HDF4 MODIS which contain thousands of them. 
+
+|
+
+*-nomd*
+
+    Suppress metadata printing. Some datasets may contain a lot of metadata strings. 
+
+|
+
+*-norat*
+
+    Suppress printing of raster attribute table. 
+
+|
+
+*-noct*
+
+    Suppress printing of color table. 
+
+|
+
+*-checksum*
+
+    Force computation of the checksum for each band in the dataset. 
+
+|
+
+*-listmdd*
+
+    List all metadata domains available for the dataset. 
+
+|
+
+*-mdd domain*
+
+    Report metadata for the specified domain. Starting with GDAL 1.11, "all" can be used to report metadata in all domains 
+
+|
+
+*-proj4*
+
+    Report a PROJ.4 string corresponding to the file's coordinate system.
+
+|
+
+**Sources**
 
 http://www.gdal.org
 
 http://www.gdal.org/gdalinfo.html
 
 Raster Processing Tutorial : https://trac.osgeo.org/gdal/wiki/UserDocs/RasterProcTutorial
+
+
     ]]></help>
 </tool>

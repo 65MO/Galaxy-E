@@ -1,15 +1,17 @@
-"Code";"Groupe";"Nom français";"Nom scientifique";"Risque d'erreur (%)";"TriGroupe";"17";"18";"19";"17/07/2016.y";"18/07/2016.y";"19/07/2016.y"
-"Barbar";"Chauve-souris";"Barbastelle d'Europe";"Barbastella barbastellus";"1";3;1;0;8;1;NA;2
-"Minsch";"Chauve-souris";"Minioptere";"Miniopterus schreibersii";"1";3;0;1;0;NA;1;NA
-"Myodau";"Chauve-souris";"Murin de Daubenton";"Myotis daubentonii";"1";3;5;7;7;2;3;3
-"Myomys";"Chauve-souris";"Murin a moustaches";"Myotis mystacinus";"1";3;14;18;11;3;3;3
-"Myonat";"Chauve-souris";"Murin groupe Natterer";"Myotis nattereri";"27";3;1;0;2;1;NA;2
-"Nyclei";"Chauve-souris";"Noctule de Leisler";"Nyctalus leisleri";"1";3;1;4;4;1;2;2
-"Pipnat";"Chauve-souris";"Pipistrelle de Nathusius";"Pipistrellus nathusii";"1";3;0;0;4;NA;NA;2
-"Pippip";"Chauve-souris";"Pipistrelle commune";"Pipistrellus pipistrellus";"1";3;216;232;203;2;2;2
-"Pleaus";"Chauve-souris";"Oreillard gris";"Plecotus austriacus";"68";3;0;0;1;NA;NA;1
-"Tadten";"Chauve-souris";"Molosse";"Tadarida teniotis";"1";3;4;20;4;2;3;2
-"Plaint";"Sauterelle";"Decticelle intermediaire";"Platycleis intermedia";"99";2;1;0;0;1;NA;NA
-"Tetvir";"Sauterelle";"Sauterelle verte";"Tettigonia viridissima";"1";2;78;589;546;2;2;2
-"noise";"Autre";"bruit";"noise";"1";1;145;500;184;1;1;1
-"piaf";"Autre";"Oiseau sp.";"Aves sp.";"1";1;132;89;225;3;2;3
+"Code"	"Groupe"	"Nom francais"	"Nom scientifique"	"Risque d'erreur (%)"	"TriGroupe"	"17"	"18"	"19"	"17/07/2016.y"	"18/07/2016.y"	"19/07/2016.y"
+"Barbar"	"Chauve-souris"	"Barbastelle d'Europe"	"Barbastella barbastellus"	"3"	3	1	1	8	1	1	2
+"Minsch"	"Chauve-souris"	"Minioptere"	"Miniopterus schreibersii"	"16"	3	0	1	0	NA	1	NA
+"Myoalc"	"Chauve-souris"	"Murin d'Alcathoe"	"Myotis alcathoe"	"10"	3	1	1	3	1	1	3
+"Myodau"	"Chauve-souris"	"Murin de Daubenton"	"Myotis daubentonii"	"29"	3	0	2	2	NA	2	2
+"Myoema"	"Chauve-souris"	"Murin a oreilles echancrees"	"Myotis emarginatus"	"89"	3	0	1	0	NA	1	NA
+"Myomys"	"Chauve-souris"	"Murin a moustaches"	"Myotis mystacinus"	"8"	3	19	21	16	3	3	3
+"Myonat"	"Chauve-souris"	"Murin groupe Natterer"	"Myotis nattereri"	"64"	3	1	0	2	1	NA	2
+"Nyclei"	"Chauve-souris"	"Noctule de Leisler"	"Nyctalus leisleri"	"5"	3	1	4	4	1	2	2
+"Pipnat"	"Chauve-souris"	"Pipistrelle de Nathusius"	"Pipistrellus nathusii"	"57"	3	0	0	4	NA	NA	2
+"Pippip"	"Chauve-souris"	"Pipistrelle commune"	"Pipistrellus pipistrellus"	"5"	3	216	232	203	2	2	2
+"Pleaus"	"Chauve-souris"	"Oreillard gris"	"Plecotus austriacus"	"99"	3	0	0	1	NA	NA	1
+"Tadten"	"Chauve-souris"	"Molosse"	"Tadarida teniotis"	"81"	3	3	0	0	2	NA	NA
+"Plaint"	"Sauterelle"	"Decticelle intermediaire"	"Platycleis intermedia"	"98"	2	1	0	0	1	NA	NA
+"Tetvir"	"Sauterelle"	"Sauterelle verte"	"Tettigonia viridissima"	"3"	2	80	648	553	2	2	2
+"noise"	"Autre"	"bruit"	"noise"	"61"	1	142	431	174	1	1	1
+"piaf"	"Autre"	"Oiseau sp."	"Aves sp."	"8"	1	134	115	230	3	2	3

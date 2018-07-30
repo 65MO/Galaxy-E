@@ -1,11 +1,14 @@
 <tool id="gdalwarp" name="GDAL Warp" version="0.1.0">
+    <description>image reprojection and warping utility</description>
     <requirements>
         <requirement type="package" version="2.1.0">gdal</requirement>
         <requirement type="package" version="3.5.0">geos</requirement>
+        <requirement type="package" version="9b">jpeg</requirement>
+        <requirement type="package" version="1.5.90">libjpeg-turbo</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         gdalwarp 
-            
+            -q
             #for $i, $s in enumerate( $series )
                 '${s.input}'
             #end for
@@ -14,10 +17,6 @@
                 -of '$of'
             #end unless
 
-            #if $condi_tr.tr=='tr'
-                -tr $condi_tr.xres $condi_tr.yres
-            #end if
-            
             #unless $s_srs==''
                 -s_srs '$s_srs'
             #end unless
@@ -27,7 +26,11 @@
             #end unless
             
             #if $settings.advanced=="advanced"
-            
+
+                #if $settings.condi_tr.tr=='tr'
+                    -tr $settings.condi_tr.xres $settings.condi_tr.yres
+                #end if
+    
                 #unless $settings.to=='NAME=VALUE'
                     -to '$settings.to'
                 #end unless
@@ -76,22 +79,9 @@
             <param type="data" name="input" format="data" label="Gdal supported input file" help="http://www.gdal.org/formats_list.html"/>
         </repeat>
             
-        <param name="of" type="text" label="Output format" value="" help="Select the output format. The default is GeoTIFF (GTiff). Use the short format name. http://www.gdal.org/formats_list.html"/>
-        <param name="s_srs" type="text" label="Source spatial reference set" value="" help="The coordinate systems that can be passed are anything supported by the OGRSpatialReference.SetFromUserInput() call, which includes EPSG PCS and GCSes (i.e. EPSG:4296), PROJ.4 declarations (as above), or the name of a .prj file containing well known text."/>
-        <param name="t_srs" type="text" label="Target spatial reference set" value="" help="Same as 'Source spatial ref set'."/>
-        
-        <conditional name="condi_tr">
-            <param name="tr" type="select" label="-tr" help="Set output file resolution (in target georeferenced units">
-                <option value="no_tr" selected="true">Don't use the -tr option</option>
-                <option value="tr">Use the -tr option</option>
-            </param>
-            <when value="no_tr">
-            </when>
-            <when value="tr">
-                <param name="xres" type="float" label="xres" value="0"/>
-                <param name="yres" type="float" label="yres" value="0"/>
-            </when>
-        </conditional>
+        <param name="of" type="text" label="Output format -of" value="" help="Select the output format. The default is GeoTIFF (GTiff). Use the short format name. http://www.gdal.org/formats_list.html"/>
+        <param name="s_srs" type="text" label="-s_srs Source spatial reference set" value="" help="The coordinate systems that can be passed are anything supported by the OGRSpatialReference."/>
+        <param name="t_srs" type="text" label="-t_srs Target spatial reference set" value="" help="The coordinate systems that can be passed are anything supported by the OGRSpatialReference."/>
         
         <conditional name="settings">
             <param name="advanced" type="select" label="Specify advanced parameters">
@@ -101,31 +91,45 @@
             <when value="simple">
             </when>
             <when value="advanced">
-                <param name="to" type="text" label="-to Transformer option" value="NAME=VALUE" help="Set a transformer option suitable to pass to GDALCreateGenImgProjTransformer2()."/>
-                <param name="wo" type="text" label="-wo Warp Option" value="NAME=VALUE" help="Set a warp option. The GDALWarpOptions::papszWarpOptions docs show all options. Multiple -wo options may be listed."/>
-                <param name="order" type="select" label="-order n" help="Order of polynomial used for warping (1 to 3). The default is to select a polynomial order based on the number of GCPs.">
+                <conditional name="condi_tr">
+                    <param name="tr" type="select" label="-tr"> 
+                        <option value="no_tr" selected="true">Don't use the -tr option</option>
+                        <option value="tr">Use the -tr option</option>
+                    </param>
+                    <when value="no_tr">
+                    </when>
+                    <when value="tr">
+                        <param name="xres" type="float" label="xres" value="0"/>
+                        <param name="yres" type="float" label="yres" value="0"/>
+                    </when>
+                </conditional>
+
+
+                <param name="to" type="text" label="-to" value="NAME=VALUE"/>
+                <param name="wo" type="text" label="-wo" value="NAME=VALUE" />
+                <param name="order" type="select" label="-order n">
                     <option value="no_value" selected="true">Select an order.</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                 </param>
-                <param name="tps" type="boolean" label="-tps" truevalue="-tps" falsevalue="" checked="false" help="Force use of thin plate spline transformer based on available GCPs."/>
-                <param name="rpc" type="boolean" label="-rpc" truevalue="-rpc" falsevalue="" checked="false" help="Force use of RPCs."/>
-                <param name="geoloc" type="boolean" label="-geoloc" truevalue="-geoloc" falsevalue="" checked="false" help="Force use of Geolocation Arrays."/>
-                <param name="srcnodata" type="text" label="-srcnodata value" value="" help="Set nodata masking values for input bands (different values can be supplied for each band). If more than one value is supplied all values should be quoted to keep them together as a single operating system argument. Masked values will not be used in interpolation. Use a value of None to ignore intrinsic nodata settings on the source dataset."/>
-                <param name="dstalpha" type="boolean" label="-dstalpha" truevalue="-dstalpha" falsevalue="" checked="false" help="Create an output alpha band to identify nodata (unset/transparent) pixels."/>
+                <param name="tps" type="boolean" label="-tps" truevalue="-tps" falsevalue="" checked="false"/>
+                <param name="rpc" type="boolean" label="-rpc" truevalue="-rpc" falsevalue="" checked="false"/>
+                <param name="geoloc" type="boolean" label="-geoloc" truevalue="-geoloc" falsevalue="" checked="false"/>
+                <param name="srcnodata" type="text" label="-srcnodata value" value=""/>
+                <param name="dstalpha" type="boolean" label="-dstalpha" truevalue="-dstalpha" falsevalue="" checked="false"/>
                 
                 <conditional name="condi_et">
-                    <param name="et" type="boolean" truevalue="et" falsevalue="no_et" checked="false" help="Use an error threshold"/>
+                    <param name="et" label="-et" type="boolean" truevalue="et" falsevalue="no_et" checked="false"/>
                     <when value="no_et">
                     </when>
                     <when value="et">
-                        <param name="et" type="float" label="-et error threshold" value="" help="Error threshold for transformation approximation (in pixel units - defaults to 0.125, unless the RPC_DEM warping option is specified, in which case, an exact transformer, i.e. err_threshold=0, will be used)."/>
+                        <param name="et" type="float" label="-et error threshold" value=""/>
                     </when>
                 </conditional>
                 
                 <conditional name="condi_refine_gcps">
-                    <param name="refine_gcps" type="select" label="Use the option -refine_gcps" help="Refines the GCPs by automatically eliminating outliers. Outliers will be eliminated until minimum_gcps are left or when no outliers can be detected. The tolerance is passed to adjust when a GCP will be eliminated. Not that GCP refinement only works with polynomial interpolation. The tolerance is in pixel units if no projection is available, otherwise it is in SRS units. If minimum_gcps is not provided, the minimum GCPs according to the polynomial model is used.">
+                    <param name="refine_gcps" type="select" label="-refine_gcps">
                         <option value="no_refine_gcps" selected="true">Don't use the -refine_gcps option</option>
                         <option value="refine_gcps">Use the -refine_gcps option</option>
                     </param>
@@ -138,7 +142,7 @@
                 </conditional>
                 
                 <conditional name="condi_resample">
-                    <param name="resample" type="boolean" truevalue="resampling" falsevalue="no_resampling" checked="false" help="Use a resampling algorithm"/>
+                    <param name="resample" label="-r" type="boolean" truevalue="resampling" falsevalue="no_resampling" checked="false"/>
                     <when value="resampling">
                         <param name="r" type="select" label="Reseampling algorithm" >
                             <option value="nearest" selected="true"/>
@@ -160,7 +164,7 @@
                 </conditional>
                 
                 <conditional name="condi_te">
-                    <param name="te" type="select" label="-te" help="Set georeferenced extents of output file to be created (in target SRS by default).">
+                    <param name="te" type="select" label="-te">
                         <option value="no_te" selected="true">Don't use the -te option</option>
                         <option value="te">Use the -te option</option>
                     </param>
@@ -226,8 +230,154 @@
         
     </tests>
     <help><![CDATA[
-        
-The gdalwarp utility is an image mosaicing, reprojection and warping utility. The program can reproject to any supported projection, and can also apply GCPs stored with the image if the image is "raw" with control information.
+==========================
+Gdalwarp
+==========================
+**What it does**
+
+The gdalwarp utility is an image mosaicing, reprojection and warping utility. The program can reproject to any supported projection, and can also apply GCPs stored with the image if the image is "raw" with control information.        
+
+|
+
+**How to use it**
+
+Add as much input files you want to warp.
+
+Specifiy output format using short name (http://www.gdal.org/formats_list.html).
+
+Specify source and target spatial reference set.
+
+|
+
+**Other options, advanced usage**
+
+*-to NAME=VALUE*
+
+    set a transformer option suitable to pass to GDALCreateGenImgProjTransformer2(). 
+
+|
+
+*-order n*
+
+    order of polynomial used for warping (1 to 3). The default is to select a polynomial order based on the number of GCPs. 
+
+|
+
+*-tps*
+
+    Force use of thin plate spline transformer based on available GCPs. 
+
+|
+
+*-rpc*
+
+    Force use of RPCs. 
+
+|
+
+*-geoloc*
+
+    Force use of Geolocation Arrays. 
+
+|
+
+*-et err_threshold*
+
+    error threshold for transformation approximation (in pixel units - defaults to 0.125, unless, starting with GDAL 2.1, the RPC_DEM warping option is specified, in which case, an exact transformer, i.e. err_threshold=0, will be used). 
+
+|
+
+*-refine_gcps tolerance minimum_gcps*
+
+    refines the GCPs by automatically eliminating outliers. Outliers will be eliminated until minimum_gcps are left or when no outliers can be detected. The tolerance is passed to adjust when a GCP will be eliminated. Not that GCP refinement only works with polynomial interpolation. The tolerance is in pixel units if no projection is available, otherwise it is in SRS units. If minimum_gcps is not provided, the minimum GCPs according to the polynomial model is used. 
+
+|
+
+*-te xmin ymin xmax ymax*
+
+    set georeferenced extents of output file to be created (in target SRS by default, or in the SRS specified with -te_srs) 
+
+|
+
+*-tr xres yres*
+
+    set output file resolution (in target georeferenced units) 
+
+|
+
+*-wo "NAME=VALUE"*
+
+    Set a warp option. The GDALWarpOptions**papszWarpOptions docs show all options. Multiple -wo options may be listed. 
+
+|
+
+*-r resampling_method*
+
+Resampling method to use. Available methods are
+
+    *near*
+
+        nearest neighbour resampling (default, fastest algorithm, worst interpolation quality). 
+
+    *bilinear*
+
+        bilinear resampling. 
+
+    *cubic*
+
+        cubic resampling. 
+
+    *cubicspline*
+
+        cubic spline resampling. 
+
+    *lanczos*
+
+        Lanczos windowed sinc resampling. 
+
+    *average*
+
+        average resampling, computes the average of all non-NODATA contributing pixels.  
+
+    *mode*
+
+        mode resampling, selects the value which appears most often of all the sampled points. 
+
+    *max*
+
+        maximum resampling, selects the maximum value from all non-NODATA contributing pixels.  
+
+    *min*
+
+        minimum resampling, selects the minimum value from all non-NODATA contributing pixels.  
+
+    *med*
+
+        median resampling, selects the median value of all non-NODATA contributing pixels.  
+
+    *q1*
+
+        first quartile resampling, selects the first quartile value of all non-NODATA contributing pixels.  
+
+    *q3*
+
+        third quartile resampling, selects the third quartile value of all non-NODATA contributing pixels.  
+
+|
+
+*-srcnodata value [value...]*
+
+    Set nodata masking values for input bands (different values can be supplied for each band). If more than one value is supplied all values should be quoted to keep them together as a single operating system argument. Masked values will not be used in interpolation. Use a value of None to ignore intrinsic nodata settings on the source dataset. 
+
+|
+
+*-dstalpha*
+
+    Create an output alpha band to identify nodata (unset/transparent) pixels. 
+
+|
+
+**Sources**
 
 http://www.gdal.org
 

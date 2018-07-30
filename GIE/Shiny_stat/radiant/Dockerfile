@@ -4,7 +4,6 @@ FROM rocker/shiny:latest
 RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup && \
     echo "Acquire::http {No-Cache=True;};" > /etc/apt/apt.conf.d/no-cache && \
     apt-get -qq update && apt-get install --no-install-recommends -y net-tools procps git-all libssl-dev libcurl4-openssl-dev libxml2-dev libxml2 build-essential python-pip && \
-    pip install --upgrade pip && \
     pip install -U setuptools && \
     pip install bioblend galaxy-ie-helpers && \
     # Installing R package dedicated to the shniy app

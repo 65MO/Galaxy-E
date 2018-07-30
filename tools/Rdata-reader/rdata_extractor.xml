@@ -1,14 +1,16 @@
-<tool id="Rdata_exctract" name="Rdata extractor" version="0.1">
+<tool id="Rdata_exctract" name="Rdata parser" version="0.1">
     <requirements>
         <requirement type="package" version="1.20.0">r-getopt</requirement>
+        <requirement type="package" version="7.0">readline</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
-	Rscript '$__tool_directory__/rdata_extractor.R' '$rdata' $selectedattributes '$summary'
+        mkdir outputs;
+	Rscript '$__tool_directory__/rdata_extractor.R' '$rdata' $selectedattributes '$summary' '$other'
 ]]>
     </command>
     <inputs>
         <param name="rdata" type="data" label="Rdata file to explore" format="rdata"/>
-        <param name="rdata_attributes" type="data" label="File which contains attributes details from the .Rdata" format="tabular"/>
+        <param name="rdata_attributes" type="data" label="File with .Rdata content details" format="tabular"/>
 
         <param name="selectedattributes" label="Select which attribute(s) you want to extract" type="select" display="checkboxes" multiple="true">
             <options from_dataset="rdata_attributes">
@@ -18,11 +20,38 @@
 
     </inputs>
     <outputs>
-        <data  name="summary">
-            <discover_datasets pattern="__designation_and_ext__" visible="true"/>
+        <data name="summary" from_work_dir="summary.tabular" format="tabular" label="Summary"/>
+        <data name="other">
+            <discover_datasets pattern="__designation_and_ext__" visible="true" directory="outputs"/>
         </data>
     </outputs>
-    <help>
-This tool can extract elements from a Rdata file. It needs the Rdata binary file plus the list of its composition.
-    </help>
+    <help><![CDATA[
+
+.. class:: infomark 
+
+==========================
+Rdata parser
+==========================
+**What it does**        
+
+
+The Rdata parser tool allows to extract informations from a binary R file in .RData format. 
+
+
+It produces a summary file and extract the selected dimensions. 
+	   
+More informations concerning R Data format and save / load functions can be found `here:  &lt;http://www.sthda.com/english/wiki/saving-data-into-r-data-format-rds-and-rdata&gt;`_ .
+
+More informations concerning R Data format and save / load functions can be found `here:  &lt;http://www.sthda.com/english/wiki/saving-data-into-r-data-format-rds-and-rdata&gt;`_ .
+
+
+|
+
+**How to use it**
+
+First use the Rdata reader tool to get the list of dimensions available in the binary file.
+
+Use the reader tool output to select the dimension(s) you want to extract.
+
+    ]]></help>
 </tool>

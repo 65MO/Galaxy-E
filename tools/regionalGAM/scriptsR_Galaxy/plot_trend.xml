@@ -1,4 +1,5 @@
-<tool id="plot_trend" name="Trend" version="0.1">
+<tool id="plot_trend" name="Plot abundance" version="0.1">
+    <description>with trend line</description>
     <requirements>
         <requirement type="package" version="3.1_131">r-nlme</requirement>
         <requirement type="package" version="7.3_48">r-mass</requirement>
@@ -22,7 +23,18 @@
             <param name="output" value="trend.png"/>
         </test>
     </tests>
-    <help>
-See https://github.com/RetoSchmucki/regionalGAM .
-    </help>
+    <help><![CDATA[
+
+.. class:: infomark 
+
+==========================
+Plot abundance trend 
+==========================
+
+This tool is an implementation of the plot_trend function from `RegionalGAM package:  &lt;https://github.com/RetoSchmucki/regionalGAM/&gt;`_.
+This function plot abundance and add a trend line.
+    ]]></help>
+    <citations>
+        <citation type="doi">10.1111/1365-2664.12561</citation>  
+    </citations>
 </tool>

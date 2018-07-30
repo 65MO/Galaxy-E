@@ -1,27 +1,27 @@
-"Code";"Groupe";"Nom français";"Nom scientifique";"Risque d'erreur (%)";"Nb Validations";"Effort de validation";"Nb de Contacts par Nuit";"Niveau d'Activite";"TriGroupe"
-"Pippip";"Chauve-souris";"Pipistrelle commune";"Pipistrellus pipistrellus";"1";"10";"FORT";"447";"FORTE";3
-"Pipkuh";"Chauve-souris";"Pipistrelle de Kuhl";"Pipistrellus kuhlii";"1";"0";"-";"284";"FORTE";3
-"Hypsav";"Chauve-souris";"Vespere de Savi";"Hypsugo savii";"1";"11";"FORT";"102";"FORTE";3
-"Eptser";"Chauve-souris";"Serotine commune";"Eptesicus serotinus";"1";"14";"FORT";"29";"FORTE";3
-"Myomys";"Chauve-souris";"Murin a moustaches";"Myotis mystacinus";"1";"0";"-";"15";"FORTE";3
-"Rhifer";"Chauve-souris";"Grand Rhinolophe";"Rhinolophus ferrumequinum";"1";"0";"-";"12";"FORTE";3
-"Barbar";"Chauve-souris";"Barbastelle d'Europe";"Barbastella barbastellus";"1";"1";"SUFFISANT";"5";"MODEREE";3
-"Minsch";"Chauve-souris";"Minioptere";"Miniopterus schreibersii";"1";"0";"-";"4";"MODEREE";3
-"Myonat";"Chauve-souris";"Murin groupe Natterer";"Myotis nattereri";"1";"0";"-";"3";"MODEREE";3
-"Pippyg";"Chauve-souris";"Pipistrelle soprane";"Pipistrellus pygmaeus";"1";"0";"-";"3";"MODEREE";3
-"Pleaus";"Chauve-souris";"Oreillard gris";"Plecotus austriacus";"1";"0";"-";"3";"MODEREE";3
-"Myoema";"Chauve-souris";"Murin a oreilles echancrees";"Myotis emarginatus";"1";"0";"-";"2";"MODEREE";3
-"Tadten";"Chauve-souris";"Molosse";"Tadarida teniotis";"1";"0";"-";"2";"MODEREE";3
-"Myodau";"Chauve-souris";"Murin de Daubenton";"Myotis daubentonii";"84";"0";"-";"1";"FAIBLE";3
-"Nyclei";"Chauve-souris";"Noctule de Leisler";"Nyctalus leisleri";"1";"1";"FAIBLE";"1";"FAIBLE";3
-"Rhieur";"Chauve-souris";"Rhinolophe euryale";"Rhinolophus euryale";"1";"0";"-";"1";"FAIBLE";3
-"Rhihip";"Chauve-souris";"Petit Rhinolophe";"Rhinolophus hipposideros";"10";"0";"-";"1";"FAIBLE";3
-"Myocap";"Chauve-souris";"Murin de Capaccini";"Myotis capaccinii";"77";"0";"-";"0";"FAIBLE";3
-"Barsan";"Sauterelle";"Barbitiste cryptique";"Barbitistes 'sanzii'";"1";"1";"SUFFISANT";"292";NA;2
-"Tetvir";"Sauterelle";"Sauterelle verte";"Tettigonia viridissima";"1";"0";"-";"29";"MODEREE";2
-"Yerray";"Sauterelle";"Decticelle frele";"Yersinella raymondii";"61";"0";"-";"3";"MODEREE";2
-"Epheph";"Sauterelle";"Ephippigere des vignes";"Ephippiger ephippiger";"99";"0";"-";"0";"FAIBLE";2
-"Leppun";"Sauterelle";"Sauterelle ponctuee";"Leptophyes punctatissima";"3";"0";"-";"0";"FAIBLE";2
-"Plaint";"Sauterelle";"Decticelle intermediaire";"Platycleis intermedia";"91";"0";"-";"0";"FAIBLE";2
-"noise";"Autre";"bruit";"noise";"1";"0";"-";"217";"FAIBLE";1
-"piaf";"Autre";"Oiseau sp.";"Aves sp.";"1";"0";"-";"32";"MODEREE";1
+"Code"	"Groupe"	"Nom francais"	"Nom scientifique"	"Risque d'erreur (%)"	"Nb Validations"	"Effort de validation"	"Nb de Contacts par Nuit"	"Niveau d'Activite"	"TriGroupe"
+"Pippip"	"Chauve-souris"	"Pipistrelle commune"	"Pipistrellus pipistrellus"	"1"	"10"	"FORT"	"449"	"FORTE"	3
+"Pipkuh"	"Chauve-souris"	"Pipistrelle de Kuhl"	"Pipistrellus kuhlii"	"30"	"0"	"-"	"289"	"FORTE"	3
+"Hypsav"	"Chauve-souris"	"Vespere de Savi"	"Hypsugo savii"	"1"	"11"	"FORT"	"128"	"TRES FORTE"	3
+"Eptser"	"Chauve-souris"	"Serotine commune"	"Eptesicus serotinus"	"1"	"14"	"FORT"	"120"	"TRES FORTE"	3
+"Myomys"	"Chauve-souris"	"Murin a moustaches"	"Myotis mystacinus"	"1"	"0"	"-"	"16"	"FORTE"	3
+"Rhifer"	"Chauve-souris"	"Grand Rhinolophe"	"Rhinolophus ferrumequinum"	"1"	"0"	"-"	"12"	"FORTE"	3
+"Minsch"	"Chauve-souris"	"Minioptere"	"Miniopterus schreibersii"	"29"	"0"	"-"	"7"	"FORTE"	3
+"Tadten"	"Chauve-souris"	"Molosse"	"Tadarida teniotis"	"57"	"0"	"-"	"7"	"FORTE"	3
+"Barbar"	"Chauve-souris"	"Barbastelle d'Europe"	"Barbastella barbastellus"	"1"	"1"	"SUFFISANT"	"5"	"MODEREE"	3
+"Myonat"	"Chauve-souris"	"Murin groupe Natterer"	"Myotis nattereri"	"1"	"0"	"-"	"3"	"MODEREE"	3
+"Nyclei"	"Chauve-souris"	"Noctule de Leisler"	"Nyctalus leisleri"	"50"	"1"	"FAIBLE"	"3"	"MODEREE"	3
+"Pleaus"	"Chauve-souris"	"Oreillard gris"	"Plecotus austriacus"	"40"	"0"	"-"	"3"	"MODEREE"	3
+"Myoema"	"Chauve-souris"	"Murin a oreilles echancrees"	"Myotis emarginatus"	"14"	"0"	"-"	"2"	"MODEREE"	3
+"Myodau"	"Chauve-souris"	"Murin de Daubenton"	"Myotis daubentonii"	"95"	"0"	"-"	"1"	"FAIBLE"	3
+"Rhieur"	"Chauve-souris"	"Rhinolophe euryale"	"Rhinolophus euryale"	"25"	"0"	"-"	"1"	"FAIBLE"	3
+"Rhihip"	"Chauve-souris"	"Petit Rhinolophe"	"Rhinolophus hipposideros"	"7"	"0"	"-"	"1"	"FAIBLE"	3
+"Pippyg"	"Chauve-souris"	"Pipistrelle soprane"	"Pipistrellus pygmaeus"	"86"	"0"	"-"	"0"	"FAIBLE"	3
+"Barsan"	"Sauterelle"	"Barbitiste cryptique"	"Barbitistes 'sanzii'"	"1"	"1"	"SUFFISANT"	"62"	NA	2
+"Tetvir"	"Sauterelle"	"Sauterelle verte"	"Tettigonia viridissima"	"78"	"0"	"-"	"27"	"MODEREE"	2
+"Leppun"	"Sauterelle"	"Sauterelle ponctuee"	"Leptophyes punctatissima"	"96"	"0"	"-"	"2"	"FAIBLE"	2
+"Phanan"	"Sauterelle"	"Phaneroptere meridional"	"Phaneroptera nana"	"97"	"0"	"-"	"1"	"FAIBLE"	2
+"Yerray"	"Sauterelle"	"Decticelle frele"	"Yersinella raymondii"	"96"	"0"	"-"	"1"	"FAIBLE"	2
+"Plaint"	"Sauterelle"	"Decticelle intermediaire"	"Platycleis intermedia"	"98"	"0"	"-"	"0"	"FAIBLE"	2
+"noise"	"Autre"	"bruit"	"noise"	"56"	"0"	"-"	"315"	"FAIBLE"	1
+"piaf"	"Autre"	"Oiseau sp."	"Aves sp."	"2"	"0"	"-"	"32"	"MODEREE"	1
+"Mussp"	"Autre"	"Musaraigne sp."	"Soricidae sp."	"99"	"0"	"-"	"0"	"FAIBLE"	1

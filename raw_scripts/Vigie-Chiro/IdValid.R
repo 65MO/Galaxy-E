@@ -20,10 +20,11 @@ print(args)
 
 
 #for test
-inputest=list.files("C:/Users/Yves Bas/Documents/GitHub/65MO_Galaxy-E/raw_scripts/Vigie-Chiro/output_IdCorrect_2ndLayer_input_IdValid/",full.names=T)
-for (i in 1:length(inputest))
-{
-args=c(inputest[i],"Referentiel_seuils_C2.csv")
+#inputest=list.files("C:/Users/Yves Bas/Documents/GitHub/65MO_Galaxy-E/raw_scripts/Vigie-Chiro/output_IdCorrect_2ndLayer_input_IdValid/",full.names=T)
+#inputest=list.files("C:/Users/Yves Bas/Documents/test/",full.names=T,pattern="DataCorrC2.csv$")
+#for (i in 1:length(inputest))
+#{
+#args=c(inputest[i],"Referentiel_seuils_C2.csv")
 
 
 
@@ -155,6 +156,7 @@ for (j in 1:nlevels(as.factor(IdCorrect$ProbEsp_C2bs)))
     
   }
   
+  print(paste(j,nrow(IdC2),length(IdExtrap)))
   
 }
 test1=(nrow(IdC2)==length(IdExtrap))

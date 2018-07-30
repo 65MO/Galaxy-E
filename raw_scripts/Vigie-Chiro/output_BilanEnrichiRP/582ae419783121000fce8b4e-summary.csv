@@ -1,0 +1,13 @@
+"Code"	"Groupe"	"Nom francais"	"Nom scientifique"	"Risque d'erreur (%)"	"Nb Validations"	"Effort de validation"	"Nb de Contacts en expansion"	"Niveau d'Activite en expansion"	"Nb de Contacts en direct"	"Niveau d'Activite en direct"	"TriGroupe"
+"Pippip"	"Chauve-souris"	"Pipistrelle commune"	"Pipistrellus pipistrellus"	"26"	"0"	"-"	"14"	"MODEREE"	""	""	3
+"Pipkuh"	"Chauve-souris"	"Pipistrelle de Kuhl"	"Pipistrellus kuhlii"	"72"	"0"	"-"	"4"	"MODEREE"	""	""	3
+"Eptser"	"Chauve-souris"	"Serotine commune"	"Eptesicus serotinus"	"92"	"0"	"-"	"2"	"MODEREE"	""	""	3
+"Pipnat"	"Chauve-souris"	"Pipistrelle de Nathusius"	"Pipistrellus nathusii"	"90"	"0"	"-"	"1"	"FAIBLE"	""	""	3
+"Rusnit"	"Sauterelle"	"Conocephale gracieux"	"Ruspolia nitidula"	"1"	"0"	"-"	"12"	"MODEREE"	""	""	2
+"Plaalb"	"Sauterelle"	"Decticelle chagrinee"	"Platycleis albopunctata"	"40"	"0"	"-"	"7"	"FORTE"	""	""	2
+"Tetvir"	"Sauterelle"	"Sauterelle verte"	"Tettigonia viridissima"	"76"	"0"	"-"	"5"	"MODEREE"	""	""	2
+"Confus"	"Sauterelle"	"Conocephale bigarre"	"Conocephalus fuscus"	"94"	"0"	"-"	"2"	"MODEREE"	""	""	2
+"Roeroe"	"Sauterelle"	"Decticelle bariolee"	"Roeseliana roeselii"	"86"	"0"	"-"	"2"	"TRES FORTE"	""	""	2
+"Decalb"	"Sauterelle"	"Dectique a front blanc"	"Decticus albifrons"	"91"	"0"	"-"	"1"	NA	""	""	2
+"Testes"	"Sauterelle"	"Decticelle carroyee"	"Tessellana tessellata"	"96"	"0"	"-"	"1"	"FAIBLE"	""	""	2
+"noise"	"Autre"	"bruit"	"noise"	"4"	"0"	"-"	"423"	"FAIBLE"	""	""	1

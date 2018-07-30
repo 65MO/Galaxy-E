@@ -1,6 +1,7 @@
 <tool id="Rdata_reader" name="Rdata binary file reader" version="0.1">
     <requirements>
         <requirement type="package" version="1.20.0">r-getopt</requirement>
+        <requirement type="package" version="7.0">readline</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         Rscript '$__tool_directory__/rdata_reader.R' '$input1' '$rdata_list_attr' ]]>
@@ -12,6 +13,21 @@
         <data format="tabular" name="rdata_list_attr" from_work_dir="rdata_list_attr" />
     </outputs>
     <help>
-This tool lists elements from a Rdata binary file.
+==========================
+Rdata reader
+==========================
+**What it does**
+
+The Rdata reader tool give information on the content of a binary R file.
+
+It produces a list of the available dimensions in the Rdata (tabular output file).
+
+Use this tool before considering use "Rdata parser".
+
+|
+
+**How to use it**
+
+Select a file in the Rdata format and execute the tool.
     </help>
 </tool>
