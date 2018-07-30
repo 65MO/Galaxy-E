@@ -1,11 +1,10 @@
 <tool id="IdValid" name="IdValid.R" version="0.1">
     <description>from Animal Detection on Acoustic Recordings</description>
     <requirements>
-        <!--
-        <requirement type="package" version="1.20.0">r-getopt</requirement> 
-        -->
         <requirement type="package" version="1.10.4">r-data.table</requirement>
+<!--
         <requirement type="package" version="7.0">readline</requirement>
+-->
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         Rscript 
