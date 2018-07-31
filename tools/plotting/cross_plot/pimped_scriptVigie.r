@@ -3,34 +3,12 @@
 ####       a partir des donnees brut                        ######
 ##################################################################
 
-### Version V1.1 _ 2017-03-02
-
-
-#input = "C:/Users/Rose-Line/Documents/2017/analyses 2016/R/pour graphes"  # indiquer les chemin avec des "/" , la ou se trouvent vos tables de donnees
-#output = "C:/Users/Rose-Line/Documents/2017/analyses 2016/R/pour graphes/sortiesR/"  # la ou vous souhaitez retrouver vos exports
-
-
-
-### utilisation des fonctions
-
-
-
-
-
-
-
-################################################################################################
-
-### Les libraries
-#vecPackage=c("ggplot2","RColorBrewer")
-#ip <- installed.packages()[,1]
-
-#for(p in vecPackage)
-#    if (!(p %in% ip))
-#        install.packages(pkgs=p,repos = "http://cran.univ-paris1.fr/",dependencies=TRUE)
+### Version V1.2 _ 2018-07-31
 
 library(ggplot2)
 library(RColorBrewer)
+
+args <- commandArgs(trailingOnly = TRUE)
 
 ### importation code
 source("stat_bag.r")
@@ -294,42 +272,6 @@ ggfiltre1niveau <- function(d,
 
 
 ##############################################################
-
-
-local <- function(nom_fichier = filename,dec=".",nom_fichierCouleur= color_filename,
-                  col_abscisse = "AB_MOYENNE",figure_abscisse = "Abondance",
-                  col_ordonnee = "DIVERSITE_MOYENNE",figure_ordonnee = "Diversite",nomGenerique="GLOBAL",
-                  vec_figure_titre = c("Les Papillons"),colourProtocole = TRUE,nomProtocole="Papillons",couleurLocal="#f609c1",
-                  vec_col_filtre = c("NOM_RESEAU"), 
-                  col_sousGroup = "PARCELLENOM",
-                  val_filtre = NULL,figure_nom_filtre = NULL,
-                  bagplot = TRUE,bagProp=c(.05,.5,.95),seuilSegment=30,segmentSousSeuil=TRUE,
-                  forcageMajusculeFiltre=TRUE,forcageMajusculeSousGroupe=TRUE) {
-    
-    dCouleur <- read.data(file=nom_fichierCouleur)
-    d <- read.data(file=nom_fichier,decimalSigne=dec)
-    
-    if(colourProtocole & !is.null(nomProtocole)) colourProtocole_p <- as.character(dCouleur[dCouleur[,2]==nomProtocole,3]) else colourProtocole_p <- NULL 
-    
-    
-    for(f in 1:length(vec_col_filtre)) {
-
-        if(length(vec_figure_titre)==1) figure_titre_f <-  vec_figure_titre else figure_titre_f <- vec_figure_titre[f]
-        col_filtre_f <- vec_col_filtre[f]
-        gglocal(d,col_abscisse,figure_abscisse,
-                col_ordonnee,figure_ordonnee,
-                figure_titre = figure_titre_f,col_filtre = col_filtre_f,
-                nomGenerique = nomGenerique,col_sousGroup = col_sousGroup,
-                val_filtre = NULL,figure_nom_filtre = NULL,
-                tab_figure_couleur= subset(dCouleur,Filtre==col_filtre_f),
-                colourProtocole = colourProtocole_p,nomProtocole,couleurLocal,
-                bagplot,bagProp,
-                seuilSegment,segmentSousSeuil,forcageMajusculeFiltre,forcageMajusculeSousGroupe)
-    }
-}
-
-
-
 gglocal <- function(d,
                     col_abscisse = "AB_MOYENNE",
                     figure_abscisse = "Abondance",
@@ -456,63 +398,7 @@ gglocal <- function(d,
 
 
 
-#########################################
-#########################################
-#########################################
-#########################################
-#########################################
-
-compareLevel <- function(nom_fichier = "BDD_PAPILLONS_2016.txt",
-                         dec=".",
-                         nom_fichierCouleur= "code_couleurs.csv",
-                         col_abscisse = "AB_MOYENNE",
-                         figure_abscisse = "Abondance",
-                         col_ordonnee = "DIVERSITE_MOYENNE",
-                         figure_ordonnee = "Diversite",
-                         nomGenerique="GLOBAL",
-                         vec_figure_titre = c("Les Papillons"),
-                         colourProtocole = TRUE,
-                         nomProtocole="Papillons",
-                         vec_col_filtre = c("CONDUITEPARCELLE"), 
-                         col_sousGroup=NULL,#
-                         val_filtre = NULL,
-                         figure_nom_filtre = NULL,
-                         bagplot = TRUE,
-                         bagProp=c(.05,.5,.95),
-                         seuilSegment=30,
-                         segmentSousSeuil=TRUE,
-                         forcageMajusculeFiltre=FALSE,
-                         forcageMajusculeSousGroupe=TRUE) {
-
-    dCouleur <- read.data(file=paste("librairie/",nom_fichierCouleur,sep=""))
-    d <- read.data(file=paste("donnees/",nom_fichier,sep=""),decimalSigne=dec)
-    if(colourProtocole & !is.null(nomProtocole)) colourProtocole_p <- as.character(dCouleur[dCouleur[,2]==nomProtocole,3]) else colourProtocole_p <- NULL 
-    
-    for(f in 1:length(vec_col_filtre)) {
-        if(length(vec_figure_titre)==1) figure_titre_f <-  vec_figure_titre else figure_titre_f <- vec_figure_titre[f]
-        col_filtre_f <- vec_col_filtre[f]
-        ggCompareLevel(d,
-                       col_abscisse,
-                       figure_abscisse,
-                       col_ordonnee,
-                       figure_ordonnee,
-                       figure_titre = figure_titre_f,
-                       col_filtre = col_filtre_f,
-                       nomGenerique = nomGenerique,
-                       val_filtre = NULL,
-                       figure_nom_filtre = NULL,
-                       tab_figure_couleur= subset(dCouleur,Filtre==col_filtre_f),
-                       colourProtocole = colourProtocole_p,
-                       nomProtocole, 
-                       bagplot,
-                       bagProp,
-                       seuilSegment,
-                       segmentSousSeuil,
-                       forcageMajusculeFiltre)
-     }
-}
-
-
+#####################################################
 ggCompareLevel <- function(d,
                            col_abscisse = "abond_moyenne",
                            figure_abscisse = "Abondance",
@@ -614,15 +500,53 @@ flush.console()
 
 #########################################
 
-filename="BDD_PAPILLONS_2016.txt"
-color_filename<-"code_couleurs.csv"
-func="ggCompareLevel"
+#Lancement des fonctions :
+
+  #Variables a definir :
+
+#filename="BDD_PAPILLONS_2016.txt"
+#color_filename<-"code_couleurs.csv"
+
+  #func
+#func="ggCompareLevel"
 #func="ggfiltre1niveau"
-vec_col_filtre_usr = c("CONDUITEPARCELLE")
-#vec_col_filtre_usr = c("REGION")
-filtre1niveau(func=func,nom_fichier=filename,nom_fichierCouleur=color_filename,col_sousGroup=NULL)
-#filtre1niveau(func=func,nom_fichier=filename,nom_fichierCouleur=color_filename,col_sousGroup = "PARCELLENOM",vec_col_filtre = c("NOM_RESEAU")) ## ==local()
-#local()
+#func="gglocal"
+
+  #colSousGroupe
+#col_sousGroup_usr = NULL    #ggfiltre #ggCompareLevel
+#col_sousGroup_usr = "PARCELLENOM"   #gglocal
+
+  #vec_col_filtre_usr
+#vec_col_filtre_usr = c("CONDUITEPARCELLE")  #ggCompareLevel
+#vec_col_filtre_usr = c("REGION")   #ggfiltre
+#vec_col_filtre_usr = c("NOM_RESEAU") #gglocal
 
 
-#compareLevel()
+
+#Exe fonction :
+
+#filtre1niveau(func=func,nom_fichier=filename,nom_fichierCouleur=color_filename,col_sousGroup=NULL)   #ggfiltre ou ggCompareLevel, depend de func et de vec_col_filtre_usr
+#filtre1niveau(func=func,nom_fichier=filename,nom_fichierCouleur=color_filename,col_sousGroup = col_sousGroup_usr,vec_col_filtre=vec_col_filtre_usr) ## ==local
+
+########################################################
+
+filename=args[1]
+color_filename=args[2]
+func=args[3]
+
+if(func=="ggCompareLevel"){
+col_sousGroup_usr=NULL
+vec_col_filtre_usr=c("CONDUITEPARCELLE")
+}else if(func=="ggfiltre1niveau"){
+col_sousGroup_usr=NULL
+vec_col_filtre_usr=c("REGION")
+}else if(func=="gglocal"){
+col_sousGroup_usr="PARCELLENOM"
+vec_col_filtre_usr=c("NOM_RESEAU")
+}else{
+#sortie erreur
+write("Error, unknown function. Exit(1).", stderr())
+q('no')
+}
+
+filtre1niveau(func=func,nom_fichier=filename,nom_fichierCouleur=color_filename,col_sousGroup=col_sousGroup_usr,vec_col_filtre=vec_col_filtre_usr)
