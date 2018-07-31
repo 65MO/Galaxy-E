@@ -22,12 +22,12 @@
 ################################################################################################
 
 ### Les libraries
-vecPackage=c("ggplot2","RColorBrewer")
-ip <- installed.packages()[,1]
+#vecPackage=c("ggplot2","RColorBrewer")
+#ip <- installed.packages()[,1]
 
-for(p in vecPackage)
-    if (!(p %in% ip))
-        install.packages(pkgs=p,repos = "http://cran.univ-paris1.fr/",dependencies=TRUE)
+#for(p in vecPackage)
+#    if (!(p %in% ip))
+#        install.packages(pkgs=p,repos = "http://cran.univ-paris1.fr/",dependencies=TRUE)
 
 library(ggplot2)
 library(RColorBrewer)
@@ -63,7 +63,8 @@ read.data <-  function(file=NULL,decimalSigne=".") {
 
 
 
-filtre1niveau <- function(nom_fichier = filename, 
+filtre1niveau <- function(func,
+                          nom_fichier = filename, 
                           dec=".",
                           nom_fichierCouleur= color_filename,
                           col_abscisse = "AB_MOYENNE",
@@ -74,7 +75,7 @@ filtre1niveau <- function(nom_fichier = filename,
                           vec_figure_titre = c("Les Papillons"),
                           colourProtocole = TRUE,
                           nomProtocole = "Papillons",
-                          vec_col_filtre = c("REGION"),
+                          vec_col_filtre = vec_col_filtre_usr,
 			  col_sousGroup = NULL,#
                           val_filtre = NULL,#
                           figure_nom_filtre = NULL,#
@@ -97,7 +98,7 @@ filtre1niveau <- function(nom_fichier = filename,
         }
         col_filtre_f <- vec_col_filtre[f]
         print(col_sousGroup) #Just to check
-        if(is.null(col_sousGroup)){
+        if(func=="ggfiltre1niveau"){
             print("ggfiltre1niveau")
             ggfiltre1niveau(d,
                         col_abscisse,
@@ -117,7 +118,7 @@ filtre1niveau <- function(nom_fichier = filename,
                         seuilSegment,
                         segmentSousSeuil,
                         forcageMajusculeFiltre)
-        }else{
+        }else if(func=="gglocal"){
             print("gglocal")
             gglocal(d,
                     col_abscisse,
@@ -454,12 +455,6 @@ gglocal <- function(d,
 }
 
 
-filename="BDD_PAPILLONS_2016.txt"
-color_filename<-"code_couleurs.csv"
-#filtre1niveau(nom_fichier=filename,nom_fichierCouleur=color_filename,col_sousGroup=NULL)
-#filtre1niveau(nom_fichier=filename,nom_fichierCouleur=color_filename,col_sousGroup = "PARCELLENOM",vec_col_filtre = c("NOM_RESEAU")) ## ==local()
-#local()
-
 
 #########################################
 #########################################
@@ -613,4 +608,21 @@ ggCompareLevel <- function(d,
 flush.console()
 }
 
-compareLevel()
+
+
+
+
+#########################################
+
+filename="BDD_PAPILLONS_2016.txt"
+color_filename<-"code_couleurs.csv"
+func="ggCompareLevel"
+#func="ggfiltre1niveau"
+vec_col_filtre_usr = c("CONDUITEPARCELLE")
+#vec_col_filtre_usr = c("REGION")
+filtre1niveau(func=func,nom_fichier=filename,nom_fichierCouleur=color_filename,col_sousGroup=NULL)
+#filtre1niveau(func=func,nom_fichier=filename,nom_fichierCouleur=color_filename,col_sousGroup = "PARCELLENOM",vec_col_filtre = c("NOM_RESEAU")) ## ==local()
+#local()
+
+
+#compareLevel()
