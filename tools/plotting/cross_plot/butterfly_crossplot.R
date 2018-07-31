@@ -11,15 +11,16 @@ library(RColorBrewer)
 args <- commandArgs(trailingOnly = TRUE)
 
 ### importation code
-source("stat_bag.r")
+sourcefunctions<-args[1]
+source(sourcefunctions)
 
 ## fonction d'importation des fichier des donnes
 ### fonction d'importation, de concatenation des fichiers 
 ### verification des nom de colonnes 
 ### verification des doublon de ligne
 read.data <-  function(file=NULL,decimalSigne=".") {
-    cat("1) IMPORTATION \n--------------\n")
-    cat("<--",file,"\n")
+#    cat("1) IMPORTATION \n--------------\n")
+#    cat("<--",file,"\n")
     data <- read.table(file,sep="\t",stringsAsFactors=FALSE,header=TRUE,dec=decimalSigne)
     ## verification qu'il y a plusieur colonnes et essaye different separateur
     if(ncol(data)==1) {
@@ -177,16 +178,17 @@ ggfiltre1niveau <- function(d,
     if(is.null(val_filtre)){ 
         lesModalites <- unique(d$groupe) 
     }else{
-        lesModalites <- val_filtre}
+        lesModalites <- val_filtre
+    }
 
-    repResult <- dir(result_dir)
-    current_dir<-getwd()
-    dir.create(file.path(current_dir,result_dir))
-
-    if(!(col_filtre %in% repResult)){
-        dir.create(file.path(".",paste(result_dir,col_filtre,sep="")))}
-
-    nomRep1 <- paste(result_dir,col_filtre,"/",sep="")   
+#    repResult <- dir(result_dir)
+#    current_dir<-getwd()
+#    dir.create(file.path(current_dir,result_dir))
+#
+#    if(!(col_filtre %in% repResult)){
+#        dir.create(file.path(".",paste(result_dir,col_filtre,sep="")))}
+#
+#    nomRep1 <- paste(result_dir,col_filtre,"/",sep="")   
     
     d.autre <- d
     d.autre$groupe <- nomGenerique
@@ -217,18 +219,18 @@ ggfiltre1niveau <- function(d,
             }
         }
 
-        repResult <- dir(nomRep1)
-        if(!(m %in% repResult)){
-            dir.create(paste(nomRep1,m,sep=""))}
-        nomRep <- paste(nomRep1,m,"/",sep="") 
-        
-        
-        if(!is.null(nomProtocole)){
-            repResult <- dir(nomRep)
-            if(!(nomProtocole %in% repResult)){
-                dir.create(paste(nomRep,nomProtocole,sep=""))}
-            nomRep <- paste(nomRep,nomProtocole,"/",sep="")
-        } 
+#        repResult <- dir(nomRep1)
+#        if(!(m %in% repResult)){
+#            dir.create(paste(nomRep1,m,sep=""))}
+#        nomRep <- paste(nomRep1,m,"/",sep="") 
+#        
+#        
+#        if(!is.null(nomProtocole)){
+#            repResult <- dir(nomRep)
+#            if(!(nomProtocole %in% repResult)){
+#                dir.create(paste(nomRep,nomProtocole,sep=""))}
+#            nomRep <- paste(nomRep,nomProtocole,"/",sep="")
+#        } 
         
      
         gg <- ggplot(ggTable,aes(x=abscisse,y=ordonnee,colour=groupe,fill=groupe))
@@ -312,9 +314,9 @@ gglocal <- function(d,
         lesModalites <- unique(d$groupe)}
     else{ lesModalites <- val_filtre}
     repResult <- dir("resultats/")
-    if(!(col_filtre %in% repResult)){
-        dir.create(paste("resultats/",col_filtre,sep=""))}
-    nomRep1 <- paste("resultats/",col_filtre,"/",sep="")     
+#    if(!(col_filtre %in% repResult)){
+#        dir.create(paste("resultats/",col_filtre,sep=""))}
+#    nomRep1 <- paste("resultats/",col_filtre,"/",sep="")     
     d.autre <- d
     d.autre$groupe <- nomGenerique
     for(m in lesModalites) {
@@ -338,16 +340,16 @@ gglocal <- function(d,
                                            c(nomGenerique,m,""))
             }
         }
-        repResult <- dir(nomRep1)
-        if(!(m %in% repResult)){
-            dir.create(paste(nomRep1,m,sep=""))}
-        nomRep <- paste(nomRep1,m,"/",sep="")      
-        if(!is.null(nomProtocole)) {
-            repResult <- dir(nomRep)
-            if(!(nomProtocole %in% repResult)){
-                dir.create(paste(nomRep,nomProtocole,sep=""))}
-            nomRep <- paste(nomRep,nomProtocole,"/",sep="")
-        }         
+#        repResult <- dir(nomRep1)
+#        if(!(m %in% repResult)){
+#            dir.create(paste(nomRep1,m,sep=""))}
+#        nomRep <- paste(nomRep1,m,"/",sep="")      
+#        if(!is.null(nomProtocole)) {
+#            repResult <- dir(nomRep)
+#            if(!(nomProtocole %in% repResult)){
+#                dir.create(paste(nomRep,nomProtocole,sep=""))}
+#            nomRep <- paste(nomRep,nomProtocole,"/",sep="")
+#        }         
         d.reseau <- subset(d.reseau, !(is.na(sousGroup)))        
         figure_size<-  setNames(c(1,3,2.5), c(nomGenerique,m,""))
         figure_shape<-  setNames(c(16,16,20), c(nomGenerique,m,""))        
@@ -432,18 +434,18 @@ ggCompareLevel <- function(d,
     }else{
         lesModalites <- val_filtre
     }
-    repResult <- dir("resultats/")
-    if(!(col_filtre %in% repResult)){
-        dir.create(paste("resultats/",col_filtre,sep=""))
-    }
-    if(!is.null(nomProtocole)){
-        repResult <- dir(paste("resultats/",col_filtre,sep=""))
-        if(!(nomProtocole %in% repResult)){
-            dir.create(paste("resultats/",col_filtre,"/",nomProtocole,sep=""))}
-        nomRep <- paste("resultats/",col_filtre,"/",nomProtocole,"/",sep="")
-    }else{
-        nomRep <- paste("resultats/",col_filtre,"/",sep="")   
-    }
+#    repResult <- dir("resultats/")
+#    if(!(col_filtre %in% repResult)){
+#        dir.create(paste("resultats/",col_filtre,sep=""))
+#    }
+#    if(!is.null(nomProtocole)){
+#        repResult <- dir(paste("resultats/",col_filtre,sep=""))
+#        if(!(nomProtocole %in% repResult)){
+#            dir.create(paste("resultats/",col_filtre,"/",nomProtocole,sep=""))}
+#        nomRep <- paste("resultats/",col_filtre,"/",nomProtocole,"/",sep="")
+#    }else{
+#        nomRep <- paste("resultats/",col_filtre,"/",sep="")   
+#    }
     d.autre <- d
     d.autre$groupe <- nomGenerique
     d.reseau <-  subset(d,groupe %in% lesModalites)
@@ -495,9 +497,6 @@ flush.console()
 }
 
 
-
-
-
 #########################################
 
 #Lancement des fonctions :
@@ -530,9 +529,9 @@ flush.console()
 
 ########################################################
 
-filename=args[1]
-color_filename=args[2]
-func=args[3]
+filename=args[2]
+color_filename=args[3]
+func=args[4]
 
 if(func=="ggCompareLevel"){
 col_sousGroup_usr=NULL
@@ -548,5 +547,10 @@ vec_col_filtre_usr=c("NOM_RESEAU")
 write("Error, unknown function. Exit(1).", stderr())
 q('no')
 }
+
+#create result dir
+nomRep="resultats/"
+dir.create(file.path(".", nomRep), showWarnings = FALSE)
+
 
 filtre1niveau(func=func,nom_fichier=filename,nom_fichierCouleur=color_filename,col_sousGroup=col_sousGroup_usr,vec_col_filtre=vec_col_filtre_usr)
