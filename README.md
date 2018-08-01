@@ -1,7 +1,6 @@
 [![Join the chat at https://gitter.im/Galaxy-E/Lobby](https://badges.gitter.im/Galaxy-E/Lobby.svg)](https://gitter.im/Galaxy-E/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 
-
 [![DOI](https://zenodo.org/badge/108133531.svg)](https://zenodo.org/badge/latestdoi/108133531)
 
 
