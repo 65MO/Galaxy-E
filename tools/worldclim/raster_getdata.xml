@@ -62,18 +62,18 @@
             </param>
             <when value="yes_plot">
                 <param name="var_to_plot" type="select" label="Select what you want to visualize">
-                    <option value="1">tmin/tmax/prec:January</option>
-                    <option value="2">tmin/tmax/prec:February</option>
-                    <option value="3">tmin/tmax/prec:March</option>
-                    <option value="4">tmin/tmax/prec:April</option>
-                    <option value="5">tmin/tmax/prec:May</option>
-                    <option value="6">tmin/tmax/prec:June</option>
-                    <option value="7">tmin/tmax/prec:July</option>
-                    <option value="8">tmin/tmax/prec:August</option>
-                    <option value="9">tmin/tmax/prec:September</option>
-                    <option value="10">tmin/tmax/prec:October</option>
-                    <option value="11">tmin/tmax/prec:November</option>
-                    <option value="12">tmin/tmax/prec:December</option>
+                    <option value="1">[tmin|tmax|prec]:January</option>
+                    <option value="2">[tmin|tmax|prec]:February</option>
+                    <option value="3">[tmin|tmax|prec]:March</option>
+                    <option value="4">[tmin|tmax|prec]:April</option>
+                    <option value="5">[tmin|tmax|prec]:May</option>
+                    <option value="6">[tmin|tmax|prec]:June</option>
+                    <option value="7">[tmin|tmax|prec]:July</option>
+                    <option value="8">[tmin|tmax|prec]:August</option>
+                    <option value="9">[tmin|tmax|prec]:September</option>
+                    <option value="10">[tmin|tmax|prec]:October</option>
+                    <option value="11">[tmin|tmax|prec]:November</option>
+                    <option value="12">[tmin|tmax|prec]:December</option>
                     <option value="bio1">bio1:Annual Mean Temperature</option>
                     <option value="bio2">bio2:Mean Diurnal Range (Mean of monthly (max temp - min temp))</option>
                     <option value="bio3">bio3:Isothermality (BIO2/BIO7) (* 100)</option>
