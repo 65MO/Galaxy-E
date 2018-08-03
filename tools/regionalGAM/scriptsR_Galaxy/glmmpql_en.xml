@@ -5,8 +5,6 @@
         <requirement type="package" version="7.3_48">r-mass</requirement>
         <requirement type="package" version="0.9.10">xorg-libxrender</requirement>
         <requirement type="package" version="1.2.2">xorg-libsm</requirement>
-        <requirement type="package" version="7.0">readline</requirement>
-        <requirement type="package" version="3.4">r</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         Rscript '$__tool_directory__/glmmpql.R' '$input1' '$output' '$output2' ]]>
@@ -22,7 +20,7 @@
         <test>
             <param name="input1" value="data_index.tabular"/>
             <param name="output" value="glmmpql-plot.png"/>
-            <param name="output2" value="glmmpql.tabular"/>
+            <output name="output2" value="glmmpql.tabular"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -33,11 +31,10 @@
 Temporal trends of species abundance
 ==========================
 
-This tool is an implementation of the glmmpql function from `RegionalGAM package:  &lt;https://github.com/RetoSchmucki/regionalGAM/&gt;`_.
+This tool is an implementation of the glmmpql function from `RegionalGAM package:  https://github.com/RetoSchmucki/regionalGAM/
 This function computes a collated index for each year and estimates the temporal trend.
     ]]></help>
     <citations>
         <citation type="doi">10.1111/1365-2664.12561</citation>  
     </citations>
-    </help>
 </tool>

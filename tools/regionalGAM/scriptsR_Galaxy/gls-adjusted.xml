@@ -16,11 +16,11 @@
         <data format="rdata" name="output2" from_work_dir="mod_adjusted.rda" />
     </outputs>
     <tests>
-        <test>
+        <test> <!--FAILED-->
             <param name="input1" value="glmmpql.tabular"/>
             <param name="input2" value="data_index.tabular"/>
-            <param name="output" value="gls-adju_sum.txt"/>
-            <param name="output2" value="gls-adju_rda.rda"/>
+            <output name="output" value="gls-adju_sum.txt"/>
+            <output name="output2" value="gls-adju_rda.rda"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -31,7 +31,7 @@
 STOC eps for specialists groups
 ==========================
 
-This tool is an implementation of the gls_adjusted function from `RegionalGAM package:  &lt;https://github.com/RetoSchmucki/regionalGAM/&gt;`_.
+This tool is an implementation of the gls_adjusted function from `RegionalGAM package: https://github.com/RetoSchmucki/regionalGAM/
 This function adjust the model to account for autocorrelation in the residuals.
 
     ]]></help>

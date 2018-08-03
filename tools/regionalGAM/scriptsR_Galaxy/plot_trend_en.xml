@@ -20,7 +20,7 @@
         <test>
             <param name="input1" value="data_index.tabular"/>
             <param name="input2" value="gls-adju_rda.rda"/>
-            <param name="output" value="trend.png"/>
+            <output name="output" value="trend.png"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -31,7 +31,7 @@
 Plot abundance trend 
 ==========================
 
-This tool is an implementation of the plot_trend function from `RegionalGAM package:  &lt;https://github.com/RetoSchmucki/regionalGAM/&gt;`_.
+This tool is an implementation of the plot_trend function from `RegionalGAM package: https://github.com/RetoSchmucki/regionalGAM/
 This function plot abundance and add a trend line.
     ]]></help>
     <citations>

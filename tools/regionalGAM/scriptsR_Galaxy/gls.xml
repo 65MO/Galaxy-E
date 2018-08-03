@@ -3,8 +3,6 @@
     <requirements>
         <requirement type="package" version="3.1_131">r-nlme</requirement>
         <requirement type="package" version="7.3_48">r-mass</requirement>
-        <requirement type="package" version="7.0">readline</requirement>
-        <requirement type="package" version="3.4">r</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         Rscript '$__tool_directory__/gls.R' '$input1' '$input2' '$output' '$output2' ]]>
@@ -21,8 +19,8 @@
     <test>
         <param name="input1" value="glmmpql.tabular"/>
         <param name="input2" value="data_index.tabular"/>
-        <param name="output" value="gls_sum.txt"/>
-        <param name="output2" value="gls_rda.rda"/>
+        <param output="output" value="gls_sum.txt"/>
+        <param output="output2" value="gls_rda.rda"/>
     </test>
     </tests>
     <help><![CDATA[
@@ -33,7 +31,7 @@
 Model temporal trend
 ==========================
 
-This tool is an implementation of the gls function from `RegionalGAM package:  &lt;https://github.com/RetoSchmucki/regionalGAM/&gt;`_.
+This tool is an implementation of the gls function from `RegionalGAM package:  https://github.com/RetoSchmucki/regionalGAM/
 This function model temporal trend with a simple linear regression.
 
     ]]></help>
