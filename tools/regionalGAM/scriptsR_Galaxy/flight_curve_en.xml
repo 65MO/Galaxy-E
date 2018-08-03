@@ -26,7 +26,7 @@
 Regional phenology
 ==========================
 
-This tool is an implementation of the flight_curve function `RegionalGAM package:  https://github.com/RetoSchmucki/regionalGAM/
+This tool is an implementation of the flight_curve function RegionalGAM package:  https://github.com/RetoSchmucki/regionalGAM/
 This function computes the annual phenology on a specific region.
 
     ]]></help>
