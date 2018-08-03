@@ -1,8 +1,6 @@
 <tool id="spocc_occ_no_taxrefv2" name="Get species occurrences data" version="0.2">
     <description>from GBIF, ALA, iNAT and others</description>
     <requirements>
-        <requirement type="package" version="1.2.3">r-stringi</requirement>
-        <requirement type="package" version="7.0">readline</requirement>
         <requirement type="package" version="0.8.0">r-spocc</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
