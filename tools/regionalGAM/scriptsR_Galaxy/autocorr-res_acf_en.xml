@@ -28,7 +28,7 @@
 
 ======================================
 Model residuals autocorrelation check 
-/bin/bash: :wq: command not found
+======================================
 
 This tool is an implementation of the autocorr-res_acf function from RegionalGAM package:  https://github.com/RetoSchmucki/regionalGAM/
 This function uses a simple linear model and explore for temporal autocorrelation that we will account in the final model.
