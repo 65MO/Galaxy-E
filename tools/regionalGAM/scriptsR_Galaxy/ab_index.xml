@@ -1,7 +1,6 @@
 <tool id="ab_index" name="Abundance index" version="0.1">
     <description>computation across species, sites and years</description>
     <requirements>
-        <requirement type="package" version="7.0">readline</requirement>
         <requirement type="package" version="3.4">r</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
@@ -15,10 +14,10 @@
         <data format="tabular" name="output" from_work_dir="data.index" />
     </outputs>
     <tests>
-        <test>
+        <test> <!--FAILED-->
             <param name="input1" value="gatekeeper_CM"/>
             <param name="input2" value="flight_curve_result.tabular"/>
-            <param name="output" value="data_index.tabular"/>
+            <ouput name="output" value="data_index.tabular"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -29,7 +28,7 @@
 Compute abundance index
 ==========================
 
-This tool is an implementation of the abundance_index function from `RegionalGAM package:  &lt;https://github.com/RetoSchmucki/regionalGAM/&gt;`_.
+This tool is an implementation of the abundance_index function from RegionalGAM package: https://github.com/RetoSchmucki/regionalGAM/
 
 This function compute the Abundance Index across sites and years from your dataset and the regional flight curve.
 

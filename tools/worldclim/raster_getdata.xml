@@ -1,0 +1,204 @@
+<tool id="raster_getdata" name="Get climatic data from Worldclim" version="0.1.0">
+    <requirements>
+
+<!--
+        <requirement type="package" >libgcc-ng</requirement>
+        <requirement type="package" >libiconv</requirement>
+        <requirement type="package" >jpeg</requirement>
+        <requirement type="package" >libstdcxx-ng</requirement>
+        <requirement type="package" >libkml</requirement>
+        <requirement type="package" version="1.2_18">r-rgdal</requirement>
+-->
+
+        <requirement type="package" version="1.20.2">r-getopt</requirement>
+        <requirement type="package" version="1.1.6">r-ncdf4</requirement>
+        <requirement type="package" version="2.6_7">r-raster</requirement>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+        Rscript 
+            '$__tool_directory__/clim_data.R'
+             'worldclim'
+             '$usr_var'
+             '$usr_res'
+             '$usr_of'
+##       2>/dev/null
+    ]]></command>
+    <inputs>
+
+<!--
+        <param name="usr_data" type="select" label="Data set name"/> 
+-->
+
+        <param name="usr_var" type="select" label="Variable" help="Temperature minimum, maximum, precipitations and bioclimatic variables.">
+            <option value="tmin">tmin</option>
+            <option value="tmax">tmax</option>
+            <option value="prec">prec</option>
+            <option value="bio">bio</option>
+        </param>
+        <param name="usr_res" type="select" label="Resolution" help="In minutes of a degree.">
+            <option value="2.5">2.5</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+        </param>
+        <param name="usr_of" type="select" label="Output raster format" >
+            <option value="CDF">netCDF .nc</option>
+            <option value="raster">Native raster package format .grd</option>
+
+<!--
+            <option value="ascii">ESRI Ascii .asc</option>
+            <option value="SAGA">SAGA GIS .sdat</option>
+            <option value="IDRISI">IDRISI .rst</option>
+            <option value="GTiff">GeoTiff .tif</option>
+            <option value="ENVI">ENVI .hdr Labelled .envi</option>
+            <option value="EHdr">ESRI .hdr Labelled .bil</option>
+            <option value="HFA">Erdas Imagine Images .img</option>
+-->
+
+        </param>
+        <conditional name="condi_plot">
+            <param name="plot" type="select" label="Return a visualisation">
+                <option value="yes_plot">Yes</option>
+                <option value="no_plot">No</option>
+            </param>
+            <when value="yes_plot">
+                <param name="var_to_plot" type="select" label="Select what you want to visualize">
+                    <option value="1">[tmin|tmax|prec]:January</option>
+                    <option value="2">[tmin|tmax|prec]:February</option>
+                    <option value="3">[tmin|tmax|prec]:March</option>
+                    <option value="4">[tmin|tmax|prec]:April</option>
+                    <option value="5">[tmin|tmax|prec]:May</option>
+                    <option value="6">[tmin|tmax|prec]:June</option>
+                    <option value="7">[tmin|tmax|prec]:July</option>
+                    <option value="8">[tmin|tmax|prec]:August</option>
+                    <option value="9">[tmin|tmax|prec]:September</option>
+                    <option value="10">[tmin|tmax|prec]:October</option>
+                    <option value="11">[tmin|tmax|prec]:November</option>
+                    <option value="12">[tmin|tmax|prec]:December</option>
+                    <option value="bio1">bio:Annual Mean Temperature</option>
+                    <option value="bio2">bio:Mean Diurnal Range (Mean of monthly (max temp - min temp))</option>
+                    <option value="bio3">bio:Isothermality (BIO2/BIO7) (* 100)</option>
+                    <option value="bio4">bio:Temperature Seasonality (standard deviation *100)</option>
+                    <option value="bio5">bio:Max Temperature of Warmest Month</option>
+                    <option value="bio6">bio:Min Temperature of Coldest Month</option>
+                    <option value="bio7">bio:Temperature Annual Range (BIO5-BIO6)</option>
+                    <option value="bio8">bio:Mean Temperature of Wettest Quarter</option>
+                    <option value="bio9">bio:Mean Temperature of Driest Quarter</option>
+                    <option value="bio10">bio:Mean Temperature of Warmest Quarter</option>
+                    <option value="bio11">bio:Mean Temperature of Coldest Quarter</option>
+                    <option value="bio12">bio:Annual Precipitation</option>
+                    <option value="bio13">bio:Precipitation of Wettest Month</option>
+                    <option value="bio14">bio:Precipitation of Driest Month</option>
+                    <option value="bio15">bio:Precipitation Seasonality (Coefficient of Variation)</option>
+                    <option value="bio16">bio:Precipitation of Wettest Quarter</option>
+                    <option value="bio17">bio:Precipitation of Driest Quarter</option>
+                    <option value="bio18">bio:Precipitation of Warmest Quarter</option>
+                    <option value="bio19">bio:Precipitation of Coldest Quarter</option>
+                </param>
+
+                <param name="usr_country" type="select" label="Select a worldmap vision or a more precise region" >
+                    <option value="WM">Worldmap</option>
+                    <option value="NA">North America</option>
+                    <option value="EU">Europe</option>
+                    <option value="AUS">Australia</option>
+                    <option value="FRA">France</option>
+                    <option value="DEU">Germany</option>
+                    <option value="GRB">United Kingdom</option>
+                    <option value="ESP">Spain</option>
+                    <option value="ITA">Italy</option>
+                </param>
+            </when>
+            <when value="no_plot">
+            </when>
+        </conditional>
+    </inputs>
+    <outputs>
+        <data name="output_df" from_work_dir="output_writeRaster.nc" label="WorldClim data - NetCDF format">
+            <filter> usr_of=='CDF'</filter>
+        </data>
+         <data name="output_grd" from_work_dir="output_writeRaster.grd" label="WorldClim data - Native raster pkg format .grd">
+            <filter> usr_of=='raster'</filter>
+        </data>
+        <data name="output_gri" from_work_dir="output_writeRaster.gri" label="WorldClim data - Native raster pkg format .gri">
+            <filter> usr_of=='raster'</filter>
+        </data>
+    </outputs>
+    <help><![CDATA[
+
+.. class:: infomark
+
+=======================================
+Get global climate data from Worldclim
+=======================================
+
+|
+
+**What it does**
+
+This tool retrieve global climate data from Wordclim using the R raster package.
+
+The climatic data available are : 
+
+  * Minimum temperature (°C)
+
+  * Maximum temperature (°C)
+
+  * Precipitation (mm)
+
+  * Bioclimatic variables :
+    
+    * BIO1 = Annual Mean Temperature
+
+    * BIO2 = Mean Diurnal Range (Mean of monthly (max temp - min temp))
+
+    * BIO3 = Isothermality (BIO2/BIO7) (x 100)
+
+    * BIO4 = Temperature Seasonality (standard deviation x100)
+
+    * BIO5 = Max Temperature of Warmest Month
+
+    * BIO6 = Min Temperature of Coldest Month
+
+    * BIO7 = Temperature Annual Range (BIO5-BIO6)
+
+    * BIO8 = Mean Temperature of Wettest Quarter
+
+    * BIO9 = Mean Temperature of Driest Quarter
+
+    * BIO10 = Mean Temperature of Warmest Quarter
+
+    * BIO11 = Mean Temperature of Coldest Quarter
+
+    * BIO12 = Annual Precipitation
+
+    * BIO13 = Precipitation of Wettest Month
+
+    * BIO14 = Precipitation of Driest Month
+
+    * BIO15 = Precipitation Seasonality (Coefficient of Variation)
+
+    * BIO16 = Precipitation of Wettest Quarter
+
+    * BIO17 = Precipitation of Driest Quarter
+
+    * BIO18 = Precipitation of Warmest Quarter
+
+    * BIO19 = Precipitation of Coldest Quarter
+
+|
+
+**How to use it**
+
+Simply select the variable to return and the resolution : 2.5, 5 or 10 minutes of a degree.
+
+Available output format are : netcdf and grd (Native raster package format).
+
+|
+
+**Sources**
+
+Worldclim : http://www.worldclim.org/
+
+Raster package : https://cran.r-project.org/web/packages/raster/index.html
+
+    ]]></help>
+</tool>

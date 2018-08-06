@@ -3,45 +3,24 @@
 ####       a partir des donnees brut                        ######
 ##################################################################
 
-### Version V1.1 _ 2017-03-02
-
-
-#input = "C:/Users/Rose-Line/Documents/2017/analyses 2016/R/pour graphes"  # indiquer les chemin avec des "/" , la ou se trouvent vos tables de donnees
-#output = "C:/Users/Rose-Line/Documents/2017/analyses 2016/R/pour graphes/sortiesR/"  # la ou vous souhaitez retrouver vos exports
-
-
-
-### utilisation des fonctions
-
-
-
-
-
-
-
-################################################################################################
-
-### Les libraries
-vecPackage=c("ggplot2","RColorBrewer")
-ip <- installed.packages()[,1]
-
-for(p in vecPackage)
-    if (!(p %in% ip))
-        install.packages(pkgs=p,repos = "http://cran.univ-paris1.fr/",dependencies=TRUE)
+### Version V1.2 _ 2018-07-31
 
 library(ggplot2)
 library(RColorBrewer)
 
+args <- commandArgs(trailingOnly = TRUE)
+
 ### importation code
-source("stat_bag.r")
+sourcefunctions<-args[1]
+source(sourcefunctions)
 
 ## fonction d'importation des fichier des donnes
 ### fonction d'importation, de concatenation des fichiers 
 ### verification des nom de colonnes 
 ### verification des doublon de ligne
 read.data <-  function(file=NULL,decimalSigne=".") {
-    cat("1) IMPORTATION \n--------------\n")
-    cat("<--",file,"\n")
+#    cat("1) IMPORTATION \n--------------\n")
+#    cat("<--",file,"\n")
     data <- read.table(file,sep="\t",stringsAsFactors=FALSE,header=TRUE,dec=decimalSigne)
     ## verification qu'il y a plusieur colonnes et essaye different separateur
     if(ncol(data)==1) {
@@ -63,7 +42,8 @@ read.data <-  function(file=NULL,decimalSigne=".") {
 
 
 
-filtre1niveau <- function(nom_fichier = filename, 
+filtre1niveau <- function(func,
+                          nom_fichier = filename, 
                           dec=".",
                           nom_fichierCouleur= color_filename,
                           col_abscisse = "AB_MOYENNE",
@@ -74,7 +54,7 @@ filtre1niveau <- function(nom_fichier = filename,
                           vec_figure_titre = c("Les Papillons"),
                           colourProtocole = TRUE,
                           nomProtocole = "Papillons",
-                          vec_col_filtre = c("REGION"),
+                          vec_col_filtre = vec_col_filtre_usr,
 			  col_sousGroup = NULL,#
                           val_filtre = NULL,#
                           figure_nom_filtre = NULL,#
@@ -97,7 +77,7 @@ filtre1niveau <- function(nom_fichier = filename,
         }
         col_filtre_f <- vec_col_filtre[f]
         print(col_sousGroup) #Just to check
-        if(is.null(col_sousGroup)){
+        if(func=="ggfiltre1niveau"){
             print("ggfiltre1niveau")
             ggfiltre1niveau(d,
                         col_abscisse,
@@ -117,7 +97,7 @@ filtre1niveau <- function(nom_fichier = filename,
                         seuilSegment,
                         segmentSousSeuil,
                         forcageMajusculeFiltre)
-        }else{
+        }else if(func=="gglocal"){
             print("gglocal")
             gglocal(d,
                     col_abscisse,
@@ -198,16 +178,17 @@ ggfiltre1niveau <- function(d,
     if(is.null(val_filtre)){ 
         lesModalites <- unique(d$groupe) 
     }else{
-        lesModalites <- val_filtre}
+        lesModalites <- val_filtre
+    }
 
-    repResult <- dir(result_dir)
-    current_dir<-getwd()
-    dir.create(file.path(current_dir,result_dir))
-
-    if(!(col_filtre %in% repResult)){
-        dir.create(file.path(".",paste(result_dir,col_filtre,sep="")))}
-
-    nomRep1 <- paste(result_dir,col_filtre,"/",sep="")   
+#    repResult <- dir(result_dir)
+#    current_dir<-getwd()
+#    dir.create(file.path(current_dir,result_dir))
+#
+#    if(!(col_filtre %in% repResult)){
+#        dir.create(file.path(".",paste(result_dir,col_filtre,sep="")))}
+#
+#    nomRep1 <- paste(result_dir,col_filtre,"/",sep="")   
     
     d.autre <- d
     d.autre$groupe <- nomGenerique
@@ -238,18 +219,18 @@ ggfiltre1niveau <- function(d,
             }
         }
 
-        repResult <- dir(nomRep1)
-        if(!(m %in% repResult)){
-            dir.create(paste(nomRep1,m,sep=""))}
-        nomRep <- paste(nomRep1,m,"/",sep="") 
-        
-        
-        if(!is.null(nomProtocole)){
-            repResult <- dir(nomRep)
-            if(!(nomProtocole %in% repResult)){
-                dir.create(paste(nomRep,nomProtocole,sep=""))}
-            nomRep <- paste(nomRep,nomProtocole,"/",sep="")
-        } 
+#        repResult <- dir(nomRep1)
+#        if(!(m %in% repResult)){
+#            dir.create(paste(nomRep1,m,sep=""))}
+#        nomRep <- paste(nomRep1,m,"/",sep="") 
+#        
+#        
+#        if(!is.null(nomProtocole)){
+#            repResult <- dir(nomRep)
+#            if(!(nomProtocole %in% repResult)){
+#                dir.create(paste(nomRep,nomProtocole,sep=""))}
+#            nomRep <- paste(nomRep,nomProtocole,"/",sep="")
+#        } 
         
      
         gg <- ggplot(ggTable,aes(x=abscisse,y=ordonnee,colour=groupe,fill=groupe))
@@ -293,42 +274,6 @@ ggfiltre1niveau <- function(d,
 
 
 ##############################################################
-
-
-local <- function(nom_fichier = filename,dec=".",nom_fichierCouleur= color_filename,
-                  col_abscisse = "AB_MOYENNE",figure_abscisse = "Abondance",
-                  col_ordonnee = "DIVERSITE_MOYENNE",figure_ordonnee = "Diversite",nomGenerique="GLOBAL",
-                  vec_figure_titre = c("Les Papillons"),colourProtocole = TRUE,nomProtocole="Papillons",couleurLocal="#f609c1",
-                  vec_col_filtre = c("NOM_RESEAU"), 
-                  col_sousGroup = "PARCELLENOM",
-                  val_filtre = NULL,figure_nom_filtre = NULL,
-                  bagplot = TRUE,bagProp=c(.05,.5,.95),seuilSegment=30,segmentSousSeuil=TRUE,
-                  forcageMajusculeFiltre=TRUE,forcageMajusculeSousGroupe=TRUE) {
-    
-    dCouleur <- read.data(file=nom_fichierCouleur)
-    d <- read.data(file=nom_fichier,decimalSigne=dec)
-    
-    if(colourProtocole & !is.null(nomProtocole)) colourProtocole_p <- as.character(dCouleur[dCouleur[,2]==nomProtocole,3]) else colourProtocole_p <- NULL 
-    
-    
-    for(f in 1:length(vec_col_filtre)) {
-
-        if(length(vec_figure_titre)==1) figure_titre_f <-  vec_figure_titre else figure_titre_f <- vec_figure_titre[f]
-        col_filtre_f <- vec_col_filtre[f]
-        gglocal(d,col_abscisse,figure_abscisse,
-                col_ordonnee,figure_ordonnee,
-                figure_titre = figure_titre_f,col_filtre = col_filtre_f,
-                nomGenerique = nomGenerique,col_sousGroup = col_sousGroup,
-                val_filtre = NULL,figure_nom_filtre = NULL,
-                tab_figure_couleur= subset(dCouleur,Filtre==col_filtre_f),
-                colourProtocole = colourProtocole_p,nomProtocole,couleurLocal,
-                bagplot,bagProp,
-                seuilSegment,segmentSousSeuil,forcageMajusculeFiltre,forcageMajusculeSousGroupe)
-    }
-}
-
-
-
 gglocal <- function(d,
                     col_abscisse = "AB_MOYENNE",
                     figure_abscisse = "Abondance",
@@ -369,9 +314,9 @@ gglocal <- function(d,
         lesModalites <- unique(d$groupe)}
     else{ lesModalites <- val_filtre}
     repResult <- dir("resultats/")
-    if(!(col_filtre %in% repResult)){
-        dir.create(paste("resultats/",col_filtre,sep=""))}
-    nomRep1 <- paste("resultats/",col_filtre,"/",sep="")     
+#    if(!(col_filtre %in% repResult)){
+#        dir.create(paste("resultats/",col_filtre,sep=""))}
+#    nomRep1 <- paste("resultats/",col_filtre,"/",sep="")     
     d.autre <- d
     d.autre$groupe <- nomGenerique
     for(m in lesModalites) {
@@ -395,16 +340,16 @@ gglocal <- function(d,
                                            c(nomGenerique,m,""))
             }
         }
-        repResult <- dir(nomRep1)
-        if(!(m %in% repResult)){
-            dir.create(paste(nomRep1,m,sep=""))}
-        nomRep <- paste(nomRep1,m,"/",sep="")      
-        if(!is.null(nomProtocole)) {
-            repResult <- dir(nomRep)
-            if(!(nomProtocole %in% repResult)){
-                dir.create(paste(nomRep,nomProtocole,sep=""))}
-            nomRep <- paste(nomRep,nomProtocole,"/",sep="")
-        }         
+#        repResult <- dir(nomRep1)
+#        if(!(m %in% repResult)){
+#            dir.create(paste(nomRep1,m,sep=""))}
+#        nomRep <- paste(nomRep1,m,"/",sep="")      
+#        if(!is.null(nomProtocole)) {
+#            repResult <- dir(nomRep)
+#            if(!(nomProtocole %in% repResult)){
+#                dir.create(paste(nomRep,nomProtocole,sep=""))}
+#            nomRep <- paste(nomRep,nomProtocole,"/",sep="")
+#        }         
         d.reseau <- subset(d.reseau, !(is.na(sousGroup)))        
         figure_size<-  setNames(c(1,3,2.5), c(nomGenerique,m,""))
         figure_shape<-  setNames(c(16,16,20), c(nomGenerique,m,""))        
@@ -454,70 +399,8 @@ gglocal <- function(d,
 }
 
 
-filename="BDD_PAPILLONS_2016.txt"
-color_filename<-"code_couleurs.csv"
-#filtre1niveau(nom_fichier=filename,nom_fichierCouleur=color_filename,col_sousGroup=NULL)
-#filtre1niveau(nom_fichier=filename,nom_fichierCouleur=color_filename,col_sousGroup = "PARCELLENOM",vec_col_filtre = c("NOM_RESEAU")) ## ==local()
-#local()
 
-
-#########################################
-#########################################
-#########################################
-#########################################
-#########################################
-
-compareLevel <- function(nom_fichier = "BDD_PAPILLONS_2016.txt",
-                         dec=".",
-                         nom_fichierCouleur= "code_couleurs.csv",
-                         col_abscisse = "AB_MOYENNE",
-                         figure_abscisse = "Abondance",
-                         col_ordonnee = "DIVERSITE_MOYENNE",
-                         figure_ordonnee = "Diversite",
-                         nomGenerique="GLOBAL",
-                         vec_figure_titre = c("Les Papillons"),
-                         colourProtocole = TRUE,
-                         nomProtocole="Papillons",
-                         vec_col_filtre = c("CONDUITEPARCELLE"), 
-                         col_sousGroup=NULL,#
-                         val_filtre = NULL,
-                         figure_nom_filtre = NULL,
-                         bagplot = TRUE,
-                         bagProp=c(.05,.5,.95),
-                         seuilSegment=30,
-                         segmentSousSeuil=TRUE,
-                         forcageMajusculeFiltre=FALSE,
-                         forcageMajusculeSousGroupe=TRUE) {
-
-    dCouleur <- read.data(file=paste("librairie/",nom_fichierCouleur,sep=""))
-    d <- read.data(file=paste("donnees/",nom_fichier,sep=""),decimalSigne=dec)
-    if(colourProtocole & !is.null(nomProtocole)) colourProtocole_p <- as.character(dCouleur[dCouleur[,2]==nomProtocole,3]) else colourProtocole_p <- NULL 
-    
-    for(f in 1:length(vec_col_filtre)) {
-        if(length(vec_figure_titre)==1) figure_titre_f <-  vec_figure_titre else figure_titre_f <- vec_figure_titre[f]
-        col_filtre_f <- vec_col_filtre[f]
-        ggCompareLevel(d,
-                       col_abscisse,
-                       figure_abscisse,
-                       col_ordonnee,
-                       figure_ordonnee,
-                       figure_titre = figure_titre_f,
-                       col_filtre = col_filtre_f,
-                       nomGenerique = nomGenerique,
-                       val_filtre = NULL,
-                       figure_nom_filtre = NULL,
-                       tab_figure_couleur= subset(dCouleur,Filtre==col_filtre_f),
-                       colourProtocole = colourProtocole_p,
-                       nomProtocole, 
-                       bagplot,
-                       bagProp,
-                       seuilSegment,
-                       segmentSousSeuil,
-                       forcageMajusculeFiltre)
-     }
-}
-
-
+#####################################################
 ggCompareLevel <- function(d,
                            col_abscisse = "abond_moyenne",
                            figure_abscisse = "Abondance",
@@ -551,18 +434,18 @@ ggCompareLevel <- function(d,
     }else{
         lesModalites <- val_filtre
     }
-    repResult <- dir("resultats/")
-    if(!(col_filtre %in% repResult)){
-        dir.create(paste("resultats/",col_filtre,sep=""))
-    }
-    if(!is.null(nomProtocole)){
-        repResult <- dir(paste("resultats/",col_filtre,sep=""))
-        if(!(nomProtocole %in% repResult)){
-            dir.create(paste("resultats/",col_filtre,"/",nomProtocole,sep=""))}
-        nomRep <- paste("resultats/",col_filtre,"/",nomProtocole,"/",sep="")
-    }else{
-        nomRep <- paste("resultats/",col_filtre,"/",sep="")   
-    }
+#    repResult <- dir("resultats/")
+#    if(!(col_filtre %in% repResult)){
+#        dir.create(paste("resultats/",col_filtre,sep=""))
+#    }
+#    if(!is.null(nomProtocole)){
+#        repResult <- dir(paste("resultats/",col_filtre,sep=""))
+#        if(!(nomProtocole %in% repResult)){
+#            dir.create(paste("resultats/",col_filtre,"/",nomProtocole,sep=""))}
+#        nomRep <- paste("resultats/",col_filtre,"/",nomProtocole,"/",sep="")
+#    }else{
+#        nomRep <- paste("resultats/",col_filtre,"/",sep="")   
+#    }
     d.autre <- d
     d.autre$groupe <- nomGenerique
     d.reseau <-  subset(d,groupe %in% lesModalites)
@@ -613,4 +496,61 @@ ggCompareLevel <- function(d,
 flush.console()
 }
 
-compareLevel()
+
+#########################################
+
+#Lancement des fonctions :
+
+  #Variables a definir :
+
+#filename="BDD_PAPILLONS_2016.txt"
+#color_filename<-"code_couleurs.csv"
+
+  #func
+#func="ggCompareLevel"
+#func="ggfiltre1niveau"
+#func="gglocal"
+
+  #colSousGroupe
+#col_sousGroup_usr = NULL    #ggfiltre #ggCompareLevel
+#col_sousGroup_usr = "PARCELLENOM"   #gglocal
+
+  #vec_col_filtre_usr
+#vec_col_filtre_usr = c("CONDUITEPARCELLE")  #ggCompareLevel
+#vec_col_filtre_usr = c("REGION")   #ggfiltre
+#vec_col_filtre_usr = c("NOM_RESEAU") #gglocal
+
+
+
+#Exe fonction :
+
+#filtre1niveau(func=func,nom_fichier=filename,nom_fichierCouleur=color_filename,col_sousGroup=NULL)   #ggfiltre ou ggCompareLevel, depend de func et de vec_col_filtre_usr
+#filtre1niveau(func=func,nom_fichier=filename,nom_fichierCouleur=color_filename,col_sousGroup = col_sousGroup_usr,vec_col_filtre=vec_col_filtre_usr) ## ==local
+
+########################################################
+
+filename=args[2]
+color_filename=args[3]
+func=args[4]
+
+if(func=="ggCompareLevel"){
+col_sousGroup_usr=NULL
+vec_col_filtre_usr=c("CONDUITEPARCELLE")
+}else if(func=="ggfiltre1niveau"){
+col_sousGroup_usr=NULL
+vec_col_filtre_usr=c("REGION")
+}else if(func=="gglocal"){
+col_sousGroup_usr="PARCELLENOM"
+vec_col_filtre_usr=c("NOM_RESEAU")
+}else{
+#sortie erreur
+write("Error, unknown function. Exit(1).", stderr())
+q('no')
+}
+
+#create result dir
+nomRep="resultats/"
+dir.create(file.path(".", nomRep), showWarnings = FALSE)
+
+
+filtre1niveau(func=func,nom_fichier=filename,nom_fichierCouleur=color_filename,col_sousGroup=col_sousGroup_usr,vec_col_filtre=vec_col_filtre_usr)
