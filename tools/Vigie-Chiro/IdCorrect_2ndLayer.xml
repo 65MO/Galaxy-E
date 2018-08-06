@@ -1,13 +1,8 @@
 <tool id="IdCorrect_2ndLayer" name="IdCorrect_2ndLayer.R" version="0.1">
     <description>clean data from animal detection on acoustic recordings</description>
     <requirements>
-<!--        <requirement type="package" version="1.20.0">r-getopt</requirement>  -->
         <requirement type="package" version="1.10.4">r-data.table</requirement>
         <requirement type="package" version="4.6_12">r-randomforest</requirement>
-<!--
-        <requirement type="package" version="7.0">readline</requirement>
--->
-
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         Rscript 

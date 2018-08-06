@@ -2,10 +2,6 @@
     <description>Integrate identifications from animal detection on acoustic recordings</description>
     <requirements>
         <requirement type="package" version="1.10.4">r-data.table</requirement>
-<!--
-        <requirement type="package" version="7.0">readline</requirement>
--->
-
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         Rscript 
@@ -31,9 +27,9 @@
 
 .. class:: infomark 
 
-==========================
+=====================================
 Tadarida identifications integration
-==========================
+=====================================
 
 **What it does**
 
