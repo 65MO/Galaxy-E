@@ -53,5 +53,7 @@ First use the Rdata reader tool to get the list of dimensions available in the b
 
 Use the reader tool output to select the dimension(s) you want to extract.
 
+If the selected variables can be displayed alongside in a tabular files the option \"Bind\" will try to do so.
+
     ]]></help>
 </tool>
