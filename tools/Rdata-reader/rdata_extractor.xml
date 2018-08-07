@@ -5,7 +5,7 @@
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         mkdir outputs &&
-	Rscript '$__tool_directory__/rdata_extractor.R' '$rdata' $selectedattributes '$summary' '$other'
+	Rscript '$__tool_directory__/rdata_extractor.R' '$rdata' $selectedattributes '$summary' '$other' '$bind_dataframe'
 ]]>
     </command>
     <inputs>
@@ -17,7 +17,7 @@
                 <column name="value" index="0"/>
             </options>
         </param>
-
+        <param name="bind_dataframe" label="Bind variables in a single tabular when its possible" type="boolean" truevalue="bind" falsevalue="nobind" checked="true"/>
     </inputs>
     <outputs>
         <data name="summary" from_work_dir="summary.tabular" format="tabular" label="Summary"/>
@@ -40,9 +40,9 @@ The Rdata parser tool allows to extract informations from a binary R file in .RD
 
 It produces a summary file and extract the selected dimensions. 
 	   
-More informations concerning R Data format and save / load functions can be found `here:  &lt;http://www.sthda.com/english/wiki/saving-data-into-r-data-format-rds-and-rdata&gt;`_ .
+More informations concerning R Data format and save / load functions can be found here:  http://www.sthda.com/english/wiki/saving-data-into-r-data-format-rds-and-rdata&gt.
 
-More informations concerning R Data format and save / load functions can be found `here:  &lt;http://www.sthda.com/english/wiki/saving-data-into-r-data-format-rds-and-rdata&gt;`_ .
+More informations concerning R Data format and save / load functions can be found here:  http://www.sthda.com/english/wiki/saving-data-into-r-data-format-rds-and-rdata&gt.
 
 
 |
