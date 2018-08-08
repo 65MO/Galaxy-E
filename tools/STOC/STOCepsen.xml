@@ -1,38 +1,28 @@
 <tool id="stoc" name="STOCeps" version="1.0">
-    
     <description>Annual variation and global trend by species from STOCeps (simple spot sampling).</description>
-    
     <requirements>
-        <requirement type="package">r</requirement>
         <requirement type="package">r-r.methodss3 </requirement>
         <requirement type="package">r-arm</requirement>
     </requirements>
-
-    <stdio>
-        <exit_code range="1:" />
-    </stdio>
-    
     <command>
         <![CDATA[
-        $__tool_directory__/STOCeps.R ${fichierSTOC} $__tool_directory__/Librairie;
-        mv variationsAnnuellesEspece.tsv output1 ;
-        mv tendanceGlobalEspece.tsv output2 ;
+        '$__tool_directory__/STOCeps.R' '${fichierSTOC}' '$__tool_directory__/Librairie'
         ]]>
     </command>
 
     <inputs>		
-		<param name="fichierSTOC" type="data" format="data" label="STOC Data" help="STOCeps observations file" />
+        <param name="fichierSTOC" type="data" format="data" label="STOC Data" help="STOCeps observations file" />
     </inputs>
 
     <outputs>
-        <data format="tabular" name="output1" label="Speciesannualvariation_${fichierSTOC.element_identifier[:-4]}" from_work_dir="./output1"/>
-        <data format="tabular" name="output2" label="Speciestrend_${fichierSTOC.element_identifier[:-4]}" from_work_dir="./output2"/>
+        <data format="tabular" name="output1" label="Speciesannualvariation_${fichierSTOC.element_identifier[:-4]}" from_work_dir="variationsAnnuellesEspece.tsv"/>
+        <data format="tabular" name="output2" label="Speciestrend_${fichierSTOC.element_identifier[:-4]}" from_work_dir="tendanceGlobalEspece.tsv"/>
 	</outputs>
 
     <tests>
         <test>
             <param name="fichierSTOC" value="Test_Data.csv"/>
-            <output name="output1">
+            <output name="variationsAnnuellesEspece.tsv">
                 <assert_contents>
                     <has_line_matching expression=".*\s+SAXTOR\s+Tarier patre\s+milieux agricoles\s+2012\s+0.914.*0.2488\s+0.811\s+FALSE\s+23\s+8\s+22" />
                     <has_line_matching expression=".*\s+Hypolaïs polyglotte\s+generaliste\s+2014\s+0.776\s+.*\s+0.6599\s+0.62\s+FALSE\s+7\s+2\s+32" />
