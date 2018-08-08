@@ -8,7 +8,7 @@
 
     <command detect_errors="exit_code">
         <![CDATA[
-        tadaridaC.r ${fichierTa} ${Classifier.fields.path} ;
+        tadaridaC.r '${fichierTa}' '${Classifier.fields.path}' &&
         mv dataset_*.tc output
         ]]>
     </command>
