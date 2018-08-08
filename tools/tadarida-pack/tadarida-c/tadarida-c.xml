@@ -6,33 +6,29 @@
          <requirement type="package" version="1.1">tadarida-c</requirement>
     </requirements>
 
-    <stdio>
-        <exit_code range="1:" />
-    </stdio>
-    
-    <command>
+    <command detect_errors="exit_code">
         <![CDATA[
         tadaridaC.r ${fichierTa} ${Classifier.fields.path} ;
         mv dataset_*.tc output
         ]]>
     </command>
 
-    <inputs>		
-		<param name="fichierTa" type="data" format="tabular" label="Detected sound events file(s)" help=" Detected sound events file(s) comme from Tadarida-D tool" />
+    <inputs>
+        <param name="fichierTa" type="data" format="tabular" label="Detected sound events file(s)" help=" Detected sound events file(s) comme from Tadarida-D tool" />
 
-		<param name="Classifier" type="select" label="Classifier" help="Chose one. The name is set following this rule : ClassifierAlgoName_DataOrigin. Come from expert user, not possible to create it with Galaxy.">
-			<options from_data_table="tadarida">
+        <param name="Classifier" type="select" label="Classifier" help="Chose one. The name is set following this rule : ClassifierAlgoName_DataOrigin. Come from expert user, not possible to create it with Galaxy.">
+            <options from_data_table="tadarida">
                 <column name="value" index="0"/>
                 <column name="name" index="1"/>
                 <column name="path" index="2"/>
-			</options>
+            </options>
         </param>
 
     </inputs>
 
     <outputs>
         <data format="tabular" name="output" label="${fichierTa.element_identifier}" from_work_dir="./output"/>
-	</outputs>
+    </outputs>
 
     <tests>
         <test>
