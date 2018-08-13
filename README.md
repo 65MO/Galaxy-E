@@ -148,7 +148,7 @@ To learn more about R Markdown and interactive documents, please visit rmarkdown
 
 * Alan Amossé ([MNHN CESCO](http://cesco.mnhn.fr/) & [Concarneau marine biology station](http://concarneau.mnhn.fr/))
 * Björn Grüning ([Freiburg University](http://www.bioinf.uni-freiburg.de/Galaxy/))
-* [Boyan Angelov](https://boyanangelov.com/))
+* [Boyan Angelov](https://boyanangelov.com/)
 * Eloïse Trigodet ([MNHN CESCO](http://cesco.mnhn.fr/), [Concarneau marine biology station](http://concarneau.mnhn.fr/)) & [Brest IUEM University](https://www-iuem.univ-brest.fr/master_sml/fr/mentions-parcours/gestion-de-l-environnement)
 * Mathias Rouan ([LETG](http://letg.cnrs.fr/auteur32.html))
 * Nicolas Dubos ([MNHN CESCO](http://cesco.mnhn.fr/user/123))
