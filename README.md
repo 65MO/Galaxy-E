@@ -140,6 +140,8 @@ To learn more about R Markdown and interactive documents, please visit rmarkdown
 
 # Interesting initiatives
 
+* Australian [Ecocloud](https://www.ecocloud.org.au/)
+* [The Biodiversity and Climate Change Virtual Laboratory (BCCVL)](http://www.bccvl.org.au/species-distribution-model/)
 * [Kaggle](https://www.kaggle.com/rtatman/welcome-to-data-science-in-r)
 
 
