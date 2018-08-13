@@ -47,6 +47,7 @@ New version of the galaxy client incomming, a new PR has been open [PR](https://
 # exploring the marine (you can also choose terrestrial) datasets
 datasets <- list_datasets(terrestrial = FALSE, marine = TRUE)
 ```
+* downloading and working with the Marine SPEcies and Environmental Data (MarineSPEED.org) benchmark dataset: https://github.com/lifewatch/marinespeed
 * Hub’eau Water related data (fishes,…) http://www.hubeau.fr/
 * CRBPO data https://crbpodata.mnhn.fr/
 * Movebank data https://www.movebank.org/
