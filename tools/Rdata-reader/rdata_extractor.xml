@@ -4,7 +4,7 @@
         <requirement type="package" version="7.0">readline</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
-        mkdir outputs;
+        mkdir outputs &&
 	Rscript '$__tool_directory__/rdata_extractor.R' '$rdata' $selectedattributes '$summary' '$other'
 ]]>
     </command>

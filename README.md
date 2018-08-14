@@ -1,13 +1,12 @@
 [![Join the chat at https://gitter.im/Galaxy-E/Lobby](https://badges.gitter.im/Galaxy-E/Lobby.svg)](https://gitter.im/Galaxy-E/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 
-
 [![DOI](https://zenodo.org/badge/108133531.svg)](https://zenodo.org/badge/latestdoi/108133531)
 
 
 
 
-![Alt Text](https://github.com/65MO/Galaxy-E/blob/master/galaxy/static/Galaxy-E-concarneau-team-fin.gif)
+![Concarneau Galaxy-E team 2018](https://github.com/65MO/Galaxy-E/blob/master/galaxy/static/Galaxy-E-concarneau-team-2018.gif)
 # Context
 
 Following [GCC2016 lightning talk](https://gcc16.sched.com/event/7Zgd/65-millions-of-observers "65 millions of observers"), and in the context of the french National Museum of Natural History MNHN project "65 Millions d'observateurs" dedicated to enhance and expand participation to citizen sciences projects studying biodiversity, a proof of concept of analysis web platform in macroecology will be made. We propose for this to use the [Galaxy web platform](https://github.com/galaxyproject/galaxy). Here is the origin of a Galaxy-E, for Ecology ?
@@ -48,6 +47,7 @@ New version of the galaxy client incomming, a new PR has been open [PR](https://
 # exploring the marine (you can also choose terrestrial) datasets
 datasets <- list_datasets(terrestrial = FALSE, marine = TRUE)
 ```
+* downloading and working with the Marine SPEcies and Environmental Data (MarineSPEED.org) benchmark dataset: https://github.com/lifewatch/marinespeed
 * Hub’eau Water related data (fishes,…) http://www.hubeau.fr/
 * CRBPO data https://crbpodata.mnhn.fr/
 * Movebank data https://www.movebank.org/
@@ -140,6 +140,8 @@ To learn more about R Markdown and interactive documents, please visit rmarkdown
 
 # Interesting initiatives
 
+* Australian [Ecocloud](https://www.ecocloud.org.au/)
+* [The Biodiversity and Climate Change Virtual Laboratory (BCCVL)](http://www.bccvl.org.au/species-distribution-model/)
 * [Kaggle](https://www.kaggle.com/rtatman/welcome-to-data-science-in-r)
 
 
@@ -148,6 +150,9 @@ To learn more about R Markdown and interactive documents, please visit rmarkdown
 
 * Alan Amossé ([MNHN CESCO](http://cesco.mnhn.fr/) & [Concarneau marine biology station](http://concarneau.mnhn.fr/))
 * Björn Grüning ([Freiburg University](http://www.bioinf.uni-freiburg.de/Galaxy/))
+* [Boyan Angelov](https://boyanangelov.com/)
+* Clara Urfer ([MNHN CESCO](http://cesco.mnhn.fr/), [Concarneau marine biology station](http://concarneau.mnhn.fr/)) & [Brest University](https://www.univ-brest.fr/departement-biologie)
+* Elisa Michon ([MNHN CESCO](http://cesco.mnhn.fr/), [Concarneau marine biology station](http://concarneau.mnhn.fr/)) & [Montpellier University](http://formations.umontpellier.fr/fr/formations/sciences-technologies-sante-STS/licence-XA/licence-sciences-de-la-vie-program-fruai0342321nprme139/ecologie-biologie-des-organismes-ebo-subprogram-ecologie-biologie-des-organismes-ebo/l3-ecologie-biologie-des-organismes-ebo-subprogram-pr398.html)
 * Eloïse Trigodet ([MNHN CESCO](http://cesco.mnhn.fr/), [Concarneau marine biology station](http://concarneau.mnhn.fr/)) & [Brest IUEM University](https://www-iuem.univ-brest.fr/master_sml/fr/mentions-parcours/gestion-de-l-environnement)
 * Mathias Rouan ([LETG](http://letg.cnrs.fr/auteur32.html))
 * Nicolas Dubos ([MNHN CESCO](http://cesco.mnhn.fr/user/123))

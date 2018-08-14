@@ -1,0 +1,32 @@
+<tool id="Butterfly_crossplot" name="Butterfly data analysis" version="0.1.0">
+    <requirements>
+        <requirement type="package" version="2.2.1">r-ggplot2</requirement>
+        <requirement type="package" version="1.1_2">r-rcolorbrewer</requirement>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+        Rscript '$__tool_directory__/butterfly_crossplot.R' '$__tool_directory__/stat_bag.r' '$__tool_directory__/BDD_PAPILLONS_2016.txt' '$__tool_directory__/code_couleurs.csv' '$function'
+    ]]></command>
+    <inputs>
+        <param name="function" type="select" label="Chose your analyse">
+            <option value="ggCompareLevel">Compare production methods</option>
+            <option value="ggfiltre1niveau">Compare regions</option>
+            <option value="gglocal">Compare local networks</option>
+        </param>
+    </inputs>
+    <outputs>
+        <data format="png" name="ggCompareLevel" label="Compare production methods" from_work_dir="resultats/Papillons_CONDUITEPARCELLE_comparaison.png">
+            <filter>function=='ggCompareLevel'</filter>
+        </data>
+        <collection type="list" name="output_ggfiltre" label="Compare regions">
+            <discover_datasets pattern="__designation_and_ext__" visible="false" format="png" directory="resultats"/>
+                <filter>function=='ggfiltre1niveau'</filter>
+        </collection>
+        <collection type="list" name="output_gglocal" label="Compare local network">
+            <discover_datasets pattern="__designation_and_ext__" visible="false" format="png" directory="resultats"/>
+                <filter>function=='gglocal'</filter>
+        </collection>
+   </outputs>
+    <help><![CDATA[
+        TDO: Fill in help.
+    ]]></help>
+</tool>

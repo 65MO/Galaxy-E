@@ -18,7 +18,7 @@
     <tests>
         <test>
             <param name="input1" value="mod1"/>
-            <param name="output" value="res.png"/>
+            <param output="output" value="res.png"/>
         </test>
     </tests>
 
@@ -26,11 +26,11 @@
 
 .. class:: infomark 
 
-==========================
+======================================
 Model residuals autocorrelation check 
-==========================
+======================================
 
-This tool is an implementation of the autocorr-res_acf function from `RegionalGAM package:  &lt;https://github.com/RetoSchmucki/regionalGAM/&gt;`_.
+This tool is an implementation of the autocorr-res_acf function from RegionalGAM package:  https://github.com/RetoSchmucki/regionalGAM/
 This function uses a simple linear model and explore for temporal autocorrelation that we will account in the final model.
     ]]></help>
     <citations>

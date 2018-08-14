@@ -1,0 +1,41 @@
+<tool id="grep_taxref" name="Taxref informations about species" version="0.1.0">
+    <command detect_errors="exit_code"><![CDATA[
+        echo "REGNE	PHYLUM	CLASSE	ORDRE	FAMILLE SOUS_FAMILLE	TRIBU	GROUP1_INPN	GROUP2_INPN	CD_NOM	CD_TAXSUP	CD_SUP	CD_REF	RANG	LB_NOM	LB_AUTEUR	NOM_COMPLET	NOM_COMPLET_HTML	NOM_VALIDE	NOM_VERN	NOM_VERN_ENG	HABITAT FR	GF	MAR	GUA	SM	SB	SPM	MAY	EPA	REU	SA	TA	TAAF	PF	NC	WF	CLI	URL" > res_taxref_grep.tab
+        &&
+
+        grep '$sname' '$__tool_directory__/taxref11/TAXREFv11.txt'  >> res_taxref_grep.tab;
+
+    ]]></command>
+    <inputs>
+        <param name="sname" label="Species scientific name" type="text" value="Genus species" help="Scientific name of a species to look after in taxref" />
+    </inputs>
+    <outputs>
+        <data name="output_taxref" format="tabular" from_work_dir="res_taxref_grep.tab" label="Species taxref informations"/>
+    </outputs>
+    <help><![CDATA[
+====================
+TAXREF Informations
+====================
+
+**What it does**
+
+This tool can look in the INPN taxref database for informations that match the scientific name of the species.
+
+The version of taxref used is v11.0. More informations and download at : 
+
+https://inpn.mnhn.fr/programme/referentiel-taxonomique-taxref
+
+https://inpn.mnhn.fr/telechargement/referentielEspece/taxref/11.0/menu
+
+    ]]></help>
+    <citations>
+        <citation type="bibtex">
+            @techreport{techreport,
+            author = {Gargominy, O and Tercerie, S and Regnier, C and Ramage, T and Dupont, P and Daszkiewicz, P and Poncet, Laurent},
+            year = {2017},
+            title = {TAXREF v11, référentiel taxonomique pour la France},
+            url = {https://inpn.mnhn.fr/docs-web/docs/download/210233}
+            }
+        </citation>
+    </citations>
+</tool>
