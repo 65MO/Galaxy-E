@@ -1,5 +1,6 @@
 #!/usr/bin/env Rscript
 
+
 args <- commandArgs(trailingOnly = TRUE)
 
 #Rscript clim_data.R 'worldclim' 'var' 'resolution' 'OutputFormat' #'FRA' #'prec1'
@@ -36,10 +37,9 @@ get_plot_title<-function(usr_var,usr_var_to_plot){
 
 
 #Call libraries
-library('raster') 
+library('raster',quietly=TRUE) 
 library(sp,quietly = TRUE, warn.conflicts = FALSE)
 library(ncdf4,quietly = TRUE, warn.conflicts = FALSE)
-##library(rgdal,quietly = TRUE, warn.conflicts = FALSE) #To save as geotif
 library(stringr)
 
 
@@ -55,11 +55,11 @@ global.var <- getData(usr_data, download = TRUE, var = usr_var, res = usr_res)
 
 # Check if we actualy get some
 if (length(global.var)==0){
-  print("No data found.")
+  cat("No data found.")
 }else{
   writeRaster(global.var, "output_writeRaster", format=usr_of,overwrite=TRUE)
-  final_msg<-paste("WorldClim data for ", usr_var, " at resolution ", usr_res, " in ", usr_of, " format", sep="")
-  print(final_msg)
+  final_msg<-paste("WorldClim data for ", usr_var, " at resolution ", usr_res, " in ", usr_of, " format\n", sep="")
+  cat(final_msg)
 }
 
 
@@ -95,7 +95,7 @@ region_var_to_plot<-eval(parse(text=region_var_to_plot_expression))
 jpeg(file="worldclim_plot_usr_region.jpeg",bg="white")
 
 title<-get_plot_title(usr_var,usr_var_to_plot)
-print(title)
+
 
 if(usr_plot_region=="FRA"){
   #FRA
@@ -129,7 +129,7 @@ if(usr_plot_region=="FRA"){
   q('no')
 }
 
-dev.off
+garbage_output<-dev.off
  
 #Exit
 q('no')
