@@ -14,9 +14,9 @@ RUN Rscript -e "install.packages('devtools')"
    
 #RUN Rscript -e "install.packages('keras')"
 
-#RUN apt-get install -y openjdk-8-jdk
-#RUN R CMD javareconf 
-#RUN Rscript -e "install.packages('rJava')"
+RUN apt-get install -y openjdk-8-jdk
+RUN R CMD javareconf 
+RUN Rscript -e "install.packages('rJava')"
 
 RUN Rscript -e "devtools::install_github('boyanangelov/sdmbench')"
     #Rscript -e "remote::install_github("boyanangelov/sdmbench")" && \
@@ -24,10 +24,10 @@ RUN apt-get -qq update && apt-get install --no-install-recommends -y python-pip 
 
 RUN Rscript -e "keras::install_keras(tensorflow = 'default')"
 
-#RUN Rscript -e "install.packages('maptools')" 
+RUN Rscript -e "install.packages('maptools')" 
 
-#RUN Rscript -e "install.packages('sdmbench')"
-#COPY ./global.r /srv/shiny-server/sample-apps/sdmbench/
+RUN Rscript -e "install.packages('sdmbench')"
+COPY ./global.r /srv/shiny-server/sample-apps/sdmbench/
 # Bash script to check traffic
 COPY sdmbench-master /srv/shiny-server/sample-apps/sdmbench/
 ADD ./monitor_traffic.sh /monitor_traffic.sh

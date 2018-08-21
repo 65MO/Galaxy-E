@@ -1,0 +1,30 @@
+# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+
+language: R
+dist: trusty
+sudo: required
+warnings_are_errors: false
+r_binary_packages:
+  - dismo
+  - dplyr
+  - gbm
+  - kernlab
+  - magrittr
+  - maptools
+  - mlr
+  - randomForest
+  - raster
+  - rgbif
+  - rgdal
+  - rpart
+  - shiny
+  - shinydashboard
+  - shinyjs
+  - tidyr
+  - xgboost
+cache: packages
+addons:
+  apt:
+    packages:
+      - libgdal-dev
+      - libproj-dev
