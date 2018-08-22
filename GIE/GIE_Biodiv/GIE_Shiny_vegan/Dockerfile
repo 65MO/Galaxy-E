@@ -1,11 +1,12 @@
-FROM rocker/shiny:latest
+FROM rocker/shiny:3.5.1
 
 # Installing packages needed for check traffic on the container and kill if none
 RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup && \
     echo "Acquire::http {No-Cache=True;};" > /etc/apt/apt.conf.d/no-cache && \
-    apt-get -qq update && apt-get install --no-install-recommends -y net-tools procps && \
+    apt-get -qq update && apt-get install --no-install-recommends -y net-tools procps &&\
     # Installing R package dedicated to the shniy app
-    Rscript -e "install.packages('vegan')" 
+    Rscript -e "install.packages('shinydashboard')" &&\
+    Rscript -e "install.packages('vegan')"
 
 
 
