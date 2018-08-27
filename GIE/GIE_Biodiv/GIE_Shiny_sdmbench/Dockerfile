@@ -32,4 +32,5 @@ RUN Rscript -e "keras::install_keras(tensorflow = 'default')"
 COPY sdmbench-master /srv/shiny-server/sample-apps/sdmbench/
 ADD ./monitor_traffic.sh /monitor_traffic.sh
 COPY shiny-server.sh /usr/bin/shiny-server.sh
+COPY ./shiny-server.conf /etc/shiny-server/shiny-server.conf
 CMD ["/usr/bin/shiny-server.sh"]
