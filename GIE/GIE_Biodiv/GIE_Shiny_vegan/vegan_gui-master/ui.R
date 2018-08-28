@@ -1,5 +1,11 @@
 library(shiny)
 library(shinydashboard)
+for (f in list.files('./modules')) {
+  source(file.path('modules', f), local=TRUE)
+}
+
+# Like wallace, trying to load the functions needed
+
 
 
 dashboardPage(
@@ -16,10 +22,19 @@ dashboardPage(
               accept=c('text/csv',
                        'text/comma-separated-values,text/plain',
                        '.csv')),
+    HTML('<hr>'),
+    galaxyOccs_UI('c1_galaxyOccs'),
+    actionButton("galaxyfile1","Upload Species Data from Galaxy)"),
+    HTML('<hr>'),
     fileInput('file2', 'Upload Enivornment Data',
               accept=c('text/csv',
                        'text/comma-separated-values,text/plain',
                        '.csv')),
+        HTML('<hr>'),
+    galaxyOccs_UI('c1_galaxyOccs'),
+    actionButton("galaxyfile2","Upload Species Data from Galaxy)"),
+    HTML('<hr>'),
+
     selectInput("variable", "Diversity Index:",
                 c("Shannon" = "shannon",
                   "Simpson" = "simpson",

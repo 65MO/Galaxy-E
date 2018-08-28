@@ -2,13 +2,18 @@ library(shiny)
 library(vegan)
 
 
+  # load modules
+for (f in list.files('./modules')) {
+    source(file.path('modules', f), local=TRUE)
+}
+
 function(input, output) {
 
 
   getData <- reactive({
 
     inFile_1 <- input$file1
-
+    
     if (is.null(input$file1))
       return(NULL)
 
@@ -16,7 +21,18 @@ function(input, output) {
 
   })
 
-  getData_2 <- reactive({
+
+galaxyOccs<- callModule(galaxyOccs_MOD, 'c1_galaxyOccs', rvs)
+  observeEvent(input$galaxyfile1,{
+   inFile_1 <- galaxyOccs()
+   output$rawdata<- renderDataTable(inFile_1)
+})
+
+   observeEvent(input$galaxyfile2,{
+   inFile_2 <- galaxyOccs()
+   output$rawdata_2<- renderDataTable(inFile_2)
+})
+   getData_2 <- reactive({
 
     inFile_2 <- input$file2
 
@@ -41,7 +57,7 @@ function(input, output) {
 
   output$diversity <- renderPlot({
     withProgress(message = 'Computing diversity', value = 0.40, {
-      barplot(diversity(getData(), index = input$variable), main = "Diverstity across sites", names.arg = seq(1, dim(getData())[1]))
+      barplot(diversity(inFile_1, index = input$variable), main = "Diverstity across sites", names.arg = seq(1, dim(inFile_1)[1]))
     })
   })
 
