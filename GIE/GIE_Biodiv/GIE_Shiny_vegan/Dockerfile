@@ -10,8 +10,9 @@ RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup && \
 
 
 
-# Bash script to check traffic
+# DEV !!! You should get the data from a git repo
 COPY vegan_gui-master /srv/shiny-server/sample-apps/vegan
+# Bash script to check traffic
 ADD ./monitor_traffic.sh /monitor_traffic.sh
 COPY shiny-server.sh /usr/bin/shiny-server.sh
 
