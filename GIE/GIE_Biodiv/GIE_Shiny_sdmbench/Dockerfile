@@ -18,6 +18,22 @@ RUN Rscript -e "install.packages('devtools')"
 #RUN R CMD javareconf 
 #RUN Rscript -e "install.packages('rJava')"
 
+RUN Rscript -e "install.packages('foreign')"
+RUN Rscript -e "install.packages('maptools')"
+RUN Rscript -e "install.packages('KernSmooth')"
+RUN Rscript -e "install.packages('survival')"
+RUN Rscript -e "install.packages('nlme')"
+RUN Rscript -e "install.packages('psych')"
+RUN Rscript -e "install.packages('MASS')"
+RUN Rscript -e "install.packages('lava')"
+RUN Rscript -e "install.packages('prodlim')"
+RUN Rscript -e "install.packages('broom')"
+RUN Rscript -e "install.packages('class')"
+RUN Rscript -e "install.packages('rpart')"
+RUN Rscript -e "install.packages('nnet')"
+RUN Rscript -e "install.packages('ipred')"
+RUN Rscript -e "install.packages('recipes')"
+RUN Rscript -e "install.packages('rsample')"
 RUN Rscript -e "devtools::install_github('boyanangelov/sdmbench')"
     #Rscript -e "remote::install_github("boyanangelov/sdmbench")" && \
 RUN apt-get -qq update && apt-get install --no-install-recommends -y python-pip  python-dev virtualenv
