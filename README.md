@@ -21,6 +21,7 @@ New version of the galaxy client incomming, a new PR has been open [PR](https://
 # Interesting Data sources
 ## Species data
 * Using R for occurences data through the spocc package: https://github.com/ropensci/spocc
+* Using mapr to display species occurences https://github.com/ropensci/mapr
 * Clean up occurences with scrubr https://github.com/ropensci/scrubr
 * Global Biodiversity Information Facility (GBIF) : https://www.gbif.org/developer/summary
 * IDigBio
