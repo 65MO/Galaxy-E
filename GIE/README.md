@@ -63,7 +63,6 @@ This original concept can propose an easy way to use R Shiny apps on Galaxy data
 
 If you need to use the [Galaxy IE helpers](https://github.com/bgruening/galaxy_ie_helpers), to facilitate more advanced import/export tasks, you can refer to the [Galaxy-E Wallace Shiny app Dockerfile](https://github.com/ValentinChCloud/Wallace-galaxy-ie/blob/11361b59d40ce09fea61300ec97d9c90cc27a83d/Dockerfile) to see an example. Here we just install it through the `pip install bioblend galaxy-ie-helpers && \` Dockerfile line then copy/paste [import](https://github.com/ValentinChCloud/Wallace-galaxy-ie/blob/11361b59d40ce09fea61300ec97d9c90cc27a83d/import_csv_user.py)/[export](https://github.com/ValentinChCloud/Wallace-galaxy-ie/blob/11361b59d40ce09fea61300ec97d9c90cc27a83d/export.py) dedicated scripts into the Docker.
 
-
 ### Shiny apps Docker images
 
 To download and use Galaxy-E GIE Shiny apps Docker images, you can refer to the [galaxy4ecology dockerhub repositories](https://hub.docker.com/search/?isAutomated=0&isOfficial=0&page=1&pullCount=0&q=galaxy4ecology&starCount=0) .
