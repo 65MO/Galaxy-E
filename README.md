@@ -113,6 +113,7 @@ datasets <- list_datasets(terrestrial = FALSE, marine = TRUE)
       * Statistics shiny GIE through [radiant](http://vnijs.github.io/radiant/)
       * Dashboard / restitution shiny GIE through [flexdashboard+shiny](https://rmarkdown.rstudio.com/flexdashboard/shiny.html) or [shiny dashboard](https://rstudio.github.io/shinydashboard/structure.html)
       * Macroecology through [Wallace](http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12945/full)
+      * Marxan, [a shiny app](https://github.com/mattwatts/RunMarxanTas) for [systematic conservation planning](http://marxan.net/marxanio) 
    * Shiny and reproducibility through `interactive document` concept
       * rmarkdown, a new way to build Shiny apps through [interactive documents](http://shiny.rstudio.com/articles/interactive-docs.html)
       ```
