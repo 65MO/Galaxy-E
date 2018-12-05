@@ -20,8 +20,8 @@
     
     <tests>
         <test>
-            <param name="input1" value="example_csv.csv"/>
-            <param name="sheet" value=","/>
+            <param name="input1" value="example_xlsx.xlsx"/>
+            <param name="sheet" value="biodiv_data"/>
             <output name="output" file="out.tabular"/>
         </test>
     </tests>
@@ -38,23 +38,15 @@ Extract a sheet from XLSX file to a tabular file.
 
 Input XLSX sheet
 
-
-
-Output tabular :
-
-	"John"	"Smith"	"2 mySteet, myCity"
-
-	"François"	"LeFrançais"	"1 rue du Général, Paris"
-
-	"Other"	"Random"	"Stuff, stuff, stuff"
+Output tabular
 
 ------
 
 **Arguments**
 
-Input : xlsx file.
+Input: xlsx file.
 
-
+sheet name: biodiv_data
 
 
     </help>
