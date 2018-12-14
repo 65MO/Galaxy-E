@@ -61,6 +61,7 @@ datasets <- list_datasets(terrestrial = FALSE, marine = TRUE)
 # Interesting tools
 * Work with messy data from db
  * [OpenRefine](http://openrefine.org/) Implemented as GIE [docker repo](DockerHub repo : https://hub.docker.com/r/valentinchdock/openrefine-galaxy-ie/)
+  * [FAIRifier](https://github.com/DTL-FAIRData/FAIRifier) based on OpenRefine and associated to [FAIR-metadata-editor](https://github.com/DTL-FAIRData/FAIR-metadata-editor/tree/develop). To test through GIE and linked to EML!
  * Other solutions:
     * [DataCleaner](https://datacleaner.org/)
     * [Karma](http://usc-isi-i2.github.io/karma/) A Data Integration Tool
