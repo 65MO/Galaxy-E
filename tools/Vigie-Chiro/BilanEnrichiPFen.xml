@@ -12,9 +12,9 @@
             '$__tool_directory__/BilanEnrichiPF.R' '$IdC2' '$__tool_directory__/refPF.csv' '$__tool_directory__/SpeciesList.csv' 
  
         &&
-        tail -n +2 output-summary.html > tmp && mv tmp output-summary.html &&
-        tail -n +2 output-nightly.html > tmp && mv tmp output-nightly.html &&
-        tail -n +2 output-hourly.html > tmp && mv tmp output-hourly.html
+        tail -n +2 output-summary.html > output-summary.html &&
+        tail -n +2 output-nightly.html > output-nightly.html &&
+        tail -n +2 output-hourly.html > output-hourly.html
 ]]>
     </command>
     <inputs>

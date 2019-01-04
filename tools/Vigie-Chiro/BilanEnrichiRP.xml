@@ -11,8 +11,8 @@
             '$__tool_directory__/BilanEnrichiRP.R' '$IdC2' '$__tool_directory__/refRPSeuil50.csv' '$__tool_directory__/SpeciesList.csv' 
  
         &&
-        tail -n +2 output-summaryRP.html > tmp && mv tmp output-summaryRP.html &&
-        tail -n +2 output-detailRP.html > tmp && mv tmp output-detailRP.html
+        tail -n +2 output-summaryRP.html > output-summaryRP.html &&
+        tail -n +2 output-detailRP.html > output-detailRP.html
 ]]>
     </command>
     <inputs>
