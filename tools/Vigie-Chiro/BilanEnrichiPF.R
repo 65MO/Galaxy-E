@@ -35,7 +35,7 @@ if(substr(IdC2$`nom du fichier`[1],2,2)!="a")
 #compute error risk by species (minimum error among files)
 #to be replaced by glm outputs if I'll have time
 RisqueErreurT=aggregate(IdC2$IdProb,by=list(IdC2$IdExtrap),FUN=function(x) ceiling((1-max(x-0.0001))*100))
-barplot(RisqueErreurT$x,names.arg=RisqueErreurT$Group.1,las=2)
+#barplot(RisqueErreurT$x,names.arg=RisqueErreurT$Group.1,las=2)
 #compute error risk accoring to observer/validator (a little dirty because it relies on alphabetical order of confidence classes: POSSIBLE < PROBABLE < SUR)
 RisqueErreurOV0=match(IdC2$ConfV,EchelleErreur)
 RisqueErreurOV=aggregate(RisqueErreurOV0,by=list(IdC2$IdExtrap)
@@ -81,7 +81,7 @@ for (j in 1:nlevels(as.factor(IdC2$IdExtrap)))
 EffortV=1/DiffC50/DiffT50
 EffortClass=(EffortV>0.0005)+(EffortV>0.005)+RisqueErreurOV$x
 cbind(RisqueErreurOV,EffortV,DiffC50,DiffT50)
-barplot(EffortClass-1,names.arg=NbValid2$Group.1,las=2)
+#barplot(EffortClass-1,names.arg=NbValid2$Group.1,las=2)
 ClassEffortV=c("-","FAIBLE","SUFFISANT","SUFFISANT","FORT","FORT")
 EffortClassMot=ClassEffortV[EffortClass]
 
