@@ -1,0 +1,68 @@
+categories:
+- ZZ-test1 
+description: Tools created by the vigiechiro team to analyses and identify chiro sounds files.
+
+long_description: |
+  TODO
+
+homepage_url: https://www.vigienature-ecole.fr/les-observatoires/le-protocole-vigie-chiro 
+name: vigiechiro
+owner: mnhn65mo
+remote_repository_url: https://github.com/Alanamosse/Galaxy-E/tree/master/tools/Vigie-Chiro
+type: unrestricted
+
+#auto_tool_repositories:
+#  name_template: "vigiechiro_{{ tool_id }}"
+#  description_template: "{{ tool_name }} (from the vigiechiro tool suite)"
+
+repositories:
+  vigiechiro_vigiechiro_bilanenrichipf:
+    description: BilanEnrichiPF from the vigiechiro tool suite
+    include: 
+      - BilanEnrichiPFen.xml    
+      - BilanEnrichiPF.R  
+      - refPF.csv
+      - SpeciesList.csv
+      - test-data/BilanEnrichiPF_Test1_out_tab.tabular
+      - test-data/BilanEnrichiPF_Test1.tabular  
+  vigiechiro_vigiechiro_bilanenrichirp:  
+     description: BilanEnrichiRP from the vigiechiro tool suite
+     include:        
+      - BilanEnrichiRPen.xml    
+      - BilanEnrichiRP.R  
+      - refRPSeuil50.csv
+      - SpeciesList.csv
+      - test-data/BilanEnrichiRP_Test1_out_tab.tabular
+      - test-data/BilanEnrichiRP_Test1.tabular 
+  vigiechiro_vigiechiro_idcorrect_2ndlayer: 
+    description: IdCorrect2ndLayer from the vigiechiro tool suite
+    include:        
+      - IdCorrect_2ndLayer_en.xml
+      - IdCorrect_2ndLayer.R
+      - ClassifEspC2b_180222.learner
+      - test-data/IdCor2Layer_Test1_obs.csv
+      - test-data/IdCor2Layer_Test1_out.tabular 
+  vigiechiro_vigiechiro_idvalid:
+    description: IdValid from the vigiechiro tool suite    
+    include:    
+      - IdValid.R
+      - Referentiel_seuils_C2.csv
+      - test-data/IdCor2Layer_Test1_out.tabular 
+      - test-data/BilanEnrichiPF_Test1.tabular  
+
+suite:
+  name: "suite_vigiechiro"
+  description: Tools created by the vigiechiro team to analyses and identify chiro sounds files.
+
+#exclude: 
+# - BilanEnrichiPF.xml.deprecated  
+# - IdCorrect_2ndLayer.xml.deprecated
+# - BilanEnrichiRP.xml.deprecated  
+# - IdValid.xml.deprecated
+# - tool_test_output.html
+# - tool_test_output.json
+# - output-detailRP.html    
+# - output-summaryRP.html
+# - output-detailRP.tabular
+# - output-summaryRP.tabular  
+# - ClassifEspC2b_171206.learner 
