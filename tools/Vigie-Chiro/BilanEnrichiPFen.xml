@@ -52,7 +52,7 @@
     <tests>
         <test>
             <param name="idc2" value="BilanEnrichiPF_Test1.tabular"/>
-            <param name="output_choice" value="nightly"/> 
+            <param name="output_choice" value="global"/> 
             <output name="output_summary_tabular" file="BilanEnrichiPF_Test1_out_tab.tabular" ftype="tabular"/>
         </test>
     </tests>
