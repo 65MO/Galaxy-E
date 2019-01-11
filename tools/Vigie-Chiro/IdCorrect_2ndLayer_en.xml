@@ -21,7 +21,7 @@
     </command>
 
     <macros>
-        <import>vigiechiro_bibref_macros.xml</import>
+        <import>vigiechiro_macros.xml</import>
     </macros>
 
     <inputs>
