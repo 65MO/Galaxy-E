@@ -177,5 +177,5 @@ DataCorrC2$ProbEsp_C2bs[is.na(DataCorrC2$ProbEsp_C2bs)]="empty"
 
 fout_name="output.tabular"
 
-write.table(DataCorrC2,file=fout_name,row.names=FALSE,sep="\t")
+write.table(DataCorrC2,file=fout_name,row.names=FALSE,sep="\t",quote=FALSE)
 #write.table(DataCorrC2,paste0(substr(args[1],nchar(args[1])-40,nchar(args[1])-17),"-DataCorrC2.csv"),row.names=F,sep="\t")
