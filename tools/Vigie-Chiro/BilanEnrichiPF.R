@@ -147,7 +147,7 @@ SummHTML=datatable(SummPart, rownames = FALSE) %>%
               background = styleEqual(c("FAIBLE","MODEREE","FORTE","TRES FORTE"), c("palegoldenrod", "greenyellow", "limegreen", "darkgreen")))
 
 saveWidget(SummHTML,"output-summary.html")
-write.table(SummPart,"output-summary.tabular",sep="\t",row.names=F)
+write.table(SummPart,"output-summary.tabular",sep="\t",row.names=F,quote=FALSE)
 
 #compute number of files validated per night/hour
 IdC2$Heure=sapply(IdC2$`nom du fichier`,FUN=function(x) substr(x,nchar(x)-9,nchar(x)-8))
@@ -198,7 +198,7 @@ SummHTMLN=datatable(SummPartN, rownames = FALSE,options = list(
               background = styleEqual(c(1,2,3,4), c("palegoldenrod", "greenyellow", "limegreen", "darkgreen")))
 
 saveWidget(SummHTMLN,"output-nightly.html")
-write.table(SummPartN,"output-nightly.tabular",sep="\t",row.names=F)
+write.table(SummPartN,"output-nightly.tabular",sep="\t",row.names=F,quote=FALSE)
 
 
 #summary by hour
@@ -230,7 +230,7 @@ SummHTMLH=datatable(SummPartH, rownames = FALSE) %>%
   formatStyle(columns=ListH, backgroundColor = styleInterval(brks, clrs))
 
 saveWidget(SummHTMLH,"output-hourly.html")
-write.table(SummPartH,"output-hourly.tabular",sep="\t",row.names=F)
+write.table(SummPartH,"output-hourly.tabular",sep="\t",row.names=F,quote=FALSE)
 
 
 #saveWidget(SummHTML,paste0(substr(args[1],1,nchar(args[1])-9),"-summary.html"))

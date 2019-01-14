@@ -196,7 +196,7 @@ SummHTML=datatable(SummPart, rownames = FALSE) %>%
 
 
 saveWidget(SummHTML,"output-summaryRP.html")
-write.table(SummPart,"output-summaryRP.tabular",row.names=F,sep="\t")
+write.table(SummPart,"output-summaryRP.tabular",row.names=F,sep="\t",quote=FALSE)
 
 #summary for each point/transect
 
@@ -223,7 +223,7 @@ SummHTMLT=datatable(SummPartTron, rownames = FALSE) %>%
   formatStyle(columns=ListSession, backgroundColor = styleInterval(brks, clrs))
 
 saveWidget(SummHTMLT,"output-detailRP.html")
-write.table(SummPartTron,"output-detailRP.tabular",row.names=F,sep="\t")
+write.table(SummPartTron,"output-detailRP.tabular",row.names=F,sep="\t",quote=FALSE)
 
 #saveWidget(SummHTML,paste0(substr(args[1],1,nchar(args[1])-9),"-summary.html"))
 #write.table(SummPart,paste0(substr(args[1],1,nchar(args[1])-9),"-summary.csv"),row.names=F,sep="\t")
