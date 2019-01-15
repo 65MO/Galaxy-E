@@ -11,9 +11,6 @@ owner: mnhn65mo
 remote_repository_url: https://github.com/Alanamosse/Galaxy-E/tree/master/tools/Vigie-Chiro
 type: unrestricted
 
-#auto_tool_repositories:
-#  name_template: "vigiechiro_{{ tool_id }}"
-#  description_template: "{{ tool_name }} (from the vigiechiro tool suite)"
 
 repositories:
   vigiechiro_vigiechiro_bilanenrichipf:
@@ -54,15 +51,3 @@ suite:
   name: "suite_vigiechiro"
   description: Tools created by the vigiechiro team to analyses and identify chiro sounds files.
 
-#exclude: 
-# - BilanEnrichiPF.xml.deprecated  
-# - IdCorrect_2ndLayer.xml.deprecated
-# - BilanEnrichiRP.xml.deprecated  
-# - IdValid.xml.deprecated
-# - tool_test_output.html
-# - tool_test_output.json
-# - output-detailRP.html    
-# - output-summaryRP.html
-# - output-detailRP.tabular
-# - output-summaryRP.tabular  
-# - ClassifEspC2b_171206.learner 
