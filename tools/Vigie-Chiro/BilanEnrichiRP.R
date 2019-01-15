@@ -4,7 +4,7 @@ library(htmlwidgets)
 
 args <- commandArgs(trailingOnly = TRUE)
 #print(args)
-EchelleErreur=c("","POSSIBLE","PROBABLE","SUR")
+EchelleErreur=c("NA","POSSIBLE","PROBABLE","SUR")
 EchelleNumErreur=c(99,50,10,1)
 
 #for test
@@ -34,11 +34,11 @@ RisqueErreurOV=aggregate(RisqueErreurOV0,by=list(IdC2$IdExtrap)
                          ,FUN=max) 
 RisqueErreurOV2=EchelleNumErreur[RisqueErreurOV$x]
 #compute minimum error risk between man and machine
-RisqueErreur=pmin(RisqueErreurT$x,RisqueErreurOV2)
+RisqueErreur=pmin(RisqueErreurT$x,RisqueErreurOV2,na.rm=TRUE)
 
 #compute number of files validated per species
 FichValid=aggregate(IdC2$IdV,by=list(IdC2$IdExtrap,IdC2$'nom du fichier')
-                                 ,FUN=function(x) sum(x!="")) 
+                                 ,FUN=function(x) sum(!is.na(x))) 
 NbValid2=aggregate(FichValid$x,by=list(FichValid$Group.1),FUN=function(x) sum(x>0))
 
 DiffC50=vector() # to store the median of confidence difference between unvalidated records and validated ones
@@ -49,7 +49,7 @@ for (j in 1:nlevels(as.factor(IdC2$IdExtrap)))
               ,IdC2$IdExtrap==levels(as.factor(IdC2$IdExtrap))[j])
   IdSp$IdProb[is.na(IdSp$IdProb)]=0
   IdSp=IdSp[order(IdSp$IdProb),]
-  IdSpV=subset(IdSp,IdSp$IdV!="")
+  IdSpV=subset(IdSp,!is.na(IdSp$IdV))
   if(nrow(IdSpV)>0)
   {
   cuts <- c(-Inf, IdSpV$IdProb[-1]-diff(IdSpV$IdProb)/2, Inf)
@@ -59,7 +59,7 @@ for (j in 1:nlevels(as.factor(IdC2$IdExtrap)))
   DiffC50=c(DiffC50,median(DiffC))
   
   IdSp=IdSp[order(IdSp$TimeNum),]
-  IdSpV=subset(IdSp,IdSp$IdV!="")
+  IdSpV=subset(IdSp,!is.na(IdSp$IdV))
   cuts <- c(-Inf, IdSpV$TimeNum[-1]-diff(IdSpV$TimeNum)/2, Inf)
   CorrT=findInterval(IdSp$TimeNum, cuts)
   CorrT2=IdSpV$TimeNum[CorrT]
