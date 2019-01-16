@@ -1,11 +1,11 @@
 <tool id="gdalinfo" name="GDAL Informations" version="0.1.0">
     <description>lists information about a raster dataset</description>
-    <requirements>
-        <requirement type="package" version="2.1.0">gdal</requirement>
-        <requirement type="package" version="3.5.0">geos</requirement>
-<!--        <requirement type="package" version="9b">jpeg</requirement>-->
-        <requirement type="package" version="1.5.90">libjpeg-turbo</requirement>
-    </requirements>
+
+    <macros>
+        <import>gdal_macros.xml</import>
+    </macros>   
+    <expand macro="gdal_requirements" />
+
     <command detect_errors="exit_code"><![CDATA[
         gdalinfo '$input1'
             #if $settings.advanced=='advanced'
@@ -45,13 +45,9 @@
             <option value="subd_n" selected="True">No</option>
         </param>
         <conditional name="settings">
-            <param name="advanced" type="select" label="Specify advanced parameters">
-                <option value="simple" selected="true">No, use program defaults.</option>
-                <option value="advanced">Yes, see full parameter list.</option>
-            </param>        
-            <when value="simple">
-            </when>
-            <when value="advanced">
+            <expand macro="gdal_advanced_params_select"/>	
+
+	    <when value="advanced">
                    <param name="mm" type="boolean" truevalue="-mm" falsevalue="" checked="false" label="-mm" help="Force computation of the actual min/max values for each band in the dataset."/>
                    <param name="stats" type="boolean" truevalue="-stats" falsevalue="" checked="false" label="-stats" help="Read and display image statistics. Force computation if no statistics are stored in an image."/>
                    <param name="approx_stats" type="boolean" truevalue="-approx_stats" falsevalue="" checked="false" label="-approx_stats" help="Read and display image statistics. Force computation if no statistics are stored in an image. However, they may be computed based on overviews or a subset of all tiles. Useful if you are in a hurry and don't want precise stats."/>

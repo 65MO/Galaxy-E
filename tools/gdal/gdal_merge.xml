@@ -1,11 +1,12 @@
 <tool id="gdal_merge" name="GDAL Merge" version="0.1.0">
     <description>mosaics a set of images.</description>
-    <requirements>
-        <requirement type="package" version="2.1.0">gdal</requirement>
-        <requirement type="package" version="3.5.0">geos</requirement>
-<!--        <requirement type="package" version="9b">jpeg</requirement>-->
-        <requirement type="package" version="1.5.90">libjpeg-turbo</requirement>
-    </requirements>
+
+    <macros>
+        <import>gdal_macros.xml</import>
+    </macros>   
+    <expand macro="gdal_requirements" />
+
+
     <command detect_errors="exit_code"><![CDATA[
         gdal_merge.py
             -q        
@@ -67,15 +68,11 @@
         </repeat>
         
         <param name="of" type="text" label="Output format" value="" help="Select the output format. The default is GeoTIFF (GTiff). Use the short format name. http://www.gdal.org/formats_list.html"/>
-        
-        <conditional name="settings">
-            <param name="advanced" type="select" label="Specify advanced parameters">
-                <option value="simple" selected="true">No, use program defaults.</option>
-                <option value="advanced">Yes, see full parameter list.</option>
-            </param>        
-            <when value="simple">
-            </when>
-            <when value="advanced">
+
+        <conditional name="settings">    
+            <expand macro="gdal_advanced_params_select"/>
+
+	    <when value="advanced">
                 <param name="co" type="text" label="-co" value="NAME=VALUE"/>
             
                 <param name="ot" type="text" label="-ot" value="Datatype" />
@@ -130,7 +127,6 @@
     </outputs>
     
     <tests>
-        
         <test>
             <param name="input" value="west.dem"/>
             <param name="input" value="east.dem"/>

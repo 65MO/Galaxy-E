@@ -1,11 +1,11 @@
 <tool id="gdaladdo" name="GDAL addo" version="0.1.0">
     <description>builds or rebuilds overview images</description>
-    <requirements>
-        <requirement type="package" version="2.1.0">gdal</requirement>
-        <requirement type="package" version="3.5.0">geos</requirement>
-<!--        <requirement type="package" version="9b">jpeg</requirement>-->
-        <requirement type="package" version="1.5.90">libjpeg-turbo</requirement>
-    </requirements>
+
+    <macros>
+        <import>gdal_macros.xml</import>
+    </macros>   
+    <expand macro="gdal_requirements" />
+
     <command detect_errors="exit_code"><![CDATA[
         gdaladdo '$input1'
             -q

@@ -1,11 +1,11 @@
 <tool id="ogrinfo" name="OGR Informations" version="0.1.0">
     <description>lists information about an OGR supported data source</description>
-    <requirements>
-        <requirement type="package" version="2.1.0">gdal</requirement>
-        <requirement type="package" version="3.5.0">geos</requirement>
-<!--        <requirement type="package" version="9b">jpeg</requirement>-->
-        <requirement type="package" version="1.5.90">libjpeg-turbo</requirement>
-    </requirements>
+
+    <macros>
+        <import>gdal_macros.xml</import>
+    </macros>   
+    <expand macro="gdal_requirements" />
+
     <command detect_errors="exit_code"><![CDATA[
         ogrinfo -ro '$input1.extra_files_path/Shapefile.shp' -al 
             #if $settings.advanced=='advanced'
@@ -27,12 +27,8 @@
     <inputs>
         <param type="data" name="input1" format="data" label="Gdal supported input file" help="http://www.gdal.org/ogr_formats.html"/>
         <conditional name="settings">
-            <param name="advanced" type="select" label="Specify advanced parameters">
-                <option value="simple" selected="true">No, use program defaults.</option>
-                <option value="advanced">Yes, see full parameter list.</option>
-            </param>        
-            <when value="simple">
-            </when>
+            <expand macro="gdal_advanced_params_select"/>
+
             <when value="advanced">
                 <param name="sql" type="text" label="-sql statement" value="eg : SELECT * FROM Shapefile WHERE X>10" help="Your input is renamed Shapefile.">
                     <sanitizer>

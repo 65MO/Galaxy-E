@@ -1,11 +1,12 @@
 <tool id="gdalwarp" name="GDAL Warp" version="0.1.0">
     <description>image reprojection and warping utility</description>
-    <requirements>
-        <requirement type="package" version="2.1.0">gdal</requirement>
-        <requirement type="package" version="3.5.0">geos</requirement>
-<!--        <requirement type="package" version="9b">jpeg</requirement>-->
-        <requirement type="package" version="1.5.90">libjpeg-turbo</requirement>
-    </requirements>
+
+    <macros>
+        <import>gdal_macros.xml</import>
+    </macros>   
+    <expand macro="gdal_requirements" />
+
+
     <command detect_errors="exit_code"><![CDATA[
         gdalwarp 
             -q
@@ -84,12 +85,8 @@
         <param name="t_srs" type="text" label="-t_srs Target spatial reference set" value="" help="The coordinate systems that can be passed are anything supported by the OGRSpatialReference."/>
         
         <conditional name="settings">
-            <param name="advanced" type="select" label="Specify advanced parameters">
-                <option value="simple" selected="true">No, use program defaults.</option>
-                <option value="advanced">Yes, see full parameter list.</option>
-            </param>        
-            <when value="simple">
-            </when>
+            <expand macro="gdal_advanced_params_select"/>
+
             <when value="advanced">
                 <conditional name="condi_tr">
                     <param name="tr" type="select" label="-tr"> 

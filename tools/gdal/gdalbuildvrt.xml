@@ -1,11 +1,11 @@
 <tool id="gdalbuildvrt" name="GDAL Build VRT" version="0.1.0">
     <description>builds a VRT from a list of datasets</description>
-    <requirements>
-        <requirement type="package" version="2.1.0">gdal</requirement>
-	<!--	<requirement type="package" version="9b">jpeg</requirement>-->
-        <requirement type="package" version="3.5.0">geos</requirement>
-        <requirement type="package" version="1.5.90">libjpeg-turbo</requirement>
-    </requirements>
+
+    <macros>
+        <import>gdal_macros.xml</import>
+    </macros>   
+    <expand macro="gdal_requirements" />
+
     <command detect_errors="exit_code"><![CDATA[
     gdalbuildvrt 
         '$output'
@@ -65,16 +65,10 @@
         <repeat name="series" title="Input file">
             <param type="data" name="input" format="data" label="Gdal supported input file" help="http://www.gdal.org/formats_list.html"/>
         </repeat>
+        <conditional name="settings">    
+            <expand macro="gdal_advanced_params_select"/>
             
-        <conditional name="settings">
-            <param name="advanced" type="select" label="Specify advanced parameters">
-                <option value="simple" selected="true">No, use program defaults.</option>
-                <option value="advanced">Yes, see full parameter list.</option>
-            </param>        
-            <when value="simple">
-            </when>
             <when value="advanced">
-            
                 <param name="b" type="text" label="-b band" value="e.g : -b 1 -b 2 -b 3"/>
                 
                 <conditional name="condi_te">
