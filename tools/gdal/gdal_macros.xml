@@ -171,9 +171,14 @@
     </xml>
 
 
+    <xml name="gdal_param_stats">
+        <param name="stats" type="boolean" truevalue="-stats" falsevalue="" checked="false" label="-stats" help="Read and display image statistics. Force computation if no statistics are stored in an image."/>
+    </xml>
 
-
-
+    
+    <xml name="gdal_param_norat">
+        <param name="norat" type="boolean" truevalue="-norat" falsevalue="" checked="false" label="-norat" help="Suppress printing of raster attribute table."/>
+   </xml>
 
 
 
