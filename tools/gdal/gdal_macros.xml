@@ -1,86 +1,52 @@
 <macros>
-##    <xml name="vigiechiro_bibref">
-##        <citations>
-##            <citation type="bibtex">
-##	    @article{kerbiriou2015vigie,
-##	    title={Vigie-Chiro: 9 ans de suivi des tendances des esp{\`e}ces communes},
-##            author={Kerbiriou, C and Julien, JF and Bas, Y and Marmet, J and Le Viol, I and Lorrilliere, R and Azam, C and Gasc, A and Lois, G},
-##            journal={Symbioses, nouvelle s{\'e}rie},
-##            number={34},
-##            year={2015}
-##            }
-##            </citation>
-##            <citation type="bibtex">
-##	    @inproceedings{bas2013automatic,
-##            title={Automatic echolocation calls identification in Europe vs. Neotropics: more species does not mean more difficult},
-##            author={Bas, Yves and Escallon, Antoine and Ferre, Matthieu and Haquart, Alexandre and Rufray, Vincent and Disca, Thierry and Julien, Jean-Fran{\c{c}}ois}
-##	            }
-##           </citation>
-##           <citation type="bibtex">
-##            @inproceedings{kerbiriou2010long,
-##            title={Long term trends monitoring of bats, from biodiversity indicator production to species specialization assessment},
-##            author={Kerbiriou, C and Bas, Y and Dufr{\^e}ne, L and Robert, A and Julien, JF},
-##            booktitle={24th Annual Meeting of the Society for Conservation Biology, Edmonton, Canada},
-##            year={2010}
-##            }
-##            </citation>
-##            <citation type="doi">10.5334/jors.154</citation>  
-##        </citations>
-##    </xml>
-
-
-    <xml name="gdal_advanced_params_select">
-            <param name="advanced" type="select" label="Specify advanced parameters">
-                <option value="simple" selected="true">No, use program defaults.</option>
-                <option value="advanced">Yes, see full parameter list.</option>
-            </param>        
-            <when value="simple">
-            </when>
+    
+<!--
+    <xml name="vigiechiro_bibref">
+        <citations>
+            <citation type="bibtex">
+	    @article{kerbiriou2015vigie,
+	    title={Vigie-Chiro: 9 ans de suivi des tendances des esp{\`e}ces communes},
+            author={Kerbiriou, C and Julien, JF and Bas, Y and Marmet, J and Le Viol, I and Lorrilliere, R and Azam, C and Gasc, A and Lois, G},
+            journal={Symbioses, nouvelle s{\'e}rie},
+            number={34},
+            year={2015}
+            }
+            </citation>
+            <citation type="bibtex">
+	    @inproceedings{bas2013automatic,
+            title={Automatic echolocation calls identification in Europe vs. Neotropics: more species does not mean more difficult},
+            author={Bas, Yves and Escallon, Antoine and Ferre, Matthieu and Haquart, Alexandre and Rufray, Vincent and Disca, Thierry and Julien, Jean-Fran{\c{c}}ois}
+	            }
+           </citation>
+           <citation type="bibtex">
+            @inproceedings{kerbiriou2010long,
+            title={Long term trends monitoring of bats, from biodiversity indicator production to species specialization assessment},
+            author={Kerbiriou, C and Bas, Y and Dufr{\^e}ne, L and Robert, A and Julien, JF},
+            booktitle={24th Annual Meeting of the Society for Conservation Biology, Edmonton, Canada},
+            year={2010}
+            }
+            </citation>
+            <citation type="doi">10.5334/jors.154</citation>  
+        </citations>
     </xml>
+-->
 
+
+
+
+
+<!--
     <xml name="gdal_param_separate">
                 <param name="separate" type="boolean" truevalue="-separate" falsevalue="" checked="false" label="-separate" />
     </xml>
 
 
-    <xml name="gdal_param_b">
-                <param name="b" type="text" label="-b band" value="e.g : -b 1 -b 2 -b 3"/>
-    </xml>
 
 
-    <xml name="gdal_param_oo">
-                <param name="oo" type="text" label="-oo" value="NAME=VALUE" />
-    </xml>
 
 
-    <xml name="gdal_param_r">
-                <conditional name="condi_resample">
-                    <param label="-r" name="resample" type="boolean" truevalue="resampling" falsevalue="no_resampling" checked="false"/>
-                        <when value="resampling">
-                            <param name="r" type="select" label="Reseampling algorithm" >
-                                <option value="nearest" selected="true"/>
-                                <option value="bilinear"/>
-                                <option value="cubic"/>
-                                <option value="cubicspline"/>
-                                <option value="lanczos"/>
-                                <option value="average"/>
-                                <option value="mode"/>
-                                <option value="max"/>
-                                <option value="min"/>
-                                <option value="med">Median resampling</option>
-                                <option value="q1">First quartile resampling</option>
-                                <option value="q2">Third quartile resampling</option>
-                            </param>
-			</when>
-                        <when value="no_resampling">
-                        </when>
-                </conditional>
-    </xml>
 
 
-    <xml name="gdal_param_te ">
-                    <param name="te" type="select" label="-te">
-    </xml>
 
 
     <xml name="gdal_param_tr">
@@ -97,16 +63,140 @@
 
     </xml>
 
-
+-->
 
     <xml name="gdal_requirements">
         <requirements>
             <requirement type="package" version="2.1.0">gdal</requirement>
             <requirement type="package" version="3.5.0">geos</requirement>
             <requirement type="package" version="1.5.90">libjpeg-turbo</requirement>	    
-	    <!--        <requirement type="package" version="9b">jpeg</requirement>-->
         </requirements>	
     </xml>
+
+
+    <xml name="gdal_advanced_params_select">
+        <param name="advanced" type="select" label="Specify advanced parameters">
+            <option value="simple" selected="true">No, use program defaults.</option>
+            <option value="advanced">Yes, see full parameter list.</option>
+        </param>        
+        <when value="simple">
+        </when>
+    </xml>
+
+
+    <xml name="gdal_param_te">
+        <conditional name="condi_te">
+            <param name="te" type="select" label="-te">
+                <option value="no_te" selected="true">Don't use the -te option</option>
+                <option value="te">Use the -te option</option>
+            </param>
+            <when value="no_te">
+            </when>
+	    <when value="te">
+                <param name="xmin" type="float" label="xmin" value="0">
+                    <validator type="expression" message="Value must be >= 0">value is not None and value >=0</validator>
+                </param>
+                <param name="ymin" type="float" label="ymin" value="0">
+                    <validator type="expression" message="Value must be >= 0">value is not None and value >=0</validator>
+                </param>
+                <param name="xmax" type="float" label="xmax" value="0">
+                    <validator type="expression" message="Value must be >= 0">value is not None and value >=0</validator>
+                </param>
+                <param name="ymax" type="float" label="ymax" value="0">
+                    <validator type="expression" message="Value must be >= 0">value is not None and value >=0</validator>
+                </param>
+            </when>
+        </conditional> 
+    </xml>
+
+
+    <xml name="gdal_param_r">
+        <conditional name="condi_resample">
+            <param label="-r" name="resample" type="boolean" truevalue="resampling" falsevalue="no_resampling" checked="false"/>
+            <when value="resampling">
+                <param name="r" type="select" label="Reseampling algorithm" >
+                    <option value="nearest" selected="true"/>
+                    <option value="bilinear"/>
+                    <option value="cubic"/>
+                    <option value="cubicspline"/>
+                    <option value="lanczos"/>
+                    <option value="average"/>
+                    <option value="mode"/>
+                    <option value="max"/>
+                    <option value="min"/>
+                    <option value="med">Median resampling</option>
+                    <option value="q1">First quartile resampling</option>
+                    <option value="q2">Third quartile resampling</option>
+                </param>
+            </when>
+            <when value="no_resampling">
+            </when>
+        </conditional>
+    </xml>
+
+
+    <xml name="gdal_param_tr">
+        <conditional name="condi_tr">
+            <param name="tr" type="select" label="-tr"> 
+                <option value="no_tr" selected="true">Don't use the -tr option</option>
+                <option value="tr">Use the -tr option</option>
+            </param>
+            <when value="no_tr">
+            </when>
+            <when value="tr">
+                <param name="xres" type="float" label="xres" value="0"/>
+                <param name="yres" type="float" label="yres" value="0"/>
+            </when>
+        </conditional>
+    </xml>
+
+
+    <xml name="gdal_param_b">
+        <param name="b" type="text" label="-b band e.g : -b 1 -b 2 -b 3" value=""/>
+    </xml>
+
+
+    <xml name="gdal_param_tap">
+        <param name="tap" label="-tap" type="boolean" truevalue="-tap" falsevalue="" checked="false" />
+    </xml>
+
+
+    <xml name="gdal_param_separate">
+        <param name="separate" type="boolean" truevalue="-separate" falsevalue="" checked="false" label="-separate" />
+    </xml>
+
+
+    <xml name="gdal_param_a_srs">
+        <param name="a_srs" type="text" label="-a_srs srs_def" value="" />
+    </xml>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+    <xml name="gdal_param_oo">
+        <param name="oo" type="text" label="-oo NAME=VALUE" value="" />
+    </xml>
+-->
+
+    <xml name="gdal_validator_NonNullPositive">
+        <validator type="expression" message="Value must be positive">value is not None and value >0</validator>
+    </xml>
+
+
+
+
 
 
 </macros>
