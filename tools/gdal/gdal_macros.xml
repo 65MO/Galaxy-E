@@ -186,8 +186,14 @@
   </xml>
 
 
+  <xml name="gdal_param_co">
+      <param name="co" type="text" label="-co NAME=VALUE" help="e.g : COMPRESS=JPEG" value="" />
+  </xml>   
 
 
+  <xml name="gdal_param_ot">
+      <param name="ot" type="text" label="-ot Datatype" value="" />
+  </xml>
 
 
 
@@ -203,7 +209,7 @@
 -->
 
     <xml name="gdal_validator_NonNullPositive">
-        <validator type="expression" message="Value must be positive">value is not None and value >0</validator>
+        <validator type="expression" message="Value must be >= 0">value is not None and value >0</validator>
     </xml>
 
 
