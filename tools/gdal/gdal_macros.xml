@@ -181,6 +181,13 @@
    </xml>
 
 
+  <xml name="gdal_param_of">
+      <param name="of" type="text" label="Output format -of" value="Gtiff" help="Select the output format. The default is GeoTIFF (GTiff). Use the short format name. http://www.gdal.org/formats_list.html"/>
+  </xml>
+
+
+
+
 
 
 
