@@ -14,17 +14,15 @@
                 '${s.input}'
             #end for
             
-            #unless $of==''
-                -of '$of'
-            #end unless
+            -of '$of'
 
-            #unless $s_srs==''
+            #if $s_srs!=''
                 -s_srs '$s_srs'
-            #end unless
+            #end if
             
-            #unless $t_srs==''
+            #if $t_srs!=''
                 -t_srs '$t_srs'
-            #end unless
+            #end if
             
             #if $settings.advanced=="advanced"
 
@@ -32,17 +30,13 @@
                     -tr $settings.condi_tr.xres $settings.condi_tr.yres
                 #end if
     
-                #unless $settings.to=='NAME=VALUE'
-                    -to '$settings.to'
-                #end unless
+                -to '$settings.to'
                 
-                #unless $settings.wo=='NAME=VALUE'
-                    -wo '$settings.wo'
-                #end unless
+                -wo '$settings.wo'
             
-                #unless $settings.order=='no_value'
+                #if $settings.order!='no_value'
                     -order '$settings.order'
-                #end unless
+                #end if
 
                 #if $settings.condi_resample.resample=='resampling'
                     -r $settings.condi_resample.r
@@ -64,9 +58,9 @@
                 $settings.rpc
                 $settings.geoloc
                 
-                #unless $settings.srcnodata==''
+                #if $settings.srcnodata!=''
                     -srcnodata '$settings.srcnodata'
-                #end unless
+                #end if
                 
                 $settings.dstalpha
             #end if
@@ -79,31 +73,17 @@
         <repeat name="series" title="Input file">
             <param type="data" name="input" format="data" label="Gdal supported input file" help="http://www.gdal.org/formats_list.html"/>
         </repeat>
-            
-        <param name="of" type="text" label="Output format -of" value="" help="Select the output format. The default is GeoTIFF (GTiff). Use the short format name. http://www.gdal.org/formats_list.html"/>
+
+        <expand macro="gdal_param_of"/>
         <param name="s_srs" type="text" label="-s_srs Source spatial reference set" value="" help="The coordinate systems that can be passed are anything supported by the OGRSpatialReference."/>
         <param name="t_srs" type="text" label="-t_srs Target spatial reference set" value="" help="The coordinate systems that can be passed are anything supported by the OGRSpatialReference."/>
         
         <conditional name="settings">
             <expand macro="gdal_advanced_params_select"/>
-
             <when value="advanced">
-                <conditional name="condi_tr">
-                    <param name="tr" type="select" label="-tr"> 
-                        <option value="no_tr" selected="true">Don't use the -tr option</option>
-                        <option value="tr">Use the -tr option</option>
-                    </param>
-                    <when value="no_tr">
-                    </when>
-                    <when value="tr">
-                        <param name="xres" type="float" label="xres" value="0"/>
-                        <param name="yres" type="float" label="yres" value="0"/>
-                    </when>
-                </conditional>
-
-
-                <param name="to" type="text" label="-to" value="NAME=VALUE"/>
-                <param name="wo" type="text" label="-wo" value="NAME=VALUE" />
+                <expand macro="gdal_param_tr"/>    
+                <param name="to" type="text" label="-to NAME=VALUE" value=""/>
+                <param name="wo" type="text" label="-wo NAME=VALUE" value="" />
                 <param name="order" type="select" label="-order n">
                     <option value="no_value" selected="true">Select an order.</option>
                     <option value="1">1</option>
@@ -115,7 +95,6 @@
                 <param name="geoloc" type="boolean" label="-geoloc" truevalue="-geoloc" falsevalue="" checked="false"/>
                 <param name="srcnodata" type="text" label="-srcnodata value" value=""/>
                 <param name="dstalpha" type="boolean" label="-dstalpha" truevalue="-dstalpha" falsevalue="" checked="false"/>
-                
                 <conditional name="condi_et">
                     <param name="et" label="-et" type="boolean" truevalue="et" falsevalue="no_et" checked="false"/>
                     <when value="no_et">
@@ -124,7 +103,6 @@
                         <param name="et" type="float" label="-et error threshold" value=""/>
                     </when>
                 </conditional>
-                
                 <conditional name="condi_refine_gcps">
                     <param name="refine_gcps" type="select" label="-refine_gcps">
                         <option value="no_refine_gcps" selected="true">Don't use the -refine_gcps option</option>
@@ -137,47 +115,10 @@
                         <param name="minimum_gcps" type="float" label="minimum_gcps" value="0"/>
                     </when>
                 </conditional>
-                
-                <conditional name="condi_resample">
-                    <param name="resample" label="-r" type="boolean" truevalue="resampling" falsevalue="no_resampling" checked="false"/>
-                    <when value="resampling">
-                        <param name="r" type="select" label="Reseampling algorithm" >
-                            <option value="nearest" selected="true"/>
-                            <option value="bilinear"/>
-                            <option value="cubic"/>
-                            <option value="cubicspline"/>
-                            <option value="lanczos"/>
-                            <option value="average"/>
-                            <option value="mode"/>
-                            <option value="max"/>
-                            <option value="min"/>
-                            <option value="med">Median resampling</option>
-                            <option value="q1">First quartile resampling</option>
-                            <option value="q2">Third quartile resampling</option>
-                        </param>
-                    </when>
-                    <when value="no_resampling">
-                    </when>
-                </conditional>
-                
-                <conditional name="condi_te">
-                    <param name="te" type="select" label="-te">
-                        <option value="no_te" selected="true">Don't use the -te option</option>
-                        <option value="te">Use the -te option</option>
-                    </param>
-                    <when value="no_te">
-                    </when>
-                    <when value="te">
-                        <param name="xmin" type="float" label="xmin" value="0"/>
-                        <param name="ymin" type="float" label="ymin" value="0"/>
-                        <param name="xmax" type="float" label="xmax" value="0"/>
-                        <param name="ymax" type="float" label="ymax" value="0"/>
-                    </when>
-                </conditional>
-                
+                <expand macro="gdal_param_r"/>
+                <expand macro="gdal_param_te"/>		
             </when>
         </conditional>
-        
     </inputs>
     
     <outputs>
