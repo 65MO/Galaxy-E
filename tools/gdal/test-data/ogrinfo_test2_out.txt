@@ -1,0 +1,16 @@
+INFO: Open of `/tmp/tmpsO5SQf/files/000/dataset_1.dat'
+      using driver `netCDF' successful.
+Metadata:
+  NC_GLOBAL#institution=Puertos del Estado (PdE) - Mercator-Ocean (MO) 
+  NC_GLOBAL#julian_day_unit=Hours since 2002-02-15
+  NC_GLOBAL#latitude_max=51
+  NC_GLOBAL#latitude_min=43
+  NC_GLOBAL#longitude_max=2.499999046325684
+  NC_GLOBAL#longitude_min=-6.000000476837158
+  NC_GLOBAL#references=http://marine.copernicus.eu
+  NC_GLOBAL#source=CMEMS IBI-MFC
+  NC_GLOBAL#time_max=112464
+  NC_GLOBAL#time_min=7272
+  NC_GLOBAL#title=CMEMS IBI REANALYSIS: MONTHLY BIOGEOCHEMICAL PRODUCTS (REGULAR GRID) 
+  NC_GLOBAL#z_max=0.5057600140571594
+  NC_GLOBAL#z_min=0.5057600140571594
