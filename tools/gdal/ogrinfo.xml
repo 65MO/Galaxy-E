@@ -1,24 +1,22 @@
 <tool id="ogrinfo" name="OGR Informations" version="0.1.0">
     <description>lists information about an OGR supported data source</description>
-
     <macros>
         <import>gdal_macros.xml</import>
     </macros>   
     <expand macro="gdal_requirements" />
-
     <command detect_errors="exit_code"><![CDATA[
-        ogrinfo -ro '$input1.extra_files_path/Shapefile.shp' -al 
+        ogrinfo -ro '$input1'  -al 
             #if $settings.advanced=='advanced'
 
-                #unless $settings.sql=='eg : SELECT * FROM Shapefile WHERE X>10':
-                    -sql '$settings.sql'
-                #end unless
-                
+                #if $settings.condi_sql.sql=='sql':
+                    #if $settings.condi_sql.sql_statement!='':
+                        -sql '$settings.condi_sql.sql_statement'
+                    #end if
+                #end if
+               
                 $settings.so
 
-
             #end if
-
 
         > '$output'
 
@@ -28,16 +26,25 @@
         <param type="data" name="input1" format="data" label="Gdal supported input file" help="http://www.gdal.org/ogr_formats.html"/>
         <conditional name="settings">
             <expand macro="gdal_advanced_params_select"/>
-
             <when value="advanced">
-                <param name="sql" type="text" label="-sql statement" value="eg : SELECT * FROM Shapefile WHERE X>10" help="Your input is renamed Shapefile.">
-                    <sanitizer>
-                        <valid initial="string.printable">
-                            <add value=">"/>
-                        </valid>
-                    </sanitizer>
-                </param>
-
+                <conditional name="condi_sql">
+                    <param name="sql" type="select" label="-sql statement"> 
+                        <option value="no_sql" selected="true">Don't use the -sql option</option>
+                        <option value="sql">Use the -sql option</option>
+                    </param>
+                    <when value="no_sql">
+                    </when>
+                    <when value="sql">
+                        <param name="sql_statement" type="text" label="-sql statement" help="eg : SELECT * FROM file WHERE X>10." value="">
+                            <sanitizer>
+                               <valid initial="string.printable">
+                                   <add value=">"/>
+                               </valid>
+                           </sanitizer>
+                           <validator type="expression" message="Can't be empty, please enter a SQL statement.">value.strip()</validator>
+                       </param>
+                    </when>
+                </conditional>
                 <param name="so" label="-so" type="boolean" truevalue="-so" falsevalue="" checked="true"/>
             </when>
         </conditional>
@@ -70,7 +77,7 @@ Select from history a suported vector file.
 
 *-sql statement*
 
-    Execute the indicated SQL statement and return the result. Your input is renamed Shapefile. 
+    Execute the indicated SQL statement and return the result. 
 
 |
 
