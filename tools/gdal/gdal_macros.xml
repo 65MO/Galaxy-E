@@ -192,7 +192,20 @@
 
 
   <xml name="gdal_param_ot">
-      <param name="ot" type="text" label="-ot Datatype" value="" />
+      <param name="ot" type="select" label="-ot Datatype">
+          <option value="byte">Byte</option>
+          <option value="int16">Int16</option>
+          <option value="uint16">UInt16</option>
+          <option value="uint32">UInt32</option>
+          <option value="int32">Int32</option>
+          <option value="float32">Float32</option>
+          <option value="float64">Float64</option>
+          <option value="cint16">CInt16</option>
+          <option value="cint32">CInt32</option>
+          <option value="cfloat32">CFloat32</option>
+          <option value="cfloat64">CFloat64</option>
+          <option value="" selected="true">Select a datatype for the output bands (default)</option>
+      </param>
   </xml>
 
 
@@ -209,7 +222,7 @@
 -->
 
     <xml name="gdal_validator_NonNullPositive">
-        <validator type="expression" message="Value must be >= 0">value is not None and value >0</validator>
+        <validator type="expression" message="Value must be >= 0">value is not None and value >=0</validator>
     </xml>
 
 
