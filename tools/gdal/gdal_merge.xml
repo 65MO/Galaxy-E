@@ -72,12 +72,8 @@
                 <conditional name="condi_ps">
                     <param label="-ps pixelsize_x pixelsize_y" name="pixelsize" type="boolean" truevalue="use_ps" falsevalue="no_ps" checked="false" />
                     <when value="use_ps">
-                        <param name="pixelsize_x" type="integer" value="0">
-                            <expand macro="gdal_validator_NonNullPositive"/>
-                        </param>
-                        <param name="pixelsize_y" type="integer" value="0">
-                            <expand macro="gdal_validator_NonNullPositive"/>
-                        </param>
+                        <param name="pixelsize_x" type="integer" value="0" min="0">
+                        <param name="pixelsize_y" type="integer" value="0" min="0">
                     </when>
                     <when value="no_ps">
                     </when>
@@ -91,18 +87,10 @@
                     <when value="no_ul_lr">
                     </when>
                     <when value="ul_lr">
-                        <param name="ulx" type="integer" label="ulx" value="0">
-                            <expand macro="gdal_validator_NonNullPositive"/>
-                        </param>
-                        <param name="uly" type="integer" label="uly" value="0">
-                            <expand macro="gdal_validator_NonNullPositive"/>
-                        </param>
-                        <param name="lrx" type="integer" label="lrx" value="0">
-                            <expand macro="gdal_validator_NonNullPositive"/>
-                        </param>
-                        <param name="lry" type="integer" label="lry" value="0">
-                            <expand macro="gdal_validator_NonNullPositive"/>
-                        </param>
+                        <param name="ulx" type="integer" label="ulx" value="0" min="0"/>
+                        <param name="uly" type="integer" label="uly" value="0" min="0"/>
+                        <param name="lrx" type="integer" label="lrx" value="0" min="0"/>
+                        <param name="lry" type="integer" label="lry" value="0" min="0"/>
                     </when>
                 </conditional>        
                 <param name="v" type="boolean" truevalue="-v" falsevalue="" checked="false" label="-v" />
