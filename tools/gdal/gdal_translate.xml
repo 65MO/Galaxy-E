@@ -12,19 +12,19 @@
             '$typeinput.input1' '$output'
             #if $settings.advanced=='advanced'
                 
-                #unless $settings.ot=='eg : Byte/Int16/UInt16/UInt32/Int32/Float32/Float64/CInt16/CInt32/CFloat32/CFloat64'
+                #if $settings.ot!=''
                     -ot $settings.ot
-                #end unless
+                #end if
 
                 $settings.strict
                 
-                #unless $settings.b=='e.g : -b 1 -b 2 -b 3'
+                #if $settings.b!=''
                     $settings.b
-                #end unless
+                #end if
                 
-                #unless $settings.mask=='e.g : -mask 1'
+                #if $settings.mask!=''
                     '$settings.mask'
-                #end unless
+                #end if
                 
                 #if $settings.condi_resample.resample=='resampling'
                     -r $settings.condi_resample.r
@@ -57,21 +57,21 @@
                 $settings.stats
                 $settings.norat
                 
-                #unless $settings.co=='e.g : COMPRESS=JPEG'
+                #if $settings.co!=''
                     -co '$settings.co'
-                #end unless
+                #end if
                 
-                #unless $settings.mo=='META-TAG=VALUE'
+                #if $settings.mo!=''
                     -mo '$settings.mo'
-                #end unless
+                #end if
                 
-                #unless $settings.oo=='NAME=VALUE'
-                    -oo '$settings.oo'
-                #end unless
+##                #if $settings.oo!=''
+##                    -oo '$settings.oo'
+##                #end if
                 
-                #unless $settings.a_srs==''
+                #if $settings.a_srs!=''
                     -a_srs '$settings.a_srs'
-                #end unless
+                #end if
                             
             #end if
             -q 
@@ -101,41 +101,25 @@
                 </param>
             </when>
         </conditional>
-        <param name="of" type="text" label="Output format" value="gtiff" help="Select the output format. The default is GeoTIFF (GTiff). Use the short format name. http://www.gdal.org/formats_list.html"/>
-
+        <expand macro="gdal_param_of"/>
         <conditional name="settings">    
             <expand macro="gdal_advanced_params_select"/>
-
             <when value="advanced">
-
-                <param name="ot" type="text" label="-ot type" value="eg : Byte/Int16/UInt16/UInt32/Int32/Float32/Float64/CInt16/CInt32/CFloat32/CFloat64"/>
+                <expand macro="gdal_param_ot"/>
                 <param name="strict" type="boolean" truevalue="-strict" falsevalue="" checked="false" label="-strict"/>
-                <param name="b" type="text" label="-b band" value="e.g : -b 1 -b 2 -b 3"/>
-                <param name="mask" type="text" label="-mask band" value="e.g : -mask 1"/>
-                
-                <conditional name="condi_resample">
-                    <param label="-r" name="resample" type="boolean" truevalue="resampling" falsevalue="no_resampling" checked="false" help="Use a resampling algorithm"/>
-                    <when value="resampling">
-                        <param name="r" type="select" label="Reseampling algorithm" >
-                            <option value="nearest" selected="true"/>
-                            <option value="bilinear"/>
-                            <option value="cubic"/>
-                            <option value="cubicspline"/>
-                            <option value="lanczos"/>
-                            <option value="average"/>
-                            <option value="mode"/>
-                        </param>
-                    </when>
-                    <when value="no_resampling">
-                    </when>
-                </conditional>
-                
-                <param name="stats" type="boolean" truevalue="-stats" falsevalue="" checked="false" label="-stats" />
-                <param name="norat" type="boolean" truevalue="-norat" falsevalue="" checked="false" label="-norat" />
-                <param name="co" type="text" label="-co" value="e.g : COMPRESS=JPEG" />
-                <param name="mo" type="text" label="-mo" value="META-TAG=VALUE" />
+                <expand macro="gdal_param_b"/>
+                <param name="mask" type="text" label="-mask band" value="" help="e.g : -mask 1"/>
+                <expand macro="gdal_param_r"/>
+                <expand macro="gdal_param_stats"/>
+                <expand macro="gdal_param_norat"/>
+                <expand macro="gdal_param_co"/>
+                <param name="mo" type="text" label="-mo META-TAG=VALUE" value="" />
+
+<!-- commented as the gdalversion need to be upgraded
                 <param name="oo" type="text" label="-oo" value="NAME=VALUE" />
-                
+                <expand macro="gdal_param_oo"/>
+-->
+
                 <conditional name="condi_expand">
                     <param name="expand" type="select" label="-expand gray|rgb|rgba" >
                         <option value="no_expand" selected="true">Don't use the -expand option</option>
@@ -151,7 +135,6 @@
                         </param>
                     </when>
                 </conditional>
-                
                 <conditional name="outsize">
                     <param name="outsize" type="select" label="-outsize" >
                         <option value="outsize_x" selected="true">xsize</option>
@@ -159,14 +142,13 @@
                     </param>
                     <when value="outsize_x">
                         <param name="outsize_percent" type="boolean" truevalue="%" falsevalue="" checked="true" label="Use percentage"/>
-                        <param name="outx" label="xsize" type="integer" value="100"/>
+			<param name="outx" label="xsize" type="integer" value="100" min="0"/>
                     </when>
                     <when value="outsize_y">
                         <param name="outsize_percent" type="boolean" truevalue="%" falsevalue="" checked="true" label="Use percentage"/>
-                        <param name="outy" label="ysize" type="integer" value="100"/>
+                        <param name="outy" label="ysize" type="integer" value="100" min="0"/>
                     </when>
                 </conditional>
-                
                 <conditional name="condi_scale">
                     <param name="scale" type="select" label="-squale" >
                         <option value="no_scale" selected="true">Don't use the -scale option</option>
@@ -175,13 +157,12 @@
                     <when value="no_scale">
                     </when>
                     <when value="scale">
-                        <param name="src_min" type="integer" label="src_min" value="0"/>
-                        <param name="src_max" type="integer" label="src_max" value="0"/>
-                        <param name="dst_min" type="integer" label="dst_min" value="0"/>
-                        <param name="dst_max" type="integer" label="dst_max" value="0"/>
+                        <param name="src_min" type="integer" label="src_min" value="0" min="0"/>
+                        <param name="src_max" type="integer" label="src_max" value="0" min="0"/>
+                        <param name="dst_min" type="integer" label="dst_min" value="0" min="0"/>
+                        <param name="dst_max" type="integer" label="dst_max" value="0" min="0"/>
                     </when>
                 </conditional>
-                
                 <conditional name="condi_srcwin">
                     <param name="srcwin" type="select" label="-srcwin" >
                         <option value="no_srcwin" selected="true">Don't use the -srcwin option</option>
@@ -190,13 +171,12 @@
                     <when value="no_srcwin">
                     </when>
                     <when value="srcwin">
-                        <param name="xoff" type="integer" label="xoff" value="0"/>
-                        <param name="yoff" type="integer" label="yoff" value="0"/>
-                        <param name="xsize" type="integer" label="xsize" value="0"/>
-                        <param name="ysize" type="integer" label="ysize" value="0"/>
+                        <param name="xoff" type="integer" label="xoff" value="0" min="0"/>
+                        <param name="yoff" type="integer" label="yoff" value="0" min="0"/>
+                        <param name="xsize" type="integer" label="xsize" value="0" min="0"/>
+                        <param name="ysize" type="integer" label="ysize" value="0" min="0"/>
                     </when>
                 </conditional>
-                
                 <conditional name="condi_a_ullr">
                     <param name="a_ullr" type="select" label="-a_ullr" >
                         <option value="no_a_ullr" selected="true">Don't use the -a_ullr option</option>
@@ -211,14 +191,13 @@
                         <param name="lry" type="integer" label="lry" value="0"/>
                     </when>
                 </conditional>
-                
                 <param name="epoeco" type="select" label="Display error when outside the source raster" display="radio" multiple="False">
                     <option value="" selected="true">Default, no error</option>
                     <option value="-epo">-epo : Error when partially outside</option>
                     <option value="-eco">-eco : Error when completely outside</option>
                 </param>
                 <param name="a_srs" type="text" label="-a_srs" value="" />
-                
+
                 <!--
                 <param name="sds" type="boolean" truevalue="-sds" falsevalue="" checked="false" label="-sds" help="Copy all subdatasets of this file to individual output files. Use with formats like HDF or OGDI that have subdatasets. The output file naming scheme has changed in GDAL 1.11 (e.g. ofile_1.tif, ofile_2.tif)."/>
                 Ici il y a surement une gestion de fichiers de sorties multiple à faire
