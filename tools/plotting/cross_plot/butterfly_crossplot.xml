@@ -2,9 +2,14 @@
     <requirements>
         <requirement type="package" version="2.2.1">r-ggplot2</requirement>
         <requirement type="package" version="1.1_2">r-rcolorbrewer</requirement>
+        <requirement type="package" version="0.9.10">xorg-libxrender</requirement>
+        <requirement type="package" version="0.9.10">xorg-libsm</requirement>
+        <requirement type="package" version="1.5">libconfig</requirement>
+        <requirement type="package" version="1.5_9">r-cairo</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
-        Rscript '$__tool_directory__/butterfly_crossplot.R' '$__tool_directory__/stat_bag.r' '$__tool_directory__/BDD_PAPILLONS_2016.txt' '$__tool_directory__/code_couleurs.csv' '$function'
+        Rscript '$__tool_directory__/butterfly_crossplot.R' '$__tool_directory__/stat_bag.r' '$butterfly_db' '$__tool_directory__/code_couleurs.csv' '$function'
+        ##'$__tool_directory__/BDD_PAPILLONS_2016.txt'
     ]]></command>
     <inputs>
         <param name="function" type="select" label="Chose your analyse">
@@ -12,6 +17,7 @@
             <option value="ggfiltre1niveau">Compare regions</option>
             <option value="gglocal">Compare local networks</option>
         </param>
+        <param name="butterfly_db" type="data" format="csv,tabular" label="Butterfly datafile"/>
     </inputs>
     <outputs>
         <data format="png" name="ggCompareLevel" label="Compare production methods" from_work_dir="resultats/Papillons_CONDUITEPARCELLE_comparaison.png">
@@ -27,6 +33,6 @@
         </collection>
    </outputs>
     <help><![CDATA[
-        TDO: Fill in help.
+        TODO: Fill in help.
     ]]></help>
 </tool>

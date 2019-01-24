@@ -15,7 +15,7 @@ set.seed(1) #To test reproductibility
 filename=args[3]
 if (exists("ClassifEspC2b")==F){load(args[2])}
 
-DataPar=fread(args[1]) #id to be corrected
+DataPar=fread(args[1],na.strings="") #id to be corrected
 DataPar$participation=substr(filename,nchar(filename)-40,nchar(filename)-17)
 test1=duplicated(cbind(DataPar$'nom du fichier',DataPar$tadarida_taxon))
 test2=(DataPar$tadarida_taxon=="empty")
@@ -177,5 +177,5 @@ DataCorrC2$ProbEsp_C2bs[is.na(DataCorrC2$ProbEsp_C2bs)]="empty"
 
 fout_name="output.tabular"
 
-write.table(DataCorrC2,file=fout_name,row.names=FALSE,sep="\t")
+write.table(DataCorrC2,file=fout_name,row.names=FALSE,sep="\t",quote=FALSE,na="NA")
 #write.table(DataCorrC2,paste0(substr(args[1],nchar(args[1])-40,nchar(args[1])-17),"-DataCorrC2.csv"),row.names=F,sep="\t")

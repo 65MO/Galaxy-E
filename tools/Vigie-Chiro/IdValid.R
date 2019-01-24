@@ -2,7 +2,8 @@ library(data.table)
 
 ValidHier=function(x,y) #used to write validator id over observer id
 {
-  if(y==""){x}else{y}
+  #cat(y)
+  if(is.na(y)){x}else{y}
 }
 
 f2p <- function(x) #get date-time data from recording file names
@@ -100,13 +101,13 @@ for (j in 1:nlevels(as.factor(IdCorrect$ProbEsp_C2bs)))
 {
   IdSp=subset(IdCorrect
               ,IdCorrect$ProbEsp_C2bs==levels(as.factor(IdCorrect$ProbEsp_C2bs))[j])
-  if(sum(IdSp$IdV=="")==(nrow(IdSp))) #case 1 : no validation no change
+  if(sum(is.na(IdSp$IdV))==(nrow(IdSp))) #case 1 : no validation no change
   {
     IdC2=rbind(IdC2,IdSp)
     IdExtrap=c(IdExtrap,rep(IdSp$ProbEsp_C2bs[1],nrow(IdSp)))
     TypeE=c(TypeE,rep(0,nrow(IdSp)))
   }else{ #case 2: some validation
-    Vtemp=subset(IdSp,IdSp$IdV!="")
+    Vtemp=subset(IdSp,is.na(IdSp$IdV))
       #case2A: validations are homogeneous
     if(nlevels(as.factor(Vtemp$IdV))==1)
     {
@@ -176,5 +177,5 @@ IdC2=IdC2[order(IdC2$`nom du fichier`),]
 #discard duplicated species within the same files (= false positives corrected by 2nd layer)
 IdC2=unique(IdC2,by=c("nom du fichier","IdExtrap"))
 
-write.table(IdC2,"output.tabular",row.names=F,sep="\t")
+write.table(IdC2,"output.tabular",row.names=F,sep="\t",quote=FALSE,na="NA")
 #write.table(IdC2,paste0(substr(args[1],1,nchar(args[1])-15),"-IdC2.csv"),row.names=F,sep="\t")
