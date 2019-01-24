@@ -1,11 +1,12 @@
 <tool id="gdal_merge" name="GDAL Merge" version="0.1.0">
     <description>mosaics a set of images.</description>
-    <requirements>
-        <requirement type="package" version="2.1.0">gdal</requirement>
-        <requirement type="package" version="3.5.0">geos</requirement>
-        <requirement type="package" version="9b">jpeg</requirement>
-        <requirement type="package" version="1.5.90">libjpeg-turbo</requirement>
-    </requirements>
+
+    <macros>
+        <import>gdal_macros.xml</import>
+    </macros>   
+    <expand macro="gdal_requirements" />
+
+
     <command detect_errors="exit_code"><![CDATA[
         gdal_merge.py
             -q        
@@ -13,19 +14,17 @@
                 '${s.input}'
             #end for
             
-            #unless $of==''
-                -of '$of'
-            #end unless
+            -of '$of'
             
             #if $settings.advanced=='advanced'
                 
-                #unless $settings.co=='NAME=VALUE'
+                #if $settings.co!=''
                     -co '$settings.co'
-                #end unless
+                #end if
                 
-                #unless $settings.ot=='Datatype'
+                #if $settings.ot!=''
                     -ot '$settings.ot'
-                #end unless
+                #end if
                 
                 #if $settings.condi_ps.pixelsize=='use_ps'
                     -ps $settings.condi_ps.pixelsize_x $settings.condi_ps.pixelsize_y
@@ -43,17 +42,17 @@
                 
                 $settings.pct
                 
-                #unless $settings.n=='nodata_value'
+                #if $settings.n!='nodata_value'
                     -n '$settings.n'
-                #end unless
+                #end if
                 
-                #unless $settings.a_nodata=='output_nodata_value'
+                #if $settings.a_nodata!='output_nodata_value'
                     -a_nodata '$settings.a_nodata'
-                #end unless
+                #end if
                 
-                #unless $settings.init=='value(s)'
+                #if $settings.init!=''
                     -init '$settings.init'
-                #end unless
+                #end if
                 
             #end if
             
@@ -61,37 +60,25 @@
         ]]></command>
         
     <inputs>
-        
         <repeat name="series" title="Input file">
             <param type="data" name="input" format="data" label="Gdal supported input file" help="http://www.gdal.org/formats_list.html"/>
         </repeat>
-        
-        <param name="of" type="text" label="Output format" value="" help="Select the output format. The default is GeoTIFF (GTiff). Use the short format name. http://www.gdal.org/formats_list.html"/>
-        
-        <conditional name="settings">
-            <param name="advanced" type="select" label="Specify advanced parameters">
-                <option value="simple" selected="true">No, use program defaults.</option>
-                <option value="advanced">Yes, see full parameter list.</option>
-            </param>        
-            <when value="simple">
-            </when>
-            <when value="advanced">
-                <param name="co" type="text" label="-co" value="NAME=VALUE"/>
-            
-                <param name="ot" type="text" label="-ot" value="Datatype" />
-            
+        <expand macro="gdal_param_of"/>
+        <conditional name="settings">    
+            <expand macro="gdal_advanced_params_select"/>
+	    <when value="advanced">
+                <expand macro="gdal_param_co"/> 
+                <expand macro="gdal_param_ot"/> 
                 <conditional name="condi_ps">
                     <param label="-ps pixelsize_x pixelsize_y" name="pixelsize" type="boolean" truevalue="use_ps" falsevalue="no_ps" checked="false" />
                     <when value="use_ps">
-                        <param name="pixelsize_x" type="integer" value="0"/>
-                        <param name="pixelsize_y" type="integer" value="0"/>
+                        <param name="pixelsize_x" type="integer" value="0" min="0"/>
+                        <param name="pixelsize_y" type="integer" value="0" min="0"/>
                     </when>
                     <when value="no_ps">
                     </when>
                 </conditional>        
-            
-                <param name="tap" label="-tap" type="boolean" truevalue="-tap" falsevalue="" checked="false" />
-            
+                <expand macro="gdal_param_tap"/> 
                 <conditional name="condi_ul_lr">
                     <param name="ul_lr" type="select" label="-ul_lr ulx uly lrx lry" >
                         <option value="no_ul_lr" selected="true">Don't use the -ul_lr option</option>
@@ -100,29 +87,20 @@
                     <when value="no_ul_lr">
                     </when>
                     <when value="ul_lr">
-                        <param name="ulx" type="integer" label="ulx" value="0"/>
-                        <param name="uly" type="integer" label="uly" value="0"/>
-                        <param name="lrx" type="integer" label="lrx" value="0"/>
-                        <param name="lry" type="integer" label="lry" value="0"/>
+                        <param name="ulx" type="integer" label="ulx" value="0" min="0"/>
+                        <param name="uly" type="integer" label="uly" value="0" min="0"/>
+                        <param name="lrx" type="integer" label="lrx" value="0" min="0"/>
+                        <param name="lry" type="integer" label="lry" value="0" min="0"/>
                     </when>
                 </conditional>        
-            
                 <param name="v" type="boolean" truevalue="-v" falsevalue="" checked="false" label="-v" />
-            
-                <param name="separate" type="boolean" truevalue="-separate" falsevalue="" checked="false" label="-separate" />
-            
+                <expand macro="gdal_param_separate"/>
                 <param name="pct" type="boolean" truevalue="-pct" falsevalue="" checked="false" label="-pct" />
-            
                 <param name="n" type="text" label="-n nodata_value" value="nodata_value" />
-            
                 <param name="a_nodata" type="text" label="-a_nodata" value="output_nodata_value" />
-            
-                <param name="init" type="text" label="-init" value="value(s)" />
-                
-                
+                <param name="init" type="text" label="-init values(s)" value="" />
             </when>
         </conditional>
-        
     </inputs>
         
     <outputs>
@@ -130,7 +108,6 @@
     </outputs>
     
     <tests>
-        
         <test>
             <param name="input" value="west.dem"/>
             <param name="input" value="east.dem"/>

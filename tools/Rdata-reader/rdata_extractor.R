@@ -14,7 +14,8 @@ attributes_selected <- commandArgs(trailingOnly=TRUE)[2]
 attributes<-strsplit(attributes_selected, ",") #List of elements
 
 write.table(sum,file = "summary.tabular",sep='\t',row.names=FALSE)
-len<-length(attributes[[1]])
+len<-length(attributes[[1]])-1
+bind<-tail(args,n=1)
 
 #file type definition
 file_ext<-function(ext){
@@ -58,9 +59,21 @@ for (i in 1:len){
 		write(attribute_val,file=file)
 		next
 	}
-	file<-file_ext(".tabular")
-        write(attribute,file=file)
-	write.table(attribute_val,file=file,row.names=FALSE,col.names=FALSE,append=TRUE)	
+        file<-file_ext(".tabular")
+        dataframe<-as.data.frame(attribute_val)
+        names(dataframe)<-attribute
+        if(bind=="nobind"){
+            write.table(dataframe,file=file,row.names=FALSE,sep="    ")
+        }else{
+            if(!exists("alldataframe")){
+                alldataframe<-dataframe
+            }else{
+    	        alldataframe<-cbind(alldataframe, dataframe)
+            }
+        }
 }
 
-
+if(exists("alldataframe")&&bind=="bind"){
+    write.table(alldataframe,file=file,row.names=FALSE,sep="	")
+}
+q('no')

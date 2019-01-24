@@ -1,10 +1,11 @@
 <tool id="gdalbuildvrt" name="GDAL Build VRT" version="0.1.0">
     <description>builds a VRT from a list of datasets</description>
-    <requirements>
-        <requirement type="package" version="2.1.0">gdal</requirement>
-        <requirement type="package" version="9b">jpeg</requirement>
-        <requirement type="package" version="1.5.90">libjpeg-turbo</requirement>
-    </requirements>
+
+    <macros>
+        <import>gdal_macros.xml</import>
+    </macros>   
+    <expand macro="gdal_requirements" />
+
     <command detect_errors="exit_code"><![CDATA[
     gdalbuildvrt 
         '$output'
@@ -14,16 +15,15 @@
         #end for
         
         #if $settings.advanced=='advanced'       
-            #unless $settings.b=='e.g : -b 1 -b 2 -b 3'
-                $settings.b
-            #end unless
+
+            $settings.b
             
             #if $settings.condi_te.te=='te'
                 -te $settings.condi_te.xmin $settings.condi_te.ymin $settings.condi_te.xmax $settings.condi_te.ymax
             #end if
                 
-            #if $condi_tr.tr=='tr'
-                -tr $condi_tr.xres $condi_tr.yres
+            #if $settings.condi_tr.tr=='tr'
+                -tr $settings.condi_tr.xres $settings.condi_tr.yres
             #end if
                 
             #if $settings.condi_resample.resample=='resampling'
@@ -34,28 +34,28 @@
                 -r $settings.condi_resolution.reso
             #end if
                 
-            #unless $settings.a_srs==''
+            #if $settings.a_srs!=''
                 -a_srs '$settings.a_srs'
-            #end unless
+            #end if
                 
             $settings.tap
             $settings.addalpha
             $settings.hidenodata
             $settings.separate
              
-            #unless $settings.oo=='NAME=VALUE'
-                -oo '$settings.oo'
-            #end unless
+##            #if $settings.oo!=''
+##                -oo '$settings.oo'
+##           #end if
                 
             $settings.allow_projection_difference
                 
-            #unless $settings.tileindex=='field_name'
+            #if $settings.tileindex!=''
                 -tileindex '$settings.tileindex'
-            #end unless
+            #end if
                 
-            #unless $settings.sb=='subdataset'
+            #if $settings.sb!=''
                 -sb '$settings.sb'
-            #end unless
+            #end if
                                         
         #end if 
         
@@ -64,72 +64,22 @@
         <repeat name="series" title="Input file">
             <param type="data" name="input" format="data" label="Gdal supported input file" help="http://www.gdal.org/formats_list.html"/>
         </repeat>
+        <conditional name="settings">    
+            <expand macro="gdal_advanced_params_select"/>
             
-        <conditional name="settings">
-            <param name="advanced" type="select" label="Specify advanced parameters">
-                <option value="simple" selected="true">No, use program defaults.</option>
-                <option value="advanced">Yes, see full parameter list.</option>
-            </param>        
-            <when value="simple">
-            </when>
             <when value="advanced">
-            
-                <param name="b" type="text" label="-b band" value="e.g : -b 1 -b 2 -b 3"/>
+                <expand macro="gdal_param_b"/>
                 
-                <conditional name="condi_te">
-                    <param name="te" type="select" label="-te">
-                        <option value="no_te" selected="true">Don't use the -te option</option>
-                        <option value="te">Use the -te option</option>
-                    </param>
-                    <when value="no_te">
-                    </when>
-                    <when value="te">
-                        <param name="xmin" type="float" label="xmin" value="0"/>
-                        <param name="ymin" type="float" label="ymin" value="0"/>
-                        <param name="xmax" type="float" label="xmax" value="0"/>
-                        <param name="ymax" type="float" label="ymax" value="0"/>
-                    </when>
-                </conditional>    
-                    
-                <conditional name="condi_tr">
-                    <param name="tr" type="select" label="-tr">
-                        <option value="no_tr" selected="true">Don't use the -tr option</option>
-                        <option value="tr">Use the -tr option</option>
-                    </param>
-                    <when value="no_tr">
-                    </when>
-                    <when value="tr">
-                        <param name="xres" type="float" label="xres" value="0"/>
-                        <param name="yres" type="float" label="yres" value="0"/>
-                    </when>
-                </conditional>
-                    
-                <conditional name="condi_resample">
-                    <param label="-r" name="resample" type="boolean" truevalue="resampling" falsevalue="no_resampling" checked="false"/>
-                    <when value="resampling">
-                        <param name="r" type="select" label="Reseampling algorithm" >
-                            <option value="nearest" selected="true"/>
-                            <option value="bilinear"/>
-                            <option value="cubic"/>
-                            <option value="cubicspline"/>
-                            <option value="lanczos"/>
-                            <option value="average"/>
-                            <option value="mode"/>
-                            <option value="max"/>
-                            <option value="min"/>
-                            <option value="med">Median resampling</option>
-                            <option value="q1">First quartile resampling</option>
-                            <option value="q2">Third quartile resampling</option>
-                        </param>
-                    </when>
-                    <when value="no_resampling">
-                    </when>
-                </conditional>
+                <expand macro="gdal_param_te"/>
+
+                <expand macro="gdal_param_tr"/>
+                      
+                <expand macro="gdal_param_r"/>
                     
                 <conditional name="condi_resolution">
                     <param label="-resolution" name="resolution" type="boolean" truevalue="chose_resolution" falsevalue="no_resolution" checked="false"/>
                     <when value="chose_resolution">
-                        <param name="reso" type="select" label="Chose a resolution" >
+                        <param name="reso" type="select" label="Chose a resolution">
                             <option value="highest" selected="true"/>
                             <option value="lowest"/>
                             <option value="average"/>
@@ -140,15 +90,21 @@
                     </when>
                 </conditional>
                 
-                <param name="tap" type="boolean" truevalue="-tap" falsevalue="" checked="false" label="-tap"/>
+
+                <expand macro="gdal_param_tap"/>
                 <param name="addalpha" type="boolean" truevalue="-addalpha" falsevalue="" checked="false" label="-addalpha"/>
                 <param name="hidenodata" type="boolean" truevalue="-hidenodata" falsevalue="" checked="false" label="-hidenodata"/>
-                <param name="separate" type="boolean" truevalue="-separate" falsevalue="" checked="false" label="-separate" />
-                <param name="allow_projection_difference" type="boolean" truevalue="-allow_projection_difference" falsevalue="" checked="false" label="-allow_projection_difference" />
-                <param name="a_srs" type="text" label="-a_srs srs_def" value=""/>
-                <param name="oo" type="text" label="-oo" value="NAME=VALUE" />
-                <param name="tileindex" type="text" label="-tileindex field_name" value="field_name"/>
-                <param name="sb" type="text" label="-sb subdataset" value="subdataset"/>
+
+                <expand macro="gdal_param_separate"/>
+
+		<param name="allow_projection_difference" type="boolean" truevalue="-allow_projection_difference" falsevalue="" checked="false" label="-allow_projection_difference" />
+
+		<expand macro="gdal_param_a_srs"/>
+<!--
+                <expand macro="gdal_param_oo"/>
+-->
+                <param name="tileindex" type="text" label="-tileindex field_name" value=""/>
+                <param name="sb" type="text" label="-sb subdataset" value=""/>
                     
             </when>
         </conditional>

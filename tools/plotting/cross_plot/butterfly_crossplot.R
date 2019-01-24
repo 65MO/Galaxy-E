@@ -76,9 +76,9 @@ filtre1niveau <- function(func,
             figure_titre_f <- vec_figure_titre[f]
         }
         col_filtre_f <- vec_col_filtre[f]
-        print(col_sousGroup) #Just to check
+        #cat(col_sousGroup) #Just to check
         if(func=="ggfiltre1niveau"){
-            print("ggfiltre1niveau")
+            #cat("ggfiltre1niveau")
             ggfiltre1niveau(d,
                         col_abscisse,
                         figure_abscisse,
@@ -98,7 +98,7 @@ filtre1niveau <- function(func,
                         segmentSousSeuil,
                         forcageMajusculeFiltre)
         }else if(func=="gglocal"){
-            print("gglocal")
+            #cat("gglocal")
             gglocal(d,
                     col_abscisse,
                     figure_abscisse,
@@ -121,7 +121,7 @@ filtre1niveau <- function(func,
                     forcageMajusculeFiltre,
                     forcageMajusculeSousGroupe)
         }else{
-            print("ggCompareLevel")
+            #cat("ggCompareLevel")
             ggCompareLevel(d,
                            col_abscisse,
                            figure_abscisse,
@@ -265,9 +265,9 @@ ggfiltre1niveau <- function(d,
             gg <- gg + scale_colour_manual(values = figure_couleur,name = "") + scale_fill_manual(values = figure_couleur,name = "",guide=FALSE)}
         
         ggfile <- paste(nomRep,nomProtocole,"_",m,".png",sep="")
-        cat("Check",ggfile,":")
+        #cat("Check",ggfile,":")
         ggsave(ggfile,gg)
-        cat("\n")
+        #cat("\n")
         flush.console()
     }
 }
@@ -390,9 +390,9 @@ gglocal <- function(d,
             else{
                 gg <- gg + theme(legend.justification=c(1,0), legend.position=c(1,0),legend.text = element_text(size = 7),legend.background = element_rect(fill=NA))}                       
             ggfile <- paste(nomRep,nomProtocole,"_",m,"-",p,".png",sep="")
-            cat("Check",ggfile,":")
+            #cat("Check",ggfile,":")
             ggsave(ggfile,gg)
-            cat("\n")
+            #cat("\n")
             flush.console()
         }
     }
@@ -490,9 +490,9 @@ ggCompareLevel <- function(d,
         gg <- gg + theme(legend.justification=c(1,0), legend.position=c(1,0),legend.text = element_text(size = 7),legend.background = element_rect(fill=NA))
     }
     ggfile <- paste(nomRep,nomProtocole,"_",col_filtre,"_","comparaison.png",sep="")
-    cat("Check",ggfile,":")    
+    #cat("Check",ggfile,":")    
     ggsave(ggfile,gg)
-    cat("\n")
+    #cat("\n")
 flush.console()
 }
 

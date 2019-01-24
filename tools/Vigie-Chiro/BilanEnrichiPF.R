@@ -12,7 +12,7 @@ f2p <- function(x) #get date-time data from recording file names
 
 args <- commandArgs(trailingOnly = TRUE)
 #print(args)
-EchelleErreur=c("","POSSIBLE","PROBABLE","SUR")
+EchelleErreur=c("NA","POSSIBLE","PROBABLE","SUR")
 EchelleNumErreur=c(99,50,10,1)
 
 #for test
@@ -35,18 +35,19 @@ if(substr(IdC2$`nom du fichier`[1],2,2)!="a")
 #compute error risk by species (minimum error among files)
 #to be replaced by glm outputs if I'll have time
 RisqueErreurT=aggregate(IdC2$IdProb,by=list(IdC2$IdExtrap),FUN=function(x) ceiling((1-max(x-0.0001))*100))
-barplot(RisqueErreurT$x,names.arg=RisqueErreurT$Group.1,las=2)
+
+#barplot(RisqueErreurT$x,names.arg=RisqueErreurT$Group.1,las=2)
 #compute error risk accoring to observer/validator (a little dirty because it relies on alphabetical order of confidence classes: POSSIBLE < PROBABLE < SUR)
 RisqueErreurOV0=match(IdC2$ConfV,EchelleErreur)
 RisqueErreurOV=aggregate(RisqueErreurOV0,by=list(IdC2$IdExtrap)
                          ,FUN=max) 
 RisqueErreurOV2=EchelleNumErreur[RisqueErreurOV$x]
 #compute minimum error risk between man and machine
-RisqueErreur=pmin(RisqueErreurT$x,RisqueErreurOV2)
+RisqueErreur=pmin(RisqueErreurT$x,RisqueErreurOV2,na.rm=TRUE)
 
 #compute number of files validated per species
 FichValid=aggregate(IdC2$IdV,by=list(IdC2$IdExtrap,IdC2$'nom du fichier')
-                                 ,FUN=function(x) sum(x!="")) 
+                                 ,FUN=function(x) sum(!is.na(x))) 
 NbValid2=aggregate(FichValid$x,by=list(FichValid$Group.1),FUN=function(x) sum(x>0))
 
 DiffC50=vector() # to store the median of confidence difference between unvalidated records and validated ones
@@ -56,7 +57,7 @@ for (j in 1:nlevels(as.factor(IdC2$IdExtrap)))
   IdSp=subset(IdC2
               ,IdC2$IdExtrap==levels(as.factor(IdC2$IdExtrap))[j])
   IdSp=IdSp[order(IdSp$IdProb),]
-  IdSpV=subset(IdSp,IdSp$IdV!="")
+  IdSpV=subset(IdSp,!is.na(IdSp$IdV))
   if(nrow(IdSpV)>0)
   {
   cuts <- c(-Inf, IdSpV$IdProb[-1]-diff(IdSpV$IdProb)/2, Inf)
@@ -66,7 +67,7 @@ for (j in 1:nlevels(as.factor(IdC2$IdExtrap)))
   DiffC50=c(DiffC50,median(DiffC))
   
   IdSp=IdSp[order(IdSp$TimeNum),]
-  IdSpV=subset(IdSp,IdSp$IdV!="")
+  IdSpV=subset(IdSp,!is.na(IdSp$IdV))
   cuts <- c(-Inf, IdSpV$TimeNum[-1]-diff(IdSpV$TimeNum)/2, Inf)
   CorrT=findInterval(IdSp$TimeNum, cuts)
   CorrT2=IdSpV$TimeNum[CorrT]
@@ -81,7 +82,7 @@ for (j in 1:nlevels(as.factor(IdC2$IdExtrap)))
 EffortV=1/DiffC50/DiffT50
 EffortClass=(EffortV>0.0005)+(EffortV>0.005)+RisqueErreurOV$x
 cbind(RisqueErreurOV,EffortV,DiffC50,DiffT50)
-barplot(EffortClass-1,names.arg=NbValid2$Group.1,las=2)
+#barplot(EffortClass-1,names.arg=NbValid2$Group.1,las=2)
 ClassEffortV=c("-","FAIBLE","SUFFISANT","SUFFISANT","FORT","FORT")
 EffortClassMot=ClassEffortV[EffortClass]
 
@@ -147,7 +148,7 @@ SummHTML=datatable(SummPart, rownames = FALSE) %>%
               background = styleEqual(c("FAIBLE","MODEREE","FORTE","TRES FORTE"), c("palegoldenrod", "greenyellow", "limegreen", "darkgreen")))
 
 saveWidget(SummHTML,"output-summary.html")
-write.table(SummPart,"output-summary.tabular",sep="\t",row.names=F)
+write.table(SummPart,"output-summary.tabular",sep="\t",row.names=F,quote=FALSE)
 
 #compute number of files validated per night/hour
 IdC2$Heure=sapply(IdC2$`nom du fichier`,FUN=function(x) substr(x,nchar(x)-9,nchar(x)-8))
@@ -198,7 +199,7 @@ SummHTMLN=datatable(SummPartN, rownames = FALSE,options = list(
               background = styleEqual(c(1,2,3,4), c("palegoldenrod", "greenyellow", "limegreen", "darkgreen")))
 
 saveWidget(SummHTMLN,"output-nightly.html")
-write.table(SummPartN,"output-nightly.tabular",sep="\t",row.names=F)
+write.table(SummPartN,"output-nightly.tabular",sep="\t",row.names=F,quote=FALSE)
 
 
 #summary by hour
@@ -230,7 +231,7 @@ SummHTMLH=datatable(SummPartH, rownames = FALSE) %>%
   formatStyle(columns=ListH, backgroundColor = styleInterval(brks, clrs))
 
 saveWidget(SummHTMLH,"output-hourly.html")
-write.table(SummPartH,"output-hourly.tabular",sep="\t",row.names=F)
+write.table(SummPartH,"output-hourly.tabular",sep="\t",row.names=F,quote=FALSE)
 
 
 #saveWidget(SummHTML,paste0(substr(args[1],1,nchar(args[1])-9),"-summary.html"))

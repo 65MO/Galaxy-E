@@ -1,31 +1,27 @@
 <tool id="gdaladdo" name="GDAL addo" version="0.1.0">
     <description>builds or rebuilds overview images</description>
-    <requirements>
-        <requirement type="package" version="2.1.0">gdal</requirement>
-        <requirement type="package" version="3.5.0">geos</requirement>
-        <requirement type="package" version="9b">jpeg</requirement>
-        <requirement type="package" version="1.5.90">libjpeg-turbo</requirement>
-    </requirements>
+
+    <macros>
+        <import>gdal_macros.xml</import>
+    </macros>   
+    <expand macro="gdal_requirements" />
+
     <command detect_errors="exit_code"><![CDATA[
         gdaladdo '$input1'
             -q
             -ro
-            #if $levels!='e.g : 2 4 8 16'
-                #if '$levels'==''
-                    -clean 
-                #else
-                    '$levels'
-                    --config COMPRESS_OVERVIEW DEFLATE
-                    && cp '$input1''.ovr' 'output_ovr'
-                #end if
+            #if '$levels'==''
+                -clean 
             #else
-                -clean
+                '$levels'
+                --config COMPRESS_OVERVIEW DEFLATE
+                && cp '$input1''.ovr' 'output_ovr'
             #end if
     ]]></command>
     
     <inputs>
         <param type="data" name="input1" format="data" label="Gdal supported input file" help="http://www.gdal.org/formats_list.html"/>    
-        <param name="levels" type="text" label="levels" help="A list of integral overview levels to build." value="e.g : 2 4 8 16"/>        
+        <param name="levels" type="text" label="levels" help="A list of integral overview levels to build. eg : 2 4 8 16" value=""/>        
     </inputs>
     
     <outputs>
