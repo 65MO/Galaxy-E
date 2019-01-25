@@ -64,7 +64,7 @@
             <param name="input1" value="ogrinfo_test.nc"/>
             <param name="advanced" value="advanced"/>
             <param name="sql" value="sql"/>
-            <param name="sql_statement" value="select *"/>
+            <param name="sql_statement" value="SELECT * FROM *"/>
             <param name="so" value=""/>
             <output name="output" file="ogrinfo_test2_out.txt" lines_diff="6"/>
         </test>
