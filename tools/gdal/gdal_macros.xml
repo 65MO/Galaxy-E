@@ -35,35 +35,6 @@
 
 
 
-<!--
-    <xml name="gdal_param_separate">
-                <param name="separate" type="boolean" truevalue="-separate" falsevalue="" checked="false" label="-separate" />
-    </xml>
-
-
-
-
-
-
-
-
-
-
-    <xml name="gdal_param_tr">
-                    <param name="tr" type="select" label="-tr"> 
-    </xml>
- 
- 
-    <xml name="gdal ">
-
-    </xml>
- 
- 
-    <xml name="gdal ">
-
-    </xml>
-
--->
 
     <xml name="gdal_requirements">
         <requirements>
