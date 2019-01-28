@@ -1,5 +1,5 @@
 categories:
-    - Data Managers
+    - Ecology 
 description: Geospatial Data Abstraction Library tools are all dedicated to manipulate raster and vector geospatial data formats.
 long_description: |
     Gdal is a translator library for raster and vector geospatial data formats that is released under an X/MIT style Open Source license by the Open Source Geospatial Foundation. As a library, it presents a single raster abstract data model and single vector abstract data model to the calling application for all supported formats. It also comes with a variety of useful command line utilities for data translation and processing.
@@ -9,13 +9,6 @@ name: gdal
 owner: mnhn65mo
 remote_repository_url: https://github.com/Alanamosse/Galaxy-E/tree/master/tools/gdal
 type: unrestricted
-
-##auto_tool_repositories:
-##          name_template: "gdal_{{ tool_id }}"
-##            description_template: "{{ tool_name }} (from the gdal tool suite)"
-##           suite:
-##                      name: "suite_gdal"
-##                      description: Gdal tools are all dedicated to manipulate raster and vector geospatial data formats.
 
 repositories:
   gdaladdo:
@@ -59,7 +52,7 @@ repositories:
       - gdal_translate.xml
       - gdal_macros.xml
       - test-data/stere.tif
-      - test-data/stere_advanced1.jpeg
+      - test-data/stere_advanced1.jpg
       - test-data/stere_advanced2.png
       - test-data/world.png
       - test-data/geoworld.tif
