@@ -28,18 +28,10 @@
             <when value="no_te">
             </when>
 	    <when value="te">
-                <param name="xmin" type="float" label="xmin" value="0">
-                    <validator type="expression" message="Value must be >= 0">value is not None and value >=0</validator>
-                </param>
-                <param name="ymin" type="float" label="ymin" value="0">
-                    <validator type="expression" message="Value must be >= 0">value is not None and value >=0</validator>
-                </param>
-                <param name="xmax" type="float" label="xmax" value="0">
-                    <validator type="expression" message="Value must be >= 0">value is not None and value >=0</validator>
-                </param>
-                <param name="ymax" type="float" label="ymax" value="0">
-                    <validator type="expression" message="Value must be >= 0">value is not None and value >=0</validator>
-                </param>
+                <param name="xmin" type="float" label="xmin" value="0" min="0"/>
+                <param name="ymin" type="float" label="ymin" value="0" min="0"/>
+                <param name="xmax" type="float" label="xmax" value="0" min="0"/>
+                <param name="ymax" type="float" label="ymax" value="0" min="0"/>
             </when>
         </conditional> 
     </xml>
@@ -79,8 +71,8 @@
             <when value="no_tr">
             </when>
             <when value="tr">
-                <param name="xres" type="float" label="xres" value="0"/>
-                <param name="yres" type="float" label="yres" value="0"/>
+                <param name="xres" type="float" label="xres" value="0" min="0"/>
+                <param name="yres" type="float" label="yres" value="0" min="0"/>
             </when>
         </conditional>
     </xml>
@@ -144,25 +136,10 @@
   </xml>
 
 
-
-
-
-
-
-
-<!--
+<!-- need to upgrade gdal version to use
     <xml name="gdal_param_oo">
         <param name="oo" type="text" label="-oo NAME=VALUE" value="" />
     </xml>
 -->
-
-    <xml name="gdal_validator_NonNullPositive">
-        <validator type="expression" message="Value must be >= 0">value is not None and value >=0</validator>
-    </xml>
-
-
-
-
-
 
 </macros>
