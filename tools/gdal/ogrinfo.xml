@@ -35,14 +35,10 @@
                     <when value="no_sql">
                     </when>
                     <when value="sql">
-                        <param name="sql_statement" type="text" label="-sql statement" help="eg : SELECT * FROM file WHERE X>10." value="">
-                            <sanitizer>
-                               <valid initial="string.printable">
-                                   <add value=">"/>
-                               </valid>
-                           </sanitizer>
-                           <validator type="expression" message="Can't be empty, please enter a SQL statement.">value.strip()</validator>
-                       </param>
+                        <param name="sql_statement" type="text" label="-sql statement" help="eg : SELECT * FROM layer WHERE X>10." value="">
+                            <sanitizer sanitize="False"/>
+                            <validator type="regex" message="Type a valid SQL query">^(?ims)\s*select\s+.*\s+from\s+.*$</validator>
+                        </param>
                     </when>
                 </conditional>
                 <param name="so" label="-so" type="boolean" truevalue="-so" falsevalue="" checked="true"/>
@@ -64,9 +60,9 @@
             <param name="input1" value="ogrinfo_test.nc"/>
             <param name="advanced" value="advanced"/>
             <param name="sql" value="sql"/>
-            <param name="sql_statement" value="select *"/>
+            <param name="sql_statement" value="SELECT * FROM dataset_3 WHERE time > 9000"/>
             <param name="so" value=""/>
-            <output name="output" file="ogrinfo_test2_out.txt" lines_diff="6"/>
+            <output name="output" file="ogrinfo_test2_out.txt" lines_diff="2"/>
         </test>
    </tests>
     <help><![CDATA[

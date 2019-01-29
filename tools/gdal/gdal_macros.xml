@@ -1,70 +1,5 @@
 <macros>
     
-<!--
-    <xml name="vigiechiro_bibref">
-        <citations>
-            <citation type="bibtex">
-	    @article{kerbiriou2015vigie,
-	    title={Vigie-Chiro: 9 ans de suivi des tendances des esp{\`e}ces communes},
-            author={Kerbiriou, C and Julien, JF and Bas, Y and Marmet, J and Le Viol, I and Lorrilliere, R and Azam, C and Gasc, A and Lois, G},
-            journal={Symbioses, nouvelle s{\'e}rie},
-            number={34},
-            year={2015}
-            }
-            </citation>
-            <citation type="bibtex">
-	    @inproceedings{bas2013automatic,
-            title={Automatic echolocation calls identification in Europe vs. Neotropics: more species does not mean more difficult},
-            author={Bas, Yves and Escallon, Antoine and Ferre, Matthieu and Haquart, Alexandre and Rufray, Vincent and Disca, Thierry and Julien, Jean-Fran{\c{c}}ois}
-	            }
-           </citation>
-           <citation type="bibtex">
-            @inproceedings{kerbiriou2010long,
-            title={Long term trends monitoring of bats, from biodiversity indicator production to species specialization assessment},
-            author={Kerbiriou, C and Bas, Y and Dufr{\^e}ne, L and Robert, A and Julien, JF},
-            booktitle={24th Annual Meeting of the Society for Conservation Biology, Edmonton, Canada},
-            year={2010}
-            }
-            </citation>
-            <citation type="doi">10.5334/jors.154</citation>  
-        </citations>
-    </xml>
--->
-
-
-
-
-
-<!--
-    <xml name="gdal_param_separate">
-                <param name="separate" type="boolean" truevalue="-separate" falsevalue="" checked="false" label="-separate" />
-    </xml>
-
-
-
-
-
-
-
-
-
-
-    <xml name="gdal_param_tr">
-                    <param name="tr" type="select" label="-tr"> 
-    </xml>
- 
- 
-    <xml name="gdal ">
-
-    </xml>
- 
- 
-    <xml name="gdal ">
-
-    </xml>
-
--->
-
     <xml name="gdal_requirements">
         <requirements>
             <requirement type="package" version="2.1.0">gdal</requirement>
@@ -93,18 +28,10 @@
             <when value="no_te">
             </when>
 	    <when value="te">
-                <param name="xmin" type="float" label="xmin" value="0">
-                    <validator type="expression" message="Value must be >= 0">value is not None and value >=0</validator>
-                </param>
-                <param name="ymin" type="float" label="ymin" value="0">
-                    <validator type="expression" message="Value must be >= 0">value is not None and value >=0</validator>
-                </param>
-                <param name="xmax" type="float" label="xmax" value="0">
-                    <validator type="expression" message="Value must be >= 0">value is not None and value >=0</validator>
-                </param>
-                <param name="ymax" type="float" label="ymax" value="0">
-                    <validator type="expression" message="Value must be >= 0">value is not None and value >=0</validator>
-                </param>
+                <param name="xmin" type="float" label="xmin" value="0" min="0"/>
+                <param name="ymin" type="float" label="ymin" value="0" min="0"/>
+                <param name="xmax" type="float" label="xmax" value="0" min="0"/>
+                <param name="ymax" type="float" label="ymax" value="0" min="0"/>
             </when>
         </conditional> 
     </xml>
@@ -144,8 +71,8 @@
             <when value="no_tr">
             </when>
             <when value="tr">
-                <param name="xres" type="float" label="xres" value="0"/>
-                <param name="yres" type="float" label="yres" value="0"/>
+                <param name="xres" type="float" label="xres" value="0" min="0"/>
+                <param name="yres" type="float" label="yres" value="0" min="0"/>
             </when>
         </conditional>
     </xml>
@@ -209,25 +136,10 @@
   </xml>
 
 
-
-
-
-
-
-
-<!--
+<!-- need to upgrade gdal version to use
     <xml name="gdal_param_oo">
         <param name="oo" type="text" label="-oo NAME=VALUE" value="" />
     </xml>
 -->
-
-    <xml name="gdal_validator_NonNullPositive">
-        <validator type="expression" message="Value must be >= 0">value is not None and value >=0</validator>
-    </xml>
-
-
-
-
-
 
 </macros>

@@ -66,16 +66,11 @@
         </repeat>
         <conditional name="settings">    
             <expand macro="gdal_advanced_params_select"/>
-            
             <when value="advanced">
                 <expand macro="gdal_param_b"/>
-                
                 <expand macro="gdal_param_te"/>
-
                 <expand macro="gdal_param_tr"/>
-                      
                 <expand macro="gdal_param_r"/>
-                    
                 <conditional name="condi_resolution">
                     <param label="-resolution" name="resolution" type="boolean" truevalue="chose_resolution" falsevalue="no_resolution" checked="false"/>
                     <when value="chose_resolution">
@@ -89,23 +84,17 @@
                     <when value="no_resolution">
                     </when>
                 </conditional>
-                
-
                 <expand macro="gdal_param_tap"/>
                 <param name="addalpha" type="boolean" truevalue="-addalpha" falsevalue="" checked="false" label="-addalpha"/>
                 <param name="hidenodata" type="boolean" truevalue="-hidenodata" falsevalue="" checked="false" label="-hidenodata"/>
-
                 <expand macro="gdal_param_separate"/>
-
 		<param name="allow_projection_difference" type="boolean" truevalue="-allow_projection_difference" falsevalue="" checked="false" label="-allow_projection_difference" />
-
 		<expand macro="gdal_param_a_srs"/>
 <!--
                 <expand macro="gdal_param_oo"/>
 -->
                 <param name="tileindex" type="text" label="-tileindex field_name" value=""/>
                 <param name="sb" type="text" label="-sb subdataset" value=""/>
-                    
             </when>
         </conditional>
     </inputs>
@@ -113,7 +102,6 @@
     <outputs>
         <data name="output" auto_format="true" label="${on_string}.vrt"/> <!--label="${input.name}.${of}-->
     </outputs>
-    
     
     <tests>
         <test>

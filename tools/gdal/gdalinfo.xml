@@ -46,17 +46,13 @@
         </param>
         <conditional name="settings">
             <expand macro="gdal_advanced_params_select"/>	
-
 	    <when value="advanced">
                 <param name="mm" type="boolean" truevalue="-mm" falsevalue="" checked="false" label="-mm" help="Force computation of the actual min/max values for each band in the dataset."/>
                 <expand macro="gdal_param_stats"/>                    
- 
                 <param name="approx_stats" type="boolean" truevalue="-approx_stats" falsevalue="" checked="false" label="-approx_stats" help="Read and display image statistics. Force computation if no statistics are stored in an image. However, they may be computed based on overviews or a subset of all tiles. Useful if you are in a hurry and don't want precise stats."/>
                 <param name="hist" type="boolean" truevalue="-hist" falsevalue="" checked="false" label="-hist" help="Report histogram information for all bands."/>
                 <param name="nogcp" type="boolean" truevalue="-nogcp" falsevalue="" checked="false" label="-nogcp" help="Suppress ground control points list printing. It may be useful for datasets with huge amount of GCPs, such as L1B AVHRR or HDF4 MODIS which contain thousands of them."/>
                 <param name="nomd" type="boolean" truevalue="-nomd" falsevalue="" checked="false" label="-nomd" help="Suppress metadata printing. Some datasets may contain a lot of metadata strings."/>
-
-
                 <expand macro="gdal_param_norat"/>
                 <param name="noct" type="boolean" truevalue="-noct" falsevalue="" checked="false" label="-noct" help="Suppress printing of color table."/>
                 <param name="checksum" type="boolean" truevalue="-checksum" falsevalue="" checked="false" label="-checksum" help="Force computation of the checksum for each band in the dataset."/>
@@ -67,8 +63,8 @@
                 </param>    
             </when>
         </conditional>
-        
     </inputs>
+
     <outputs>
         <data name="outputDefault" format="txt" label="Default info file">
             <filter>format == "default"</filter>
@@ -80,6 +76,7 @@
             <filter>subdataset == "subd_y"</filter>
         </data>
     </outputs>
+
     <tests>
         <test>
             <param name="input1" value="stere.tif"/>
@@ -100,6 +97,7 @@
             <output name="outputDefault" file="stere_advanced_info.txt" lines_diff="6"/>
         </test>
     </tests>
+
     <help><![CDATA[
 ==========================
 Gdalinfo

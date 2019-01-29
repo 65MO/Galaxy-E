@@ -73,11 +73,9 @@
         <repeat name="series" title="Input file">
             <param type="data" name="input" format="data" label="Gdal supported input file" help="http://www.gdal.org/formats_list.html"/>
         </repeat>
-
         <expand macro="gdal_param_of"/>
         <param name="s_srs" type="text" label="-s_srs Source spatial reference set" value="" help="The coordinate systems that can be passed are anything supported by the OGRSpatialReference."/>
         <param name="t_srs" type="text" label="-t_srs Target spatial reference set" value="" help="The coordinate systems that can be passed are anything supported by the OGRSpatialReference."/>
-        
         <conditional name="settings">
             <expand macro="gdal_advanced_params_select"/>
             <when value="advanced">
