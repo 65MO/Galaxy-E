@@ -1,0 +1,82 @@
+﻿id: new-tour
+name: Introduction au traitement des données STERF
+description: Une introduction détaillée de la manière d'analyser les données STERF pour préparer les données et effectuer un regionalGAM pour calculer des indices d'abondance annuel.
+title_default: Galaxy Tour
+steps:
+  - title: Importer un historique contenant les données brutes issues du dispositif STERF
+    element: 'li a[href$="/histories/list_published"]'
+    content: ''
+    placement: right
+  - title: Step 3
+    element: >-
+      #center .unified-panel-header .unified-panel-header-inner
+      a[href$="javascript:void(0)"]
+    content: ''
+    placement: left
+  - title: Step 4
+    element: '#button-1'
+    content: ''
+    placement: left
+  - title: Step 5
+    element: '#tool-search'
+    content: ''
+    placement: right
+    postclick:
+      - 'a[href$="/workflow"]'
+  - title: Step 6
+    element: '#shared .dropdown a[href$="/library/index"]'
+    content: ''
+    placement: right
+  - title: Step 7
+    element: 'li a[href$="/workflows/list_published"]'
+    content: ''
+    placement: right
+  - title: Step 8
+    element: '#grid-0-popup-menu li a[href$="/workflow/imp?id=c9468fdb6dc5c5f1"]'
+    content: ''
+    placement: right
+  - title: Step 9
+    element: '#center .donemessagelarge a[href$="/workflow"]'
+    content: ''
+    placement: right
+  - title: Step 10
+    element: >-
+      #center .center-container .center-panel .table.colored .workflow-search tr
+      td .dropdown .menubutton
+    content: ''
+    placement: right
+  - title: Step 11
+    element: >-
+      #center .center-container .center-panel .table.colored .workflow-search tr
+      td .dropdown.open .dropdown-menu.action-dpd li
+      a[href$="/workflow/run?id=4b187121143038ff"]
+    content: ''
+    placement: right
+  - title: Step 12
+    element: >-
+      #enable-scratchbook .dropdown .dropdown-toggle.dropdown-icon fa fa-th
+      toggle
+    content: ''
+    placement: left
+  - title: Step 13
+    element: >-
+      #dataset-18eded0954840f15 .primary-actions
+      a[href$="/datasets/18eded0954840f15/display/?preview=True"] .fa.fa-eye
+    content: ''
+    placement: left
+  - title: Step 14
+    element: >-
+      #dataset-f1865dc0d4c73197 .primary-actions
+      a[href$="/datasets/f1865dc0d4c73197/display/?preview=True"]
+    content: ''
+    placement: left
+  - title: Step 15
+    element: >-
+      #dataset-620acfcaf710e190 .primary-actions
+      a[href$="/datasets/620acfcaf710e190/display/?preview=True"] .fa.fa-eye
+    content: ''
+    placement: left
+  - title: Step 16
+    element: 'div[tour_id="sep"]'
+    content: ''
+    placement: right

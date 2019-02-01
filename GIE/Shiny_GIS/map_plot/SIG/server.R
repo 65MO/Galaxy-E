@@ -2,7 +2,7 @@
 function(input, output) {
     
     # build data with 2 places
-    data=data.frame(x=inputstn$LONGITUDE, y=inputstn$LATITUDE, id=inputstn$GARDENNAME)
+    data=data.frame(x=inputstn$LONGITUDE, y=inputstn$LATITUDE, id=inputstn$ID)
     
     # create a reactive value that will store the click position
     data_of_click <- reactiveValues(clickedMarker=NULL)
