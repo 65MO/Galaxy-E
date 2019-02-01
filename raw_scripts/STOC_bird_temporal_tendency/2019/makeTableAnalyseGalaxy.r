@@ -50,7 +50,7 @@ makeTableAnalyse <- function(data) {
 tableAnalyse<-makeTableAnalyse(data) #la fonction a un 'return' il faut donc stocker le resultat dans une nouvelle variable
 #On ecrit le fichier en dehors de la fonction si possible comme ça c'est plus visible. La fonction ne fait que les calcul et est générale. on peut l'appeler plusieurs fois avec plusieurs noms et plusieurs fichiers écrits.
 filename <- "Datatransformedforfiltering&trendanalysis.csv"
-write.table(tableAnalyse, filename,sep=" ") #ajouter un sep ici 1espace au hasard #on peut avoir des surprises
+write.csv2(tableAnalyse, filename) #ajouter un sep ici 1espace au hasard #on peut avoir des surprises
 
 
 
