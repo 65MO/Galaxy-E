@@ -4,6 +4,11 @@
         <requirement type="package" version="1.10.4">r-data.table</requirement>
         <requirement type="package" version="4.6_12">r-randomforest</requirement>
     </requirements>
+
+    <macros>
+        <import>vigiechiro_macros.xml</import>
+    </macros>
+
     <command detect_errors="exit_code"><![CDATA[
         Rscript 
          '$__tool_directory__/IdCorrect_2ndLayer.R' '$participation_file' 
@@ -19,10 +24,6 @@
          '$output'
 ]]>
     </command>
-
-    <macros>
-        <import>vigiechiro_macros.xml</import>
-    </macros>
 
     <inputs>
         <param name="participation_file" type="data" format="csv" label="Participation file"/>

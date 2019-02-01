@@ -15,7 +15,6 @@
     </command>
 
 
-
     <inputs>
         <param name="idc2" type="data" format="tabular" label="Corrected and validated observation file" help="Use output file from 'Tadarida identifications integration' : a sampling session file corrected and validated."/>
         <param name="output_choice" type="select" label="Select a summarised or detailed display" help="Chose whether your want a nigthly, hourly or global summary">

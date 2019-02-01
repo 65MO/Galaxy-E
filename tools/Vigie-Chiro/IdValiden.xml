@@ -1,17 +1,19 @@
 <tool id="vigiechiro_IdValid" name="Tadarida identifications integration" version="0.1">
     <description>Integrate identifications from animal detection on acoustic recordings</description>
+
     <requirements>
         <requirement type="package" version="1.10.4">r-data.table</requirement>
     </requirements>
+
+    <macros>
+        <import>vigiechiro_macros.xml</import>
+    </macros>
+
     <command detect_errors="exit_code"><![CDATA[
         Rscript 
          '$__tool_directory__/IdValid.R' '$inputfile'  '$__tool_directory__/Referentiel_seuils_C2.csv'  '$output'
 ]]>
     </command>
-
-    <macros>
-        <import>vigiechiro_macros.xml</import>
-    </macros>
 
     <inputs>
         <param name="inputfile" type="data" format="tabular" label="Corrected observation file" help="Use output file from Tadarida data clean : a sampling session file corrected."/>	    
