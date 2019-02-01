@@ -12,8 +12,7 @@ args = commandArgs(trailingOnly=TRUE)
 if (length(args)==0) {
     stop("At least one argument must be supplied (input file)", call.=FALSE) #if no args -> error and exit1
 } else {
-    "NomFichier"<-args[1] ###### Nom du fichier sans extension ".typedefichier"  / file name without the file type ".filetype"
-    
+    NomFichier<-args[1] #Ne pas utiliser de "" pour la déclaration de variable, je n'avais jamais vu ça. c'est un vrai truc de R ? ###### Nom du fichier sans extension ".typedefichier"  / file name without the file type ".filetype"    
 }
 
 ##### Le tableau de données doit posséder 4 variables en colonne: abondance ("abond"), les carrés ou sont réalisés les observatiosn ("carre"), la ou les années des observations ("annee"), et le code de ou des espèces ("espece")
@@ -21,7 +20,12 @@ if (length(args)==0) {
 
 
 #Import des données / Import data 
-data<- read.csv(paste(args[1],".csv",sep=""))
+data<- read.csv(paste(NomFichier,".csv",sep="")) #utiliser la variable définie avant, plus compréhensible! 
+ncol<-as.integer(dim(data)[2])
+if(ncol<4){ #Verifiction de la présence mini de 4 colonnes on peut aller plus loin et vérifier les noms de ces colonnes.
+    stop("The file don't have at least 4 variables", call.=FALSE)
+}
+
 
 ## mise en colonne des especes  et rajout de zero mais sur la base des carrés selectionné sans l'import  /  Species are placed in separated columns and addition of zero on plots where at least one selected species is present 
 makeTableAnalyse <- function(data) {
@@ -33,8 +37,6 @@ makeTableAnalyse <- function(data) {
     tab[is.na(tab)] <- 0               ###### remplace les 0 par des na
 
     colnames(tab) <- sub("abond.","",colnames(tab))### remplace le premier pattern "abond." par le second "" / replace the column names "abond." by ""
-	  filename <- "Datatransformedforfiltering&trendanalysis.csv"
-      write.table(tab, filename)
     return(tab)
 }
 
@@ -45,6 +47,11 @@ makeTableAnalyse <- function(data) {
 #########
 
 #Do your analysis
-makeTableAnalyse(data)
+tableAnalyse<-makeTableAnalyse(data) #la fonction a un 'return' il faut donc stocker le resultat dans une nouvelle variable
+#On ecrit le fichier en dehors de la fonction si possible comme ça c'est plus visible. La fonction ne fait que les calcul et est générale. on peut l'appeler plusieurs fois avec plusieurs noms et plusieurs fichiers écrits.
+filename <- "Datatransformedforfiltering&trendanalysis.csv"
+write.table(tableAnalyse, filename,sep=" ") #ajouter un sep ici 1espace au hasard #on peut avoir des surprises
+
+
 
 cat('exit\n')
