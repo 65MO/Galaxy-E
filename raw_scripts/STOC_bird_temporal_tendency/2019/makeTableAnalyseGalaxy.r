@@ -34,7 +34,7 @@ makeTableAnalyse <- function(data) {
                   ,idvar=c("carre","annee")      
                   ,timevar="espece"
                   ,direction="wide")
-    tab[is.na(tab)] <- 0               ###### remplace les 0 par des na
+    tab[is.na(tab)] <- 0               ###### remplace les na par des 0 / replace NAs by 0 
 
     colnames(tab) <- sub("abond.","",colnames(tab))### remplace le premier pattern "abond." par le second "" / replace the column names "abond." by ""
     return(tab)
@@ -48,7 +48,7 @@ makeTableAnalyse <- function(data) {
 
 #Do your analysis
 tableAnalyse<-makeTableAnalyse(data) #la fonction a un 'return' il faut donc stocker le resultat dans une nouvelle variable
-#On ecrit le fichier en dehors de la fonction si possible comme ça c'est plus visible. La fonction ne fait que les calcul et est générale. on peut l'appeler plusieurs fois avec plusieurs noms et plusieurs fichiers écrits.
+#save the data in a output file in a csv format
 filename <- "Datatransformedforfiltering&trendanalysis.csv"
 write.csv2(tableAnalyse, filename) 
 
