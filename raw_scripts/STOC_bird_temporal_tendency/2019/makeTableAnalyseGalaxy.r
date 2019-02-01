@@ -10,9 +10,9 @@
 args = commandArgs(trailingOnly=TRUE)
 
 if (length(args)==0) {
-    stop("At least one argument must be supplied (input file)", call.=FALSE) #if no args -> error and exit1
+    stop("At least one argument must be supplied (input file)", call.=FALSE) #si pas d'arguments -> affiche erreur et quitte / if no args -> error and exit1
 } else {
-    ImportduSTOC<-args[1] #Ne pas utiliser de "" pour la déclaration de variable, je n'avais jamais vu ça. c'est un vrai truc de R ? non une erreur de debutant ! ###### Nom du fichier sans extension ".typedefichier"  / file name without the file type ".filetype"    
+    ImportduSTOC<-args[1] ###### Nom du fichier importé depuis la base de données STOCeps sans extension ".typedefichier"  / file name imported from the STOCeps database without the file type ".filetype"    
 }
 
 ##### Le tableau de données doit posséder 4 variables en colonne: abondance ("abond"), les carrés ou sont réalisés les observatiosn ("carre"), la ou les années des observations ("annee"), et le code de ou des espèces ("espece")
@@ -20,7 +20,7 @@ if (length(args)==0) {
 
 
 #Import des données / Import data 
-data<- read.csv(paste(ImportduSTOC,".csv",sep="")) #utiliser la variable définie avant, plus compréhensible! 
+data<- read.csv(paste(ImportduSTOC,".csv",sep="")) #  
 ncol<-as.integer(dim(data)[2])
 if(ncol<4){ #Verifiction de la présence mini de 4 colonnes on peut aller plus loin et vérifier les noms de ces colonnes.
     stop("The file don't have at least 4 variables", call.=FALSE)
