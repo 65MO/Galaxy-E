@@ -23,7 +23,7 @@ if (length(args)==0) {
 
 
 #Import des données / Import data 
-tab <- read.csv("Datatransformedforfiltering_trendanalysis.csv",sep=";",dec=".") #  
+tab <- read.csv(Datatransformedforfiltering_trendanalysis,sep=";",dec=".") #  
 ncol<-as.integer(dim(tab)[2])
 if(ncol<3){ #Verifiction de la présence mini de 3 colonnes, si c'est pas le cas= message d'erreur / checking for the presence of 3 columns in the file if not = error message
     stop("The file don't have at least 3 variables", call.=FALSE)
