@@ -20,7 +20,7 @@ if (length(args)==0) {
 
 
 #Import des données / Import data 
-data<- read.csv(paste(ImportduSTOC,".csv",sep="")) #  
+data<- read.csv(paste(ImportduSTOC,".csv",sep=";",dec=".")) #  
 ncol<-as.integer(dim(data)[2])
 if(ncol<4){ #Verifiction de la présence mini de 4 colonnes, si c'est pas le cas= message d'erreur / checking for the presence of 4 columns in the file if not = error message
     stop("The file don't have at least 4 variables", call.=FALSE)
