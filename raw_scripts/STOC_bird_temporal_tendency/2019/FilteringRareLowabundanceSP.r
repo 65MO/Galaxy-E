@@ -15,7 +15,7 @@ args = commandArgs(trailingOnly=TRUE)
 if (length(args)==0) {
     stop("At least one argument must be supplied (input file)", call.=FALSE) #si pas d'arguments -> affiche erreur et quitte / if no args -> error and exit1
 } else {
-    Datatransformedforfiltering&trendanalysis<-args[1] ###### Nom du fichier sans extension ".typedefichier", peut provenir de la fonction "MakeTableAnalyse" / file name without the file type ".filetype", may result from the function "MakeTableAnalys"    
+    Datatransformedforfiltering_trendanalysis<-args[1] ###### Nom du fichier sans extension ".typedefichier", peut provenir de la fonction "MakeTableAnalyse" / file name without the file type ".filetype", may result from the function "MakeTableAnalys"    
 }
 
 ##### Le tableau de données doit posséder 3 variables en colonne minimum avec 1 seule espèce et autant de colonne en plus que d'espèces en plus: les carrés ou sont réalisés les observatiosn ("carre"), la ou les années des observations ("annee"), 1 colonne par espèce renseignée avec les abondances correspondantes
