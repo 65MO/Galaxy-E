@@ -49,7 +49,6 @@ makeTableAnalyse <- function(data) {
 #Do your analysis
 tableAnalyse<-makeTableAnalyse(data) #la fonction a un 'return' il faut donc stocker le resultat dans une nouvelle variable
 
-head(tableAnalyse)
 #save the data in a output file in a csv format
 filename <- "Datatransformedforfiltering_trendanalysis.csv"
 write.csv2(tableAnalyse, filename,row.names=FALSE)
