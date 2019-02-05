@@ -92,7 +92,8 @@ filtreEspeceRare <- function(tab) {
     colSupr <- names(cat)[cat=="exclu"]
     tabCLEAN <- tab[,c("carre","annee",colConserve)] #### Garde les sps à conserver / select only species with enough data 
     lfiltre <- list(tabCLEAN=tabCLEAN,colConserve=colConserve,colSupr=colSupr)
-    return(lfiltre) 
+    return(lfiltre)
+     
 #################################################################################  PARTIE POTENTIELLEMENT ISOLABLE
 
     ## colConserve espece conservees / extract species that will be kept to print them
@@ -121,7 +122,7 @@ filtreEspeceRare <- function(tab) {
     colnames(tab)[3:4] <- c("espece","abond")
     tabCLEAN$annee <- as.numeric(as.character(tabCLEAN$annee))
 ################################################################################ FIN DE LA PARTIE ISOLABLE
-
+    
 }
 
 #########
@@ -133,7 +134,7 @@ filtreEspeceRare <- function(tab) {
 
 #save the data in a output file in a csv format
 filename <- "Datafilteredfortrendanalysis.csv"
-write.csv2(tabCLEAN, filename)
+write.csv2(lfiltre$tabCLEAN, filename)
 
 
 
