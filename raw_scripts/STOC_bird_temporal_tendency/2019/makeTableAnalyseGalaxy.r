@@ -1,4 +1,4 @@
-﻿
+
 
 ##################################################################################################################
 ################  Data transformation for population evolution trend analyses  function:makeTableAnalyse #########
