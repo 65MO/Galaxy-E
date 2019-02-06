@@ -18,7 +18,6 @@ if (length(args)==0) {
 ##### Le tableau de données doit posséder 4 variables en colonne: abondance ("abond"), les carrés ou sont réalisés les observatiosn ("carre"), la ou les années des observations ("annee"), et le code de ou des espèces ("espece")
 ##### Data must be a dataframe with 4 variables in column: abundance ("abond"), plots where observation where made ("carre"), year(s) of the different sampling ("annee"), and the species code ("espece") 
 
-data<- read.csv(ImportduSTOC,sep=";",dec=".") #  
 #Import des données / Import data 
 data<- read.csv(ImportduSTOC,sep=";",dec=".") #  
 ncol<-as.integer(dim(data)[2])
