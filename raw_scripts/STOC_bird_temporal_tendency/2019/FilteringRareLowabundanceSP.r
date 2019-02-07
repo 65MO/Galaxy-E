@@ -6,6 +6,9 @@
 #### Based on Romain Lorrillière R script
 #### Modified by Alan Amosse and Benjamin Yguel for integrating within Galaxy-E
 
+#!/usr/bin/env Rscript
+library(reshape2)
+
 
 ###########
 #delcaration des arguments et variables/ declaring some variables and load arguments
@@ -15,7 +18,7 @@ args = commandArgs(trailingOnly=TRUE)
 if (length(args)==0) {
     stop("At least one argument must be supplied (input file)", call.=FALSE) #si pas d'arguments -> affiche erreur et quitte / if no args -> error and exit1
 } else {
-    Datatransformedforfiltering_trendanalysis<-args[1] ###### Nom du fichier sans extension ".typedefichier", peut provenir de la fonction "MakeTableAnalyse" / file name without the file type ".filetype", may result from the function "MakeTableAnalys"    
+    Datatransformedforfiltering_trendanalysis<-args[1] ###### Nom du fichier peut provenir de la fonction "MakeTableAnalyse" / file name , may result from the function "MakeTableAnalys"    
 }
 
 ##### Le tableau de données doit posséder 3 variables en colonne minimum avec 1 seule espèce et autant de colonne en plus que d'espèces en plus: les carrés ou sont réalisés les observatiosn ("carre"), la ou les années des observations ("annee"), 1 colonne par espèce renseignée avec les abondances correspondantes
@@ -24,15 +27,16 @@ if (length(args)==0) {
 
 #Import des données / Import data 
 tab <- read.csv(Datatransformedforfiltering_trendanalysis,sep=";",dec=".") #  
-ncol<-as.integer(dim(tab)[2])
-if(ncol<3){ #Verifiction de la présence mini de 3 colonnes, si c'est pas le cas= message d'erreur / checking for the presence of 3 columns in the file if not = error message
+
+
+if(ncol(tab)<3){ #Verifiction de la présence mini de 3 colonnes, si c'est pas le cas= message d'erreur / checking for the presence of 3 columns in the file if not = error message
     stop("The file don't have at least 3 variables", call.=FALSE)
 }
 
 
 ############################################# la fonction qui filtre les données pas suffisantes pour analyses fiables / The filtering function removing species with not enough data to perform accurate analyses
-filtreEspeceRare <- function(tab) {
 
+filter_absent_species<-function(tab){
 ##################### Filtre les espèces jamais présentes (abondance=0) / Filter of species with 0 abundance
 #################################################################################  PARTIE POTENTIELLEMENT ISOLABLE ET INSERABLE AVANT LA BOUCLE = permet de gagner du temps sur la boucle car supprime sps pas vu, donc pas repris par la boucle
     
@@ -49,14 +53,15 @@ filtreEspeceRare <- function(tab) {
     colConserve <- names(which(tabSum>0))
     ## Affichage des espèces rejetees  / show species eliminated for the analyses
     if(length(colNull)>0){
-        cat("\n",length(colNull)," Espèces enlevées de l'analyse car abondance toujours égale a 0\n\n",sep="")
+        cat("\n",length(colNull)," Species removed from the analysis, abundance is always 0.\n\n",sep="")  #Espèces enlevées de l'analyse car abondance toujours égale a 0\n\n",sep="")
         tabNull <- data.frame(Code_espece = colNull, nom_espece = tabsp[colNull,"nom"])
         print(tabNull)  
         cat("\n\n",sep="")
-        tab <- tab[,c("carre","annee",colConserve)]  
+        tab <- tab[,c("carre","annee",colConserve)]
     }
 ################################################################################ FIN DE LA PARTIE ISOLABLE
-
+    return(tab)  
+}
 
 
 
@@ -64,13 +69,14 @@ filtreEspeceRare <- function(tab) {
 ###################### Filtre les especes trop rare pour avoir des analyses robustes i.e. espèce non presente la 1ère année, avec plus de 3 ans consecutif sans données et moins de 3 ans consécutif avec données 
 ######################  Filter too rare species for accurate analysis i.e.  species absent the first year, with more than 3 consecutive years with 0 abundance, or with less than 3 consecutive years with presence
 
-### 
-    cat <- NULL
+###
+filter_rare_species<-function(tab){ 
+    exclude_threshold <- NULL
     ## calcul et filtre pour chaque (colonne) espece / measure and filter for each species
     for(i in 3:ncol(tab)) {
         ## v =abondance par annee / v= abundance per year
         v <- tapply(tab[,i],tab$annee,sum)  ####################    
-        ## v0 =presence abscence par annee 
+        ## v0 =presence(1) abscence(0) per year 
         v0 <- ifelse(v>0,1,0)  ##### 
         tx <- paste(v0,collapse="") #### colle les 0 et 1 / stick the 0 and 1 
         
@@ -83,16 +89,18 @@ filtreEspeceRare <- function(tab) {
         ## y0is0 absence la premiere annee
         y0is0 <- v0[1]==0  #### True ou false pour presence de "0"(=pas de données) dans la 1ère année / look if the first year of the time sequence analyzed has no data 
         ## seuil d'exclusion / exclusion threshold  
-        cat <- c(cat,as.vector(ifelse( y0is0 | gsInf0 > 3 | gsSup0 < 3 ,"exclu","bon")))  ############## exclu sps absente la 1ère année, avec plus de 3 ans consécutifs sans données, et avec moins de 3 années consécutives sans données / indicate if the max consecutive year with data and without data, as well as whether the first year of the time sequence analyzed has data 
+        exclude_threshold <- c(exclude_threshold,as.vector(ifelse( y0is0 | gsInf0 > 3 | gsSup0 < 3 ,"exclu","bon")))  ############## exclu sps absente la 1ère année, avec plus de 3 ans consécutifs sans données, et avec moins de 3 années consécutives sans données / indicate if the max consecutive year with data and without data, as well as whether the first year of the time sequence analyzed has data 
     }
-    names(cat) <- colnames(tab)[3:ncol(tab)]
+    names(exclude_threshold) <- colnames(tab)[3:ncol(tab)]
+
     ## colonnes conservees avec assez de données / Column with enough data
-    colConserve <- names(cat)[cat=="bon"]
+    colConserve <- names(exclude_threshold)[exclude_threshold=="bon"]
+    
+  
     ## colonnes supprimees / Column that will conserved 
-    colSupr <- names(cat)[cat=="exclu"]
+    colSupr <- names(exclude_threshold)[exclude_threshold=="exclu"]
     tabCLEAN <- tab[,c("carre","annee",colConserve)] #### Garde les sps à conserver / select only species with enough data 
     lfiltre <- list(tabCLEAN=tabCLEAN,colConserve=colConserve,colSupr=colSupr)
-    return(lfiltre)
      
 #################################################################################  PARTIE POTENTIELLEMENT ISOLABLE
 
@@ -100,10 +108,9 @@ filtreEspeceRare <- function(tab) {
     colConserve <- lfiltre$colConserve
     ## colsupr espece trop rare et donc supprimée de l'analyse / extract species that will be deleted to print them
     colSupr <- lfiltre$colSupr
-    
     ## affichage des especes retirer de l'analyse / print species that will be deleted
     if(length(colSupr)>0){
-        cat("\n",length(colSupr)," Espèces enlevées de l' analyse car espèces trop rares\n\n",sep="")
+        cat("\n",length(colSupr)," Rare species removed from the analysis.\n\n",sep="")
         tabSupr <- subset(tabsp,espece %in% colSupr ,select=c("espece","nom"))
         tabSupr <- tabSupr[order(tabSupr$espece),]
         print(tabSupr)  
@@ -111,30 +118,31 @@ filtreEspeceRare <- function(tab) {
         
     }
     if(length(colConserve)==0) {
-        mess <- "Aucun espèce elligible dans le jeu de données pour le calcul de variation d'abondance"
+        mess <- "No species available to calculate abundance variation in this dataset."
         stop(mess)
     }
 	
-	tabCLEAN <- lfiltre$tabCLEAN
+    tabCLEAN <- lfiltre$tabCLEAN
 
                                         
     tabCLEAN <- melt(tabCLEAN, id.vars=c("carre", "annee"))
-    colnames(tab)[3:4] <- c("espece","abond")
+    
+    colnames(tabCLEAN)[3:4] <- c("espece","abond")
     tabCLEAN$annee <- as.numeric(as.character(tabCLEAN$annee))
 ################################################################################ FIN DE LA PARTIE ISOLABLE
-    
+    return(lfiltre$tabCLEAN)
 }
 
 #########
 
 #Do your analysis
-    lfiltre <- filtreEspeceRare(tab)
-
-    
+tab_filtred1<-filter_absent_species(tab)
+tab_filtred2<-filter_rare_species(tab) 
 
 #save the data in a output file in a csv format
 filename <- "Datafilteredfortrendanalysis.csv"
-write.csv2(lfiltre$tabCLEAN, filename)
+print(paste("write table ",filename))
+write.csv2(tab_filtred2, filename,row.names=FALSE)
 
 
 
