@@ -35,7 +35,6 @@ if(ncol(tab)<3){ #Verifiction de la présence mini de 3 colonnes, si c'est pas l
 
 
 ############################################# la fonction qui filtre les données pas suffisantes pour analyses fiables / The filtering function removing species with not enough data to perform accurate analyses
-#filtreEspeceRare <- function(tab) {
 
 filter_absent_species<-function(tab){
 ##################### Filtre les espèces jamais présentes (abondance=0) / Filter of species with 0 abundance
