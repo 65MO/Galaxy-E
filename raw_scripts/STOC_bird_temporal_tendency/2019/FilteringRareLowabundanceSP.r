@@ -124,13 +124,13 @@ filter_rare_species<-function(tab){
 	
     tabCLEAN <- lfiltre$tabCLEAN
 
-                                        
-    tabCLEAN <- melt(tabCLEAN, id.vars=c("carre", "annee"))
+                                        #### MARCHE PAS NE SAIT PAS PQUOI
+    tabCLEAN <- melt(tabCLEAN, id.vars=c("carre", "annee"))  #### remet le format de base :le nom d'espèce et abondance dans des colonnes séparées / back to the first format of the file: species name and abundance in separated column
     
     colnames(tabCLEAN)[3:4] <- c("espece","abond")
     tabCLEAN$annee <- as.numeric(as.character(tabCLEAN$annee))
 ################################################################################ FIN DE LA PARTIE ISOLABLE
-    return(lfiltre$tabCLEAN)
+    return(tabCLEAN)
 }
 
 #########
