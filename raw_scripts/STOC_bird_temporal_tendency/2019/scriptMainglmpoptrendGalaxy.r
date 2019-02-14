@@ -194,14 +194,19 @@ ggplot.espece <- function(dgg,tab1t,id,serie=NULL,sp,valide,nomSp=NULL,descripti
 
 
 
+############ J AI ENLEVE LA SORTIE DANS UN DOSSIER A CREER ET IL SORT CELA DANS LE DOSSIER OU EST LANCE L ANALYSE COMME POUR LES PRECEDENTES FONCTIONS
 
-
-    filesaveAn <-  paste("Output/",id,"/variationsAnnuellesEspece_",id,".csv",  ##### Nom du fichier de sortie des resultats par année / name of the output file with results for each years
+    filesaveAn <-  paste("variationsAnnuellesEspece_",id,".csv",  ##### Nom du fichier de sortie des resultats par année / name of the output file with results for each years
                          sep = "")
-    filesaveTrend <-  paste("Output/",id,"/tendanceGlobalEspece_",id,".csv",   ##### Nom du fichier de sortie des resultats pour la période "annee" complete / name of the output file with the results for the period
+						 #filesaveAn <-  paste("Output/",id,"/variationsAnnuellesEspece_",id,".csv",  ##### Nom du dossier ET fichier de sortie des resultats par année / name of the output file with results for each years
+                         sep = "")
+    filesaveTrend <-  paste("tendanceGlobalEspece_",id,".csv",   ##### Nom du fichier de sortie des resultats pour la période "annee" complete / name of the output file with the results for the period
                             sep = "")
+						 #filesaveTrend <-  paste("Output/",id,"/tendanceGlobalEspece_",id,".csv",   ##### Nom du dossier ET fichier de sortie des resultats pour la période "annee" complete / name of the output file with the results for the period
+                            sep = "")
+    fileSaveGLMs <-  paste("listGLM_",id,sep = "")  #####  Nom du fichier de sortie des modèles lineaire generalisés / name of the output file of the generlized linear models
+	                     #fileSaveGLMs <-  paste("Output/",id,"/listGLM_",id,sep = "")  #####  Nom du dossier ET fichier de sortie des modèles lineaire generalisés / name of the output file of the generlized linear models
 
-    fileSaveGLMs <-  paste("Output/",id,"/listGLM_",id,sep = "")  #####  Nom du fichier de sortie des modèles lineaire generalisés / name of the output file of the generlized linear models
 
     
      
