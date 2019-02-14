@@ -199,11 +199,11 @@ ggplot.espece <- function(dgg,tab1t,id,serie=NULL,sp,valide,nomSp=NULL,descripti
     filesaveAn <-  paste("variationsAnnuellesEspece_",id,".csv",  ##### Nom du fichier de sortie des resultats par année / name of the output file with results for each years
                          sep = "")
 						 #filesaveAn <-  paste("Output/",id,"/variationsAnnuellesEspece_",id,".csv",  ##### Nom du dossier ET fichier de sortie des resultats par année / name of the output file with results for each years
-                         sep = "")
+                         #sep = "")
     filesaveTrend <-  paste("tendanceGlobalEspece_",id,".csv",   ##### Nom du fichier de sortie des resultats pour la période "annee" complete / name of the output file with the results for the period
                             sep = "")
 						 #filesaveTrend <-  paste("Output/",id,"/tendanceGlobalEspece_",id,".csv",   ##### Nom du dossier ET fichier de sortie des resultats pour la période "annee" complete / name of the output file with the results for the period
-                            sep = "")
+                           # sep = "")
     fileSaveGLMs <-  paste("listGLM_",id,sep = "")  #####  Nom du fichier de sortie des modèles lineaire generalisés / name of the output file of the generlized linear models
 	                     #fileSaveGLMs <-  paste("Output/",id,"/listGLM_",id,sep = "")  #####  Nom du dossier ET fichier de sortie des modèles lineaire generalisés / name of the output file of the generlized linear models
 
