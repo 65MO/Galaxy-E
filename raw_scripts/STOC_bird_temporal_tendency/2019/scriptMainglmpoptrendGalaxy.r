@@ -121,19 +121,19 @@ ggplot.espece <- function(dgg,tab1t,id,serie=NULL,sp,valide,nomSp=NULL,descripti
   hline.data <- rbind(hline.data1,hline.data2,hline.data3)
   titre <- paste(nomSp)#,"\n",min(annee)," - ",max(annee),sep="")
   
-  ## texte de la tendence
+  ## texte de la tendance / text for the population evolution trend
   tab1 <- subset(dgg,panel =="Variation abondance")
   pasdetemps <- max(dgg$annee) - min(dgg$annee) + 1
   txtPente1 <- paste(tab1t$Est,
                      ifelse(tab1t$signif," *",""),"  [",tab1t$LL," , ",tab1t$UL,"]",
                      ifelse(tab1t$signif,paste("\n",ifelse(tab1t$pourcent>0,"+ ","- "),
                                                abs(tab1t$pourcent)," % en ",pasdetemps," ans",sep=""),""),sep="")
-  ## table du texte de la tendence
+  ## table du texte de la tendance / table of the text for the population evolution trend
   tabTextPent <- data.frame(y=c(max(c(tab1$val,tab1$UL),na.rm=TRUE)*.9),
                             x=median(tab1$annee),
                             txt=ifelse(tendanceSurFigure,c(txtPente1),""),
                             courbe=c(vpan[1]),panel=c(vpan[1]))
-  ## les couleurs
+  ## les couleurs / the colors
   vecColPoint <- c("#ffffff","#eeb40f","#ee0f59")
   names(vecColPoint) <- c("significatif","infSeuil","0")
   vecColCourbe <- c("#3c47e0","#5b754d","#55bb1d","#973ce0")
@@ -285,7 +285,7 @@ ggplot.espece <- function(dgg,tab1t,id,serie=NULL,sp,valide,nomSp=NULL,descripti
         
         abond <- tapply(d$abond,d$annee,sum) ## abond abondance par annee / abundance per year
         
-        tab3 <- data.frame(annee=annee,val=abond,LL = NA,UL=NA,catPoint=NA,pval=NA,courbe=vpan[3],panel=vpan[3]) ## tab3 tab3 pour la figure / data.frame made to realize the graphical outputs
+        tab3 <- data.frame(annee=annee,val=abond,LL = NA,UL=NA,catPoint=NA,pval=NA,courbe=vpan[3],panel=vpan[3]) ## table pour la figure / data.frame made to realize the graphical outputs
         tab3$catPoint <- ifelse(tab3$val == 0,"0",ifelse(tab3$val < seuilAbond,"infSeuil",NA))
 
         ## GLM pour calcul des tendances annuelles de l'evolution des populations / GLM to measure annual tendency of population evolution 
@@ -305,7 +305,8 @@ ggplot.espece <- function(dgg,tab1t,id,serie=NULL,sp,valide,nomSp=NULL,descripti
         coefannee <- c(1,exp(coefan))## coefannee vecteur des variation d'abondance par annee avec transformation inverse du log :exp() / regression coefficient of the year back transformed from log(abundance) : exp()
         
 		erreuran <- as.numeric(as.character(sglm1[,2])) #### erreur standard sur le coefficient de regression de la variable annee  / standard error on the regression coefficient of the year 
-        erreurannee1 <- c(0,erreuran*exp(coefan))## erreur standard par année / the standard error per year
+        erreurannee1 <- c(0,erreuran*exp(coefan))## erreur standard par année / the standard error per year  ###### LA J AI UN DOUTE NORMALEMENT INTERVAL DE CONF C CI_lower <- coefficients(lin_mod)[2] - 1.96*summary(lin_mod)$coefficients[2,2]
+                                                                                                               ####CI_upper <- coefficients(lin_mod)[2] + 1.96*summary(lin_mod)$coefficients[2,2]
 		
         pval <- c(1,as.numeric(as.character(sglm1[,4])))###### p value
         
@@ -322,7 +323,7 @@ ggplot.espece <- function(dgg,tab1t,id,serie=NULL,sp,valide,nomSp=NULL,descripti
         
         
         
-        tab1 <- data.frame(annee,val=coefannee,  ## tab1 table pour la realisation des figures   2EME POUR GRAPH A VERIF DIFFERENCE AVEC tab3  ici ce sont le coef de regress annee en fonction des annéés alors que tab2 c'est les abondance en fct des années
+        tab1 <- data.frame(annee,val=coefannee,  ## tab1 table pour la realisation des figures / table for the graphical outputs  ### 2EME POUR GRAPH ici ce sont le coef de regress annee en fonction des annéés alors que tab3 c'est les abondance en fct des années et tab2 nombre de carré total et avec presence
                            LL=ic_inf_sim,UL=ic_sup_sim,
                            catPoint=ifelse(pval<seuilSignif,"significatif",NA),pval,
                            courbe=vpan[1],
@@ -340,7 +341,7 @@ ggplot.espece <- function(dgg,tab1t,id,serie=NULL,sp,valide,nomSp=NULL,descripti
         if(assessIC) dispAn <- glm1$deviance/glm1$null.deviance else dispAn <- glm1$deviance/glm1$nulldev
 
 
-        ## tabAn table de sauvegarde des resultats 2EM POUR RESULTAT A VERIF DIFFERENCE AVEC tab2     nb de carre, nb de carre presnce, p val sont aussi ds tab2
+        ## tabAn table de sauvegarde des resultats par année / table of the results per year ######  reprends bcp de tabl DIFFERENCE AVEC tab2  c les abondances relatives, alors que nb de carre, nb de carre presnce, p val sont aussi ds tab2
         tabAn <- data.frame(id,code_espece=sp, nom_espece = nomSp,indicateur = indic,annee = tab1$annee,
                             abondance_relative=round(tab1$val,3),
                             IC_inferieur = round(tab1$LL,3), IC_superieur = round(tab1$UL,3),
@@ -429,7 +430,7 @@ ggplot.espece <- function(dgg,tab1t,id,serie=NULL,sp,valide,nomSp=NULL,descripti
         ## affectation des tendence EBCC  / retrieve the trend of population evolution on the studied period
         catEBCC <- NA
         if(assessIC)  catEBCC <- affectCatEBCC(trend = as.vector(trend),pVal = pval,ICinf=as.vector(LL),ICsup=as.vector(UL)) else catEBCC <- NA
-        ## table complete de resultats  
+        ## table complete de resultats  pour la periode etudiée / complete table with results for the studied period
      #   browser()
         tabTrend <- data.frame(
             id,code_espece=sp,nom_espece = nomSp,indicateur = indic,
@@ -466,7 +467,7 @@ ggplot.espece <- function(dgg,tab1t,id,serie=NULL,sp,valide,nomSp=NULL,descripti
             
         }
         
-        if(ecritureStepByStep) {
+        if(ecritureStepByStep) {  ################  A PRIORI PAS UTILE
 
             write.csv2(glmAn,filesaveAn,row.names=FALSE,quote=FALSE)
             cat("--->",filesaveAn,"\n")
@@ -475,7 +476,7 @@ ggplot.espece <- function(dgg,tab1t,id,serie=NULL,sp,valide,nomSp=NULL,descripti
             
             flush.console()
 
-        }
+        }########### FIN A PRIORI PAS UTILE
         
         
     }
