@@ -1,4 +1,4 @@
-
+﻿
 
 ##################################################################################################################
 ################  Data transformation for population evolution trend analyses  function:makeTableAnalyse #########
@@ -50,7 +50,7 @@ tableAnalyse<-makeTableAnalyse(data) #la fonction a un 'return' il faut donc sto
 
 #save the data in a output file in a csv format
 filename <- "Datatransformedforfiltering_trendanalysis.csv"
-write.csv2(tableAnalyse, filename,row.names=FALSE)
+write.csv(tableAnalyse, filename,row.names=FALSE)
 
 
 
