@@ -142,7 +142,7 @@ tab_filtred2<-filter_rare_species(tab)
 #save the data in a output file in a csv format
 filename <- "Datafilteredfortrendanalysis.csv"
 print(paste("write table ",filename))
-write.csv2(tab_filtred2, filename,row.names=FALSE)
+write.csv2(tab_filtred2, filename,row.names=FALSE,sep=".")
 
 
 
