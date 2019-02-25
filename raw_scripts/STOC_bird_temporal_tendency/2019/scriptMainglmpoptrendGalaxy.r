@@ -481,9 +481,9 @@ ggplot.espece <- function(dgg,tab1t,id,serie=NULL,sp,valide,nomSp=NULL,descripti
         
     }
     
-    write.csv2(glmAn,filesaveAn,row.names=FALSE,quote=FALSE)
+    write.csv(glmAn,filesaveAn,row.names=FALSE,quote=FALSE)
     cat("--->",filesaveAn,"\n")
-    write.csv2(glmTrend,filesaveTrend,row.names=FALSE,quote=FALSE)
+    write.csv(glmTrend,filesaveTrend,row.names=FALSE,quote=FALSE)
     cat("--->",filesaveTrend,"\n")
     
     
