@@ -8,8 +8,8 @@ shinyServer(
   function(input, output) {
 
     output$map <- renderLeaflet({
-      stn <- subset(inputstn, DEPNAME == input$DEPNAME)
-      map  <- addMarkers(map, stn$LONGITUDE, stn$LATITUDE, popup=stn$GARDENNAME)
+      stn <- subset(inputstn, REGION == input$REGION)
+      map  <- addMarkers(map, stn$LONGITUDE, stn$LATITUDE, popup=stn$ID)
       map
     })
   }

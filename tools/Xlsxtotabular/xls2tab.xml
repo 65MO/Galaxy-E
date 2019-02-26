@@ -1,0 +1,55 @@
+<tool id="xls2tab_R" name="XLS sheet to Tabular" version="0.1">
+    <requirements>
+        <requirement type="package" version="3.2.1">R</requirement>
+		<requirement type="package" version="1.1.0">r-readxl</requirement>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+        Rscript '$__tool_directory__/xls2tab.R' '$input1' '$sheet' '$output' ]]>
+    </command>
+    <inputs>
+        <param format="excel.xls,xlsx" name="input1" type="data" label="XLS/XLSX file"/>
+        <param name="sheet" type="text" label="Excel sheet name" value="biodiv_data">
+            <sanitizer sanitize="False"/>
+        </param>
+
+    </inputs>
+
+    <outputs>
+        <data format="tabular" name="output" from_work_dir="out.tabular" />
+    </outputs>
+    
+    <tests>
+        <test>
+            <param name="input1" value="example_xlsx.xlsx"/>
+            <param name="sheet" value="data"/>
+            <output name="output" file="out.tabular"/>
+        </test>
+    </tests>
+
+    <help>
+**What it does**
+
+Extract a sheet from XLS/XLSX file to a tabular file.
+
+
+------
+
+**Example**
+
+Input XLS/XLSX with a sheet named 'données in situ'
+
+Output tabular
+
+
+------
+
+**Arguments**
+
+Input: xls/xlsx file.
+Excel sheet name: données in situ
+
+
+
+
+    </help>
+</tool>
