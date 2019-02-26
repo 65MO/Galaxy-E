@@ -19,7 +19,7 @@ if (length(args)==0) {
 ##### Data must be a dataframe with 4 variables in column: abundance ("abond"), plots where observation where made ("carre"), year(s) of the different sampling ("annee"), and the species code ("espece") 
 
 #Import des données / Import data 
-data<- read.csv(ImportduSTOC,sep=";",dec=".") #  
+data<- read.csv(ImportduSTOC,sep="	",dec=".") #  
 ncol<-as.integer(dim(data)[2])
 if(ncol<4){ #Verifiction de la présence mini de 4 colonnes, si c'est pas le cas= message d'erreur / checking for the presence of 4 columns in the file if not = error message
     stop("The file don't have at least 4 variables", call.=FALSE)
@@ -50,7 +50,7 @@ tableAnalyse<-makeTableAnalyse(data) #la fonction a un 'return' il faut donc sto
 
 #save the data in a output file in a csv format
 filename <- "Datatransformedforfiltering_trendanalysis.csv"
-write.csv(tableAnalyse, filename,row.names=FALSE)
+write.csv(tableAnalyse, filename,row.names=FALSE,sep="	",dec=".")
 
 
 
