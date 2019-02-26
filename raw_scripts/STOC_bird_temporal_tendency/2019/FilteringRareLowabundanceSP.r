@@ -26,7 +26,7 @@ if (length(args)==0) {
 
 
 #Import des données / Import data 
-tab <- read.csv(Datatransformedforfiltering_trendanalysis,sep=";",dec=".") #  
+tab <- read.csv(Datatransformedforfiltering_trendanalysis,sep="	",dec=".") #  
 
 
 if(ncol(tab)<3){ #Verifiction de la présence mini de 3 colonnes, si c'est pas le cas= message d'erreur / checking for the presence of 3 columns in the file if not = error message
@@ -142,7 +142,7 @@ tab_filtred2<-filter_rare_species(tab)
 #save the data in a output file in a csv format
 filename <- "Datafilteredfortrendanalysis.csv"
 print(paste("write table ",filename))
-write.csv(tab_filtred2, filename,row.names=FALSE,sep=".")
+write.csv(tab_filtred2, filename,row.names=FALSE,sep="	",dec=".")
 
 
 
