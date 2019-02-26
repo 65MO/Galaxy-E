@@ -310,7 +310,7 @@ ggplot.espece <- function(dgg,tab1t,id,serie=NULL,sp,valide,nomSp=NULL,descripti
 		
         pval <- c(1,as.numeric(as.character(sglm1[,4])))###### p value
         
-        ## calcul des intervalle de confiance  / calcul of the confidence interval    POURQUOI PAS UTILISE confint()
+        ## calcul des intervalle de confiance avec methode de bootstrap / calcul of the confidence interval using bootstrap method   POURQUOI PAS UTILISE confint.glm() ou boot()
         if(assessIC) {
         glm1.sim <- sim(glm1)
         ic_inf_sim <- c(1,exp(tail(apply(coef(glm1.sim), 2, quantile,.025),pasdetemps)))
@@ -349,7 +349,7 @@ ggplot.espece <- function(dgg,tab1t,id,serie=NULL,sp,valide,nomSp=NULL,descripti
                             p_value = round(tab1$pval,3),significatif = !is.na(tab1$catPoint),
                             nb_carre,nb_carre_presence,abondance=abond)
         
-        ## GLM pour calcul des tendance generale sur la periode  / GLM to measure the tendency of population evolution on the studied period 
+        ## GLM pour calcul des tendance generale sur la periode avec modele log lineaire / GLM to measure the tendency of population evolution on the studied period with log linear model
         formule <- as.formula(paste("abond~ as.factor(carre) + annee",sep="")) ### 
           #  browser()
     
@@ -380,7 +380,7 @@ ggplot.espece <- function(dgg,tab1t,id,serie=NULL,sp,valide,nomSp=NULL,descripti
         erreurannee2 <- erreuran*exp(coefan)
         
         
-        ## calcul des intervalle de confiance / calculating the confidence interval
+        ## calcul des intervalle de confiance avec methode de bootstrap / calculating the confidence interval based on bootstrap method
         LL <- NA
         UL <- NA
         if(assessIC) {
