@@ -1,4 +1,7 @@
 <macros>
+
+    <token name="@VERSION@">0.1.0</token>
+
     <xml name="vigiechiro_bibref">
         <citations>
             <citation type="bibtex">
