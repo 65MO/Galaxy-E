@@ -7,7 +7,9 @@
         Rscript '$__tool_directory__/flight_curve.R' '$__tool_directory__/dennis_gam_initial_functions.R' '$input' '$output' ]]>
     </command>
     <inputs>
-        <param format="tabular,csv" name="input" type="data" label="Fichier de comptage" help="Le fichier doit contenir les colonnes SPECIES,SITE,YEAR,MONTH,DAY et COUNT. Fichier CSV separteur ',' ou tabulation."/>
+	<param format="tabular,csv" name="input" type="data" label="Fichier de comptage" help="Le fichier doit contenir les colonnes SPECIES,SITE,YEAR,MONTH,DAY et COUNT. Fichier CSV separteur ',' ou tabulation."/>
+	<param name="MinVisit" type="integer" value="2" label="Nombre minimum de visites" />
+	<param name="MinOccur" type="integer" value="1" label="Nombre minimum d'occurences" />
     </inputs>
     <outputs>
         <data format="tabular" name="output" from_work_dir="pheno" />
