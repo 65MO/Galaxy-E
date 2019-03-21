@@ -1,11 +1,9 @@
-<tool id="gdalinfo" name="GDAL Informations" version="@VERSION@">
+<tool id="gdal_gdalinfo" name="GDAL Informations" version="@VERSION@">
     <description>lists information about a raster dataset</description>
-
     <macros>
         <import>gdal_macros.xml</import>
-    </macros>   
+    </macros>
     <expand macro="gdal_requirements" />
-
     <command detect_errors="exit_code"><![CDATA[
         gdalinfo '$input1'
             #if $settings.advanced=='advanced'
@@ -25,40 +23,40 @@
             #if $format.value=='json'
                 -json > '$outputJson';
                 #if $subdataset=='subd_y'
-                    cat '$outputJson' | grep -A 1 "\"SUBDATASET_._NAME\":\".*\"," | cut -d "\"" -f4- | sed 's/..$//' | sed 's/\t//' | sed -e 'N; s/\n/\t/' > '${input1.name}_Subdatasets'
+                    cat '$outputJson' | grep -A 1 "\"SUBDATASET_._NAME\":\".*\"," | cut -d "\"" -f4- | sed 's/..$//' | sed 's/\t//' | sed -e 'N; s/\n/\t/' > Subdatasets.tabular
                 #end if
             #else
                 > '$outputDefault';
                 #if $subdataset=='subd_y'
-                    cat '$outputDefault' | grep -A 1 "SUBDATASET_._NAME=.*:.*$" | cut -d "=" -f 2 | sed 's/\t//' | sed -e 'N; s/\n/\t/' > '${input1.name}_Subdatasets'
+                    cat '$outputDefault' | grep -A 1 "SUBDATASET_._NAME=.*:.*$" | cut -d "=" -f 2 | sed 's/\t//' | sed -e 'N; s/\n/\t/' > Subdatasets.tabular
                 #end if
             #end if
     ]]></command>
     <inputs>
-        <param type="data" name="input1" format="data" label="Gdal supported input file" help="http://www.gdal.org/formats_list.html"/>
-        <param name="format" type="select" label="Output format" display="radio" multiple="False">
+        <param type="data" name="input1" label="Gdal supported raster input file" format="tif,netcdf,tiff,vrt" help="Currently supported format are GTiff,VRT and netCDF."/>
+        <param name="format" type="select" label="Output format" multiple="False">
             <option value="default" selected="true">Text</option>
             <option value="json">Json</option>
         </param>
-        <param name="subdataset" type="select" label="Create list of potential subdatasets" display="radio" multiple="False">
+        <param name="subdataset" type="select" label="Create list of potential subdatasets" multiple="False" help="If set to yes, a tabular file will be created with a list of all subdatasets. Use this to later perform actions on custom subdata with gdal tranlsate.">
             <option value="subd_y">Yes</option>
             <option value="subd_n" selected="True">No</option>
         </param>
         <conditional name="settings">
             <expand macro="gdal_advanced_params_select"/>
             <when value="advanced">
-                <param name="mm" type="boolean" truevalue="-mm" falsevalue="" checked="false" label="-mm" help="Force computation of the actual min/max values for each band in the dataset."/>
+                <param name="mm" type="boolean" truevalue="-mm" falsevalue="" checked="false" help="-mm" label="Force computation of the actual min/max values for each band in the dataset."/>
                 <expand macro="gdal_param_stats"/>                    
-                <param name="approx_stats" type="boolean" truevalue="-approx_stats" falsevalue="" checked="false" label="-approx_stats" help="Read and display image statistics. Force computation if no statistics are stored in an image. However, they may be computed based on overviews or a subset of all tiles. Useful if you are in a hurry and don't want precise stats."/>
-                <param name="hist" type="boolean" truevalue="-hist" falsevalue="" checked="false" label="-hist" help="Report histogram information for all bands."/>
-                <param name="nogcp" type="boolean" truevalue="-nogcp" falsevalue="" checked="false" label="-nogcp" help="Suppress ground control points list printing. It may be useful for datasets with huge amount of GCPs, such as L1B AVHRR or HDF4 MODIS which contain thousands of them."/>
-                <param name="nomd" type="boolean" truevalue="-nomd" falsevalue="" checked="false" label="-nomd" help="Suppress metadata printing. Some datasets may contain a lot of metadata strings."/>
+                <param name="approx_stats" type="boolean" truevalue="-approx_stats" falsevalue="" checked="false" help="-approx_stats. However, they may be computed based on overviews or a subset of all tiles. Useful if you are in a hurry and don't want precise stats." label="Read and display image statistics."/>
+                <param name="hist" type="boolean" truevalue="-hist" falsevalue="" checked="false" help="-hist" label="Report histogram information for all bands."/>
+                <param name="nogcp" type="boolean" truevalue="-nogcp" falsevalue="" checked="false" help="-nogcp" label="Suppress ground control points list printing."/>
+                <param name="nomd" type="boolean" truevalue="-nomd" falsevalue="" checked="false" help="-nomd. Some datasets may contain a lot of metadata strings" label="Suppress metadata printing."/>
                 <expand macro="gdal_param_norat"/>
-                <param name="noct" type="boolean" truevalue="-noct" falsevalue="" checked="false" label="-noct" help="Suppress printing of color table."/>
-                <param name="checksum" type="boolean" truevalue="-checksum" falsevalue="" checked="false" label="-checksum" help="Force computation of the checksum for each band in the dataset."/>
-                <param name="listmdd" type="boolean" truevalue="-listmdd" falsevalue="" checked="false" label="-listmdd" help="List all metadata domains available for the dataset."/>
-                <param name="proj4" type="boolean" truevalue="-proj4" falsevalue="" checked="false" label="-proj4" help="Report a PROJ.4 string corresponding to the file's coordinate system."/> 
-                <param name="mdd" type="text" label="-mdd DOMAIN" help="Report metadata for the specified domain. Starting with GDAL 1.11, 'all' can be used to report metadata in all domains." value="all">
+                <param name="noct" type="boolean" truevalue="-noct" falsevalue="" checked="false" help="-noct" label="Suppress printing of color table."/>
+                <param name="checksum" type="boolean" truevalue="-checksum" falsevalue="" checked="false" help="-checksum" label="Force computation of the checksum for each band in the dataset."/>
+                <param name="listmdd" type="boolean" truevalue="-listmdd" falsevalue="" checked="false" help="-listmdd" label="List all metadata domains available for the dataset."/>
+                <param name="proj4" type="boolean" truevalue="-proj4" falsevalue="" checked="false" help="-proj4 String corresponding to the file's coordinate system" label="Report a PROJ.4 string."/> 
+                <param name="mdd" type="text" help="-mdd DOMAIN" label="Report metadata for the specified domain." value="all">
                     <validator type="expression" message="mdd option can't be an empty value">value.strip()</validator>
                 </param>    
             </when>
@@ -72,7 +70,7 @@
         <data name="outputJson" format="json" label="Json formated info file">
             <filter>format == "json"</filter>
         </data>
-        <data name="Subdatasets" format="tabular" from_work_dir="*_Subdatasets" label="Subdatasets from ${input1.name}">
+        <data name="subdatasets" format="tabular" from_work_dir="Subdatasets.tabular" label="Subdatasets from ${input1.name}">
             <filter>subdataset == "subd_y"</filter>
         </data>
     </outputs>
@@ -136,82 +134,9 @@ An additional option can list available subdatasets.
 
 |
 
-**Other options, advanced usage**
+**Advanced options and sources**
 
-
-*-mm*
-
-    Force computation of the actual min/max values for each band in the dataset. 
-
-|
-
-*-stats*
-
-    Read and display image statistics. Force computation if no statistics are stored in an image. 
-
-|
-
-*-approx_stats*
-
-    Read and display image statistics. Force computation if no statistics are stored in an image. However, they may be computed based on overviews or a subset of all tiles. Useful if you are in a hurry and don't want precise stats. 
-
-|
-
-*-hist*
-
-    Report histogram information for all bands. 
-
-|
-
-*-nogcp*
-
-    Suppress ground control points list printing. It may be useful for datasets with huge amount of GCPs, such as L1B AVHRR or HDF4 MODIS which contain thousands of them. 
-
-|
-
-*-nomd*
-
-    Suppress metadata printing. Some datasets may contain a lot of metadata strings. 
-
-|
-
-*-norat*
-
-    Suppress printing of raster attribute table. 
-
-|
-
-*-noct*
-
-    Suppress printing of color table. 
-
-|
-
-*-checksum*
-
-    Force computation of the checksum for each band in the dataset. 
-
-|
-
-*-listmdd*
-
-    List all metadata domains available for the dataset. 
-
-|
-
-*-mdd domain*
-
-    Report metadata for the specified domain. Starting with GDAL 1.11, "all" can be used to report metadata in all domains 
-
-|
-
-*-proj4*
-
-    Report a PROJ.4 string corresponding to the file's coordinate system.
-
-|
-
-**Sources**
+To see complete details and help section please check the official gdal sources.
 
 http://www.gdal.org
 
@@ -221,4 +146,5 @@ Raster Processing Tutorial : https://trac.osgeo.org/gdal/wiki/UserDocs/RasterPro
 
 
     ]]></help>
+    <expand macro="gdal_citation"/>
 </tool>
