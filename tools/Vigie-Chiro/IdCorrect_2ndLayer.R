@@ -1,16 +1,10 @@
-library(data.table)
-library(randomForest)
+#!/usr/bin/env Rscript
+
+suppressMessages(library(data.table))
+suppressMessages(library(randomForest))
 args <- commandArgs(trailingOnly = TRUE)
 
 set.seed(1) #To test reproductibility
-
-
-#for test
-#inputest=list.files("C:/Users/Yves Bas/Documents/GitHub/65MO_Galaxy-E/raw_scripts/Vigie-Chiro/input_examples",full.names=T,pattern="participation-")
-#for (i in 1:length(inputest))
-#{
-# args=c(inputest[i],"ClassifEspC2b_180222.learner")
-#args[3]=basename(args[1])
 
 filename=args[3]
 if (exists("ClassifEspC2b")==F){load(args[2])}
@@ -24,7 +18,7 @@ DataPar$tadarida_probabilite[DataPar$tadarida_probabilite==""]="0"
 DataPar$tadarida_probabilite=as.numeric(DataPar$tadarida_probabilite)
 
 
-#tableau comptabilisant le nombre de contacts par espèces 
+#table counting number of contacts per species 
 nbcT=as.matrix(table(DataPar$participation,DataPar$tadarida_taxon))
 
 DataPar$tadarida_probabilite=as.numeric(DataPar$tadarida_probabilite)
@@ -63,13 +57,13 @@ for (j in 1:nlevels(as.factor(DataPar$tadarida_taxon)))
 VoteC2=cbind(VoteO,PropSp,Q25,Q50,Q75,Q90,Q95,Q98,Q100)
 
 
-#édition des titres de colonne pour identifier les variables de type "proportions d'abondances"
+#editing column titles to identify var of type "proportion d'abondances"
 for (i in 15:(ncol(VoteC2)-7))
 {
   colnames(VoteC2)[i]=paste0(names(VoteC2)[i],"_prop")
 }
 
-#rajouter les espèces manquantes
+#Add missing species
 EspForm=subset(row.names(ClassifEspC2b$importance)
                ,substr(row.names(ClassifEspC2b$importance)
                        ,nchar(row.names(ClassifEspC2b$importance))-4
@@ -86,6 +80,10 @@ ListDV=levels(as.factor(DataPar$'nom du fichier'))
 #calcule les probabilités max par espèce et par fichier
 #(utile pour corriger les erreurs dues à la coexistence de taxons dans le même fichier
 #ex: cris sociaux de Pipistrelles identifiées comme autre chose (Noctule, oreillard...))
+#comptue max proba per species and files
+#(useful to correct errors that came from multiple taxons in the same file
+#eg ; Pipistrelles socials shouting identified as something else (Noctule, oreillard..))
+
 MaxI=tapply(DataPar$tadarida_probabilite
             ,INDEX=list(c(DataPar$'nom du fichier'),c(DataPar$tadarida_taxon))
             ,FUN=max)
@@ -97,13 +95,14 @@ for (i in 2:ncol(MaxI2))
 MaxI2[is.na(MaxI2)]=0
 
 #édition des titres de colonne pour identifier les variables de type "indices max"
+#editing col titles to identify "indices max" variables
 for (i in 2:(ncol(MaxI2)))
 {
   colnames(MaxI2)[i]=paste0(names(MaxI2)[i],"_maxI")
 }
 
 
-#rajouter les espèces manquantes
+#add missing species
 EspForm=subset(row.names(ClassifEspC2b$importance)
                ,substr(row.names(ClassifEspC2b$importance)
                        ,nchar(row.names(ClassifEspC2b$importance))-4
@@ -120,6 +119,7 @@ MaxI2=cbind(MaxI2,Zeros)
 
 
 #indice de confiance à l'echelle de l'observation (groupe de cris identifié comme provenant d'une seule espèce par la première couche)
+#Confidence indice on obs scale (shoutings groups identified as comming from a single species from the first layer)
 if(exists("IdS3")){rm(IdS3)}
 for (i in 1:nlevels(as.factor(DataPar$tadarida_taxon)))
 {
@@ -127,7 +127,6 @@ for (i in 1:nlevels(as.factor(DataPar$tadarida_taxon)))
   IdS2=cbind('nom du fichier'=Idsub$'nom du fichier',tadarida_taxon=Idsub$tadarida_taxon,prob=Idsub$tadarida_probabilite)
   colnames(IdS2)[3]=paste(levels(as.factor(DataPar$tadarida_taxon))[i])
   if(exists("IdS3")){IdS3=merge(IdS3,IdS2,all=T)}else{IdS3=IdS2}
-  #print(i)
 }
 
 for (i in 3:ncol(IdS3))
@@ -136,6 +135,7 @@ for (i in 3:ncol(IdS3))
 }
 
 #édition des titres de colonne pour identifier les variables de type "indices de l'observation"
+#editing col titles to identify "indices de l'observation" variables
 for (i in 3:(ncol(IdS3)))
 {
   colnames(IdS3)[i]=paste0(names(IdS3)[i],"_ValI")
@@ -143,7 +143,7 @@ for (i in 3:(ncol(IdS3)))
 
 IdS3[is.na(IdS3)]=0
 
-#rajouter les espèces manquantes
+#add missing species
 EspForm=subset(row.names(ClassifEspC2b$importance)
                ,substr(row.names(ClassifEspC2b$importance)
                        ,nchar(row.names(ClassifEspC2b$importance))-4
@@ -157,6 +157,7 @@ colnames(Zeros)=EspM
 IdS3=cbind(IdS3,Zeros)
 
 #on merge les prop d'espèces, les quantiles et les indices par fichiers et par observations
+#merge species probabilities, quantiles and indice per files and per obs
 VoteC3=merge(VoteC2,MaxI2,by.x="nom du fichier",by.y="V1")
 VoteC4=merge(VoteC3,IdS3,by=c("nom du fichier","tadarida_taxon"))
 VoteC4$temps_fin=as.numeric(as.character(VoteC4$temps_fin))
@@ -178,4 +179,3 @@ DataCorrC2$ProbEsp_C2bs[is.na(DataCorrC2$ProbEsp_C2bs)]="empty"
 fout_name="output.tabular"
 
 write.table(DataCorrC2,file=fout_name,row.names=FALSE,sep="\t",quote=FALSE,na="NA")
-#write.table(DataCorrC2,paste0(substr(args[1],nchar(args[1])-40,nchar(args[1])-17),"-DataCorrC2.csv"),row.names=F,sep="\t")

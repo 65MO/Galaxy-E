@@ -1,6 +1,6 @@
-library(data.table)
-library(DT)
-library(htmlwidgets)
+suppressMessages(library(data.table))
+suppressMessages(library(DT))
+suppressMessages(library(htmlwidgets))
 
 f2p <- function(x) #get date-time data from recording file names
 {
@@ -11,16 +11,9 @@ f2p <- function(x) #get date-time data from recording file names
 }
 
 args <- commandArgs(trailingOnly = TRUE)
-#print(args)
 EchelleErreur=c("NA","POSSIBLE","PROBABLE","SUR")
 EchelleNumErreur=c(99,50,10,1)
 
-#for test
-#inputest=list.files("C:/Users/Yves Bas/Documents/GitHub/65MO_Galaxy-E/raw_scripts/Vigie-Chiro/output_IdValid_input_BilanEnrichi/",pattern="IdC2.csv",full.names=T)
-#for (i in 1:length(inputest))
-#{
-#   args=c(inputest[i],"refPF.csv","SpeciesList.csv")
-   
    
 IdC2=fread(args[1])
 refPF=fread(args[2])
@@ -233,18 +226,4 @@ SummHTMLH=datatable(SummPartH, rownames = FALSE) %>%
 saveWidget(SummHTMLH,"output-hourly.html")
 write.table(SummPartH,"output-hourly.tabular",sep="\t",row.names=F,quote=FALSE)
 
-
-#saveWidget(SummHTML,paste0(substr(args[1],1,nchar(args[1])-9),"-summary.html"))
-#write.table(SummPart,paste0(substr(args[1],1,nchar(args[1])-9),"-summary.csv"),sep="\t",row.names=F)
-#saveWidget(SummHTMLN,paste0(substr(args[1],1,nchar(args[1])-9),"-nightly.html"))
-#write.table(SummPartN,paste0(substr(args[1],1,nchar(args[1])-9),"-nightly.csv"),sep="\t",row.names=F)
-#saveWidget(SummHTMLH,paste0(substr(args[1],1,nchar(args[1])-9),"-hourly.html"))
-#write.table(SummPartH,paste0(substr(args[1],1,nchar(args[1])-9),"-hourly.csv"),sep="\t",row.names=F)
-
-
 }
-
-
-
-
-

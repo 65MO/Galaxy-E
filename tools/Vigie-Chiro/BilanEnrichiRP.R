@@ -1,17 +1,11 @@
-library(data.table)
-library(DT)
-library(htmlwidgets)
+suppressMessages(library(data.table))
+suppressMessages(library(DT))
+suppressMessages(library(htmlwidgets))
 
 args <- commandArgs(trailingOnly = TRUE)
-#print(args)
 EchelleErreur=c("NA","POSSIBLE","PROBABLE","SUR")
 EchelleNumErreur=c(99,50,10,1)
 
-#for test
-#inputest=list.files("C:/Users/Yves Bas/Documents/GitHub/65MO_Galaxy-E/raw_scripts/Vigie-Chiro/output_IdValid_input_BilanEnrichi/",pattern="IdC2.csv",full.names=T)
-#for (i in 1:length(inputest))
-#{
-#   args=c(inputest[i],"refRPSeuil50.csv","SpeciesList.csv")
    
 IdC2=fread(args[1])
 refRP=fread(args[2])
@@ -20,8 +14,8 @@ GroupList=fread(args[3])
 
 if(substr(IdC2$`nom du fichier`[1],2,2)!="i")
 {
-  print("Protocole non conforme, ce script doit etre lance pour un protocole Routier ou Pedestre")
-}else{
+  stop("Protocole non conforme, ce script doit etre lance pour un protocole Routier ou Pedestre",call.=FALSE)
+}
   
 Routier=grepl("-",substr(IdC2$`nom du fichier`[1],4,7))
 #compute error risk by species (minimum error among files)
@@ -224,15 +218,3 @@ SummHTMLT=datatable(SummPartTron, rownames = FALSE) %>%
 
 saveWidget(SummHTMLT,"output-detailRP.html")
 write.table(SummPartTron,"output-detailRP.tabular",row.names=F,sep="\t",quote=FALSE)
-
-#saveWidget(SummHTML,paste0(substr(args[1],1,nchar(args[1])-9),"-summary.html"))
-#write.table(SummPart,paste0(substr(args[1],1,nchar(args[1])-9),"-summary.csv"),row.names=F,sep="\t")
-#saveWidget(SummHTMLT,paste0(substr(args[1],1,nchar(args[1])-9),"-detail.html"))
-#write.table(SummPartTron,paste0(substr(args[1],1,nchar(args[1])-9),"-detail.csv"),row.names=F,sep="\t")
-
-
-
-}
-
-
-
