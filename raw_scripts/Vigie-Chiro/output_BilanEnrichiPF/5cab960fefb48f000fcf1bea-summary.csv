@@ -1,0 +1,28 @@
+"Code";"Groupe";"Nom français";"Nom scientifique";"Risque d'erreur (%)";"Nb Validations";"Effort de validation";"Nb de Contacts par Nuit";"Niveau d'Activite";"TriGroupe"
+"Myodau";"Chauve-souris";"Murin de Daubenton";"Myotis daubentonii";"2";NA;"-";"234";"FORTE";3
+"Pippip";"Chauve-souris";"Pipistrelle commune";"Pipistrellus pipistrellus";"1";NA;"-";"134";"MODEREE";3
+"Nycnoc";"Chauve-souris";"Noctule commune";"Nyctalus noctula";"1";NA;"-";"113";"FORTE";3
+"Myomys";"Chauve-souris";"Murin a moustaches";"Myotis mystacinus";"1";NA;"-";"92";"TRES FORTE";3
+"Pipkuh";"Chauve-souris";"Pipistrelle de Kuhl";"Pipistrellus kuhlii";"37";NA;"-";"60";"MODEREE";3
+"Pipnat";"Chauve-souris";"Pipistrelle de Nathusius";"Pipistrellus nathusii";"8";NA;"-";"37";"FORTE";3
+"Eptser";"Chauve-souris";"Serotine commune";"Eptesicus serotinus";"34";NA;"-";"13";"FORTE";3
+"Myoema";"Chauve-souris";"Murin a oreilles echancrees";"Myotis emarginatus";"58";NA;"-";"10";"FORTE";3
+"Nyclei";"Chauve-souris";"Noctule de Leisler";"Nyctalus leisleri";"3";NA;"-";"6";"MODEREE";3
+"Tadten";"Chauve-souris";"Molosse";"Tadarida teniotis";"83";NA;"-";"3";"MODEREE";3
+"Myoalc";"Chauve-souris";"Murin d'Alcathoe";"Myotis alcathoe";"69";NA;"-";"2";"MODEREE";3
+"Myobec";"Chauve-souris";"Murin de Bechstein";"Myotis bechsteinii";"78";NA;"-";"2";"FAIBLE";3
+"Barbar";"Chauve-souris";"Barbastelle d'Europe";"Barbastella barbastellus";"82";NA;"-";"1";"FAIBLE";3
+"Pippyg";"Chauve-souris";"Pipistrelle soprane";"Pipistrellus pygmaeus";"94";NA;"-";"1";"FAIBLE";3
+"Pleaus";"Chauve-souris";"Oreillard gris";"Plecotus austriacus";"91";NA;"-";"1";"FAIBLE";3
+"Tetvir";"Sauterelle";"Sauterelle verte";"Tettigonia viridissima";"24";NA;"-";"111";"MODEREE";2
+"Phogri";"Sauterelle";"Decticelle cendree";"Pholidoptera griseoaptera";"80";NA;"-";"14";"MODEREE";2
+"Leppun";"Sauterelle";"Sauterelle ponctuee";"Leptophyes punctatissima";"94";NA;"-";"13";"FAIBLE";2
+"Phofem";"Sauterelle";"Decticelle des friches";"Pholidoptera femorata";"91";NA;"-";"3";"FORTE";2
+"Phanan";"Sauterelle";"Phaneroptere meridional";"Phaneroptera nana";"89";NA;"-";"2";"FAIBLE";2
+"Plaalb";"Sauterelle";"Decticelle chagrinee";"Platycleis albopunctata";"97";NA;"-";"1";"FAIBLE";2
+"noise";"Autre";"bruit";"noise";"1";NA;"-";"2554";"MODEREE";1
+"piaf";"Autre";"Oiseau sp.";"Aves sp.";"1";NA;"-";"199";"FORTE";1
+"amph";"Autre";"Amphibien sp.";"Amphibia sp.";"1";NA;"-";"13";NA;1
+"Yposp";"Autre";"Hyponomeute sp.";"Yponomeuta sp.";"95";NA;"-";"7";NA;1
+"Lamsp.";"Autre";"Lampyre sp.";"Lampyris sp.";"6";NA;"-";"1";"FAIBLE";1
+"Tetarg";"Autre";"Cigale argentee";"Tettigetta argentata";"7";NA;"-";"1";"FAIBLE";1

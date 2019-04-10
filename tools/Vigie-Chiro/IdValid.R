@@ -13,7 +13,10 @@ f2p <- function(x) #get date-time data from recording file names
   strptime(pretemps, "%Y%m%d_%H%M%OS",tz="UTC")-7200
 }
 
-args <- commandArgs(trailingOnly = TRUE)
+if(!exists("args"))
+{
+  args <- commandArgs(trailingOnly = TRUE)
+}
 
 
 #print(args)
@@ -40,6 +43,19 @@ CorrSp=match(IdCorrect$ProbEsp_C2bs,RefSeuil$Espece)
 PSp=RefSeuil$Pente[CorrSp]
 ISp=RefSeuil$Int[CorrSp]
 suppressWarnings(IdCorrect$IdProb<-mapply(FUN=function(w,x,y) if((!is.na(y))&(y>0)&(y<1000)) {(exp(y*w+x)/(1+exp(y*w+x)))}else{w} ,IdCorrect$IdScore,ISp,PSp))
+
+if(is.na(IdCorrect$observateur_taxon[1]))
+{
+  IdCorrect$observateur_taxon=as.character(IdCorrect$observateur_taxon)
+  IdCorrect$observateur_taxon=""
+  IdCorrect$validateur_taxon=as.character(IdCorrect$validateur_taxon)
+  IdCorrect$validateur_taxon=""
+  IdCorrect$observateur_probabilite=as.character(IdCorrect$observateur_probabilite)
+  IdCorrect$observateur_probabilite=""
+  IdCorrect$validateur_probabilite=as.character(IdCorrect$validateur_probabilite)
+  IdCorrect$validateur_probabilite=""
+  
+  }
 
 
 
@@ -176,3 +192,4 @@ IdC2=unique(IdC2,by=c("nom du fichier","IdExtrap"))
 
 write.table(IdC2,"output.tabular",row.names=F,sep="\t")
 #write.table(IdC2,paste0(substr(args[1],1,nchar(args[1])-15),"-IdC2.csv"),row.names=F,sep="\t")
+

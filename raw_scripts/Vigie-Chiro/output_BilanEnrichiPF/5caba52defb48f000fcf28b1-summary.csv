@@ -1,0 +1,21 @@
+"Code";"Groupe";"Nom français";"Nom scientifique";"Risque d'erreur (%)";"Nb Validations";"Effort de validation";"Nb de Contacts par Nuit";"Niveau d'Activite";"TriGroupe"
+"Rhihip";"Chauve-souris";"Petit Rhinolophe";"Rhinolophus hipposideros";"1";"3";"FORT";"26";"FORTE";3
+"Pippip";"Chauve-souris";"Pipistrelle commune";"Pipistrellus pipistrellus";"1";"2";"FORT";"7";"FAIBLE";3
+"Pippyg";"Chauve-souris";"Pipistrelle soprane";"Pipistrellus pygmaeus";"1";"3";"FORT";"3";"MODEREE";3
+"Pipkuh";"Chauve-souris";"Pipistrelle de Kuhl";"Pipistrellus kuhlii";"6";"1";"SUFFISANT";"2";"FAIBLE";3
+"Pipnat";"Chauve-souris";"Pipistrelle de Nathusius";"Pipistrellus nathusii";"8";"1";"FORT";"2";"MODEREE";3
+"Tadten";"Chauve-souris";"Molosse";"Tadarida teniotis";"1";"2";"FORT";"2";"MODEREE";3
+"Hypsav";"Chauve-souris";"Vespere de Savi";"Hypsugo savii";"2";"1";"FORT";"0";"FAIBLE";3
+"Minsch";"Chauve-souris";"Minioptere";"Miniopterus schreibersii";"21";"1";"SUFFISANT";"0";"FAIBLE";3
+"Myoema";"Chauve-souris";"Murin a oreilles echancrees";"Myotis emarginatus";"10";"1";"FORT";"0";"FAIBLE";3
+"Pleaus";"Chauve-souris";"Oreillard gris";"Plecotus austriacus";"30";"1";"SUFFISANT";"0";"FAIBLE";3
+"Rhifer";"Chauve-souris";"Grand Rhinolophe";"Rhinolophus ferrumequinum";"1";"1";"FORT";"0";"FAIBLE";3
+"Phogri";"Sauterelle";"Decticelle cendree";"Pholidoptera griseoaptera";"78";"0";"-";"1";"FAIBLE";2
+"Eupsp";"Sauterelle";"Decticelle splendide";"Eupholidoptera sp.";"81";"0";"-";"0";NA;2
+"noise";"Autre";"bruit";"noise";"1";"0";"-";"2644";"MODEREE";1
+"piaf";"Autre";"Oiseau sp.";"Aves sp.";"1";"1";"SUFFISANT";"13";"MODEREE";1
+"mec";"Autre";"autre bruit";"mechanical noise";"1";"2";"SUFFISANT";"6";NA;1
+"buzz";"Autre";"bourdonnement";"insect wingbeats";"1";"1";"SUFFISANT";"2";NA;1
+"Mimasp";"Autre";"Micromammifère sp.";"Small mammal spp";"1";"1";"FORT";"0";NA;1
+"amph";"Autre";"Amphibien sp.";"Amphibia sp.";"40";"0";"-";"0";NA;1
+"wind";"Autre";"vent";"wind";"1";"1";"SUFFISANT";"0";NA;1

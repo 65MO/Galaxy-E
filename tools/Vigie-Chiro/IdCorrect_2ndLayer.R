@@ -1,6 +1,9 @@
 library(data.table)
 library(randomForest)
+if(!exists("args"))
+{
 args <- commandArgs(trailingOnly = TRUE)
+}
 
 set.seed(1) #To test reproductibility
 

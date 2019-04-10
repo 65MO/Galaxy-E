@@ -10,7 +10,13 @@ f2p <- function(x) #get date-time data from recording file names
   strptime(pretemps, "%Y%m%d_%H%M%OS",tz="UTC")-7200
 }
 
-args <- commandArgs(trailingOnly = TRUE)
+
+if(!exists("args"))
+{
+  args <- commandArgs(trailingOnly = TRUE)
+}
+
+
 #print(args)
 EchelleErreur=c("","POSSIBLE","PROBABLE","SUR")
 EchelleNumErreur=c(99,50,10,1)

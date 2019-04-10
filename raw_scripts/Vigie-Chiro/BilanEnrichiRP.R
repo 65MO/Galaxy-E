@@ -1,46 +1,48 @@
+args <- commandArgs(trailingOnly = TRUE)
+
+#for test
+#inputest=list.files("C:/Users/Yves Bas/Documents/GitHub/65MO_Galaxy-E/raw_scripts/Vigie-Chiro/output_IdValidTidy_input_BilanEnrichi/",pattern="IdC2.csv",full.names=T)
+#inputest=list.files("C:/Users/Yves Bas/Documents/test/",pattern="IdC2.csv",full.names=T)
+
+#for (i in 1:length(inputest)){args=c(inputest[i],"refRPSeuil50.csv","SpeciesList.csv")
 library(data.table)
 library(DT)
 library(htmlwidgets)
-
-args <- commandArgs(trailingOnly = TRUE)
 print(args)
 EchelleErreur=c("","POSSIBLE","PROBABLE","SUR")
 EchelleNumErreur=c(99,50,10,1)
 
-#for test
-#inputest=list.files("C:/Users/Yves Bas/Documents/GitHub/65MO_Galaxy-E/raw_scripts/Vigie-Chiro/output_IdValid_input_BilanEnrichi/",pattern="IdC2.csv",full.names=T)
-#inputest=list.files("C:/Users/Yves Bas/Documents/test/",pattern="IdC2.csv",full.names=T)
-
-#for (i in 1:length(inputest))
-#{
-#  args=c(inputest[i],"refRPSeuil50.csv","SpeciesList.csv")
-   
 IdC2=fread(args[1])
-refRP=fread(args[2])
-GroupList=fread(args[3])
 
 
 if(substr(IdC2$`nom du fichier`[1],2,2)!="i")
 {
-  print("Protocole non conforme, ce script doit être lancé pour un protocole Routier ou Pedestre")
+  print("Protocole non conforme, ce script doit être lancé uniquement pour un protocole Routier ou Pedestre")
 }else{
-  
-Routier=grepl("-",substr(IdC2$`nom du fichier`[1],4,7))
-#compute error risk by species (minimum error among files)
-#to be replaced by glm outputs if I'll have time
-RisqueErreurT=aggregate(IdC2$IdProb,by=list(IdC2$IdExtrap),FUN=function(x) ceiling((1-max(x-0.0001))*100))
-barplot(RisqueErreurT$x,names.arg=RisqueErreurT$Group.1,las=2)
-#compute error risk accoring to observer/validator (a little dirty because it relies on alphabetical order of confidence classes: POSSIBLE < PROBABLE < SUR)
-RisqueErreurOV0=match(IdC2$ConfV,EchelleErreur)
-RisqueErreurOV=aggregate(RisqueErreurOV0,by=list(IdC2$IdExtrap)
-                         ,FUN=max) 
-RisqueErreurOV2=EchelleNumErreur[RisqueErreurOV$x]
-#compute minimum error risk between man and machine
-RisqueErreur=pmin(RisqueErreurT$x,RisqueErreurOV2)
 
-#compute number of files validated per species
-FichValid=aggregate(IdC2$IdV,by=list(IdC2$IdExtrap,IdC2$'nom du fichier')
-                                 ,FUN=function(x) sum(x!="")) 
+  refRP=fread(args[2])
+  GroupList=fread(args[3])
+  
+  IdC2$ConfV[is.na(IdC2$ConfV)]=""
+  
+    
+  Routier=grepl("-",substr(IdC2$`nom du fichier`[1],4,7))
+  #compute error risk by species (minimum error among files)
+  #to be replaced by glm outputs if I'll have time
+  RisqueErreurT=aggregate(IdC2$IdProb,by=list(IdC2$IdExtrap)
+                          ,FUN=function(x) round((1-max(x))*100))
+  barplot(RisqueErreurT$x,names.arg=RisqueErreurT$Group.1,las=2)
+  #compute error risk accoring to observer/validator (a little dirty because it relies on alphabetical order of confidence classes: POSSIBLE < PROBABLE < SUR)
+  RisqueErreurOV0=match(IdC2$ConfV,EchelleErreur)
+  RisqueErreurOV=aggregate(RisqueErreurOV0,by=list(IdC2$IdExtrap)
+                           ,FUN=max) 
+  RisqueErreurOV2=EchelleNumErreur[RisqueErreurOV$x]
+  #compute minimum error risk between man and machine
+  RisqueErreur=pmin(RisqueErreurT$x,RisqueErreurOV2)
+  
+  #compute number of files validated per species
+  FichValid=aggregate(IdC2$IdV,by=list(IdC2$IdExtrap,IdC2$'nom du fichier')
+                      ,FUN=function(x) sum(x!="")) 
 NbValid2=aggregate(FichValid$x,by=list(FichValid$Group.1),FUN=function(x) sum(x>0))
 
 DiffC50=vector() # to store the median of confidence difference between unvalidated records and validated ones
