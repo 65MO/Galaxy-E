@@ -9,5 +9,5 @@ inputstn <- read.csv("/srv/shiny-server/data/inputdata.txt", header=TRUE)
 
 # Create a vector of country subdivions (i.e. regions in France)
 #inputstn <- subset(inputstn, Country == "FR" )
-regions <- unique(as.vector(inputstn$DEPNAME))
+regions <- unique(as.vector(inputstn$REGION))
 

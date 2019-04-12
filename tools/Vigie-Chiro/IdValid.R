@@ -1,8 +1,11 @@
-library(data.table)
+#!/usr/bin/env Rscript
+
+suppressMessages(library(data.table))
 
 ValidHier=function(x,y) #used to write validator id over observer id
 {
-  if(y==""){x}else{y}
+  #cat(y)
+  if(is.na(y)){x}else{y}
 }
 
 f2p <- function(x) #get date-time data from recording file names
@@ -19,18 +22,6 @@ if(!exists("args"))
 }
 
 
-#print(args)
-
-
-#for test
-#inputest=list.files("C:/Users/Yves Bas/Documents/GitHub/65MO_Galaxy-E/raw_scripts/Vigie-Chiro/output_IdCorrect_2ndLayer_input_IdValid/",full.names=T)
-#for (i in 1:length(inputest))
-#{
-#args=c(inputest[i],"Referentiel_seuils_C2.csv")
-#args=c("5857d56d9ebce1000ed89ea7-DataCorrC2.csv","Referentiel_seuils_C2.csv")
-
-
-
 IdCorrect=fread(args[1])
 RefSeuil=fread(args[2])
 #IdV=as.data.frame(subset(IdCorrect,select=observateur_taxon:validateur_probabilite))
@@ -43,6 +34,7 @@ CorrSp=match(IdCorrect$ProbEsp_C2bs,RefSeuil$Espece)
 PSp=RefSeuil$Pente[CorrSp]
 ISp=RefSeuil$Int[CorrSp]
 suppressWarnings(IdCorrect$IdProb<-mapply(FUN=function(w,x,y) if((!is.na(y))&(y>0)&(y<1000)) {(exp(y*w+x)/(1+exp(y*w+x)))}else{w} ,IdCorrect$IdScore,ISp,PSp))
+
 
 if(is.na(IdCorrect$observateur_taxon[1]))
 {
@@ -57,15 +49,12 @@ if(is.na(IdCorrect$observateur_taxon[1]))
   
   }
 
-
-
 #Step 1 :compute id with confidence regarding a hierarchy (validator > observer)
 IdCorrect$IdV=mapply(ValidHier,IdCorrect$observateur_taxon,IdCorrect$validateur_taxon)
 IdCorrect$ConfV=mapply(ValidHier,IdCorrect$observateur_probabilite
                        ,IdCorrect$validateur_probabilite)
 
 
-#print(paste(args[1],length(subset(IdCorrect$ConfV,IdCorrect$ConfV!=""))))
 
 #Step 2: Get numerictime data
 suppressWarnings(IdCorrect$Session<-NULL)
@@ -114,13 +103,13 @@ for (j in 1:nlevels(as.factor(IdCorrect$ProbEsp_C2bs)))
 {
   IdSp=subset(IdCorrect
               ,IdCorrect$ProbEsp_C2bs==levels(as.factor(IdCorrect$ProbEsp_C2bs))[j])
-  if(sum(IdSp$IdV=="")==(nrow(IdSp))) #case 1 : no validation no change
+  if(sum(is.na(IdSp$IdV))==(nrow(IdSp))) #case 1 : no validation no change
   {
     IdC2=rbind(IdC2,IdSp)
     IdExtrap=c(IdExtrap,rep(IdSp$ProbEsp_C2bs[1],nrow(IdSp)))
     TypeE=c(TypeE,rep(0,nrow(IdSp)))
   }else{ #case 2: some validation
-    Vtemp=subset(IdSp,IdSp$IdV!="")
+    Vtemp=subset(IdSp,is.na(IdSp$IdV))
       #case2A: validations are homogeneous
     if(nlevels(as.factor(Vtemp$IdV))==1)
     {
@@ -190,6 +179,5 @@ IdC2=IdC2[order(IdC2$`nom du fichier`),]
 #discard duplicated species within the same files (= false positives corrected by 2nd layer)
 IdC2=unique(IdC2,by=c("nom du fichier","IdExtrap"))
 
-write.table(IdC2,"output.tabular",row.names=F,sep="\t")
-#write.table(IdC2,paste0(substr(args[1],1,nchar(args[1])-15),"-IdC2.csv"),row.names=F,sep="\t")
 
+write.table(IdC2,"output.tabular",row.names=F,sep="\t",quote=FALSE,na="NA")

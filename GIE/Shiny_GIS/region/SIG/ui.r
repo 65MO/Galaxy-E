@@ -7,7 +7,7 @@ shinyUI(fluidPage(
     sidebarPanel(
       helpText("Sélectionner une région dans la liste ci-dessous."),
 
-      selectInput("DEPNAME", choices = regions, label = "Départements", selected="Finistère")
+      selectInput("REGION", choices = regions, label = "Départements")
     ),
 
     mainPanel(leafletOutput("map"))

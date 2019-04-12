@@ -1,0 +1,88 @@
+<tool id="max" name="Max by lines" version="1.0">
+    
+    <description>Select maximum values in rows of a dataset</description>
+    
+    <requirements>
+         <requirement type="package">r</requirement>
+    </requirements>
+
+    <stdio>
+        <exit_code range="1:" />
+    </stdio>
+    
+    <command>
+        <![CDATA[
+        $__tool_directory__/max.r ${fichierTab} ${nom1Colonne} ${nom2Colonne} ${nom3Colonne} ;
+        ]]>
+    </command>
+
+    <inputs>		
+        <param name="fichierTab" type="data" format="tabular" label="tabular file" help="Data table with header on the first row and a column with identifiers/informations. WARNING : This tabular file must contain only numeric values (exept header and first column)" />
+
+        <param name="nom1Colonne" type="text" value="evenementSonore" label="Name of the first column of the table" help="Row field caracterising names of the lines where are maximum numeric values. WARNING : Dataset must contains no spaces."/>
+
+        <param name="nom2Colonne" type="text" value="nomEspece" label="Name of the second column of the table" help="Header field caracterising names of the column where are maximum numeric values. WARNING : Dataset must contains no spaces." />
+
+        <param name="nom3Colonne" type="text" value="valeurConfiance" label="Nom de la troisième colonne du tableau" help="Header field caracterising names of the third column where are maximum numeric values. WARNING : Dataset must contains no spaces." />
+
+    </inputs>
+
+    <outputs>
+        <data format="tabular" name="output" from_work_dir="./Resultat"/>
+    </outputs>
+
+    <tests>
+        <test>
+            <param name="fichierTab" value="test.tsv" ftype="tabular"/>
+            <param name="nom1Colonne" value="evenementSonore"/>
+            <param name="nom2Colonne" value="nomEspece"/>
+            <param name="nom3Colonne" value="valeurConfiance"/>
+            <output name="output" file="resultat-test" ftype="tabular"/>
+        </test>
+    </tests>
+
+    <help>
+
+.. class:: infomark
+
+**TIPS:** If your data are not tabular, use *File manipulation texte-&gt;Convert*
+        
+-----
+
+**What it does**
+
+It allows to generate dataset with:
+ * line name
+ * names of colmumns with maximum values
+ * maximum values by line
+  
+
+
+**Example**
+
+input dataset ::
+
+    Group.1           Barbar   Eptser   Inssp6   Leppun  Minsch Myonat Noise 
+    dataset_538.dat     0.046   0.256   0.076   0.066   0.33    0.114   0.008       
+    dataset_538.dat     0.098   0.18    0.234   0   0.08    0.114   0.004       
+    dataset_539.dat     0.416   0.172   0.16    0.252   0.286   0.342   0.012       
+    dataset_539.dat     0.378   0.138   0.094   0.002   0.196   0.456   0.07        
+    dataset_539.dat     0.410   0.116   0.15    0.002   0.166   0.086   0.006       
+    dataset_542.dat     0.074   0.15    0.02    0.002   0.026   0.348   0.192       
+    dataset_542.dat     0.258   0.432   0.072   0.004   0.072   0.296   0.046   
+    dataset_542.dat     0.252   0.382   0.086   0   0.03    0.046   0.004       
+
+Result ::
+
+        Nom_de_la_ligne Nom_de_colonne  ValeurMax
+    1   dataset_538.dat   Eptser    0.256
+    2   dataset_538.dat   Inssp6    0.234
+    3   dataset_539.dat   Barbar    0.416
+    4   dataset_539.dat   Myonat    0.456
+    5   dataset_539.dat   Barbar    0.410
+    6   dataset_542.dat   Myonat    0.348
+    7   dataset_542.dat   Eptser    0.432
+    8   dataset_542.dat   Epster    0.382
+
+    </help>
+</tool>

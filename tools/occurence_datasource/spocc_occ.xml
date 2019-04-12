@@ -1,0 +1,97 @@
+<tool id="spocc_occ_taxrefv2" name="Get species occurrences data" version="0.2">
+    <description>from GBIF, ALA, iNAT and others and add taxref informations</description>
+    <requirements>
+        <requirement type="package" version="1.2.3">r-stringi</requirement>
+        <requirement type="package" version="7.0">readline</requirement>
+        <requirement type="package" version="0.8.0">r-spocc</requirement>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+        Rscript 
+         '$__tool_directory__/spocc_occ.R' '$sname' '$from' $limit;
+
+        #if $taxref_choice=='do_link_taxref':
+
+          echo "REGNE	PHYLUM	CLASSE	ORDRE	FAMILLE	SOUS_FAMILLE	TRIBU	GROUP1_INPN	GROUP2_INPN	CD_NOM	CD_TAXSUP	CD_SUP	CD_REF	RANG	LB_NOM	LB_AUTEUR	NOM_COMPLET	NOM_COMPLET_HTML	NOM_VALIDE	NOM_VERN	NOM_VERN_ENG	HABITAT	FR	GF	MAR	GUA	SM	SB	SPM	MAY	EPA	REU	SA	TA	TAAF	PF	NC	WF	CLI	URL" > res_taxref_grep.tab;
+
+          grep '$sname' '$__tool_directory__/taxref11/TAXREFv11.txt'  >> res_taxref_grep.tab;
+
+        #end if
+
+
+
+         #if $from=='gbif':
+             sed -z -i -e 's/\n  \"/ /g' -e 's/\n}/ /g' output.tab;
+         #end if
+    ]]></command>
+
+    <inputs>
+        <param name="sname" type="text" label="Scientific name" value="Genus species"/>
+        <param name="from" type="text" label="Data source to get data from, any combination of gbif, bison, inat, ebird, antweb, ala, idigbio, obis, ecoengine and/or vertnet" value="gbif,bison,inat"/>
+        <param name="limit" type="integer" label="Number of records to return. This is passed across all sources" value="500"/>
+        <param name="taxref_choice" type="select" label="Get species information from taxref database" help="Taxref v11.0 : https://inpn.mnhn.fr/telechargement/referentielEspece/referentielTaxo">
+            <option value="dont_link_taxref">No</option>
+            <option value="do_link_taxref" selected="true">Yes</option>
+        </param>
+    </inputs>
+    <outputs>
+        <data name="output" format="tabular" from_work_dir="output.tab" label="Species occurences"/>
+        <data name="output_taxref" format="tabular" from_work_dir="res_taxref_grep.tab" label="Species taxref informations">
+            <filter>taxref_choice == 'do_link_taxref'</filter>
+        </data>
+    </outputs>
+    <tests>
+        <test> 
+            <param name="sname" value="Canis lupus"/>
+            <param name="from" value="gbif,bison"/>
+            <param name="limit" value="50"/>
+            <param name="taxref_choice" value="do_link_taxref"/>
+            <output name="output" file="canis-lupus_gbif_bison.tab" ftype="tabular"/>
+            <output name="output_taxref" file="res_taxref_grep.tab" ftype="tabular"/>
+        </test>
+    </tests>
+
+    <help><![CDATA[
+==========
+Spocc::occ
+==========       
+**What id does**
+
+Search on a single species name, or many. And search across a single or many data sources.
+
+|
+
+**How it works**
+
+This tool use the spocc R package :
+
+A programmatic interface to many species occurrence data sources, including Global Biodiversity Information Facility ('GBIF'), 'USGSs' Biodiversity Information Serving Our Nation ('BISON'), 'iNaturalist', Berkeley 'Ecoinformatics' Engine, 'AntWeb', Integrated Digitized 'Biocollections' ('iDigBio'), 'VertNet', Ocean 'Biogeographic' Information System ('OBIS'), and Atlas of Living Australia ('ALA'). Includes functionality for retrieving species occurrence data, and combining those data.
+
+|
+
+Original source here : https://cran.r-project.org/web/packages/spocc/index.html
+
+
+===========
+Taxref link
+===========
+
+This tool can look in the INPN taxref database for informations that match the scientific name of the species.
+
+The version of taxref used is v11.0. More informations and download at : 
+
+https://inpn.mnhn.fr/programme/referentiel-taxonomique-taxref
+
+https://inpn.mnhn.fr/telechargement/referentielEspece/taxref/11.0/menu
+
+    ]]></help>
+    <citations>
+        <citation type="bibtex">
+            @techreport{techreport,
+            author = {Gargominy, O and Tercerie, S and Regnier, C and Ramage, T and Dupont, P and Daszkiewicz, P and Poncet, Laurent},
+            year = {2017},
+            title = {TAXREF v11, référentiel taxonomique pour la France},
+            url = {https://inpn.mnhn.fr/docs-web/docs/download/210233}
+            }
+        </citation>
+    </citations>
+</tool>

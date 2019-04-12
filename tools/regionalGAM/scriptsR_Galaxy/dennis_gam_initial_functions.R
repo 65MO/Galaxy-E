@@ -168,28 +168,42 @@ trap_index = function(sp_data, data_col = "IMP", time_col = "DAYNO", by_col = c(
 #' flight_curve()
 
 
-flight_curve <- function(your_dataset) {
+flight_curve <- function(your_dataset, GamFamily = 'nb', MinVisit = 2, MinOccur = 1) {
 
     if("mgcv" %in% installed.packages() == "FALSE") {
         print("mgcv package is not installed.")
         x <- readline("Do you want to install it? Y/N")
-        if (x == 'Y') { 
+        if (x == 'Y') {
             install.packages("mgcv")
         }
         if (x == 'N') {
             stop("flight curve can not be computed without the mgcv package, sorry")
         }
     }
+
+    flight_pheno <- data.frame()
+
     your_dataset$DAYNO <- strptime(paste(your_dataset$DAY, your_dataset$MONTH,
         your_dataset$YEAR, sep = "/"), "%d/%m/%Y")$yday + 1
     dataset <- your_dataset[, c("SPECIES", "SITE", "YEAR", "MONTH",
         "DAY", "DAYNO", "COUNT")]
     sample_year <- unique(dataset$YEAR)
     sample_year <- sample_year[order(sample_year)]
+
     if (length(sample_year) >1 ) {
         for (y in sample_year) {
             dataset_y <- dataset[dataset$YEAR == y, ]
+
+            # subset sites with enough visit and occurence
+            occ <- aggregate(dataset_y$COUNT, by = list(SITE = dataset_y$SITE), function(x) sum(x > 0))
+            vis <- aggregate(dataset_y$COUNT, by = list(SITE = dataset_y$SITE), function(x) length(x))
+            dataset_y <- dataset_y[dataset_y$SITE %in% occ$SITE[occ$x >= MinOccur], ]
+            dataset_y <- dataset_y[dataset_y$SITE %in% vis$SITE[vis$x >= MinVisit], ]
             nsite <- length(unique(dataset_y$SITE))
+            if (nsite < 1) {
+              print(paste("No sites with sufficient visits and occurence, MinOccur:", MinOccur, " MinVisit: ", MinVisit, " for " , dataset$SPECIES[1],"at year", y))
+              next
+            }
             # Determine missing days and add to dataset
             sp_data_all <- year_day_func(dataset_y)
             if (nsite > 200) {
@@ -201,11 +215,11 @@ flight_curve <- function(your_dataset) {
             print(paste("Fitting the GAM for",as.character(sp_data_all$SPECIES[1]),"and year",y,"with",length(unique(sp_data_all$SITE)),"sites :",Sys.time()))
             if(length(unique(sp_data_all$SITE))>1){
                 gam_obj_site <- try(mgcv::gam(COUNT ~ s(trimDAYNO, bs = "cr") + as.factor(SITE) -1,
-                    data = sp_data_all, family = poisson(link = "log")), silent = TRUE)
-            } 
+                    data = sp_data_all, family = GamFamily), silent = TRUE)
+            }
             else {
                 gam_obj_site <- try(mgcv::gam(COUNT ~ s(trimDAYNO, bs = "cr")  -1,
-                    data = sp_data_all, family = poisson(link = "log")), silent = TRUE)
+                    data = sp_data_all, family = GamFamily), silent = TRUE)
             }
             # Give a second try if the GAM does not converge the first time
             if (class(gam_obj_site)[1] == "try-error") {
@@ -213,8 +227,8 @@ flight_curve <- function(your_dataset) {
                 sp_data_all <- year_day_func(dataset_y)
                 if (nsite > 200) {
                    sp_data_all <- sp_data_all[as.character(sp_data_all$SITE) %in% as.character(unique(dataset_y$SITE)[sample(1:nsite,
-                    200, replace = F)]), ]        
-                } 
+                    200, replace = F)]), ]
+                }
                 else {
                     sp_data_all <- sp_data_all
                 }
@@ -222,11 +236,11 @@ flight_curve <- function(your_dataset) {
                 print(paste("Fitting the GAM for",sp_data_all$SPECIES[1],"at year", y,"with",length(unique(sp_data_all$SITE)),"sites :",Sys.time(),"second try"))
                 if(length(unique(sp_data_all$SITE))>1){
                     gam_obj_site <- try(mgcv::gam(COUNT ~ s(trimDAYNO, bs = "cr") + as.factor(SITE) -1,
-                       data = sp_data_all, family = poisson(link = "log")), silent = TRUE)
-                } 
+                       data = sp_data_all, family = GamFamily), silent = TRUE)
+                }
                 else {
                     gam_obj_site <- try(mgcv::gam(COUNT ~ s(trimDAYNO, bs = "cr")  -1,
-                        data = sp_data_all, family = poisson(link = "log")), silent = TRUE)
+                        data = sp_data_all, family = GamFamily), silent = TRUE)
                 }
                 if (class(gam_obj_site)[1] == "try-error") {
                     print(paste("Error in fitting the flight period for",sp_data_all$SPECIES[1],"at year", y,"no convergence after two trial"))
@@ -234,7 +248,7 @@ flight_curve <- function(your_dataset) {
                     sp_data_all[, "COUNT_IMPUTED"] <- NA
                     sp_data_all[is.na(sp_data_all$COUNT), "COUNT_IMPUTED"] <- NA
                     sp_data_all[, "NM"] <- NA
-                } 
+                }
                 else {
                     # Generate a list of values for all days from the additive model and use
                     # these value to fill the missing observations
@@ -249,7 +263,7 @@ flight_curve <- function(your_dataset) {
                         sp_data_all[, "FITTED"] <- NA
                         sp_data_all[, "COUNT_IMPUTED"] <- NA
                         sp_data_all[is.na(sp_data_all$COUNT), "COUNT_IMPUTED"] <- NA
-                        sp_data_all[, "NM"] <- NA    
+                        sp_data_all[, "NM"] <- NA
                     }
                     else {
                     sp_data_all[, "COUNT_IMPUTED"] <- sp_data_all$COUNT
@@ -267,7 +281,7 @@ flight_curve <- function(your_dataset) {
                     sp_data_all[, "NM"] <- sp_data_all$FITTED/sp_data_all$SITE_YR_FSUM
                     }
                 }
-            } 
+            }
             else {
                 # Generate a list of values for all days from the additive model and use
                 # these value to fill the missing observations
@@ -282,7 +296,7 @@ flight_curve <- function(your_dataset) {
                     sp_data_all[, "FITTED"] <- NA
                     sp_data_all[, "COUNT_IMPUTED"] <- NA
                     sp_data_all[is.na(sp_data_all$COUNT), "COUNT_IMPUTED"] <- NA
-                    sp_data_all[, "NM"] <- NA    
+                    sp_data_all[, "NM"] <- NA
                 }
                 else {
                 sp_data_all[, "COUNT_IMPUTED"] <- sp_data_all$COUNT
@@ -308,24 +322,29 @@ flight_curve <- function(your_dataset) {
             flight_curve <- flight_curve[order(flight_curve$DAYNO), ]
             # bind if exist else create
             if (is.na(flight_curve$nm[1]))  next()
-            if ("flight_pheno" %in% ls()) {
-                flight_pheno <- rbind(flight_pheno, flight_curve)
-            } 
-            else {
-            flight_pheno <- flight_curve
-            }
+
+            flight_pheno <- rbind(flight_pheno, flight_curve)
+
         }  # end of year loop
-    } 
+    }
     else {
         y <- unique(dataset$YEAR)
         dataset_y <- dataset[dataset$YEAR == y, ]
+        # subset sites with enough visit and occurence
+        occ <- aggregate(dataset_y$COUNT, by = list(SITE = dataset_y$SITE), function(x) sum(x > 0))
+        vis <- aggregate(dataset_y$COUNT, by = list(SITE = dataset_y$SITE), function(x) length(x))
+        dataset_y <- dataset_y[dataset_y$SITE %in% occ$SITE[occ$x >= MinOccur], ]
+        dataset_y <- dataset_y[dataset_y$SITE %in% vis$SITE[vis$x >= MinVisit], ]
         nsite <- length(unique(dataset_y$SITE))
+        if (nsite < 1) {
+          stop(paste("No sites with sufficient visits and occurence, MinOccur:", MinOccur, " MinVisit: ", MinVisit, " for " ,dataset$SPECIES[1],"at year", y))
+        }
         # Determine missing days and add to dataset
         sp_data_all <- year_day_func(dataset_y)
         if (nsite > 200) {
             sp_data_all <- sp_data_all[as.character(sp_data_all$SITE) %in% as.character(unique(dataset_y$SITE)[sample(1:nsite,
             200, replace = F)]), ]
-        } 
+        }
         else {
             sp_data_all <- sp_data_all
         }
@@ -333,11 +352,11 @@ flight_curve <- function(your_dataset) {
         print(paste("Fitting the GAM for",sp_data_all$SPECIES[1],"at year", y,":",Sys.time()))
         if(length(unique(sp_data_all$SITE))>1){
             gam_obj_site <- try(mgcv::gam(COUNT ~ s(trimDAYNO, bs = "cr") + as.factor(SITE) -1,
-            data = sp_data_all, family = poisson(link = "log")), silent = TRUE)
-        } 
+            data = sp_data_all, family = GamFamily), silent = TRUE)
+        }
         else {
             gam_obj_site <- try(mgcv::gam(COUNT ~ s(trimDAYNO, bs = "cr")  -1,
-            data = sp_data_all, family = poisson(link = "log")), silent = TRUE)
+            data = sp_data_all, family = GamFamily), silent = TRUE)
         }
         # Give a second try if the GAM does not converge the first time
         if (class(gam_obj_site)[1] == "try-error") {
@@ -346,7 +365,7 @@ flight_curve <- function(your_dataset) {
             if (nsite > 200) {
                 sp_data_all <- sp_data_all[as.character(sp_data_all$SITE) %in% as.character(unique(dataset_y$SITE)[sample(1:nsite,
                 200, replace = F)]), ]
-            } 
+            }
             else {
                 sp_data_all <- sp_data_all
             }
@@ -354,11 +373,11 @@ flight_curve <- function(your_dataset) {
             print(paste("Fitting the GAM for",sp_data_all$SPECIES[1],"at year", y,"with",length(unique(sp_data_all$SITE)),"sites :",Sys.time(),"second try"))
             if(length(unique(sp_data_all$SITE))>1){
                 gam_obj_site <- try(mgcv::bam(COUNT ~ s(trimDAYNO, bs = "cr") + as.factor(SITE) - 1,
-                data = sp_data_all, family = poisson(link = "log")), silent = TRUE)
-            } 
+                data = sp_data_all, family = GamFamily), silent = TRUE)
+            }
             else {
                 gam_obj_site <- try(mgcv::gam(COUNT ~ s(trimDAYNO, bs = "cr")  -1,
-                data = sp_data_all, family = poisson(link = "log")), silent = TRUE)
+                data = sp_data_all, family = GamFamily), silent = TRUE)
             }
             if (class(gam_obj_site)[1] == "try-error") {
                 print(paste("Error in fitting the flight period for",sp_data_all$SPECIES[1],"at year", y,"no convergence after two trial"))
@@ -366,7 +385,7 @@ flight_curve <- function(your_dataset) {
                 sp_data_all[, "COUNT_IMPUTED"] <- NA
                 sp_data_all[is.na(sp_data_all$COUNT), "COUNT_IMPUTED"] <- NA
                 sp_data_all[, "NM"] <- NA
-            } 
+            }
             else {
                 # Generate a list of values for all days from the additive model and use
                 # these value to fill the missing observations
@@ -381,7 +400,7 @@ flight_curve <- function(your_dataset) {
                     sp_data_all[, "FITTED"] <- NA
                     sp_data_all[, "COUNT_IMPUTED"] <- NA
                     sp_data_all[is.na(sp_data_all$COUNT), "COUNT_IMPUTED"] <- NA
-                    sp_data_all[, "NM"] <- NA    
+                    sp_data_all[, "NM"] <- NA
                 }
                 else {
                     sp_data_all[, "COUNT_IMPUTED"] <- sp_data_all$COUNT
@@ -397,9 +416,9 @@ flight_curve <- function(your_dataset) {
                     all = TRUE, sort = FALSE)
                     # Calculate normalized values
                     sp_data_all[, "NM"] <- sp_data_all$FITTED/sp_data_all$SITE_YR_FSUM
-                }          
+                }
             }
-        } 
+        }
         else {
             # Generate a list of values for all days from the additive model and use
             # these value to fill the missing observations
@@ -414,7 +433,7 @@ flight_curve <- function(your_dataset) {
                 sp_data_all[, "FITTED"] <- NA
                 sp_data_all[, "COUNT_IMPUTED"] <- NA
                 sp_data_all[is.na(sp_data_all$COUNT), "COUNT_IMPUTED"] <- NA
-                sp_data_all[, "NM"] <- NA    
+                sp_data_all[, "NM"] <- NA
             }
             else {
                 sp_data_all[, "COUNT_IMPUTED"] <- sp_data_all$COUNT
@@ -438,18 +457,9 @@ flight_curve <- function(your_dataset) {
         nm = sp_data_filled$NM)[!duplicated(paste(sp_data_filled$YEAR,
         sp_data_filled$DAYNO, sep = "_")), ]
         flight_curve <- flight_curve[order(flight_curve$DAYNO), ]
-        if (is.na(flight_curve$nm[1])){
-            flight_pheno <- data.frame()
-        }
-        else {
-            # bind if exist else create
-            if ("flight_pheno" %in% ls()) {
-                flight_pheno <- rbind(flight_pheno, flight_curve)
-            } 
-            else {
-                flight_pheno <- flight_curve
-            }
-        }
+
+        flight_pheno <- rbind(flight_pheno, flight_curve)
+
     }
     return(flight_pheno)
 }
