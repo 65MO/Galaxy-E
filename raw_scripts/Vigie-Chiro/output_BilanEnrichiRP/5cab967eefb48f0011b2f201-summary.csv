@@ -1,0 +1,35 @@
+"Code";"Groupe";"Nom français";"Nom scientifique";"Risque d'erreur (%)";"Nb Validations";"Effort de validation";"Nb de Contacts en expansion";"Niveau d'Activite en expansion";"Nb de Contacts en direct";"Niveau d'Activite en direct";"TriGroupe"
+"Pippip";"Chauve-souris";"Pipistrelle commune";"Pipistrellus pipistrellus";"16";NA;"-";"77";"TRES FORTE";"";"";3
+"Pipkuh";"Chauve-souris";"Pipistrelle de Kuhl";"Pipistrellus kuhlii";"8";NA;"-";"32";"TRES FORTE";"";"";3
+"Nycnoc";"Chauve-souris";"Noctule commune";"Nyctalus noctula";"80";NA;"-";"18";"TRES FORTE";"";"";3
+"Rhihip";"Chauve-souris";"Petit Rhinolophe";"Rhinolophus hipposideros";"41";NA;"-";"13";NA;"";"";3
+"Pippyg";"Chauve-souris";"Pipistrelle soprane";"Pipistrellus pygmaeus";"87";NA;"-";"9";"FORTE";"";"";3
+"Nyclei";"Chauve-souris";"Noctule de Leisler";"Nyctalus leisleri";"74";NA;"-";"7";"TRES FORTE";"";"";3
+"Eptser";"Chauve-souris";"Serotine commune";"Eptesicus serotinus";"8";NA;"-";"5";"FORTE";"";"";3
+"Myomys";"Chauve-souris";"Murin a moustaches";"Myotis mystacinus";"94";NA;"-";"5";NA;"";"";3
+"Myoema";"Chauve-souris";"Murin a oreilles echancrees";"Myotis emarginatus";"90";NA;"-";"3";NA;"";"";3
+"Myonat";"Chauve-souris";"Murin groupe Natterer";"Myotis nattereri";"77";NA;"-";"3";NA;"";"";3
+"Hypsav";"Chauve-souris";"Vespere de Savi";"Hypsugo savii";"90";NA;"-";"2";NA;"";"";3
+"Rhieur";"Chauve-souris";"Rhinolophe euryale";"Rhinolophus euryale";"97";NA;"-";"2";NA;"";"";3
+"Pleaur";"Chauve-souris";"Oreillard roux";"Plecotus auritus";"96";NA;"-";"1";NA;"";"";3
+"Rhifer";"Chauve-souris";"Grand Rhinolophe";"Rhinolophus ferrumequinum";"97";NA;"-";"1";NA;"";"";3
+"Tetvir";"Sauterelle";"Sauterelle verte";"Tettigonia viridissima";"35";NA;"-";"160";"TRES FORTE";"";"";2
+"Phogri";"Sauterelle";"Decticelle cendree";"Pholidoptera griseoaptera";"78";NA;"-";"30";"TRES FORTE";"";"";2
+"Confus";"Sauterelle";"Conocephale bigarre";"Conocephalus fuscus";"12";NA;"-";"20";"TRES FORTE";"";"";2
+"Yerray";"Sauterelle";"Decticelle frele";"Yersinella raymondii";"75";NA;"-";"11";"TRES FORTE";"";"";2
+"Rusnit";"Sauterelle";"Conocephale gracieux";"Ruspolia nitidula";"72";NA;"-";"6";"MODEREE";"";"";2
+"Leppun";"Sauterelle";"Sauterelle ponctuee";"Leptophyes punctatissima";"95";NA;"-";"5";"FORTE";"";"";2
+"Isopyr";"Sauterelle";"Barbatiste pyreneen";"Isophya pyrenaea";"37";NA;"-";"4";NA;"";"";2
+"Plaalb";"Sauterelle";"Decticelle chagrinee";"Platycleis albopunctata";"91";NA;"-";"4";"FORTE";"";"";2
+"Plaint";"Sauterelle";"Decticelle intermediaire";"Platycleis intermedia";"97";NA;"-";"4";"FORTE";"";"";2
+"Cyrscu";"Sauterelle";"Meconeme a bouclier";"Cyrtaspis scutata";"92";NA;"-";"2";NA;"";"";2
+"Epheph";"Sauterelle";"Ephippigere des vignes";"Ephippiger ephippiger";"92";NA;"-";"2";"FORTE";"";"";2
+"Phanan";"Sauterelle";"Phaneroptere meridional";"Phaneroptera nana";"89";NA;"-";"2";"MODEREE";"";"";2
+"Urosp";"Sauterelle";"Ephippigère carénée/d'Algérie";"Uromenus sp.";"98";NA;"-";"2";NA;"";"";2
+"Plaaff";"Sauterelle";"Decticelle cotiere";"Platycleis affinis";"97";NA;"-";"1";NA;"";"";2
+"Roeroe";"Sauterelle";"Decticelle bariolee";"Roeseliana roeselii";"34";NA;"-";"1";"FAIBLE";"";"";2
+"Sepsep";"Sauterelle";"Decticelle echassiere";"Sepiana sepium";"70";NA;"-";"1";"FAIBLE";"";"";2
+"Testes";"Sauterelle";"Decticelle carroyee";"Tessellana tessellata";"95";NA;"-";"1";"FAIBLE";"";"";2
+"noise";"Autre";"bruit";"noise";"1";NA;"-";"1053";"TRES FORTE";"";"";1
+"Inssp5";"Autre";"Insecte sp. type 5";"Insect sp.5";"96";NA;"-";"3";NA;"";"";1
+"Cympud";"Autre";"Ecaille pudique";"Cymbalophora pudica";"89";NA;"-";"1";NA;"";"";1

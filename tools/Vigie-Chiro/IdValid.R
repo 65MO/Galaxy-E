@@ -16,7 +16,10 @@ f2p <- function(x) #get date-time data from recording file names
   strptime(pretemps, "%Y%m%d_%H%M%OS",tz="UTC")-7200
 }
 
-args <- commandArgs(trailingOnly = TRUE)
+if(!exists("args"))
+{
+  args <- commandArgs(trailingOnly = TRUE)
+}
 
 
 IdCorrect=fread(args[1])
@@ -31,6 +34,20 @@ CorrSp=match(IdCorrect$ProbEsp_C2bs,RefSeuil$Espece)
 PSp=RefSeuil$Pente[CorrSp]
 ISp=RefSeuil$Int[CorrSp]
 suppressWarnings(IdCorrect$IdProb<-mapply(FUN=function(w,x,y) if((!is.na(y))&(y>0)&(y<1000)) {(exp(y*w+x)/(1+exp(y*w+x)))}else{w} ,IdCorrect$IdScore,ISp,PSp))
+
+
+if(is.na(IdCorrect$observateur_taxon[1]))
+{
+  IdCorrect$observateur_taxon=as.character(IdCorrect$observateur_taxon)
+  IdCorrect$observateur_taxon=""
+  IdCorrect$validateur_taxon=as.character(IdCorrect$validateur_taxon)
+  IdCorrect$validateur_taxon=""
+  IdCorrect$observateur_probabilite=as.character(IdCorrect$observateur_probabilite)
+  IdCorrect$observateur_probabilite=""
+  IdCorrect$validateur_probabilite=as.character(IdCorrect$validateur_probabilite)
+  IdCorrect$validateur_probabilite=""
+  
+  }
 
 #Step 1 :compute id with confidence regarding a hierarchy (validator > observer)
 IdCorrect$IdV=mapply(ValidHier,IdCorrect$observateur_taxon,IdCorrect$validateur_taxon)
@@ -161,5 +178,6 @@ IdC2=IdC2[order(IdC2$ConfV,decreasing=T),]
 IdC2=IdC2[order(IdC2$`nom du fichier`),]
 #discard duplicated species within the same files (= false positives corrected by 2nd layer)
 IdC2=unique(IdC2,by=c("nom du fichier","IdExtrap"))
+
 
 write.table(IdC2,"output.tabular",row.names=F,sep="\t",quote=FALSE,na="NA")

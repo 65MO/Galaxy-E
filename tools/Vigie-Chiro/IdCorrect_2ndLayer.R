@@ -2,7 +2,11 @@
 
 suppressMessages(library(data.table))
 suppressMessages(library(randomForest))
+
+if(!exists("args"))
+{
 args <- commandArgs(trailingOnly = TRUE)
+}
 
 set.seed(1) #To test reproductibility
 
@@ -77,9 +81,9 @@ colnames(Zeros)=EspM
 VoteC2=cbind(VoteC2,Zeros)
 
 ListDV=levels(as.factor(DataPar$'nom du fichier'))
-#calcule les probabilités max par espèce et par fichier
-#(utile pour corriger les erreurs dues à la coexistence de taxons dans le même fichier
-#ex: cris sociaux de Pipistrelles identifiées comme autre chose (Noctule, oreillard...))
+#calcule les probabilitÃ©s max par espÃ¨ce et par fichier
+#(utile pour corriger les erreurs dues Ã  la coexistence de taxons dans le mÃªme fichier
+#ex: cris sociaux de Pipistrelles identifiÃ©es comme autre chose (Noctule, oreillard...))
 #comptue max proba per species and files
 #(useful to correct errors that came from multiple taxons in the same file
 #eg ; Pipistrelles socials shouting identified as something else (Noctule, oreillard..))
@@ -94,7 +98,7 @@ for (i in 2:ncol(MaxI2))
 }
 MaxI2[is.na(MaxI2)]=0
 
-#édition des titres de colonne pour identifier les variables de type "indices max"
+#Ã©dition des titres de colonne pour identifier les variables de type "indices max"
 #editing col titles to identify "indices max" variables
 for (i in 2:(ncol(MaxI2)))
 {
@@ -118,7 +122,7 @@ MaxI2=cbind(MaxI2,Zeros)
 
 
 
-#indice de confiance à l'echelle de l'observation (groupe de cris identifié comme provenant d'une seule espèce par la première couche)
+#indice de confiance Ã  l'echelle de l'observation (groupe de cris identifiÃ© comme provenant d'une seule espÃ¨ce par la premiÃ¨re couche)
 #Confidence indice on obs scale (shoutings groups identified as comming from a single species from the first layer)
 if(exists("IdS3")){rm(IdS3)}
 for (i in 1:nlevels(as.factor(DataPar$tadarida_taxon)))
@@ -134,7 +138,7 @@ for (i in 3:ncol(IdS3))
   IdS3[,i]=as.numeric(as.character(IdS3[,i]))
 }
 
-#édition des titres de colonne pour identifier les variables de type "indices de l'observation"
+#Ã©dition des titres de colonne pour identifier les variables de type "indices de l'observation"
 #editing col titles to identify "indices de l'observation" variables
 for (i in 3:(ncol(IdS3)))
 {
@@ -156,7 +160,7 @@ Zeros[is.na(Zeros)]=0
 colnames(Zeros)=EspM
 IdS3=cbind(IdS3,Zeros)
 
-#on merge les prop d'espèces, les quantiles et les indices par fichiers et par observations
+#on merge les prop d'espÃ¨ces, les quantiles et les indices par fichiers et par observations
 #merge species probabilities, quantiles and indice per files and per obs
 VoteC3=merge(VoteC2,MaxI2,by.x="nom du fichier",by.y="V1")
 VoteC4=merge(VoteC3,IdS3,by=c("nom du fichier","tadarida_taxon"))
