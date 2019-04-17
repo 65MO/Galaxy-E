@@ -40,9 +40,9 @@
     </outputs>
     <tests>
         <test> 
-            <param name="participation_file" value="IdCor2Layer_Test1_obs.csv"/>
+            <param name="participation_file" value="IdCor2Layer_Test1_obs2.csv"/>
             <param name="condi_learner" value="default_learner"/>
-            <output name="output" file="IdCor2Layer_Test1_out.tabular"/>
+            <output name="output" file="IdCor2Layer_Test1_out2.tabular"/>
         </test>
     </tests>
     <help><![CDATA[

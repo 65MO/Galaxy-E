@@ -4,10 +4,10 @@
         <import>vigiechiro_macros.xml</import>
     </macros>
     <requirements>
-        <requirement type="package" version="1.10.4">r-data.table</requirement>
+        <requirement type="package" version="1.11.4">r-data.table</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
-        Rscript '$__tool_directory__/IdValid.R' 
+        Rscript '$__tool_directory__/IdValid_tool-ecology.R' 
             '$inputfile'  
             '$__tool_directory__/Referentiel_seuils_C2.csv'  
             '$output'
@@ -21,8 +21,8 @@
     </outputs>
     <tests>
         <test>
-            <param name="inputfile" value="IdCor2Layer_Test1_out.tabular"/>
-            <output name="output" file="BilanEnrichiPF_Test1.tabular"/>
+            <param name="inputfile" value="IdCor2Layer_Test1_out2.tabular"/>
+            <output name="output" file="outputIdValid.tabular"/>
         </test>
     </tests>
     <help><![CDATA[

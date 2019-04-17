@@ -16,10 +16,7 @@ f2p <- function(x) #get date-time data from recording file names
   strptime(pretemps, "%Y%m%d_%H%M%OS",tz="UTC")-7200
 }
 
-if(!exists("args"))
-{
-  args <- commandArgs(trailingOnly = TRUE)
-}
+args <- commandArgs(trailingOnly = TRUE)
 
 
 IdCorrect=fread(args[1])
@@ -180,4 +177,4 @@ IdC2=IdC2[order(IdC2$`nom du fichier`),]
 IdC2=unique(IdC2,by=c("nom du fichier","IdExtrap"))
 
 
-write.table(IdC2,"output.tabular",row.names=F,sep="\t",quote=FALSE,na="NA")
+write.table(IdC2,"output.tabular",row.names=F,sep="\t",quote=TRUE,na="")

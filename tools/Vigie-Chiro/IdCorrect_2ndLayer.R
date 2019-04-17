@@ -3,10 +3,9 @@
 suppressMessages(library(data.table))
 suppressMessages(library(randomForest))
 
-if(!exists("args"))
-{
+
 args <- commandArgs(trailingOnly = TRUE)
-}
+
 
 set.seed(1) #To test reproductibility
 
@@ -182,4 +181,4 @@ DataCorrC2$ProbEsp_C2bs[is.na(DataCorrC2$ProbEsp_C2bs)]="empty"
 
 fout_name="output.tabular"
 
-write.table(DataCorrC2,file=fout_name,row.names=FALSE,sep="\t",quote=FALSE,na="NA")
+write.table(DataCorrC2,file=fout_name,row.names=FALSE,sep="\t",na="\"\"")#,quote=FALSE,na="NA")
