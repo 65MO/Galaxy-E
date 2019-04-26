@@ -5,7 +5,13 @@
 args = commandArgs(trailingOnly=TRUE)
 source(args[1]) #TODO replace by library(regionalGAM) if available as official package from bioconda
 
-tryCatch({input = read.table(args[2], header=TRUE,sep="	")},finally={input = read.table(args[2], header=TRUE,sep=",")})
+if (args[5] == "csv") {
+  sep = ","
+} else if (args[5] == "tabular") {
+  sep = "\t"
+}
+
+tryCatch({input = read.table(args[2], header=TRUE,sep=" ")},finally={input = read.table(args[2], header=TRUE,sep=",")})
 dataset1 <- input[,c("SPECIES", "SITE", "YEAR", "MONTH", "DAY", "COUNT")]
 pheno <- flight_curve(dataset1, MinVisit = args[3], MinOccur = args[4])
 
