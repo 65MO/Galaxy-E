@@ -8,11 +8,11 @@
     </command>
     <inputs>
 	      <param format="tabular,csv" name="input" type="data" label="Count file" help="The file must contain the SPECIES, SITE, YEAR, MONTH, DAY and COUNT columns. CSV file separator ',' or tab."/>
-	      <param name="minVisit" type="integer" value="2" label="Minimum number of visits" />
-        <param name="minOccur" type="integer" value="1" label="Minimum number of occurences" />
+	      <param name="minVisit" type="integer" min="0" value="2" label="Minimum number of visits" />
+        <param name="minOccur" type="integer" min="0" value="1" label="Minimum number of occurences" />
         <param name="sepType" type="select" label="Type of file">
-            <option value="csv">csv</option>
             <option value="tabular">tabular</option>
+            <option value="csv">csv</option>
         </param>
     </inputs>
     <outputs>
