@@ -1,18 +1,13 @@
 #!/usr/bin/env Rscript
 #library('getopt')
 #library(devtools)
+#library(data.table)
 
 args = commandArgs(trailingOnly=TRUE)
 source(args[1]) #TODO replace by library(regionalGAM) if available as official package from bioconda
 
-if (args[5] == "csv") {
-  sepType = ","
-} else if (args[5] == "tabular") {
-  sepType = "\t"
-}
-
 tryCatch({input = read.table(args[2], header = TRUE,sep=" ")},
-         finally = {input = read.table(args[2], header = TRUE, sep = sepType)})
+         finally = {input = fread(args[2], header = TRUE)})
 dataset1 <- input[ , c("SPECIES", "SITE", "YEAR", "MONTH", "DAY", "COUNT")]
 pheno <- flight_curve(dataset1, MinVisit = args[3], MinOccur = args[4])
 
