@@ -199,6 +199,7 @@ if(substr(IdC2$`nom du fichier`[1],2,2)!="i")
 
   saveWidget(SummHTML,"output-summaryRP.html")
   write.table(SummPart,"output-summaryRP.tabular",row.names=F,sep="\t")
+  #write.csv2(SummPart,"output-summaryRP.tabular",row.names=F) #for testing
   
   #summary for each point/transect
   
@@ -226,4 +227,5 @@ if(substr(IdC2$`nom du fichier`[1],2,2)!="i")
 
   saveWidget(SummHTMLT,"output-detailRP.html")
   write.table(SummPartTron,"output-detailRP.tabular",row.names=F,sep="\t")
+#  write.csv2(SummPartTron,"output-detailRP.tabular",row.names=F)#for testing
 }

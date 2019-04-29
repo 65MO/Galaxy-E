@@ -2,8 +2,10 @@
     <description>from Animal Detection on Acoustic Recordings</description>
     <macros>
         <import>vigiechiro_macros.xml</import>
-    </macros>   
-    <expand macro="vigiechiro_bilanPF_bilanRP_requirements"/>
+    </macros>  
+    <expand macro="vigiechiro_requirements">
+        <expand macro="vigiechiro_bilanenrichi_requirements"/>
+    </expand>
     <command detect_errors="exit_code"><![CDATA[
         Rscript '$__tool_directory__/BilanEnrichiRP.R' 
             '$idc2' 
@@ -37,9 +39,9 @@
     </outputs>
     <tests>
         <test>
-            <param name="idc2" value="rawBilanEnrichiRP_Test1.tabular"/>
+            <param name="idc2" value="BilanEnrichiRP_Test1.tabular"/>
 	    <param name="output_choice" value="detailed"/>
- 	    <output name="output_detail_tabular" file="rawBilanEnrichiRP_Test1_out_tab.tabular" ftype="tabular"/>
+ 	    <output name="output_detail_tabular" file="BilanEnrichiRP_Test1_out_tab.tabular" ftype="tabular"/>
         </test>
     </tests>
     <help><![CDATA[

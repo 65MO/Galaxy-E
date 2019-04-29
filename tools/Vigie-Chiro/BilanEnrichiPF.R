@@ -146,7 +146,8 @@ if(substr(IdC2$`nom du fichier`[1],2,2)!="a")
                 background = styleEqual(c("FAIBLE","MODEREE","FORTE","TRES FORTE"), c("palegoldenrod", "greenyellow", "limegreen", "darkgreen")))
   
   saveWidget(SummHTML,"output-summary.html")
-  write.csv2(SummPart,"output-summary.tabular",row.names=F)
+#  write.csv2(SummPart,"output-summary.tabular",row.names=F)
+  write.table(SummPart,"output-summary.tabular",row.names=F,sep="\t")
   
   #compute number of files validated per night/hour
   IdC2$Heure=sapply(IdC2$`nom du fichier`,FUN=function(x) substr(x,nchar(x)-9,nchar(x)-8))
@@ -197,7 +198,8 @@ if(substr(IdC2$`nom du fichier`[1],2,2)!="a")
                 background = styleEqual(c(1,2,3,4), c("palegoldenrod", "greenyellow", "limegreen", "darkgreen")))
   
   saveWidget(SummHTMLN,"output-nightly.html")
-  write.csv2(SummPartN,"output-nightly.tabular",row.names=F)
+#  write.csv2(SummPartN,"output-nightly.tabular",row.names=F)
+  write.table(SummPartN,"output-nightly.tabular",row.names=F,sep="\t")
   
   
   #summary by hour
@@ -229,6 +231,7 @@ if(substr(IdC2$`nom du fichier`[1],2,2)!="a")
     formatStyle(columns=ListH, backgroundColor = styleInterval(brks, clrs))
   
   saveWidget(SummHTMLH,"output-hourly.html")
-  write.csv2(SummPartH,"output-hourly.tabular",row.names=F)
+#  write.csv2(SummPartH,"output-hourly.tabular",row.names=F)
+  write.table(SummPartH,"output-hourly.tabular",row.names=F,sep="\n")
   
 }

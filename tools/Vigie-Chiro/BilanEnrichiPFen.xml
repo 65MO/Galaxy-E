@@ -3,8 +3,9 @@
     <macros>
         <import>vigiechiro_macros.xml</import>
     </macros>   
-
-    <expand macro="vigiechiro_bilanPF_bilanRP_requirements" />
+    <expand macro="vigiechiro_requirements">
+        <expand macro="vigiechiro_bilanenrichi_requirements"/>
+    </expand>
     <command detect_errors="exit_code"><![CDATA[
         Rscript '$__tool_directory__/BilanEnrichiPF.R' 
             '$idc2' 
@@ -46,9 +47,9 @@
     </outputs>
     <tests>
         <test>
-            <param name="idc2" value="rawBilanEnrichiPF_Test1.tabular"/>
+            <param name="idc2" value="BilanEnrichiPF_Test1.tabular"/>
             <param name="output_choice" value="global"/> 
-            <output name="output_summary_tabular" file="rawBilanEnrichiPF_Test1_out_tab.tabular" ftype="tabular"/>
+            <output name="output_summary_tabular" file="BilanEnrichiPF_Test1_out_tab.tabular" ftype="tabular"/>
         </test>
     </tests>
     <help><![CDATA[
