@@ -6,8 +6,7 @@ library(data.table)
 args = commandArgs(trailingOnly=TRUE)
 source(args[1]) #TODO replace by library(regionalGAM) if available as official package from bioconda
 
-tryCatch({input = read.table(args[2], header = TRUE,sep=" ")},
-         finally = {input = fread(args[2], header = TRUE)})
+input = fread(args[2], header = TRUE)
 # convert to a data.frame (the function flight curve doesn't allow the format from fread)
 input <- data.frame(input)
 dataset1 <- input[ , c("SPECIES", "SITE", "YEAR", "MONTH", "DAY", "COUNT")]
