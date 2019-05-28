@@ -1,0 +1,28 @@
+"Code";"Groupe";"Nom français";"Nom scientifique";"Risque d'erreur (%)";"TriGroupe";"20";"21";"22";"23";"00";"01";"02";"03";"04";"05";"06"
+"Barbar";"Chauve-souris";"Barbastelle d'Europe";"Barbastella barbastellus";"82";3;0;0;1;0;0;0;0;0;0;0;0
+"Eptser";"Chauve-souris";"Serotine commune";"Eptesicus serotinus";"34";3;0;0;4;0;0;0;0;6;3;0;0
+"Myoalc";"Chauve-souris";"Murin d'Alcathoe";"Myotis alcathoe";"69";3;0;0;0;1;0;0;1;0;0;0;0
+"Myobec";"Chauve-souris";"Murin de Bechstein";"Myotis bechsteinii";"78";3;0;0;1;0;0;1;0;0;0;0;0
+"Myodau";"Chauve-souris";"Murin de Daubenton";"Myotis daubentonii";"2";3;2;1;147;12;12;12;15;6;26;1;0
+"Myoema";"Chauve-souris";"Murin a oreilles echancrees";"Myotis emarginatus";"58";3;0;0;4;0;5;0;0;0;1;0;0
+"Myomys";"Chauve-souris";"Murin a moustaches";"Myotis mystacinus";"1";3;0;0;31;3;30;3;9;7;9;0;0
+"Nyclei";"Chauve-souris";"Noctule de Leisler";"Nyctalus leisleri";"3";3;0;0;3;3;0;0;0;0;0;0;0
+"Nycnoc";"Chauve-souris";"Noctule commune";"Nyctalus noctula";"1";3;1;41;67;0;0;0;0;0;4;0;0
+"Pipkuh";"Chauve-souris";"Pipistrelle de Kuhl";"Pipistrellus kuhlii";"37";3;2;5;33;2;1;5;6;3;3;0;0
+"Pipnat";"Chauve-souris";"Pipistrelle de Nathusius";"Pipistrellus nathusii";"8";3;0;2;29;3;2;0;0;0;1;0;0
+"Pippip";"Chauve-souris";"Pipistrelle commune";"Pipistrellus pipistrellus";"1";3;5;24;45;18;9;8;4;7;13;1;0
+"Pippyg";"Chauve-souris";"Pipistrelle soprane";"Pipistrellus pygmaeus";"94";3;1;0;0;0;0;0;0;0;0;0;0
+"Pleaus";"Chauve-souris";"Oreillard gris";"Plecotus austriacus";"91";3;0;0;1;0;0;0;0;0;0;0;0
+"Tadten";"Chauve-souris";"Molosse";"Tadarida teniotis";"83";3;0;0;0;0;0;0;0;0;1;2;0
+"Leppun";"Sauterelle";"Sauterelle ponctuee";"Leptophyes punctatissima";"94";2;2;3;6;0;0;0;0;0;0;2;0
+"Phanan";"Sauterelle";"Phaneroptere meridional";"Phaneroptera nana";"89";2;1;1;0;0;0;0;0;0;0;0;0
+"Phofem";"Sauterelle";"Decticelle des friches";"Pholidoptera femorata";"91";2;3;0;0;0;0;0;0;0;0;0;0
+"Phogri";"Sauterelle";"Decticelle cendree";"Pholidoptera griseoaptera";"80";2;11;1;0;0;0;0;0;0;1;1;0
+"Plaalb";"Sauterelle";"Decticelle chagrinee";"Platycleis albopunctata";"97";2;1;0;0;0;0;0;0;0;0;0;0
+"Tetvir";"Sauterelle";"Sauterelle verte";"Tettigonia viridissima";"24";2;21;23;4;1;0;0;0;0;36;26;0
+"Lamsp.";"Autre";"Lampyre sp.";"Lampyris sp.";"6";1;0;0;1;0;0;0;0;0;0;0;0
+"Tetarg";"Autre";"Cigale argentee";"Tettigetta argentata";"7";1;0;0;0;0;0;0;0;0;1;0;0
+"Yposp";"Autre";"Hyponomeute sp.";"Yponomeuta sp.";"95";1;0;5;2;0;0;0;0;0;0;0;0
+"amph";"Autre";"Amphibien sp.";"Amphibia sp.";"1";1;0;5;0;0;0;0;0;0;5;3;0
+"noise";"Autre";"bruit";"noise";"1";1;414;875;672;79;70;51;31;40;165;156;1
+"piaf";"Autre";"Oiseau sp.";"Aves sp.";"1";1;0;16;0;1;0;1;0;0;132;49;0

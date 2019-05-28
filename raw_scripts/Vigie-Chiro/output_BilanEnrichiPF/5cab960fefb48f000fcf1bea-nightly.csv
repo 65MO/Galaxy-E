@@ -1,0 +1,28 @@
+"Code";"Groupe";"Nom français";"Nom scientifique";"Risque d'erreur (%)";"TriGroupe";"15";"15/06/2012.y"
+"Barbar";"Chauve-souris";"Barbastelle d'Europe";"Barbastella barbastellus";"82";3;1;1
+"Eptser";"Chauve-souris";"Serotine commune";"Eptesicus serotinus";"34";3;13;3
+"Myoalc";"Chauve-souris";"Murin d'Alcathoe";"Myotis alcathoe";"69";3;2;2
+"Myobec";"Chauve-souris";"Murin de Bechstein";"Myotis bechsteinii";"78";3;2;1
+"Myodau";"Chauve-souris";"Murin de Daubenton";"Myotis daubentonii";"2";3;234;3
+"Myoema";"Chauve-souris";"Murin a oreilles echancrees";"Myotis emarginatus";"58";3;10;3
+"Myomys";"Chauve-souris";"Murin a moustaches";"Myotis mystacinus";"1";3;92;4
+"Nyclei";"Chauve-souris";"Noctule de Leisler";"Nyctalus leisleri";"3";3;6;2
+"Nycnoc";"Chauve-souris";"Noctule commune";"Nyctalus noctula";"1";3;113;3
+"Pipkuh";"Chauve-souris";"Pipistrelle de Kuhl";"Pipistrellus kuhlii";"37";3;60;2
+"Pipnat";"Chauve-souris";"Pipistrelle de Nathusius";"Pipistrellus nathusii";"8";3;37;3
+"Pippip";"Chauve-souris";"Pipistrelle commune";"Pipistrellus pipistrellus";"1";3;134;2
+"Pippyg";"Chauve-souris";"Pipistrelle soprane";"Pipistrellus pygmaeus";"94";3;1;1
+"Pleaus";"Chauve-souris";"Oreillard gris";"Plecotus austriacus";"91";3;1;1
+"Tadten";"Chauve-souris";"Molosse";"Tadarida teniotis";"83";3;3;2
+"Leppun";"Sauterelle";"Sauterelle ponctuee";"Leptophyes punctatissima";"94";2;13;1
+"Phanan";"Sauterelle";"Phaneroptere meridional";"Phaneroptera nana";"89";2;2;1
+"Phofem";"Sauterelle";"Decticelle des friches";"Pholidoptera femorata";"91";2;3;3
+"Phogri";"Sauterelle";"Decticelle cendree";"Pholidoptera griseoaptera";"80";2;14;2
+"Plaalb";"Sauterelle";"Decticelle chagrinee";"Platycleis albopunctata";"97";2;1;1
+"Tetvir";"Sauterelle";"Sauterelle verte";"Tettigonia viridissima";"24";2;111;2
+"Lamsp.";"Autre";"Lampyre sp.";"Lampyris sp.";"6";1;1;1
+"Tetarg";"Autre";"Cigale argentee";"Tettigetta argentata";"7";1;1;1
+"Yposp";"Autre";"Hyponomeute sp.";"Yponomeuta sp.";"95";1;7;NA
+"amph";"Autre";"Amphibien sp.";"Amphibia sp.";"1";1;13;NA
+"noise";"Autre";"bruit";"noise";"1";1;2554;2
+"piaf";"Autre";"Oiseau sp.";"Aves sp.";"1";1;199;3

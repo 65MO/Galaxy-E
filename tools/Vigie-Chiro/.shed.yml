@@ -1,53 +1,60 @@
 categories:
-- ZZ-test1 
+    - Ecology 
 description: Tools created by the vigiechiro team to analyses and identify chiro sounds files.
-
 long_description: |
-  TODO
+  The Vigie Chiro is a french scientific citizen program that studies bats. This tools suite allows to analyse data from the vigiechiro.herokuapp.com web portal and to create advanced restitutions. Two tools are useful to clean and synthetize data according to the sampling session. The other two produce advanced restitution based on the protocol used.
 
 homepage_url: https://www.vigienature-ecole.fr/les-observatoires/le-protocole-vigie-chiro 
 name: vigiechiro
-owner: mnhn65mo
-remote_repository_url: https://github.com/Alanamosse/Galaxy-E/tree/master/tools/Vigie-Chiro
+owner: ecology 
+remote_repository_url: https://github.com/galaxyecology/tools-ecology/tools/vigiechiro
 type: unrestricted
 
 
 repositories:
-  vigiechiro_vigiechiro_bilanenrichipf:
-    description: BilanEnrichiPF from the vigiechiro tool suite
-    include: 
+  vigiechiro_bilanenrichipf:
+    description: "'Point fixe' protocol advanced restitution tool from the vigiechiro suite"
+    owner: ecology
+    include:
+      - vigiechiro_macros.xml  
       - BilanEnrichiPFen.xml    
       - BilanEnrichiPF.R  
       - refPF.csv
       - SpeciesList.csv
       - test-data/BilanEnrichiPF_Test1_out_tab.tabular
       - test-data/BilanEnrichiPF_Test1.tabular  
-  vigiechiro_vigiechiro_bilanenrichirp:  
-     description: BilanEnrichiRP from the vigiechiro tool suite
+
+  vigiechiro_bilanenrichirp:  
+     description: "'Routier' or 'Pedestre' protocols advanced restitution tool from the vigiechiro suite"
+     owner: ecology
      include:        
+      - vigiechiro_macros.xml  
       - BilanEnrichiRPen.xml    
       - BilanEnrichiRP.R  
       - refRPSeuil50.csv
       - SpeciesList.csv
       - test-data/BilanEnrichiRP_Test1_out_tab.tabular
       - test-data/BilanEnrichiRP_Test1.tabular 
-  vigiechiro_vigiechiro_idcorrect_2ndlayer: 
-    description: IdCorrect2ndLayer from the vigiechiro tool suite
+
+  vigiechiro_idcorrect_2ndlayer: 
+    description: "Tadarida data clean tool from the vigiechiro suite"
+    owner: ecology
     include:        
+      - vigiechiro_macros.xml  
       - IdCorrect_2ndLayer_en.xml
       - IdCorrect_2ndLayer.R
       - ClassifEspC2b_180222.learner
       - test-data/IdCor2Layer_Test1_obs.csv
       - test-data/IdCor2Layer_Test1_out.tabular 
-  vigiechiro_vigiechiro_idvalid:
-    description: IdValid from the vigiechiro tool suite    
+
+
+  vigiechiro_idvalid:
+    description: "Tadarida identifications integration tool from the vigiechiro suite"    
+    owner: ecology
     include:    
+      - vigiechiro_macros.xml  
       - IdValid.R
+      - IdValiden.xml
       - Referentiel_seuils_C2.csv
       - test-data/IdCor2Layer_Test1_out.tabular 
       - test-data/BilanEnrichiPF_Test1.tabular  
-
-suite:
-  name: "suite_vigiechiro"
-  description: Tools created by the vigiechiro team to analyses and identify chiro sounds files.
-

@@ -1,0 +1,35 @@
+"Code";"Groupe";"Nom français";"Nom scientifique";"Risque d'erreur (%)";"TriGroupe";"Canal";"1";"2";"3";"4";"5";"6";"7";"8";"9";"10"
+"Eptser";"Chauve-souris";"Serotine commune";"Eptesicus serotinus";"8";3;"Expansion";1;0;3;0;0;0;0;0;1;0
+"Hypsav";"Chauve-souris";"Vespere de Savi";"Hypsugo savii";"90";3;"Expansion";2;0;0;0;0;0;0;0;0;0
+"Myoema";"Chauve-souris";"Murin a oreilles echancrees";"Myotis emarginatus";"90";3;"Expansion";0;1;0;0;1;0;0;0;1;0
+"Myomys";"Chauve-souris";"Murin a moustaches";"Myotis mystacinus";"94";3;"Expansion";1;0;0;0;2;0;0;0;2;0
+"Myonat";"Chauve-souris";"Murin groupe Natterer";"Myotis nattereri";"77";3;"Expansion";0;1;0;0;0;0;1;1;0;0
+"Nyclei";"Chauve-souris";"Noctule de Leisler";"Nyctalus leisleri";"74";3;"Expansion";2;0;2;1;1;0;0;0;1;0
+"Nycnoc";"Chauve-souris";"Noctule commune";"Nyctalus noctula";"80";3;"Expansion";3;1;12;0;0;2;0;0;0;0
+"Pipkuh";"Chauve-souris";"Pipistrelle de Kuhl";"Pipistrellus kuhlii";"8";3;"Expansion";4;4;3;4;3;1;6;4;1;2
+"Pippip";"Chauve-souris";"Pipistrelle commune";"Pipistrellus pipistrellus";"16";3;"Expansion";7;8;7;6;3;12;6;4;7;17
+"Pippyg";"Chauve-souris";"Pipistrelle soprane";"Pipistrellus pygmaeus";"87";3;"Expansion";0;0;1;0;0;1;0;0;0;7
+"Pleaur";"Chauve-souris";"Oreillard roux";"Plecotus auritus";"96";3;"Expansion";0;0;1;0;0;0;0;0;0;0
+"Rhieur";"Chauve-souris";"Rhinolophe euryale";"Rhinolophus euryale";"97";3;"Expansion";0;0;0;0;0;0;0;1;0;1
+"Rhifer";"Chauve-souris";"Grand Rhinolophe";"Rhinolophus ferrumequinum";"97";3;"Expansion";0;0;0;0;0;0;0;0;0;1
+"Rhihip";"Chauve-souris";"Petit Rhinolophe";"Rhinolophus hipposideros";"41";3;"Expansion";4;0;0;0;1;0;0;3;1;4
+"Confus";"Sauterelle";"Conocephale bigarre";"Conocephalus fuscus";"12";2;"Expansion";0;0;3;7;1;4;4;0;1;0
+"Cyrscu";"Sauterelle";"Meconeme a bouclier";"Cyrtaspis scutata";"92";2;"Expansion";0;0;0;2;0;0;0;0;0;0
+"Epheph";"Sauterelle";"Ephippigere des vignes";"Ephippiger ephippiger";"92";2;"Expansion";0;1;0;0;0;0;1;0;0;0
+"Isopyr";"Sauterelle";"Barbatiste pyreneen";"Isophya pyrenaea";"37";2;"Expansion";0;0;0;2;0;0;0;1;1;0
+"Leppun";"Sauterelle";"Sauterelle ponctuee";"Leptophyes punctatissima";"95";2;"Expansion";1;3;0;0;0;0;0;1;0;0
+"Phanan";"Sauterelle";"Phaneroptere meridional";"Phaneroptera nana";"89";2;"Expansion";0;0;1;1;0;0;0;0;0;0
+"Phogri";"Sauterelle";"Decticelle cendree";"Pholidoptera griseoaptera";"78";2;"Expansion";1;1;10;2;3;2;5;2;2;2
+"Plaaff";"Sauterelle";"Decticelle cotiere";"Platycleis affinis";"97";2;"Expansion";0;0;1;0;0;0;0;0;0;0
+"Plaalb";"Sauterelle";"Decticelle chagrinee";"Platycleis albopunctata";"91";2;"Expansion";0;0;2;1;0;0;0;1;0;0
+"Plaint";"Sauterelle";"Decticelle intermediaire";"Platycleis intermedia";"97";2;"Expansion";1;0;0;0;2;1;0;0;0;0
+"Roeroe";"Sauterelle";"Decticelle bariolee";"Roeseliana roeselii";"34";2;"Expansion";0;0;0;0;0;1;0;0;0;0
+"Rusnit";"Sauterelle";"Conocephale gracieux";"Ruspolia nitidula";"72";2;"Expansion";0;1;3;0;0;1;0;0;0;1
+"Sepsep";"Sauterelle";"Decticelle echassiere";"Sepiana sepium";"70";2;"Expansion";0;0;0;1;0;0;0;0;0;0
+"Testes";"Sauterelle";"Decticelle carroyee";"Tessellana tessellata";"95";2;"Expansion";1;0;0;0;0;0;0;0;0;0
+"Tetvir";"Sauterelle";"Sauterelle verte";"Tettigonia viridissima";"35";2;"Expansion";7;8;27;31;23;11;14;24;8;7
+"Urosp";"Sauterelle";"Ephippigère carénée/d'Algérie";"Uromenus sp.";"98";2;"Expansion";0;0;0;0;0;1;1;0;0;0
+"Yerray";"Sauterelle";"Decticelle frele";"Yersinella raymondii";"75";2;"Expansion";3;2;1;1;0;2;0;0;1;1
+"Cympud";"Autre";"Ecaille pudique";"Cymbalophora pudica";"89";1;"Expansion";0;0;0;1;0;0;0;0;0;0
+"Inssp5";"Autre";"Insecte sp. type 5";"Insect sp.5";"96";1;"Expansion";0;1;0;0;1;1;0;0;0;0
+"noise";"Autre";"bruit";"noise";"1";1;"Expansion";108;95;113;113;94;112;105;110;108;95

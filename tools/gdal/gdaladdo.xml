@@ -1,16 +1,14 @@
-<tool id="gdaladdo" name="GDAL addo" version="@VERSION@">
+<tool id="gdal_gdaladdo" name="GDAL addo" version="@VERSION@">
     <description>builds or rebuilds overview images</description>
-
     <macros>
         <import>gdal_macros.xml</import>
-    </macros>   
+    </macros>
     <expand macro="gdal_requirements" />
-
     <command detect_errors="exit_code"><![CDATA[
         gdaladdo '$input1'
             -q
             -ro
-            #if '$levels'==''
+            #if str($levels).strip()==''
                 -clean 
             #else
                 '$levels'
@@ -20,7 +18,7 @@
     ]]></command>
     
     <inputs>
-        <param type="data" name="input1" format="data" label="Gdal supported input file" help="http://www.gdal.org/formats_list.html"/>    
+        <param type="data" name="input1" label="Gdal supported raster input file" format="gtiff,tiff" help="Chose a GeoTIFF file"/>    
         <param name="levels" type="text" label="levels" help="A list of integral overview levels to build. eg : 2 4 8 16" value=""/>        
     </inputs>
     
@@ -29,7 +27,7 @@
     </outputs>
     
     <tests> 
-        <test> <!-- gdaladdo '/tmp/tmpTvLDdw/files/000/dataset_1.dat' -ro 2 4 8 16  -->
+        <test> 
             <param name="input1" value="stere.tif"/>
             <param name="levels" value="2 4 8 16" />
             <output name="output" file="stere.tif.ovr"/>
@@ -52,15 +50,9 @@ Select a raster file from history and chose levels to build.
 
 |
 
-**Option**
+**Advanced options and sources**
 
-*-levels*
-
-    A list of integral overview levels to build. Ignored with -clean option. Starting with GDAL 2.3, levels are no longer required to build overviews. In which case, appropriate overview power-of-two factors will be selected until the smallest overview is smaller than the value of the -minsize switch.
-
-|
-
-**Sources**
+To see complete details and help section please check the official gdal sources.
 
 http://www.gdal.org
 
@@ -68,4 +60,5 @@ http://www.gdal.org/gdaladdo.html
 
 Raster Processing Tutorial : https://trac.osgeo.org/gdal/wiki/UserDocs/RasterProcTutorial
     ]]></help>
+    <expand macro="gdal_citation"/>
 </tool>

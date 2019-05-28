@@ -1,0 +1,5 @@
+name: mmos_spipoll
+type:
+  - tool
+  - workflow
+activate: true
