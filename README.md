@@ -57,6 +57,7 @@ datasets <- list_datasets(terrestrial = FALSE, marine = TRUE)
  * World Database on Protected Areas (WDPA) is the most comprehensive global database on terrestrial and marine protected areas.: https://protectedplanet.net/
 * Chelsea Climate (Climatologies at high resolution for the earth’s land surface areas ): http://chelsa-climate.org/
 * E-OBS gridded dataset : http://www.ecad.eu/download/ensembles/download.php
+* Global Lithological Map Database v1.0 https://doi.pangaea.de/10.1594/PANGAEA.788537
 
 # Interesting tools
 * Work with messy data from db
