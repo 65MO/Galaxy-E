@@ -1,0 +1,71 @@
+<tool id="stoceps_glm" name="Estimate species population evolution" version="@VERSION@">
+    <macros>
+        <import>stoceps_macros.xml</import>
+    </macros>
+    <expand macro="mainglm_requirements"/>
+    <command detect_errors="exit_code"><![CDATA[
+        Rscript 
+         '$__tool_directory__/ExeMainGlmGalaxy.r' 
+         '$input'
+         '$__tool_directory__/tabSpecies.csv'
+         'mainglm'
+         #if $settings.advanced=='advanced' 
+             $settings.sp_code
+             $settings.compute_ic
+         #else
+             ''
+	     'TRUE'
+         #end if
+         '$__tool_directory__/FunctTrendSTOCGalaxy.r'
+
+         
+        '$yearly_variations'
+        '$global_tendencies'
+        #if $settings.advanced=='advanced' 
+            #if $settings.return_plot=='plot'
+                '$plots'
+            #end if
+        #end if
+    ]]>
+    </command>
+    <inputs>
+        <expand macro="stoceps_input_filtered"/>
+        <conditional name="settings">
+            <expand macro="stoceps_advanced_params_select"/>
+            <when value="advanced">
+                <param name="sp_code" type="select" label="Filter species to exclude" help="Create a subsample by selecting the species codes you don't want to use." multiple="true" optional="true">
+                    <options from_dataset="input">
+                        <column name="value" index="2"/>
+                        <filter type="unique_value" name="espece" column="2"/>
+                    </options>
+                    <sanitizer>
+                        <valid initial="string.printable">
+                            <remove value="&quot;"/>
+                        </valid>
+                    </sanitizer>
+                </param>
+                <param name="return_plot" type="boolean" truevalue="plot" falsevalue="noplot" checked="yes" help="all the figures will be stocked in a datacollection" label="Return visualiztions."/>
+                <expand macro="stoceps_compute_ic"/>
+            </when>
+        </conditional>
+    </inputs>
+    <outputs>
+	    <data name="yearly_variations" from_work_dir="Output/mainglm/variationsAnnuellesEspece_mainglm.tabular" format="tabular" label="GLM - Yearly variations on ${on_string}"/>
+	    <data name="global_tendencies" from_work_dir="Output/mainglm/tendanceGlobalEspece_mainglm.tabular" format="tabular" label="GLM - Global species tendencies on ${on_string}"/>
+        <collection type="list" name="plots">
+            <filter>return_plot == 'plot'</filter>
+            <discover_datasets pattern="(?P&lt;designation&gt;.+)\.png" visible="false" format="png" directory="Output/mainglm/"/>
+        </collection>	
+    </outputs>
+    <tests>
+<!--
+        <test> 
+            <param name="input" value="Datafilteredfortrendanalysis.tabular"/>
+            <output name="output" file=""/>
+        </test>
+-->
+    </tests>
+    <help><![CDATA[
+TODODODODO
+  ]]></help>
+</tool>
