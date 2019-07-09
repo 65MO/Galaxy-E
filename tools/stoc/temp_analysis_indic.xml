@@ -31,8 +31,8 @@
         <conditional name="settings">
             <expand macro="stoceps_advanced_params_select"/>
             <when value="advanced">
-                <param name="smooth_plot" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="yes" help="Smooth visualisation" label="Smooth visualisation."/>
-                <param name="method" type="select" help="GlmmTMB or Gam" label="Chose your model">
+                <param name="smooth_plot" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="yes" label="Smooth visualisation."/>
+                <param name="method" type="select" help="Available methods are GlmmTMB and Gam" label="Chose the model method">
                     <option selected="true" value="glmmtmb">GlmmTMB</option>
                     <option value="gam">Gam</option>
                 </param>
@@ -68,6 +68,49 @@
     <tests>
     </tests>
     <help><![CDATA[
-TODODODODO
+=================================================
+STOC Temporal population trend indicator
+=================================================
+
+**What it does**
+
+TODO
+
+Compute and plot time variation of indicator and mean trait values for communities.
+
+|
+
+**Input description**
+
+A tabular file with species count shaped and filtered with the STOCs 'Preprocess population data' ans 'Filter species' tools. 
+
+|
+
+**Output**
+
+TODO
+
+|
+
+Gam method ::
+
+ - Two tabulars that details computed indicator per year and globaly.
+
+ - A plot that show trends across years.
+
+|
+
+GlmmTMB method ::
+
+ - Two tabulars that details computed indicator per year and globaly.
+
+ - Two plots that show trends across years.
+
+|
+
+**Source**
+
+Publications ? 
+@Romain mail
   ]]></help>
 </tool>

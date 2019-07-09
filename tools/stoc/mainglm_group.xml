@@ -25,8 +25,8 @@
     ]]>
     </command>
     <inputs>
-        <param name="input_y_var" type="data" format="tabular" label="Yearly variation dataset" help=""/>
-        <param name="input_glob_tendencies" type="data" format="tabular" label="Global tendencies dataset" help=""/>
+        <param name="input_y_var" type="data" format="tabular" label="Yearly variation dataset" help="Output from the 'Estimate species population evoution' tool."/>
+        <param name="input_glob_tendencies" type="data" format="tabular" label="Global tendencies dataset" help="Output from the 'Estimate species population evoution' tool."/>
         <conditional name="settings">
             <expand macro="stoceps_advanced_params_select"/>
             <when value="advanced">
@@ -52,6 +52,36 @@
     <tests>
     </tests>
     <help><![CDATA[
-TODODODODO
+=================================================
+STOC Estimate species population evolution
+=================================================
+
+**What it does**
+
+TODO
+
+Compute and plot evolution of species population by specialization group, using a glm model.
+
+|
+
+**Input description**
+
+A tabular file with species count shaped and filtered with the STOCs 'Preprocess population data' ans 'Filter species' tools. 
+
+|
+
+**Output**
+
+TODO
+
+Three tabular files are created, they describe global tendencies and yearly variations per groups.
+
+|
+
+**Source**
+
+Publications ? 
+@Romain mail
+
   ]]></help>
 </tool>

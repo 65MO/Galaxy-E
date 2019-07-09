@@ -41,7 +41,7 @@
         </requirements>
     </xml>
     <xml name="stoceps_input_filtered">
-        <param name="input" type="data" format="tabular" label="Input file" help=""/>
+        <param name="input" type="data" format="tabular" label="Stoc filtered input" help="Input Stoc count file, shaped and filtered with the 'preprocess population data' and 'filter species' tools." />
     </xml>
     <xml name="stoceps_advanced_params_select">
         <param name="advanced" type="select" label="Specify advanced parameters">

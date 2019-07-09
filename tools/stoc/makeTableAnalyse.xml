@@ -1,5 +1,5 @@
-<tool id="stoceps_maketablecarrer" name="Data transformation" version="@VERSION@">
-    <description>for population evolution trend analyses</description>
+<tool id="stoceps_maketablecarrer" name="Preprocess population data" version="@VERSION@">
+    <description>for evolution trend analyzes</description>
     <macros>
         <import>stoceps_macros.xml</import>
     </macros>
@@ -30,6 +30,8 @@ STOC preprocess population data
 ===============================
 
 **What it does**
+
+Reshape the data for the next steps of STOC analyzes.
 
 |
 

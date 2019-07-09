@@ -44,7 +44,7 @@
                         </valid>
                     </sanitizer>
                 </param>
-                <param name="return_plot" type="boolean" truevalue="plot" falsevalue="noplot" checked="yes" help="all the figures will be stocked in a datacollection" label="Return visualiztions."/>
+                <param name="return_plot" type="boolean" truevalue="plot" falsevalue="noplot" checked="yes" help="All the figures will be stocked in a datacollection" label="Return visualiztions."/>
                 <expand macro="stoceps_compute_ic"/>
             </when>
         </conditional>
@@ -66,6 +66,35 @@
 -->
     </tests>
     <help><![CDATA[
-TODODODODO
+=================================================
+STOC Estimate species population evolution 
+=================================================
+
+**What it does**
+
+TODO
+
+Compute and plot evolution of species population, using a glm model.
+
+|
+
+**Input description**
+
+A tabular file with species count shaped and filtered with the STOCs 'Preprocess population data' ans 'Filter species' tools. 
+
+|
+
+**Output**
+
+For each species present in the data, a plot of populations trend is created and stocked in a common data collection.
+
+Two tabular files are created, they describe global tendencies and yearly variations.
+
+|
+
+**Source**
+
+Publications ? 
+@Romain mail 
   ]]></help>
 </tool>

@@ -230,7 +230,7 @@ csi_cti_ctri <- function(tabCLEAN=tabCLEAN,coordCarre=coordCarre,spTrait=spTrait
                 tabgamm$coef <-  tabgamm$coef+init
                 histo <- subset(histo,annee<=2001)
                 tabgamm <- subset(tabgamm,annee>2001)
-                tabHisto <- data.frame(model= tabgamm$model[1],annee = histo$annee,
+                tabHisto <- data.frame(model= tabgamm$model[1],annee = histo$annee)
                 tabgamm <- rbind(tabgamm,tabHisto)
                 tabgamm <- tabgamm[order(tabgamm$annee),]
                 tabgamm$ic_up95<-tabgamm$coef-1.96*as.vector(tabgamm$se)
