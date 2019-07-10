@@ -26,8 +26,6 @@
             <requirement type="package" version="1.12.0">r-data.table</requirement>
             <requirement type="package" version="1.4_3">r-rgdal</requirement>
             <requirement type="package" version="1.7.4">r-lubridate</requirement>
-<!--            <requirement type="package" version="0.6_2">r-rpostgresql</requirement>
-            <requirement type="package" version="1.1_18_1">r-lme4</requirement>-->
             <requirement type="package" version="4.6_2">r-doby</requirement>
             <requirement type="package" version="1.10_1">r-arm</requirement>
             <requirement type="package" version="3.1.0">r-ggplot2</requirement>
@@ -53,8 +51,7 @@
     </xml>
     <xml name="stoceps_compute_ic">
         <param name="compute_ic" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="yes" label="Compute confidence intervals"/>
-</xml>
-
+    </xml>
     <xml name="stoceps_filter_glmmtmb">
         <filter> settings['advanced'] == 'advanced'</filter>
         <filter> settings['method'] == 'glmmtmb'</filter>
