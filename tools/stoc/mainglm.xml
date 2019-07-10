@@ -44,7 +44,7 @@
                         </valid>
                     </sanitizer>
                 </param>
-                <param name="return_plot" type="boolean" truevalue="plot" falsevalue="noplot" checked="yes" help="All the figures will be stocked in a datacollection" label="Return visualiztions."/>
+                <param name="return_plot" type="boolean" truevalue="plot" falsevalue="noplot" checked="yes" help="All the figures will be stocked in a datacollection" label="Return visualizations."/>
                 <expand macro="stoceps_compute_ic"/>
             </when>
         </conditional>
