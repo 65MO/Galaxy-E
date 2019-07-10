@@ -95,7 +95,7 @@ Gam method ::
 
  - Two tabulars that details computed indicator per year and globaly.
 
- - A plot that show trends across years.
+ - Two plots that show trends across years.
 
 |
 
@@ -103,7 +103,8 @@ GlmmTMB method ::
 
  - Two tabulars that details computed indicator per year and globaly.
 
- - Two plots that show trends across years.
+ - A plot that show trends across years.
+
 
 |
 
