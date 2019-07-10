@@ -176,9 +176,9 @@ main.glm <- function(id="france",donneesAll=dataCLEAN,assessIC= TRUE,listSp=sp,t
     
 
     filesaveAn <-  paste("Output/",id,"/variationsAnnuellesEspece_",id,".tabular",  ##### Nom du dossier ET fichier de sortie des resultats par année / name of the output file with results for each years
-                         sep = "")
+                         sep = "",fileEncoding = "UTF-8")
     filesaveTrend <-  paste("Output/",id,"/tendanceGlobalEspece_",id,".tabular",   ##### Nom du dossier ET fichier de sortie des resultats pour la période "annee" complete / name of the output file with the results for the period
-                            sep = "")
+                            sep = "",fileEncoding = "UTF-8")
     fileSaveGLMs <-  paste("Output/",id,"/listGLM_",id,sep = "")  #####  Nom du dossier ET fichier de sortie des modèles lineaire generalisés / name of the output file of the generlized linear models
 
 

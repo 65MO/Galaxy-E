@@ -10,14 +10,14 @@
          '$input_y_var'
          '$input_glob_tendencies'
          '$__tool_directory__/tabSpecies.csv'
-	 'mainglm_group'
+         'mainglm_group'
          #if $settings.advanced=='advanced' 
              $settings.sp_code
          #else
              ''
          #end if
          '$__tool_directory__/FunctTrendSTOCGalaxy.r'
-	 '$__tool_directory__/biais.tabular'
+         '$__tool_directory__/biais.tabular'
          
         '$data_group'
         '$year_var_group'

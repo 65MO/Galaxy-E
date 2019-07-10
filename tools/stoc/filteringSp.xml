@@ -9,7 +9,7 @@
          '$__tool_directory__/ExeFilteringRareLowabundSPGalaxy.r' 
          '$input'
          '$__tool_directory__/FunctTrendSTOCGalaxy.r' 
-	 '$output'
+         '$output'
     ]]>
     </command>
     <inputs>

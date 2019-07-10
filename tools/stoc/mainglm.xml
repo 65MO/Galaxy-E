@@ -14,7 +14,7 @@
              $settings.compute_ic
          #else
              ''
-	     'TRUE'
+             'TRUE'
          #end if
          '$__tool_directory__/FunctTrendSTOCGalaxy.r'
 
@@ -50,20 +50,24 @@
         </conditional>
     </inputs>
     <outputs>
-	    <data name="yearly_variations" from_work_dir="Output/mainglm/variationsAnnuellesEspece_mainglm.tabular" format="tabular" label="GLM - Yearly variations on ${on_string}"/>
-	    <data name="global_tendencies" from_work_dir="Output/mainglm/tendanceGlobalEspece_mainglm.tabular" format="tabular" label="GLM - Global species tendencies on ${on_string}"/>
+        <data name="yearly_variations" from_work_dir="Output/mainglm/variationsAnnuellesEspece_mainglm.tabular" format="tabular" label="GLM - Yearly variations on ${on_string}"/>
+        <data name="global_tendencies" from_work_dir="Output/mainglm/tendanceGlobalEspece_mainglm.tabular" format="tabular" label="GLM - Global species tendencies on ${on_string}"/>
         <collection type="list" name="plots">
             <filter>return_plot == 'plot'</filter>
             <discover_datasets pattern="(?P&lt;designation&gt;.+)\.png" visible="false" format="png" directory="Output/mainglm/"/>
-        </collection>	
+        </collection>
     </outputs>
     <tests>
-<!--
-        <test> 
+<!--        <test> 
             <param name="input" value="Datafilteredfortrendanalysis.tabular"/>
-            <output name="output" file=""/>
-        </test>
--->
+            <param name="advanced" value="simple"/>
+            <output name="yearly_variations"  file="mainglm_tab_years.tabular"/>
+            <output name="global_tendencies"  file="mainglm_tab_global.tabular"/>
+            <output_collection name="plots"  type="list">
+                <element name="sp1" file="mainglm_plot_sp1.png" ftype="png"/>
+                <element name="sp2" file="mainglm_plot_sp2.png" ftype="png"/>
+            </output_collection> 
+        </test>-->
     </tests>
     <help><![CDATA[
 =================================================

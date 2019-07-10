@@ -63,7 +63,6 @@
         <data name="output_tab_glmmtb_gammcomplet" from_work_dir="Output/GlmmTMB_coefficient_csiFrance.tabular" format="tabular" label="GlmmTMB - Temp trends per year - on ${on_string}">
             <expand macro="stoceps_filter_glmmtmb"/>
         </data>
-
     </outputs>
     <tests>
     </tests>
