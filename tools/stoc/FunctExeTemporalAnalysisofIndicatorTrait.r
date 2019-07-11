@@ -166,8 +166,8 @@ csi_cti_ctri <- function(tabCLEAN=tabCLEAN,coordCarre=coordCarre,spTrait=spTrait
             ic_sup_sim <- icalpha05[,2]
             ic_sup_sim <- c("NA",ic_sup_sim[1:nban-1])
         } else{
-            ic_inf <- "not assessed"
-            ic_sup <- "not assessed"
+            ic_inf_sim <- "not assessed"
+            ic_sup_sim <- "not assessed"
         }
 
         tabfgamm <- data.frame(model = "gamm factor(year) plot",annee,coef=coefannee,se = erreuran,pval,signif=pval<seuilSignif,Lower_ci=ic_inf_sim,upper_ci=ic_sup_sim,indicator=indicator) #### recupère les resultats des modèles avec interval de confiance / retrieve results of the models used with confidence interval 
