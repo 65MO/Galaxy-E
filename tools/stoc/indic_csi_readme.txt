@@ -1,4 +1,4 @@
-CSI Temporal analysis indocator.
+CSI Temporal analysis indocator - FunctExeTemporalAnalysisofIndicatorTrait.r
 This script compute the indicator per year and position, and create graphical vizualisation.
 
 Script needs the followings inputs
