@@ -1,0 +1,64 @@
+<tool id="stoceps_maketablecarrer" name="Preprocess population data" version="@VERSION@">
+    <description>for evolution trend analyzes</description>
+    <macros>
+        <import>stoceps_macros.xml</import>
+    </macros>
+    <expand macro="reshape_requirements"/>
+    <command detect_errors="exit_code"><![CDATA[
+        Rscript 
+         '$__tool_directory__/ExemakeTableAnalyseGalaxy.r' 
+         '$input'
+         '$__tool_directory__/FunctTrendSTOCGalaxy.r' 
+         '$output'
+    ]]>
+    </command>
+    <inputs>
+        <param name="input" type="data" format="tabular" label="Input file" help="Population count file, with location, date, species and abundance."/>
+    </inputs>
+    <outputs>
+        <data name="output" from_work_dir="Datatransformedforfiltering_trendanalysis.tabular" format="tabular"/>
+    </outputs>
+    <tests>
+        <test> 
+            <param name="input" value="data_FrenchBBS_squarre_dataSTOCallSp_France_trend_2001_2017_ALAARV-PARCAE_2001_2018.tabular"/>
+            <output name="output" file="Datatransformedforfiltering_trendanalysis.tabular"/>
+        </test>
+    </tests>
+    <help><![CDATA[
+===============================
+STOC preprocess population data
+===============================
+
+**What it does**
+
+Reshape the data for the next steps of STOC analyzes.
+
+|
+
+**Input description**
+
+A tabular file with species count. The table needs the following structure :
+
++-----------+---------+----------+---------+
+|   carre   |  annee  |  espece  |  abond  |
++===========+=========+==========+=========+
+| carreId1  |   2019  | especeId |   12    |  
++-----------+---------+----------+---------+
+|    ...    |   ...   |   ...    |   ...   |
++-----------+---------+----------+---------+
+
+|
+
+**Output**
+
+A tabular file transformed, species are ready for filtering steps.
+
+|
+
+**Source**
+
+Publications ? 
+@Romain mail 
+
+  ]]></help>
+</tool>
