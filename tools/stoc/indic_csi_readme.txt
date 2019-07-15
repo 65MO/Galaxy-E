@@ -14,7 +14,6 @@ Arguments are :
  - plot_smooth : add a vizualisation when used with gam method
  - ic : compute and show confidence interval in plots
 
-Outputs are created in an Output repo.
 
 
 How to execute, eg :
@@ -22,6 +21,8 @@ How to execute, eg :
  # Smooth vizu + no ic, method gam, no precomputed community file
  $ Rscript FunctExeTemporalAnalysisofIndicatorTrait.r test-data/Datafilteredfortrendanalysis2.tabular tabSpecies.csv species_indicateur_fonctionnel.tabular coordCarreSTOCfaux.tabular "ssi" "csi" "gam" "" "idindicatortrait" TRUE FALSE FunctTrendSTOCGalaxy.r
 
+
+Outputs are created in an Output repo :
 
 Gam method gives :
   - csi_gammCOMPLET_France.tabular
