@@ -1,4 +1,5 @@
-<tool id="stoceps_glm" name="Estimate species population evolution" version="@VERSION@">
+<tool id="stoceps_glm" name="Estimate temporal population evolution" version="@VERSION@">
+    <description>by species</description>
     <macros>
         <import>stoceps_macros.xml</import>
     </macros>
@@ -58,7 +59,7 @@
         </collection>
     </outputs>
     <tests>
-<!--        <test> 
+    <!--        <test> 
             <param name="input" value="Datafilteredfortrendanalysis.tabular"/>
             <param name="advanced" value="simple"/>
             <output name="yearly_variations"  file="mainglm_tab_years.tabular"/>

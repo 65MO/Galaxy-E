@@ -1,4 +1,4 @@
-<tool id="stoceps_glm_group" name="Estimate species population evolution" version="@VERSION@">
+<tool id="stoceps_glm_group" name="Estimate temporal population evolution" version="@VERSION@">
     <description>by specialization group</description>
     <macros>
         <import>stoceps_macros.xml</import>
