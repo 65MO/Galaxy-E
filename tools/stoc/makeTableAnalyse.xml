@@ -31,13 +31,18 @@ STOC preprocess population data
 
 **What it does**
 
-Reshape the data for the next steps of STOC analyzes.
+Reshape the data for the next steps of STOC analyzes by adding zero count to sites that are in the dataset, for species having no count data for those sites.
+
 
 |
 
 **Input description**
 
-A tabular file with species count. The table needs the following structure :
+A tabular file with abundance per year, per site and per species with no or few zero abundance.
+
+The data file can be extracted from the STOC database by asking : romain.lorrilliere@mnhn.fr
+
+The table needs the following structure (at least these 4 fours columns) :
 
 +-----------+---------+----------+---------+
 |   carre   |  annee  |  espece  |  abond  |
@@ -51,14 +56,16 @@ A tabular file with species count. The table needs the following structure :
 
 **Output**
 
-A tabular file transformed, species are ready for filtering steps.
+A tabular file transformed, with one column indicating the year, one indicating the site, and one column for each species abundance.
+
+This file is ready for the next filtering steps.
 
 |
 
 **Source**
 
-Publications ? 
-@Romain mail 
+UnPublished script available at http://www.vigienature.fr/sites/vigienature/files/atoms/files/analysestoceps_0.zip
 
+First version written by romain.lorrilliere@mnhn.fr
   ]]></help>
 </tool>

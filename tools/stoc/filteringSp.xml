@@ -31,15 +31,17 @@ STOC Filter species with rare and low abundances
 
 **What it does**
 
-The filtering steps remove species with not enough data to perform accurate analyzes.
+Reshape the data for the next steps of STOC analyzes by removing species with not enough data to perform the analysis i.e. with low abundance or not observed at all.
+
+The format of the file from the STOC data can be obtained after running the tool "Preprocess population data".
 
 |
 
 **Input description**
 
-A tabular file with species count shaped with the stocs 'Preprocess population data' tool. 
+A tabular file with each species abundance in different column, and one column to indicate the year, and another one indicating the site. This file may come from the tools preprocess population data that use the function MakeTableAnalysis .
 
-The table needs the following structure :
+The table needs the following structure (at least these 4 four columns, if one species, and as much additional columns as there are additional species) :
 
 +-----------+---------+--------------+--------------+--------------+
 |   carre   |  annee  |  speciesId1  |  speciesId2  |  speciesIdN  |
@@ -53,15 +55,16 @@ The table needs the following structure :
 
 **Output**
 
-A tabular file transformed, the rarest species are removed.
+A tabular file transformed, with only one column for the abundance, one column indicating the species, one indicating the site and one indicating the year.
 
-Data are ready for population trend analyzes.
+This file is ready for its analysis with "Estimate temporal population evolution"
 
 |
 
 **Source**
 
-Publications ? 
-@Romain mail 
+UnPublished script available at http://www.vigienature.fr/sites/vigienature/files/atoms/files/analysestoceps_0.zip
+
+First version written by romain.lorrilliere@mnhn.fr
   ]]></help>
 </tool>
