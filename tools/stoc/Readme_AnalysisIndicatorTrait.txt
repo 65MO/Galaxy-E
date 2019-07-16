@@ -1,18 +1,20 @@
 CSI Temporal analysis indocator - FunctExeTemporalAnalysisofIndicatorTrait.r
-This script compute the indicator per year and position, and create graphical vizualisation.
+This script compute the indicator csi, cti and ctri per year and site, wich also correspond to a community weighted mean (CWM), and analyse its temporal evolution trend and create graphical vizualisation.
+As indicator you can thus use also a trait.
+
 
 Script needs the followings inputs
- - stoc data filtered
- - species details file
+ - stoc or community data not filtered with at least 4 columns: year, site, species, and abundance (without 0, because this would biaised the calculation of the community weighted mean)
+ - species details file with at least 2 columns: the species name or species ID (found in the community data or in stoc data) and one or more traits (e.g. the ssi if you would like to comute the csi)
  - specialization details file
- - spatial coordinates data file
+ - spatial coordinates data file with at least 3 columns: longitude, lattitude and site
  - file that stocks functions : "FunctTrendSTOCGalaxy.r"
  - optional : precomputed community file
 
 Arguments are :
  - method : gam or glmmtmb
  - plot_smooth : add a vizualisation when used with gam method
- - ic : compute and show confidence interval in plots
+ - ic : compute and show confidence interval in plots (TRUE / FALSE)
 
 
 
@@ -52,9 +54,8 @@ R library needed
   r-arm=1.10_1 
   r-ggplot2=3.1.0 
   r-scales=1.0.0 
-  #r-ggplot2=3.1.0 
   r-mgcv=1.8_24 
-  #r-plyr=1.8.4 
+  r-plyr=1.8.4 
   r-speedglm=0.3_2 
   r-lmertest=3.1_0 
   r-glmmtmb=0.2.3
