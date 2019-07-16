@@ -176,9 +176,9 @@ main.glm <- function(id="france",donneesAll=dataCLEAN,assessIC= TRUE,listSp=sp,t
     
 
     filesaveAn <-  paste("Output/",id,"/variationsAnnuellesEspece_",id,".tabular",  ##### Nom du dossier ET fichier de sortie des resultats par année / name of the output file with results for each years
-                         sep = "",fileEncoding = "UTF-8")
+                         sep = "")
     filesaveTrend <-  paste("Output/",id,"/tendanceGlobalEspece_",id,".tabular",   ##### Nom du dossier ET fichier de sortie des resultats pour la période "annee" complete / name of the output file with the results for the period
-                            sep = "",fileEncoding = "UTF-8")
+                            sep = "")
     fileSaveGLMs <-  paste("Output/",id,"/listGLM_",id,sep = "")  #####  Nom du dossier ET fichier de sortie des modèles lineaire generalisés / name of the output file of the generlized linear models
 
 
@@ -445,9 +445,9 @@ main.glm <- function(id="france",donneesAll=dataCLEAN,assessIC= TRUE,listSp=sp,t
         
     }
     
-    write.table(glmAn,filesaveAn,row.names=FALSE,quote=FALSE,sep="\t",dec=".")
+    write.table(glmAn,filesaveAn,row.names=FALSE,quote=FALSE,sep="\t",dec=".",fileEncoding="UTF-8")
     cat("--->",filesaveAn,"\n")
-    write.table(glmTrend,filesaveTrend,row.names=FALSE,quote=FALSE,sep="\t",dec=".")
+    write.table(glmTrend,filesaveTrend,row.names=FALSE,quote=FALSE,sep="\t",dec=".",fileEncoding="UTF-8")
     cat("--->",filesaveTrend,"\n")
     
     
@@ -661,7 +661,7 @@ analyseGroupe <- function(id="france",tabsp=tabsp,donnees=donnees,donneesTrend=d
 
     nomFileResum <- paste("Output/",id,"/donneesGroupes_",id, ###### declaration du nom du repertoire et des fichiers de sortie / declaring the name of the output folder and files  
                           ".tabular",sep="" )
-    write.table(ddd,nomFileResum,row.names=FALSE,sep="\t",dec=".")
+    write.table(ddd,nomFileResum,row.names=FALSE,sep="\t",dec=".",fileEncoding="UTF-8")
     cat("-->",nomFileResum,"\n")
     
     ## calcul des moyennes ponderees par groupe par an et pour les abondance et les IC	/ calcul of weighted means per specialization group and per year for the abundance and confidence interval
@@ -698,7 +698,7 @@ analyseGroupe <- function(id="france",tabsp=tabsp,donnees=donnees,donneesTrend=d
     da <- subset(da, groupe != "non")
     colnames(da)[6:7] <-  c("nombre_especes_incertaines","nombre_espece_bonnes")
     a <- data.frame(id,da)
-    write.table(da,file=nameFileSpe,row.names=FALSE,quote=FALSE,sep="\t",dec=".")
+    write.table(da,file=nameFileSpe,row.names=FALSE,quote=FALSE,sep="\t",dec=".",fileEncoding="UTF-8")
 
     cat("-->",nameFileSpe,"\n")
     yearsrange <- c(min(da$annee),max(da$annee))
@@ -743,7 +743,7 @@ analyseGroupe <- function(id="france",tabsp=tabsp,donnees=donnees,donneesTrend=d
                                         #datasum$cat_tendance_EBCC <- affectCatEBCC(trend,pVal,ICinf,ICsup
     namefilesum <- paste("Output/",id,"/tendancesGlobalesGroupes_",id,
                          ".tabular",sep="" )
-    write.table(datasum,file=namefilesum,row.names=FALSE,quote=FALSE,sep="\t",dec=".")
+    write.table(datasum,file=namefilesum,row.names=FALSE,quote=FALSE,sep="\t",dec=".",fileEncoding="UTF-8")
     cat("-->",namefilesum,"\n")
 }
 
