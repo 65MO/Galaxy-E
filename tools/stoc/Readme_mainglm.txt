@@ -1,4 +1,4 @@
-Estimate temporal evolution of of population per species  - ExeMainGlmGalaxy.r
+Estimate temporal evolution of population per species  - ExeMainGlmGalaxy.r
 This script analyse the temporal evolution of species population and create graphical vizualisation.
 
 Script needs the followings inputs :
