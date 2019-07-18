@@ -25,8 +25,8 @@
     ]]>
     </command>
     <inputs>
-        <param name="input_y_var" type="data" format="tabular" label="Yearly variation dataset" help="Output from the 'Estimate species population evoution' tool."/>
-        <param name="input_glob_tendencies" type="data" format="tabular" label="Global tendencies dataset" help="Output from the 'Estimate species population evoution' tool."/>
+        <param name="input_y_var" type="data" format="tabular" label="Yearly variation dataset" help="Output from the 'Estimate temporal population evoution by species' tool."/>
+        <param name="input_glob_tendencies" type="data" format="tabular" label="Global tendencies dataset" help="Output from the 'Estimate temporal population evoution by species' tool."/>
         <conditional name="settings">
             <expand macro="stoceps_advanced_params_select"/>
             <when value="advanced">
