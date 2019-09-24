@@ -102,8 +102,24 @@ Compute and plot evolution of species population, using a glm model.
 
 **Input description**
 
-A tabular file with species count shaped and filtered with the STOCs 'Preprocess population data' ans 'Filter species' tools. 
-A file of the indicator status of species is given for the STOC species (Column with TRUE or FALSE), including the species name or ID (one used in the species count data). If you are not using the STOC, you need one file of this kind. 
+A first mandatory tabular file with species count shaped and filtered with the STOCs 'Preprocess population data' ans 'Filter species' tools. 
+
+A second optional "species details file" containing indicator status of species (Column with TRUE or FALSE), including the species name or ID (one used in the species count data). If you are not analyzing the default STOC data, you need one file of this kind.
+"espece"	"nom"	"nomscientific"	"indicateur"	"specialisation"
+"ACCGEN"	"Autour des palombes"	"Accipiter gentilis"	FALSE	""
+"ACCNIS"	"Epervier d'Europe"	"Accipiter nisus"	FALSE	""
+"ACRARU"	"Rousserolle turdoïde"	"Acrocephalus arundinaceus"	FALSE	""
+"ACRMEL"	"Lusciniole à moustaches"	"Acrocephalus melanopogon"	FALSE	""
+"ACRPAL"	"Phragmite aquatique"	"Acrocephalus paludicola"	FALSE	""
+"ACRRIS"	"Rousserolle verderolle"	"Acrocephalus palustris"	FALSE	""
+"ACRSCH"	"Phragmite des joncs"	"Acrocephalus schoenobaenus"	FALSE	""
+"ACRSCI"	"Rousserolle effarvatte"	"Acrocephalus scirpaceus"	FALSE	""
+"ACTHYP"	"Chevalier guignette"	"Actitis hypoleucos"	FALSE	""
+"AEGCAU"	"Mésange à longue queue"	"Aegithalos caudatus"	FALSE	""
+"AEGFUN"	"Chouette de Tengmalm"	"Aegolius funereus"	FALSE	""
+"AIXGAL"	"Canard mandarin"	"Aix galericulata"	FALSE	""
+"AIXSPO"	"Canard carolin"	"Aix sponsa"	FALSE	""
+"ALAARV"	"Alouette des champs"	"Alauda arvensis"	TRUE	"milieux agricoles"
 
 |
 
