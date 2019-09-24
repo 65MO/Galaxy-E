@@ -8,12 +8,18 @@
         Rscript 
          '$__tool_directory__/ExeMainGlmGalaxy.r' 
          '$input'
-         '$__tool_directory__/tabSpecies.csv'
-         'mainglm'
          #if $settings.advanced=='advanced' 
+             #if $settings.condi_spfile.user_sp_file=='default'
+                 '$__tool_directory__/tabSpecies.csv'
+             #else
+                 '$settings.condi_spfile.spfile'
+             #end if
+             'mainglm'
              $settings.sp_code
              $settings.compute_ic
          #else
+             '$__tool_directory__/tabSpecies.csv'
+             'mainglm'
              ''
              'TRUE'
          #end if
@@ -45,6 +51,17 @@
                         </valid>
                     </sanitizer>
                 </param>
+                <conditional name="condi_spfile">
+                    <param name="user_sp_file" type="select" label="Use a custom species details file">
+                        <option value="default" selected="true">No, use the default.</option>
+                        <option value="customfile">Yes, use a custom file.</option>
+                    </param>
+                    <when value="default">
+                    </when>
+                    <when value="customfile">
+                        <param name="spfile" type="data" format="tabular" label="Species details file" help="Tabular file with species indicator status." />
+                    </when>
+                </conditional>
                 <param name="return_plot" type="boolean" truevalue="plot" falsevalue="noplot" checked="yes" help="All the figures will be stocked in a datacollection" label="Return visualizations."/>
                 <expand macro="stoceps_compute_ic"/>
             </when>
@@ -59,16 +76,18 @@
         </collection>
     </outputs>
     <tests>
-    <!--        <test> 
+    <!--
+        <test> 
             <param name="input" value="Datafilteredfortrendanalysis.tabular"/>
             <param name="advanced" value="simple"/>
             <output name="yearly_variations"  file="mainglm_tab_years.tabular"/>
             <output name="global_tendencies"  file="mainglm_tab_global.tabular"/>
             <output_collection name="plots"  type="list">
-                <element name="sp1" file="mainglm_plot_sp1.png" ftype="png"/>
-                <element name="sp2" file="mainglm_plot_sp2.png" ftype="png"/>
+                <element name="ALAARV_mainglm" file="mainglm_plot_sp1.png" ftype="png"/>
+                <element name="PARCAE_mainglm" file="mainglm_plot_sp2.png" ftype="png"/>
             </output_collection> 
-        </test>-->
+	</test>
+    -->
     </tests>
     <help><![CDATA[
 =================================================
@@ -77,8 +96,6 @@ STOC Estimate species population evolution
 
 **What it does**
 
-TODO
-
 Compute and plot evolution of species population, using a glm model.
 
 |
@@ -86,6 +103,7 @@ Compute and plot evolution of species population, using a glm model.
 **Input description**
 
 A tabular file with species count shaped and filtered with the STOCs 'Preprocess population data' ans 'Filter species' tools. 
+A file of the indicator status of species is given for the STOC species (Column with TRUE or FALSE), including the species name or ID (one used in the species count data). If you are not using the STOC, you need one file of this kind. 
 
 |
 
@@ -99,7 +117,7 @@ Two tabular files are created, they describe global tendencies and yearly variat
 
 **Source**
 
-Publications ? 
-@Romain mail 
+UnPublished script available at http://www.vigienature.fr/sites/vigienature/files/atoms/files/analysestoceps_0.zip
+the first version written by romain.lorrilliere@mnhn.fr
   ]]></help>
 </tool>

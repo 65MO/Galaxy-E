@@ -257,12 +257,12 @@ csi_cti_ctri <- function(tabCLEAN=tabCLEAN,coordCarre=coordCarre,spTrait=spTrait
         md.f <- glmmTMB(indic~ factor(year)+(1|id_plot),data=dd) 
         smd.f <- summary(md.f)    
         # coefdata.f <-  as.data.frame(smd.f$coefficients)  ### version pour sortie lmer()
-        coefdata.f <-  as.data.frame(smd.f$coefficients$cond)
+        coefdata.f <-  as.data.frame(smd.f$coefficients$cond[-1,])
         coefdata.f <- data.frame(model="Annual fluctuation", variable = rownames(coefdata.f),coefdata.f)
-        # ggdata <<- data.frame(year=c(1989,as.numeric(substr(coefdata.f$variable[-1],13,16))),##### version pour sortie lmer()
-        ggdata <- data.frame(year=c(1989,as.numeric(substr(coefdata.f$variable[-1],13,17))),             
-        estimate=c(0,coefdata.f$Estimate[-1]),
-        se=c(0,coefdata.f$Std..Error[-1]))   #####################  resultat du modèle / results of the models
+        # ggdata <<- data.frame(year=c(as.numeric(substr(coefdata.f$variable[-1],13,16))),##### version pour sortie lmer()
+        ggdata <- data.frame(year=c(as.numeric(substr(coefdata.f$variable,13,17))),             
+        estimate=c(coefdata.f$Estimate),
+        se=c(coefdata.f$Std..Error))   #####################  resultat du modèle / results of the models
         #ggdata$estimate <-  ggdata$estimate
         #ggdata$se.supR <- ggdata$estimate +  ggdata$se ############################################################################## METHODE ROMAIN 
         #ggdata$se.infR <- ggdata$estimate -  ggdata$se
@@ -274,8 +274,8 @@ csi_cti_ctri <- function(tabCLEAN=tabCLEAN,coordCarre=coordCarre,spTrait=spTrait
         se.sup <- MODconfint[2:nban,2]#### [2:nban+2,2] version pour sortie lmer()
         se.inf <- MODconfint[2:nban,1]#### [2:nban+2,2] version pour sortie lmer()
         if (ic) {
-            ggdata$se.sup <- c(0,se.sup) 
-            ggdata$se.inf <- c(0,se.inf)
+            ggdata$se.sup <- se.sup 
+            ggdata$se.inf <- se.inf
         } else{
             ggdata$se.sup <- "not assessed"
             ggdata$se.inf <- "not assessed"

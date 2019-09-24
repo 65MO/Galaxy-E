@@ -58,7 +58,6 @@ STOC Estimate species population evolution
 
 **What it does**
 
-TODO
 
 Compute and plot evolution of species population by specialization group, using a glm model.
 
@@ -72,7 +71,6 @@ A tabular file with species count shaped and filtered with the STOCs 'Preprocess
 
 **Output**
 
-TODO
 
 Three tabular files are created, they describe global tendencies and yearly variations per groups.
 
@@ -80,8 +78,8 @@ Three tabular files are created, they describe global tendencies and yearly vari
 
 **Source**
 
-Publications ? 
-@Romain mail
+UnPublished script available at http://www.vigienature.fr/sites/vigienature/files/atoms/files/analysestoceps_0.zip
+the first version written by romain.lorrilliere@mnhn.fr
 
   ]]></help>
 </tool>

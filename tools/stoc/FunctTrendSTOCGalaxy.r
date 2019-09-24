@@ -1,7 +1,6 @@
 #!/usr/bin/env Rscript
 
 
-
 ##################################################################################################################################
 ############## FUNCTION TO CALCULATE AND PLOT EVOLUTION OF SPECIES POPULATION  function:main.glm    ##############################
 ##################################################################################################################################
@@ -63,7 +62,6 @@ filter_absent_species<-function(tab){
     if(length(colNull)>0){
         cat("\n",length(colNull)," Species removed from the analysis, abundance is always 0.\n\n",sep="")  #Espèces enlevées de l'analyse car abondance toujours égale a 0\n\n",sep="")
         #tabNull <- data.frame(Code_espece = colNull, nom_espece = tabsp[colNull,"nom"])
-        #print(tabNull)  
         #cat("\n\n",sep="")
         tab <- tab[,c("carre","annee",colConserve)]
     }
@@ -121,7 +119,6 @@ filter_rare_species<-function(tab){
         cat("\n",length(colSupr)," Rare species removed from the analysis.\n\n",sep="")
         #tabSupr <- subset(tabsp,espece %in% colSupr ,select=c("espece","nom"))
         #tabSupr <- tabSupr[order(tabSupr$espece),]
-        #print(tabSupr)  
         #cat("\n\n",sep="")
         
     }
@@ -170,7 +167,7 @@ filter_rare_species<-function(tab){
 
 ############################################################################################ debut de la Function main.glm / start of the function main.glm
 
-main.glm <- function(id="france",donneesAll=dataCLEAN,assessIC= TRUE,listSp=sp,tabsp=tabsp,annees=annees,figure=TRUE,description=TRUE,tendanceSurFigure=TRUE, ###### declaration des arguments  listSp=sp était avant declaré avant la fonction mais il me semble que ca marche aussi comme cela
+main.glm <- function(id="france",donneesAll=dataCLEAN,assessIC= TRUE,tabsp=tabsp,annees=annees,figure=TRUE,description=TRUE,tendanceSurFigure=TRUE, ###### declaration des arguments  listSp=sp était avant declaré avant la fonction mais il me semble que ca marche aussi comme cela
                      seuilOccu=14,seuilAbond=NA) {
 
     
@@ -220,10 +217,11 @@ main.glm <- function(id="france",donneesAll=dataCLEAN,assessIC= TRUE,listSp=sp,t
     ## analyse par espece
 ### browser()
     ## affichage des especes conservees pour l'analyse  ### PAS SUR QUE CE SOIT ENCORE UTILE
-    cat("\n",nbSp," Espéces conservees pour l'analyse\n\n",sep="")
+    cat("\n",nbSp," Espèces conservées pour l'analyse\n\n",sep="")
     rownames(tabsp) <- tabsp$espece
-    tabCons <- data.frame(Code_espece = listSp, nom_espece = tabsp[as.character(listSp),"nom"])
-    print(tabCons)  
+    print(tabsp[,1:2])
+    #tabCons <- data.frame(Code_espece = listSp, nom_espece = tabsp[as.character(listSp),"nom"])
+    #print(tabCons)  
     cat("\n\n",sep="")
     flush.console()
 
@@ -240,12 +238,13 @@ main.glm <- function(id="france",donneesAll=dataCLEAN,assessIC= TRUE,listSp=sp,t
           
         d <- subset(donneesAll,espece==sp)  ## d data pour l'espece en court  / cut the data keeping only the i species
         
-        nomSp <- as.character(tabsp[sp,"nom"])  ## info sp
+        #nomSp <- as.character(tabsp[sp,"nom"])  ## info sp
+        nomSp <- tabsp$nom[which(tabsp$espece==sp)]  ## info sp
         cat("\n(",i,"/",nbSp,") ",sp," | ", nomSp,"\n",sep="")
         flush.console()
 
-        indic <- tabsp[sp,"indicateur"] ## indic :espece utilisee pour le calcul des indicateurs par groupe de specialisation / list the species used as species indicators by trophic specialization
-
+        #indic <- tabsp[sp,"indicateur"] ## indic :espece utilisee pour le calcul des indicateurs par groupe de specialisation / list the species used as species indicators by trophic specialization
+        indic <- tabsp$indicateur[which(tabsp$espece==sp)] ## indic :espece utilisee pour le calcul des indicateurs par groupe de specialisation / list the species used as species indicators by trophic specialization
         nb_carre = tapply(rep(1,nrow(d)),d$annee,sum) ## nb_carre nombre de carre suivie par annee / number of plots per year
         
         nb_carre_presence = tapply(ifelse(d$abond>0,1,0),d$annee,sum) ## nb_carre_presence nombre de carre de presence par annee / number the plots where the species were observed
@@ -726,7 +725,7 @@ analyseGroupe <- function(id="france",tabsp=tabsp,donnees=donnees,donneesTrend=d
     vecSpe <- unique(da$groupe)
     datasum <- data.frame(groupe=NULL,tendance=NULL,pourcentage_variation=NULL)
     for(spe in 1:4){
-                                        # print(spe)
+        # print(spe)
         subtab <- subset(da,groupe==vecSpe[spe])
         if(nrow(subtab)>1) {
             sumlm <- summary(lm(abondance_relative~annee,data=subtab)) ##### recupère les resultats du modèle linéaire / retrieve the results of the linear model

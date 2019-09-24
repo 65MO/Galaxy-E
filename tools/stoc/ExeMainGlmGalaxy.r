@@ -20,8 +20,8 @@ suppressMessages(library(reshape2))
 #delcaration des arguments et variables/ declaring some variables and load arguments
 
 args = commandArgs(trailingOnly=TRUE)
-
-source(args[6])### chargement des fonctions / load the functions
+options(encoding = "UTF-8")
+source(args[6],encoding="UTF-8")### chargement des fonctions / load the functions
 
 if ( (length(args)<8) || (length(args)>9)) {
     stop("At least 5 arguments must be supplied :\n- An input dataset filtered (.tabular). May come from the filter rare species tool.\n- A species detail table (.tabular)\n- An id to fix output repository name.\n- A list of species to exclude, can be empty.\n- TRUE/FALSE to perform the glm with confidence intervals calculations.\n\n", call.=FALSE) #si pas d'arguments -> affiche erreur et quitte / if no args -> error and exit1
@@ -33,18 +33,17 @@ if ( (length(args)<8) || (length(args)>9)) {
     AssessIC <-args [5] ##########  TRUE ou FALSE réalise glm "standard" avec calcul d'intervalle de confiance ou speedglm sans IC bien plus rapide / TRUE or FALSE perform a "standard" glm with confidance interval or speedglm without CI much more fast
 }
 
-
 ## creation d'un dossier pour y mettre les resultats / create folder for the output of the analyses
 
 dir.create(paste("Output/",id,sep=""),recursive=TRUE,showWarnings=FALSE)
-cat(paste("Create Output/",id,"\n",sep=""))
+#cat(paste("Create Output/",id,"\n",sep=""))
 dir.create(paste("Output/",id,"/Incertain/",sep=""),recursive=TRUE,showWarnings=FALSE)
-cat(paste("Create Output/",id,"Incertain/\n",sep=""))
+#cat(paste("Create Output/",id,"Incertain/\n",sep=""))
 
 
 #Import des données / Import data 
-tabCLEAN <- read.table(Datafilteredfortrendanalysis,sep="\t",dec=".",header=TRUE) #### charge le fichier de données d abondance / load abundance of species
-tabsp <- read.table(tabSpecies,sep="\t",dec=".",header=TRUE)   #### charge le fichier de donnees sur nom latin, vernaculaire et abbreviation, espece indicatrice ou non / load the file with information on species specialization and if species are indicators
+tabCLEAN <- fread(Datafilteredfortrendanalysis,sep="\t",dec=".",header=TRUE,encoding="UTF-8") #### charge le fichier de données d abondance / load abundance of species
+tabsp <- fread(tabSpecies,sep="\t",dec=".",header=TRUE,encoding="UTF-8")   #### charge le fichier de donnees sur nom latin, vernaculaire et abbreviation, espece indicatrice ou non / load the file with information on species specialization and if species are indicators
 
 vars_tabCLEAN<-c("carre","annee","espece","abond")
 err_msg_tabCLEAN<-"The input dataset filtered doesn't have the right format. It need to have the following 4 variables :\n- carre\n- annee\n- espece\n- abond\n"
@@ -60,16 +59,12 @@ check_file(tabsp,err_msg_tabsp,vars_tabsp,5)
 firstYear <- min(tabCLEAN$annee) #### Recupère 1ere annee des donnees / retrieve the first year of the dataset
 lastYear <- max(tabCLEAN$annee)  #### Récupère la dernière annee des donnees / retrieve the last year of the dataset
 annees <- firstYear:lastYear  ##### !!!! une autre variable s'appelle annee donc peut être à modif en "periode" ? ### argument de la fonction mais  DECLARER DANS LA FONCTION AUSSI donc un des 2 à supprimer
-
-spsFiltre=unique(levels(tabCLEAN[,3])) #### Recupère la liste des especes du tabCLEAN qui ont été sélectionnée et qui ont passé le filtre / retrieve species name that were selected and then filtered before
+spsFiltre=unique(tabCLEAN$espece) #### Recupère la liste des especes du tabCLEAN qui ont été sélectionnée et qui ont passé le filtre / retrieve species name that were selected and then filtered before
 #cat("\n\nspsFiltre\n")
-#print(spsFiltre)
 tabsp=subset (tabsp, (espece %in% spsFiltre)) #### liste des espèces exclu par le filtre ou manuellement / List of species excluded manually or by the filter from the analyses 
 #cat("\n\ntabsp\n")
-#print(tabsp)
 sp=as.character(tabsp$espece)  ##### liste des espece en code ou abbreviation gardées pour les analyses ### arg de la fonction  DECLARE AUSSI APRES DS FONCTION  / list of the code or abbreviation of the species kept for the analyses
 #cat("\n\nsp\n")
-#print(sp)
 if(length(spExclude)!=0) {
     tabCLEAN <- subset(tabCLEAN,!(espece %in% spExclude))
     tabsp <- subset(tabsp, !(espece %in% spExclude))
@@ -82,7 +77,6 @@ if(length(tabCLEAN$espece)==0){
     stop("There is no species left for the analyse.", call.=FALSE) #si pas plus d'espèce après filtre / if no more species after filter
 }
 #cat("\n\ntabsp\n")
-#print(tabsp)
 
 
 ################## 

@@ -40,7 +40,7 @@ Reshape the data for the next steps of STOC analyzes by adding zero count to sit
 
 A tabular file with abundance per year, per site and per species with no or few zero abundance.
 
-The data file can be extracted from the STOC database by asking : romain.lorrilliere@mnhn.fr
+The data file can be extracted from the STOC database on demand : romain.lorrilliere@mnhn.fr
 
 The table needs the following structure (at least these 4 fours columns) :
 
