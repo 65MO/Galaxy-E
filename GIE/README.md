@@ -27,7 +27,7 @@
    ```
    * specifying the mandatory R packages as mentionned [in this Dockerfile](https://github.com/65MO/Galaxy-E/blob/master/GIE/Shiny_GIS/geoExploreR/Dockerfile)
    ```
-       # Installing R package dedicated to the shniy app
+       # Installing R package dedicated to the shiny app
     Rscript -e "install.packages('ggplot2')" && \
     Rscript -e "install.packages('mgcv')" && \
     Rscript -e "install.packages('MASS')"
