@@ -1,0 +1,10 @@
+tool_test_output.html
+tool_test_output.json
+.DS_Store
+.tox
+*.pyc
+.*.log
+.idea/*
+.git/*
+.Rhistory
+.RData
